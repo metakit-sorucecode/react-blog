@@ -33,7 +33,7 @@
   - 실행하면: 로그인 메뉴를 누르면 로그인 폼이 보인다
   - Why: 로그인 장에서 이 폼에 동작을 붙인다
   - 다른 장: layout
-- [ ] T6 회원가입 화면 그리기
+- [x] T6 회원가입 화면 그리기
   - 근거: S8
   - 파일: react-blog/src/pages/JoinForm.jsx, react-blog/src/App.jsx
   - 실행하면: 회원가입 메뉴를 누르면 회원가입 폼이 보인다
