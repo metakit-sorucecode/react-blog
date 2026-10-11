@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -70,8 +70,15 @@ test("S4 옛 코드, 예제 데이터, 빌드 결과, 옛 안내 문서가 남�
 });
 
 test("S5 포맷 명령 하나로 코드 모양을 맞춘다", () => {
-  execSync("npm run format", { cwd: blog, stdio: "pipe" });
-  execSync("npx prettier --check src", { cwd: blog, stdio: "pipe" });
+  // 모양이 흐트러진 임시 파일을 두고 포맷 명령이 고치는지 본다
+  const messy = path.join(src, "format-check.jsx");
+  writeFileSync(messy, "const   a='x'\n");
+  try {
+    execSync("npm run format", { cwd: blog, stdio: "pipe" });
+    expect(readFileSync(messy, "utf8")).toBe('const a = "x";\n');
+  } finally {
+    rmSync(messy, { force: true });
+  }
 });
 
 test("S6 루트 테스트 명령이 서버와 프론트를 함께 띄운다", async ({ page, request }) => {

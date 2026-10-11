@@ -21,6 +21,9 @@
   - 파일: package.json, playwright.config.js, .gitignore
   - 실행하면: 루트에서 npx playwright test가 server-node와 react-blog를 띄우고 테스트를 돈다
   - Why: 장마다 앱이 실제로 서버와 통신하는지 확인한다
+- [x] 테스트 보강
+  - 근거: 빠짐. S5 테스트가 포맷이 맞은 src로만 확인해 format이 일하지 않아도 통과했다
+  - 파일: tests/project-setup/project-setup.spec.js
 - [ ] 수렴 점검
 - [ ] 캡처
 - [ ] 도식
