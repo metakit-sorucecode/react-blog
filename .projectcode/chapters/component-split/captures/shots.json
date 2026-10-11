@@ -1,0 +1,47 @@
+{
+  "chapter": "component-split",
+  "web": "http://localhost:5173",
+  "api": "http://localhost:8080",
+  "shots": [
+    {
+      "file": "T1-글-카드-조각.png",
+      "task": "T1",
+      "screen": "홈",
+      "see": "BoardCard 세 번으로 그린 제목1, 제목2, 제목3 카드가 3장과 같게 세 칸으로 놓여 있다"
+    },
+    {
+      "file": "T2-글-배열-map.png",
+      "task": "T2",
+      "screen": "홈",
+      "see": "boards 배열을 map으로 그린 카드 3개가 3장과 같게 세 칸으로 놓여 있다"
+    },
+    {
+      "file": "T3-댓글-줄-조각.png",
+      "task": "T3",
+      "screen": "상세",
+      "path": "/board/1",
+      "see": "cos 댓글1, love 댓글2 두 줄과 휴지통 버튼이 3장과 같게 보인다"
+    },
+    {
+      "file": "T4-폼-틀-조각.png",
+      "task": "T4",
+      "screen": "로그인",
+      "path": "/login-form",
+      "see": "FormCard로 그린 로그인 폼이 테두리 상자 안에 제목, 입력칸 둘, 버튼으로 3장과 같게 보인다"
+    },
+    {
+      "file": "T5-입력칸-조각.png",
+      "task": "T5",
+      "screen": "내 정보",
+      "path": "/user-info",
+      "see": "Input으로 그린 ssar 칸, 이메일, 새 비밀번호 칸이 3장과 같게 보인다"
+    },
+    {
+      "file": "T6-글-폼-합치기.png",
+      "task": "T6",
+      "screen": "수정",
+      "path": "/update-form/1",
+      "see": "BoardForm으로 그린 글 수정 화면에 제목, 내용 입력칸과 수정하기 버튼이 3장과 같게 보인다"
+    }
+  ]
+}

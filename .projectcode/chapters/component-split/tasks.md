@@ -1,7 +1,7 @@
 # component-split 작업
 
 - [x] 테스트 작성
-- [ ] T1 글 카드를 컴포넌트로 빼고 props로 넘기기
+- [x] T1 글 카드를 컴포넌트로 빼고 props로 넘기기
   - 근거: S1
   - 파일: react-blog/src/components/BoardCard.jsx, react-blog/src/pages/Home.jsx
   - 실행하면: 홈 카드 3개가 그대로 보인다. Home은 BoardCard를 세 번 쓴다
