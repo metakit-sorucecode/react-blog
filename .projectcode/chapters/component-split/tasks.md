@@ -25,7 +25,7 @@
   - 실행하면: 폼 5개가 그대로 보인다. 다섯 화면 모두 FormCard를 쓴다
   - Why: 틀은 같고 안의 입력칸만 다르니 안쪽 마크업을 children으로 넘긴다
   - 다른 장: screens
-- [ ] T5 입력칸을 컴포넌트로 빼고 props 펼치기
+- [x] T5 입력칸을 컴포넌트로 빼고 props 펼치기
   - 근거: S4
   - 파일: react-blog/src/components/Input.jsx, react-blog/src/pages/LoginForm.jsx, react-blog/src/pages/JoinForm.jsx, react-blog/src/pages/UserInfo.jsx, react-blog/src/pages/SaveForm.jsx, react-blog/src/pages/UpdateForm.jsx
   - 실행하면: 입력칸 모습, 비밀번호 가림, 아이디 읽기만이 그대로다
