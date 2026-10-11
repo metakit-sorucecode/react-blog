@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
@@ -7,6 +8,7 @@ export default function JoinForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -15,6 +17,8 @@ export default function JoinForm() {
       password,
       email,
     });
+    alert("회원가입 완료");
+    navigate("/login-form");
   }
 
   return (

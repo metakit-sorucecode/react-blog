@@ -35,12 +35,12 @@
       "task": "T2",
       "screen": "회원가입 /join-form",
       "path": "/join-form",
-      "see": "가입하기를 누른 뒤에도 새로고침되지 않아 아이디 lee, 비밀번호, 이메일 lee@nate.com이 칸에 남아 있다",
+      "see": "가입하기를 누른 뒤에도 새로고침되지 않아 아이디 jung, 비밀번호, 이메일 jung@nate.com이 칸에 남아 있다",
       "steps": [
         {
           "fill": [
             "아이디",
-            "lee"
+            "jung"
           ]
         },
         {
@@ -52,7 +52,37 @@
         {
           "fill": [
             "이메일",
-            "lee@nate.com"
+            "jung@nate.com"
+          ]
+        },
+        {
+          "click": "가입하기"
+        }
+      ]
+    },
+    {
+      "file": "T3-로그인-화면으로.png",
+      "task": "T3",
+      "screen": "회원가입 뒤 /login-form",
+      "path": "/join-form",
+      "see": "회원가입 완료 안내를 닫은 뒤 로그인 화면이 보이고 헤더의 로그인 메뉴가 강조된다. 안내 창은 브라우저 창이라 사진에 없다",
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "choi"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "fill": [
+            "이메일",
+            "choi@nate.com"
           ]
         },
         {
