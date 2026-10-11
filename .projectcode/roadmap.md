@@ -25,7 +25,7 @@
 | 2 | layout | 레이아웃과 헤더 | 기능 | Layout과 Outlet, 헤더 메뉴, NavLink로 지금 메뉴 강조, Tailwind와 DaisyUI 최소 스타일 | 완료 |
 | 3 | screens | 화면 그리기와 라우트 | 기능 | 화면 7개 정적 마크업, 라우트 연결, grid 글 목록 | 완료 |
 | 4 | component-split | 겹치는 화면을 컴포넌트로 | 리팩터 | 컴포넌트 분리, props, children, props 펼침, map | 완료 |
-| 5 | board-list | 글 목록 | 기능 | axios GET, useEffect로 서버 데이터 그리기 | 진행 중 |
+| 5 | board-list | 글 목록 | 기능 | axios GET, useEffect로 서버 데이터 그리기 | 완료 |
 | 6 | board-detail | 글 상세 | 기능 | useParams, 상세와 댓글 목록 그리기 | 대기 |
 | 7 | join | 회원가입 | 기능 | useState 폼, axios POST, 성공하면 이동 | 대기 |
 | 8 | login | 로그인 | 기능 | 응답 헤더 토큰, zustand 로그인 상태, 헤더 메뉴 바꾸기, 로그아웃 | 대기 |

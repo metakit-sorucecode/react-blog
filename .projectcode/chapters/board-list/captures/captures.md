@@ -4,3 +4,5 @@
 |---|---|---|---|---|
 | T1-빈-목록.png | board-list | T1 | 홈 | 헤더 아래에 카드가 하나도 없다 |
 | T2-서버-글-목록.png | board-list | T2 | 홈 | 서버에서 받은 제목4, 제목3, 제목2 카드가 세 칸으로 놓여 있다 |
+| done-홈.png | board-list | done | 홈 | 홈 메뉴가 강조되고 서버에서 받은 제목4, 제목3, 제목2 카드가 세 칸으로 보인다 |
+| done-목록-API.json | board-list | done | GET /?page=0 | body.boards에 id 4, 3, 2 글이 있다 |

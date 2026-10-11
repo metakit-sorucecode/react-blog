@@ -14,6 +14,22 @@
       "task": "T2",
       "screen": "홈",
       "see": "서버에서 받은 제목4, 제목3, 제목2 카드가 세 칸으로 놓여 있다"
+    },
+    {
+      "file": "done-홈.png",
+      "task": "done",
+      "screen": "홈",
+      "see": "홈 메뉴가 강조되고 서버에서 받은 제목4, 제목3, 제목2 카드가 세 칸으로 보인다"
+    },
+    {
+      "file": "done-목록-API.json",
+      "task": "done",
+      "screen": "GET /?page=0",
+      "see": "body.boards에 id 4, 3, 2 글이 있다",
+      "request": {
+        "method": "GET",
+        "path": "/?page=0"
+      }
     }
   ]
 }
