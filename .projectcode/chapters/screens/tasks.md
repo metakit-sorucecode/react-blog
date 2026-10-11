@@ -1,0 +1,43 @@
+# screens 작업
+
+- [ ] 테스트 작성
+- [ ] T1 홈에 글 카드 3개 놓기
+  - 근거: S1
+  - 파일: react-blog/src/pages/Home.jsx
+  - 실행하면: 홈에 제목1, 제목2, 제목3 카드가 세 칸으로 보인다
+  - Why: 글 목록 자리를 먼저 그려야 뒤 장에서 서버 글로 바꿀 수 있다
+  - 다른 장: layout
+- [ ] T2 글 상세 화면 그리고 카드에서 잇기
+  - 근거: S2, S3
+  - 파일: react-blog/src/pages/Detail.jsx, react-blog/src/pages/Home.jsx, react-blog/src/App.jsx
+  - 실행하면: 카드 제목을 누르면 상세와 댓글 목록이 보인다
+  - Why: 목록에서 글 하나로 들어가는 길이 있어야 상세를 볼 수 있다
+  - 다른 장: layout
+- [ ] T3 글쓰기 화면 그리기
+  - 근거: S5
+  - 파일: react-blog/src/pages/SaveForm.jsx, react-blog/src/App.jsx
+  - 실행하면: 글쓰기 메뉴를 누르면 글쓰기 폼이 보인다
+  - Why: 폼 화면의 틀을 하나 정하면 나머지 폼이 같은 틀을 따른다
+- [ ] T4 수정 화면 그리고 상세에서 잇기
+  - 근거: S4, S6
+  - 파일: react-blog/src/pages/UpdateForm.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/App.jsx
+  - 실행하면: 상세의 수정을 누르면 글 수정 폼이 보인다
+  - Why: 수정 화면은 메뉴가 없어서 상세에서 들어가는 길이 필요하다
+- [ ] T5 로그인 화면 그리기
+  - 근거: S7
+  - 파일: react-blog/src/pages/LoginForm.jsx, react-blog/src/App.jsx
+  - 실행하면: 로그인 메뉴를 누르면 로그인 폼이 보인다
+  - Why: 로그인 장에서 이 폼에 동작을 붙인다
+- [ ] T6 회원가입 화면 그리기
+  - 근거: S8
+  - 파일: react-blog/src/pages/JoinForm.jsx, react-blog/src/App.jsx
+  - 실행하면: 회원가입 메뉴를 누르면 회원가입 폼이 보인다
+  - Why: 회원가입 장에서 이 폼에 동작을 붙인다
+- [ ] T7 내 정보 화면 그리기
+  - 근거: S9, S10
+  - 파일: react-blog/src/pages/UserInfo.jsx, react-blog/src/App.jsx
+  - 실행하면: 내 정보 메뉴를 누르면 아이디가 채워진 폼이 보인다. 메뉴 5개가 모두 화면으로 간다
+  - Why: 마지막 메뉴 화면이 생겨 헤더의 모든 메뉴가 화면을 갖는다
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식

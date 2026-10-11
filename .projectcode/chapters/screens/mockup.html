@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <title>screens 시안</title>
+  <link rel="stylesheet" href="../../../react-blog/node_modules/daisyui/daisyui.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  <style>
+    .shot { border: 1px dashed #999; margin: 32px auto; max-width: 52rem; }
+    .shot > p { background: #eee; padding: 4px 8px; font-size: 12px; }
+  </style>
+</head>
+<body>
+
+<!-- 홈 / -->
+<section class="shot"><p>홈 /</p>
+  <div class="max-w-3xl mx-auto p-8">
+    <ul class="menu menu-horizontal">
+      <li><a class="menu-active" href="#">홈</a></li><li><a href="#">로그인</a></li><li><a href="#">회원가입</a></li><li><a href="#">글쓰기</a></li><li><a href="#">내 정보</a></li>
+    </ul>
+    <hr class="mb-8">
+    <div class="grid grid-cols-3 gap-8">
+      <div class="card border"><div class="card-body"><a href="#">제목1</a></div></div>
+      <div class="card border"><div class="card-body"><a href="#">제목2</a></div></div>
+      <div class="card border"><div class="card-body"><a href="#">제목3</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 상세 /board/1 -->
+<section class="shot"><p>상세 /board/1</p>
+  <div class="max-w-3xl mx-auto p-8">
+    <ul class="menu menu-horizontal">
+      <li><a href="#">홈</a></li><li><a href="#">로그인</a></li><li><a href="#">회원가입</a></li><li><a href="#">글쓰기</a></li><li><a href="#">내 정보</a></li>
+    </ul>
+    <hr class="mb-8">
+    <h1 class="text-2xl font-bold">제목1</h1>
+    <p>작성자 ssar</p>
+    <p class="my-8">내용1</p>
+    <a class="btn" href="#">수정</a>
+    <button class="btn">삭제</button>
+    <hr class="my-8">
+    <h2 class="font-bold">댓글</h2>
+    <ul class="list">
+      <li class="list-row"><span>cos</span><span>댓글1</span><button class="btn btn-ghost btn-xs">🗑</button></li>
+      <li class="list-row"><span>love</span><span>댓글2</span><button class="btn btn-ghost btn-xs">🗑</button></li>
+    </ul>
+    <form class="flex gap-2 mt-4">
+      <input class="input flex-1" placeholder="댓글을 입력하세요">
+      <button class="btn">등록</button>
+    </form>
+  </div>
+</section>
+
+<!-- 글쓰기 /save-form -->
+<section class="shot"><p>글쓰기 /save-form</p>
+  <div class="max-w-3xl mx-auto p-8">
+    <ul class="menu menu-horizontal">
+      <li><a href="#">홈</a></li><li><a href="#">로그인</a></li><li><a href="#">회원가입</a></li><li><a class="menu-active" href="#">글쓰기</a></li><li><a href="#">내 정보</a></li>
+    </ul>
+    <hr class="mb-8">
+    <form class="card border max-w-sm mx-auto p-8 gap-4">
+      <h1 class="text-2xl font-bold">글쓰기</h1>
+      <input class="input" placeholder="제목">
+      <textarea class="textarea" placeholder="내용"></textarea>
+      <button class="btn">글쓰기</button>
+    </form>
+  </div>
+</section>
+
+<!-- 수정 /update-form/1 -->
+<section class="shot"><p>수정 /update-form/1</p>
+  <div class="max-w-3xl mx-auto p-8">
+    <ul class="menu menu-horizontal">
+      <li><a href="#">홈</a></li><li><a href="#">로그인</a></li><li><a href="#">회원가입</a></li><li><a href="#">글쓰기</a></li><li><a href="#">내 정보</a></li>
+    </ul>
+    <hr class="mb-8">
+    <form class="card border max-w-sm mx-auto p-8 gap-4">
+      <h1 class="text-2xl font-bold">글 수정</h1>
+      <input class="input" placeholder="제목">
+      <textarea class="textarea" placeholder="내용"></textarea>
+      <button class="btn">수정하기</button>
+    </form>
+  </div>
+</section>
+
+<!-- 로그인 /login-form -->
+<section class="shot"><p>로그인 /login-form</p>
+  <div class="max-w-3xl mx-auto p-8">
+    <ul class="menu menu-horizontal">
+      <li><a href="#">홈</a></li><li><a class="menu-active" href="#">로그인</a></li><li><a href="#">회원가입</a></li><li><a href="#">글쓰기</a></li><li><a href="#">내 정보</a></li>
+    </ul>
+    <hr class="mb-8">
+    <form class="card border max-w-sm mx-auto p-8 gap-4">
+      <h1 class="text-2xl font-bold">로그인</h1>
+      <input class="input" placeholder="아이디">
+      <input class="input" type="password" placeholder="비밀번호">
+      <button class="btn">로그인</button>
+    </form>
+  </div>
+</section>
+
+<!-- 회원가입 /join-form -->
+<section class="shot"><p>회원가입 /join-form</p>
+  <div class="max-w-3xl mx-auto p-8">
+    <ul class="menu menu-horizontal">
+      <li><a href="#">홈</a></li><li><a href="#">로그인</a></li><li><a class="menu-active" href="#">회원가입</a></li><li><a href="#">글쓰기</a></li><li><a href="#">내 정보</a></li>
+    </ul>
+    <hr class="mb-8">
+    <form class="card border max-w-sm mx-auto p-8 gap-4">
+      <h1 class="text-2xl font-bold">회원가입</h1>
+      <input class="input" placeholder="아이디">
+      <input class="input" type="password" placeholder="비밀번호">
+      <input class="input" placeholder="이메일">
+      <button class="btn">가입하기</button>
+    </form>
+  </div>
+</section>
+
+<!-- 내 정보 /user-info -->
+<section class="shot"><p>내 정보 /user-info</p>
+  <div class="max-w-3xl mx-auto p-8">
+    <ul class="menu menu-horizontal">
+      <li><a href="#">홈</a></li><li><a href="#">로그인</a></li><li><a href="#">회원가입</a></li><li><a href="#">글쓰기</a></li><li><a class="menu-active" href="#">내 정보</a></li>
+    </ul>
+    <hr class="mb-8">
+    <form class="card border max-w-sm mx-auto p-8 gap-4">
+      <h1 class="text-2xl font-bold">내 정보</h1>
+      <input class="input" value="ssar" readonly>
+      <input class="input" placeholder="이메일">
+      <input class="input" type="password" placeholder="새 비밀번호">
+      <button class="btn">수정하기</button>
+    </form>
+  </div>
+</section>
+
+</body>
+</html>
