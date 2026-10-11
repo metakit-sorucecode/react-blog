@@ -7,7 +7,7 @@
   - 실행하면: / 에 홈 글자가 보인다. Hello World는 사라진다
   - Why: 주소마다 화면을 바꾸려면 라우터가 먼저 있어야 한다
   - 다른 장: project-setup
-- [ ] T2 레이아웃에 헤더 메뉴 두기
+- [x] T2 레이아웃에 헤더 메뉴 두기
   - 근거: S1, S3, S4
   - 파일: react-blog/src/components/Layout.jsx, react-blog/src/components/Header.jsx, react-blog/src/App.jsx
   - 실행하면: 메뉴 5개 아래에 홈이 보이고 로그인을 누르면 주소가 /login-form으로 바뀐다
