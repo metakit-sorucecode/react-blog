@@ -15,31 +15,36 @@
   - 실행하면: 카드 제목을 누르면 상세와 댓글 목록이 보인다
   - Why: 목록에서 글 하나로 들어가는 길이 있어야 상세를 볼 수 있다
   - 다른 장: layout
-- [ ] T3 글쓰기 화면 그리기
+- [x] T3 글쓰기 화면 그리기
   - 근거: S5
   - 파일: react-blog/src/pages/SaveForm.jsx, react-blog/src/App.jsx
   - 실행하면: 글쓰기 메뉴를 누르면 글쓰기 폼이 보인다
   - Why: 폼 화면의 틀을 하나 정하면 나머지 폼이 같은 틀을 따른다
+  - 다른 장: layout
 - [ ] T4 수정 화면 그리고 상세에서 잇기
   - 근거: S4, S6
   - 파일: react-blog/src/pages/UpdateForm.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/App.jsx
   - 실행하면: 상세의 수정을 누르면 글 수정 폼이 보인다
   - Why: 수정 화면은 메뉴가 없어서 상세에서 들어가는 길이 필요하다
+  - 다른 장: layout
 - [ ] T5 로그인 화면 그리기
   - 근거: S7
   - 파일: react-blog/src/pages/LoginForm.jsx, react-blog/src/App.jsx
   - 실행하면: 로그인 메뉴를 누르면 로그인 폼이 보인다
   - Why: 로그인 장에서 이 폼에 동작을 붙인다
+  - 다른 장: layout
 - [ ] T6 회원가입 화면 그리기
   - 근거: S8
   - 파일: react-blog/src/pages/JoinForm.jsx, react-blog/src/App.jsx
   - 실행하면: 회원가입 메뉴를 누르면 회원가입 폼이 보인다
   - Why: 회원가입 장에서 이 폼에 동작을 붙인다
+  - 다른 장: layout
 - [ ] T7 내 정보 화면 그리기
   - 근거: S9, S10
   - 파일: react-blog/src/pages/UserInfo.jsx, react-blog/src/App.jsx
   - 실행하면: 내 정보 메뉴를 누르면 아이디가 채워진 폼이 보인다. 메뉴 5개가 모두 화면으로 간다
   - Why: 마지막 메뉴 화면이 생겨 헤더의 모든 메뉴가 화면을 갖는다
+  - 다른 장: layout
 - [ ] 수렴 점검
 - [ ] 캡처
 - [ ] 도식
