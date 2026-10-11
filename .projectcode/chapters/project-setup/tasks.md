@@ -11,7 +11,7 @@
   - 파일: react-blog/src/main.jsx, react-blog/src/App.jsx, react-blog/vite.config.js, react-blog/src (지운 폴더)
   - 실행하면: 흰 바탕에 큰 굵은 글자로 Hello World만 보인다
   - Why: 강의는 빈 화면에서 시작해야 학생이 모든 코드를 직접 쓴다
-- [ ] T3 포맷 명령 더하기
+- [x] T3 포맷 명령 더하기
   - 근거: S5
   - 파일: react-blog/package.json
   - 실행하면: npm run format으로 src 파일 모양이 맞춰진다
