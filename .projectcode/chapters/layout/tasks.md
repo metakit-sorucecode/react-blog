@@ -12,7 +12,7 @@
   - 파일: react-blog/src/components/Layout.jsx, react-blog/src/components/Header.jsx, react-blog/src/App.jsx
   - 실행하면: 메뉴 5개 아래에 홈이 보이고 로그인을 누르면 주소가 /login-form으로 바뀐다
   - Why: 모든 화면에 같은 헤더를 두려면 화면이 바뀌는 자리를 레이아웃 안에 따로 둬야 한다
-- [ ] T3 바깥 여백과 구분선 주기
+- [x] T3 바깥 여백과 구분선 주기
   - 근거: S2
   - 파일: react-blog/src/components/Layout.jsx
   - 실행하면: 메뉴와 홈이 가운데 너비 안에 여백을 두고 놓이고 사이에 선이 생긴다
