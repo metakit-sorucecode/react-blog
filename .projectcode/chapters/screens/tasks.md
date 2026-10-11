@@ -21,7 +21,7 @@
   - 실행하면: 글쓰기 메뉴를 누르면 글쓰기 폼이 보인다
   - Why: 폼 화면의 틀을 하나 정하면 나머지 폼이 같은 틀을 따른다
   - 다른 장: layout
-- [ ] T4 수정 화면 그리고 상세에서 잇기
+- [x] T4 수정 화면 그리고 상세에서 잇기
   - 근거: S4, S6
   - 파일: react-blog/src/pages/UpdateForm.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/App.jsx
   - 실행하면: 상세의 수정을 누르면 글 수정 폼이 보인다

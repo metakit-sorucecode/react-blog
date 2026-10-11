@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import SaveForm from "./pages/SaveForm";
+import UpdateForm from "./pages/UpdateForm";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "board/:id", element: <Detail /> },
       { path: "save-form", element: <SaveForm /> },
+      { path: "update-form/:id", element: <UpdateForm /> },
     ],
   },
 ]);
