@@ -1,0 +1,26 @@
+# project-setup 작업
+
+- [ ] 테스트 작성
+- [ ] T1 start를 react-blog로 복사하기
+  - 근거: S1
+  - 파일: react-blog/
+  - 실행하면: npm run dev로 start의 옛 화면이 그대로 뜬다
+  - Why: 설치된 라이브러리를 그대로 쓰려면 start를 복사해야 한다
+- [ ] T2 옛 코드를 지우고 Hello World 띄우기
+  - 근거: S1, S2, S3, S4
+  - 파일: react-blog/src/main.jsx, react-blog/src/App.jsx, react-blog/vite.config.js, react-blog/src (지운 폴더)
+  - 실행하면: 흰 바탕에 큰 굵은 글자로 Hello World만 보인다
+  - Why: 강의는 빈 화면에서 시작해야 학생이 모든 코드를 직접 쓴다
+- [ ] T3 포맷 명령 더하기
+  - 근거: S5
+  - 파일: react-blog/package.json
+  - 실행하면: npm run format으로 src 파일 모양이 맞춰진다
+  - Why: 따라 친 코드의 모양을 한 번에 맞춘다
+- [ ] T4 서버와 프론트를 함께 띄우는 테스트 실행기
+  - 근거: S6
+  - 파일: package.json, playwright.config.js, .gitignore
+  - 실행하면: 루트에서 npx playwright test가 server-node와 react-blog를 띄우고 테스트를 돈다
+  - Why: 장마다 앱이 실제로 서버와 통신하는지 확인한다
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
