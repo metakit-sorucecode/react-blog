@@ -1,26 +1,26 @@
 # 폴더 구조
 
-비교 기준: done/screens. 새로 생긴 파일과 고친 파일을 표시했다.
+비교 기준: done/component-split. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
   src/
     components/
-      BoardCard.jsx   새로
-      BoardForm.jsx   새로
-      FormCard.jsx   새로
+      BoardCard.jsx
+      BoardForm.jsx
+      FormCard.jsx
       Header.jsx
-      Input.jsx   새로
+      Input.jsx
       Layout.jsx
-      ReplyItem.jsx   새로
+      ReplyItem.jsx
     pages/
-      Detail.jsx   고침
+      Detail.jsx
       Home.jsx   고침
-      JoinForm.jsx   고침
-      LoginForm.jsx   고침
-      SaveForm.jsx   고침
-      UpdateForm.jsx   고침
-      UserInfo.jsx   고침
+      JoinForm.jsx
+      LoginForm.jsx
+      SaveForm.jsx
+      UpdateForm.jsx
+      UserInfo.jsx
     App.jsx
     index.css
     main.jsx

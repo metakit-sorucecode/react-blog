@@ -15,6 +15,11 @@
 
 ![홈 글 카드](../chapters/screens/captures/done-홈.png)
 
+## 홈 (서버 글 목록)
+처음 나온 장: board-list
+
+![홈 서버 글 목록](../chapters/board-list/captures/done-홈.png)
+
 ## 상세
 처음 나온 장: screens
 

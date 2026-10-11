@@ -30,6 +30,23 @@ flowchart LR
 - react-blog/src/pages/UserInfo.jsx
 - react-blog/src/index.css
 
+## 글 목록 보기
+
+```mermaid
+flowchart LR
+  A[Home] --> B["GET /?page=0"]
+  B --> C[routes/boards.js]
+  C --> D[(boards)]
+  A --> E[BoardCard]
+```
+
+만든 장: screens, component-split, board-list
+맡는 파일
+- react-blog/src/pages/Home.jsx
+- react-blog/src/components/BoardCard.jsx
+- server-node/src/routes/boards.js
+- server-node/src/db.js
+
 ## 글 보기에서 수정 화면까지
 
 ```mermaid
@@ -74,4 +91,4 @@ flowchart LR
 - react-blog/src/pages/JoinForm.jsx
 - react-blog/src/pages/UserInfo.jsx
 
-화면은 예시 글자로만 그렸다. 서버와 주고받는 시나리오(회원가입, 로그인, 글쓰기)는 아직 만든 장이 없다.
+홈 목록만 서버에서 받는다. 상세와 폼 화면은 아직 예시 글자다. 회원가입, 로그인, 글쓰기 시나리오는 아직 만든 장이 없다.
