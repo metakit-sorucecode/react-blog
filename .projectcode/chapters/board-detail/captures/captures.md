@@ -5,3 +5,5 @@
 | T1-글-번호-수정-링크.png | board-detail | T1 | 상세 /board/4 | 주소는 /board/4지만 화면은 아직 예시 글자 제목1, 내용1, 댓글1, 댓글2다. 수정 링크는 /update-form/4를 가리킨다 |
 | T2-빈-상세.png | board-detail | T2 | 상세 /board/4 | 예시 글자가 사라지고 제목, 내용, 댓글이 비어 있다. 작성자 글자와 버튼, 댓글 입력만 보인다 |
 | T3-서버-상세.png | board-detail | T3 | 상세 /board/4 | 서버에서 받은 제목4, 작성자 love, 내용4와 댓글 ssar 댓글1, ssar 댓글2, cos 댓글3이 보인다 |
+| done-상세.png | board-detail | done | 상세 /board/4 | 서버에서 받은 제목4, 작성자 love, 내용4와 댓글 ssar 댓글1, ssar 댓글2, cos 댓글3이 보인다 |
+| done-상세-API.json | board-detail | done | GET /api/boards/4 | body에 제목4, username love, 댓글 3개가 있다 |

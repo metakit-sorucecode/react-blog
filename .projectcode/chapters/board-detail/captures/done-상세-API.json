@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/api/boards/4"
+  },
+  "status": 200,
+  "response": {
+    "status": 200,
+    "msg": "성공",
+    "body": {
+      "id": 4,
+      "title": "제목4",
+      "content": "내용4",
+      "userId": 3,
+      "username": "love",
+      "owner": false,
+      "replies": [
+        {
+          "id": 1,
+          "comment": "댓글1",
+          "userId": 1,
+          "username": "ssar",
+          "owner": false
+        },
+        {
+          "id": 2,
+          "comment": "댓글2",
+          "userId": 1,
+          "username": "ssar",
+          "owner": false
+        },
+        {
+          "id": 3,
+          "comment": "댓글3",
+          "userId": 2,
+          "username": "cos",
+          "owner": false
+        }
+      ]
+    }
+  }
+}

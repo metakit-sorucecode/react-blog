@@ -23,6 +23,23 @@
       "screen": "상세 /board/4",
       "path": "/board/4",
       "see": "서버에서 받은 제목4, 작성자 love, 내용4와 댓글 ssar 댓글1, ssar 댓글2, cos 댓글3이 보인다"
+    },
+    {
+      "file": "done-상세.png",
+      "task": "done",
+      "screen": "상세 /board/4",
+      "path": "/board/4",
+      "see": "서버에서 받은 제목4, 작성자 love, 내용4와 댓글 ssar 댓글1, ssar 댓글2, cos 댓글3이 보인다"
+    },
+    {
+      "file": "done-상세-API.json",
+      "task": "done",
+      "screen": "GET /api/boards/4",
+      "see": "body에 제목4, username love, 댓글 3개가 있다",
+      "request": {
+        "method": "GET",
+        "path": "/api/boards/4"
+      }
     }
   ]
 }
