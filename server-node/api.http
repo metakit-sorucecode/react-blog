@@ -1,0 +1,103 @@
+### 부산은행 블로그 서버 API 테스트 (VS Code REST Client)
+### 사용법:
+###   1. VS Code에서 "REST Client" 확장 설치 (id: humao.rest-client)
+###   2. 서버 실행:  npm start   (http://localhost:8080)
+###   3. 각 요청 위의 "Send Request" 를 클릭
+###   4. 먼저 아래 [로그인] 을 한 번 보내면, 토큰이 자동으로 저장되어
+###      인증이 필요한 요청들이 바로 동작합니다.
+
+@host = http://localhost:8080
+
+###############################################
+# 인증 (Users)
+###############################################
+
+### 회원가입
+POST {{host}}/join
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "1234",
+  "email": "newuser@nate.com"
+}
+
+### 로그인  ★먼저 실행★  (응답 Authorization 헤더에 토큰이 담겨 옴)
+# @name login
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "username": "ssar",
+  "password": "1234"
+}
+
+### 로그인 응답 헤더의 토큰을 변수로 재사용
+@token = {{login.response.headers.Authorization}}
+
+### 내 정보 조회 (인증 필요)
+GET {{host}}/api/user
+Authorization: {{token}}
+
+### 내 정보 수정 (인증 필요)
+PUT {{host}}/api/user
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "email": "changed@nate.com",
+  "password": ""
+}
+
+###############################################
+# 게시글 (Boards)
+###############################################
+
+### 목록 (페이징 + 검색) — 비로그인도 가능
+GET {{host}}/?page=0&keyword=
+
+### 상세 조회 (로그인 시 owner 판별됨)
+GET {{host}}/api/boards/1
+Authorization: {{token}}
+
+### 게시글 작성 (인증 필요)
+POST {{host}}/api/boards
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "title": "새 글 제목",
+  "content": "새 글 내용"
+}
+
+### 게시글 수정 (본인 글만, 인증 필요)
+PUT {{host}}/api/boards/1
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "title": "수정된 제목",
+  "content": "수정된 내용"
+}
+
+### 게시글 삭제 (본인 글만, 인증 필요)
+DELETE {{host}}/api/boards/1
+Authorization: {{token}}
+
+###############################################
+# 댓글 (Replies)
+###############################################
+
+### 댓글 작성 (인증 필요)
+POST {{host}}/api/replies
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "comment": "새 댓글입니다",
+  "boardId": 4
+}
+
+### 댓글 삭제 (본인 댓글만, 인증 필요)
+DELETE {{host}}/api/replies/1
+Authorization: {{token}}
