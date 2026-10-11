@@ -1,7 +1,7 @@
 # join 작업
 
 - [x] 테스트 작성
-- [ ] T1 입력값을 state로 기억하기
+- [x] T1 입력값을 state로 기억하기
   - 근거: S1
   - 파일: react-blog/src/pages/JoinForm.jsx
   - 실행하면: 세 칸에 친 글자가 그대로 보이고, React 개발자 도구에서 state 세 개가 바뀐다
