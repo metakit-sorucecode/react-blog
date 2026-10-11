@@ -38,7 +38,8 @@ test("S3 상세 화면에 제목, 작성자, 내용, 수정과 삭제 버튼, �
   await expect(heading(page, "제목1")).toBeVisible();
   await expect(page.getByText("작성자 ssar")).toBeVisible();
   await expect(page.getByText("내용1", { exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "수정", exact: true })).toBeVisible();
+  // 수정은 상세에서 수정 화면으로 잇는 S4에서 링크가 된다. 여기서는 보이는지만 본다
+  await expect(page.getByText("수정", { exact: true })).toBeVisible();
   await expect(button(page, "삭제")).toBeVisible();
   await expect(heading(page, "댓글")).toBeVisible();
   await expect(page.getByText("댓글1", { exact: true })).toBeVisible();
