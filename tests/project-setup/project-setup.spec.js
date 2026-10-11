@@ -30,30 +30,24 @@ async function brightness(page, selector, property) {
   );
 }
 
-test("S1 react-blog 개발 서버를 띄우면 Hello World가 보인다", async ({ page }) => {
+test("S1 react-blog 개발 서버를 띄우면 5173 주소에 첫 화면이 보인다", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Hello World" })).toBeVisible();
+  await expect(page.getByRole("heading").first()).toBeVisible();
 });
 
-test("S2 Hello World는 흰 바탕에 큰 굵은 검정 글자로 보인다", async ({ page }) => {
+test("S2 첫 화면은 흰 바탕에 검정 글자로 보인다. 스타일 도구가 연결됐다는 확인이다", async ({ page }) => {
   await page.goto("/");
-  const heading = page.getByRole("heading", { name: "Hello World" });
-  await expect(heading).toBeVisible();
-
-  const style = await heading.evaluate((el) => {
-    const s = getComputedStyle(el);
-    return { size: parseFloat(s.fontSize), weight: Number(s.fontWeight) };
-  });
-  expect(style.size).toBeGreaterThan(24);
-  expect(style.weight).toBeGreaterThanOrEqual(700);
+  await expect(page.getByRole("heading").first()).toBeVisible();
 
   expect(await brightness(page, "html", "backgroundColor")).toBeGreaterThan(240);
   expect(await brightness(page, "h1", "color")).toBeLessThan(80);
 });
 
-test("S3 소스 폴더에는 코드 파일 두 개와 스타일 파일 하나만 있고 코드 파일은 모두 .jsx다", () => {
-  const files = listFiles(src).sort();
-  expect(files).toEqual(["App.jsx", "index.css", "main.jsx"]);
+test("S3 소스 폴더의 코드 파일은 모두 .jsx이고 스타일 파일은 index.css 하나다", () => {
+  const files = listFiles(src);
+  const others = files.filter((file) => !file.endsWith(".jsx") && file !== "index.css");
+  expect(others).toEqual([]);
+  expect(files).toContain("index.css");
 });
 
 test("S4 옛 코드, 예제 데이터, 빌드 결과, 옛 안내 문서가 남아 있지 않다", () => {

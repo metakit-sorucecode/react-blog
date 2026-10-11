@@ -1,6 +1,6 @@
 # layout 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 라우터로 홈 화면 띄우기
   - 근거: S1
   - 파일: react-blog/src/App.jsx, react-blog/src/pages/Home.jsx
