@@ -1,6 +1,6 @@
 # 폴더 구조
 
-비교 기준: done/board-list. 새로 생긴 파일과 고친 파일을 표시했다.
+비교 기준: done/board-detail. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
@@ -8,15 +8,15 @@ react-blog/
     components/
       BoardCard.jsx
       BoardForm.jsx
-      FormCard.jsx
+      FormCard.jsx   고침
       Header.jsx
       Input.jsx
       Layout.jsx
       ReplyItem.jsx
     pages/
-      Detail.jsx   고침
+      Detail.jsx
       Home.jsx
-      JoinForm.jsx
+      JoinForm.jsx   고침
       LoginForm.jsx
       SaveForm.jsx
       UpdateForm.jsx

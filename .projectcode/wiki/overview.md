@@ -11,7 +11,7 @@
 | 4 | component-split 겹치는 화면을 컴포넌트로 | 리팩터 | 컴포넌트 분리, props, children, props 펼침, map | 완료 | 6 | 13 |
 | 5 | board-list 글 목록 | 기능 | axios GET, useEffect로 서버 데이터 그리기 | 완료 | 2 | 4 |
 | 6 | board-detail 글 상세 | 기능 | useParams, 상세와 댓글 목록 그리기 | 완료 | 3 | 5 |
-| 7 | join 회원가입 | 기능 | useState 폼, axios POST, 성공하면 이동 | 대기 | - | - |
+| 7 | join 회원가입 | 기능 | useState 폼, axios POST, 성공하면 이동 | 완료 | 3 | 5 |
 | 8 | login 로그인 | 기능 | 응답 헤더 토큰, zustand 로그인 상태, 헤더 메뉴 바꾸기, 로그아웃 | 대기 | - | - |
 | 9 | login-keep 로그인 유지 | 기능 | localStorage, jwt-decode로 복원 | 대기 | - | - |
 | 10 | board-save 글쓰기 | 기능 | axios 인스턴스와 인터셉터로 토큰 보내기 | 대기 | - | - |
@@ -39,3 +39,4 @@
 - 좁은 화면에서 헤더 메뉴 접기
 - 배포
 - 댓글이 없을 때 안내
+- 회원가입 비밀번호 확인 칸

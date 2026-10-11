@@ -86,6 +86,24 @@ flowchart LR
 - react-blog/src/components/BoardForm.jsx
 - react-blog/src/App.jsx
 
+## 회원가입
+
+```mermaid
+flowchart LR
+  A[JoinForm] --> B["POST /join"]
+  B --> C[routes/users.js]
+  C --> D[(users)]
+  A --> E[LoginForm]
+```
+
+만든 장: screens, component-split, join
+맡는 파일
+- react-blog/src/pages/JoinForm.jsx
+- react-blog/src/components/FormCard.jsx
+- react-blog/src/components/Input.jsx
+- server-node/src/routes/users.js
+- server-node/src/db.js
+
 ## 폼 화면 조각
 
 ```mermaid
@@ -109,4 +127,4 @@ flowchart LR
 - react-blog/src/pages/JoinForm.jsx
 - react-blog/src/pages/UserInfo.jsx
 
-홈 목록과 상세는 서버에서 받는다. 폼 화면은 아직 예시 글자다. 회원가입, 로그인, 글쓰기 시나리오는 아직 만든 장이 없다.
+홈 목록과 상세는 서버에서 받고 회원가입은 서버에 저장한다. 다른 폼 화면은 아직 보내지 않는다. 로그인, 글쓰기 시나리오는 아직 만든 장이 없다.

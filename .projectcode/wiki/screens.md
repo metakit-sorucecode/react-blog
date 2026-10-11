@@ -50,6 +50,11 @@
 
 ![회원가입](../chapters/screens/captures/done-회원가입.png)
 
+## 회원가입 뒤 로그인 화면
+처음 나온 장: join
+
+![회원가입 뒤 로그인](../chapters/join/captures/done-가입-뒤-로그인.png)
+
 ## 내 정보
 처음 나온 장: screens
 
