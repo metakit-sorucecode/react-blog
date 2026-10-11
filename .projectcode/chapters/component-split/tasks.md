@@ -19,7 +19,7 @@
   - 실행하면: 상세 댓글 2줄이 그대로 보인다
   - Why: 글 카드에서 배운 조각과 map을 댓글에도 똑같이 쓴다
   - 다른 장: screens
-- [ ] T4 폼 틀을 컴포넌트로 빼고 children으로 넘기기
+- [x] T4 폼 틀을 컴포넌트로 빼고 children으로 넘기기
   - 근거: S3
   - 파일: react-blog/src/components/FormCard.jsx, react-blog/src/pages/LoginForm.jsx, react-blog/src/pages/JoinForm.jsx, react-blog/src/pages/UserInfo.jsx, react-blog/src/pages/SaveForm.jsx, react-blog/src/pages/UpdateForm.jsx
   - 실행하면: 폼 5개가 그대로 보인다. 다섯 화면 모두 FormCard를 쓴다
