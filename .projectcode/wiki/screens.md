@@ -25,6 +25,11 @@
 
 ![상세](../chapters/screens/captures/done-상세.png)
 
+## 상세 (서버 글)
+처음 나온 장: board-detail
+
+![상세 서버 글](../chapters/board-detail/captures/done-상세.png)
+
 ## 글쓰기
 처음 나온 장: screens
 

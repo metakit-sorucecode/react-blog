@@ -1,6 +1,6 @@
 # 폴더 구조
 
-비교 기준: done/component-split. 새로 생긴 파일과 고친 파일을 표시했다.
+비교 기준: done/board-list. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
@@ -14,8 +14,8 @@ react-blog/
       Layout.jsx
       ReplyItem.jsx
     pages/
-      Detail.jsx
-      Home.jsx   고침
+      Detail.jsx   고침
+      Home.jsx
       JoinForm.jsx
       LoginForm.jsx
       SaveForm.jsx

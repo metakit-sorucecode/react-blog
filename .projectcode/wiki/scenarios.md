@@ -47,6 +47,24 @@ flowchart LR
 - server-node/src/routes/boards.js
 - server-node/src/db.js
 
+## 글 상세 보기
+
+```mermaid
+flowchart LR
+  A[Detail] --> B["GET /api/boards/:id"]
+  B --> C[routes/boards.js]
+  C --> D[(boards)]
+  C --> E[(replies)]
+  A --> F[ReplyItem]
+```
+
+만든 장: screens, component-split, board-detail
+맡는 파일
+- react-blog/src/pages/Detail.jsx
+- react-blog/src/components/ReplyItem.jsx
+- server-node/src/routes/boards.js
+- server-node/src/db.js
+
 ## 글 보기에서 수정 화면까지
 
 ```mermaid
@@ -58,7 +76,7 @@ flowchart LR
   E --> F[BoardForm]
 ```
 
-만든 장: screens, component-split
+만든 장: screens, component-split, board-list, board-detail
 맡는 파일
 - react-blog/src/pages/Home.jsx
 - react-blog/src/components/BoardCard.jsx
@@ -91,4 +109,4 @@ flowchart LR
 - react-blog/src/pages/JoinForm.jsx
 - react-blog/src/pages/UserInfo.jsx
 
-홈 목록만 서버에서 받는다. 상세와 폼 화면은 아직 예시 글자다. 회원가입, 로그인, 글쓰기 시나리오는 아직 만든 장이 없다.
+홈 목록과 상세는 서버에서 받는다. 폼 화면은 아직 예시 글자다. 회원가입, 로그인, 글쓰기 시나리오는 아직 만든 장이 없다.
