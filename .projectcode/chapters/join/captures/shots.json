@@ -10,9 +10,54 @@
       "path": "/join-form",
       "see": "아이디 kim, 가려진 비밀번호, 이메일 kim@nate.com이 칸에 그대로 보인다",
       "steps": [
-        { "fill": ["아이디", "kim"] },
-        { "fill": ["비밀번호", "1234"] },
-        { "fill": ["이메일", "kim@nate.com"] }
+        {
+          "fill": [
+            "아이디",
+            "kim"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "fill": [
+            "이메일",
+            "kim@nate.com"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "T2-서버에-보내기.png",
+      "task": "T2",
+      "screen": "회원가입 /join-form",
+      "path": "/join-form",
+      "see": "가입하기를 누른 뒤에도 새로고침되지 않아 아이디 lee, 비밀번호, 이메일 lee@nate.com이 칸에 남아 있다",
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "lee"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "fill": [
+            "이메일",
+            "lee@nate.com"
+          ]
+        },
+        {
+          "click": "가입하기"
+        }
       ]
     }
   ]

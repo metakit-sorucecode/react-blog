@@ -7,7 +7,7 @@
   - 실행하면: 세 칸에 친 글자가 그대로 보이고, React 개발자 도구에서 state 세 개가 바뀐다
   - Why: 입력한 값을 서버로 보내려면 화면이 기억하고 있어야 한다
   - 다른 장: component-split
-- [ ] T2 가입하기를 누르면 서버에 보내기
+- [x] T2 가입하기를 누르면 서버에 보내기
   - 근거: S1
   - 파일: react-blog/src/pages/JoinForm.jsx, react-blog/src/components/FormCard.jsx
   - 실행하면: 새로고침 없이 네트워크 탭에 POST /join이 보이고 응답이 성공이다
