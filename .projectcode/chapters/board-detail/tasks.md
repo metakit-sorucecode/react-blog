@@ -1,0 +1,24 @@
+# board-detail 작업
+
+- [ ] 테스트 작성
+- [ ] T1 주소에서 글 번호를 꺼내 수정 링크에 쓰기
+  - 근거: S5
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: /board/4에서 수정을 누르면 /update-form/4로 간다. 나머지는 아직 예시 글자다
+  - Why: 주소의 글 번호를 꺼낼 수 있어야 그 번호로 서버에 글을 물을 수 있다
+  - 다른 장: component-split
+- [ ] T2 글을 state로 바꾸고 빈 상세에서 시작하기
+  - 근거: S4
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: 상세에 제목, 내용, 댓글이 비어 있다
+  - Why: 서버 응답은 늦게 오므로 화면은 빈 글로 먼저 그려지고 state가 바뀌면 다시 그려진다
+  - 다른 장: component-split
+- [ ] T3 useEffect에서 서버 상세 받아 그리기
+  - 근거: S1, S2, S3
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: /board/4에 제목4, 작성자 love, 내용4와 댓글 ssar 댓글1, ssar 댓글2, cos 댓글3이 보인다
+  - Why: 화면이 그려진 뒤 주소의 글 번호로 서버에 물어 받은 글로 state를 채운다
+  - 다른 장: component-split
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
