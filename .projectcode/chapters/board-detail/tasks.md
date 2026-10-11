@@ -7,7 +7,7 @@
   - 실행하면: /board/4에서 수정을 누르면 /update-form/4로 간다. 나머지는 아직 예시 글자다
   - Why: 주소의 글 번호를 꺼낼 수 있어야 그 번호로 서버에 글을 물을 수 있다
   - 다른 장: component-split
-- [ ] T2 글을 state로 바꾸고 빈 상세에서 시작하기
+- [x] T2 글을 state로 바꾸고 빈 상세에서 시작하기
   - 근거: S4
   - 파일: react-blog/src/pages/Detail.jsx
   - 실행하면: 상세에 제목, 내용, 댓글이 비어 있다
