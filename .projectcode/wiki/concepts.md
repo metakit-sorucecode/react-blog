@@ -20,6 +20,8 @@
 | grid 글 목록 | 3 screens |
 | 컴포넌트 분리 | 4 component-split |
 | props | 4 component-split |
+| children | 4 component-split |
+| props 펼침 | 4 component-split |
 | map | 4 component-split |
 | axios GET | 5 board-list |
 | useEffect로 서버 데이터 그리기 | 5 board-list |
