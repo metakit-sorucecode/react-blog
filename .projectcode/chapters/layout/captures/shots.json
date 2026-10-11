@@ -1,0 +1,17 @@
+{
+  "chapter": "layout",
+  "web": "http://localhost:5173",
+  "api": "http://localhost:8080",
+  "shots": [
+    { "file": "T1-라우터-홈.png", "task": "T1", "screen": "홈",
+      "see": "Hello World 대신 홈 글자만 보인다" },
+    { "file": "T2-헤더-메뉴.png", "task": "T2", "screen": "홈",
+      "see": "메뉴 5개 아래에 홈 글자가 보인다" },
+    { "file": "T3-여백-구분선.png", "task": "T3", "screen": "홈",
+      "see": "메뉴와 홈이 가장자리에서 떨어져 있고 사이에 선이 있다" },
+    { "file": "T4-메뉴-강조.png", "task": "T4", "screen": "홈",
+      "see": "홈 메뉴만 검정 바탕으로 칠해져 있다" },
+    { "file": "done-레이아웃.png", "task": "done", "screen": "홈",
+      "see": "헤더 메뉴 5개 중 홈이 강조되고 구분선 아래에 홈 화면이 보인다" }
+  ]
+}
