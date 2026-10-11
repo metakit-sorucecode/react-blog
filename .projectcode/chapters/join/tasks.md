@@ -1,6 +1,6 @@
 # join 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 입력값을 state로 기억하기
   - 근거: S1
   - 파일: react-blog/src/pages/JoinForm.jsx
