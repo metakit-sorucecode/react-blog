@@ -1,6 +1,6 @@
 # project-setup 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 start를 react-blog로 복사하기
   - 근거: S1
   - 파일: react-blog/
