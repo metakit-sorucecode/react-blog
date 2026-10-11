@@ -6,6 +6,7 @@ import SaveForm from "./pages/SaveForm";
 import UpdateForm from "./pages/UpdateForm";
 import LoginForm from "./pages/LoginForm";
 import JoinForm from "./pages/JoinForm";
+import UserInfo from "./pages/UserInfo";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "update-form/:id", element: <UpdateForm /> },
       { path: "login-form", element: <LoginForm /> },
       { path: "join-form", element: <JoinForm /> },
+      { path: "user-info", element: <UserInfo /> },
     ],
   },
 ]);
