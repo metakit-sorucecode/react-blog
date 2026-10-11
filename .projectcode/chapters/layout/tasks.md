@@ -17,7 +17,7 @@
   - 파일: react-blog/src/components/Layout.jsx
   - 실행하면: 메뉴와 홈이 가운데 너비 안에 여백을 두고 놓이고 사이에 선이 생긴다
   - Why: 화면 가장자리에 글자가 붙지 않아야 읽기 쉽다
-- [ ] T4 지금 메뉴 강조하기
+- [x] T4 지금 메뉴 강조하기
   - 근거: S5
   - 파일: react-blog/src/index.css, react-blog/src/components/Header.jsx
   - 실행하면: 홈 메뉴가 검정 바탕으로 칠해진다
