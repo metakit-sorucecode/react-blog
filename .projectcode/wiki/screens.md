@@ -9,3 +9,38 @@
 처음 나온 장: layout
 
 ![홈 레이아웃](../chapters/layout/captures/done-레이아웃.png)
+
+## 홈 (글 카드)
+처음 나온 장: screens
+
+![홈 글 카드](../chapters/screens/captures/done-홈.png)
+
+## 상세
+처음 나온 장: screens
+
+![상세](../chapters/screens/captures/done-상세.png)
+
+## 글쓰기
+처음 나온 장: screens
+
+![글쓰기](../chapters/screens/captures/done-글쓰기.png)
+
+## 글 수정
+처음 나온 장: screens
+
+![글 수정](../chapters/screens/captures/done-글-수정.png)
+
+## 로그인
+처음 나온 장: screens
+
+![로그인](../chapters/screens/captures/done-로그인.png)
+
+## 회원가입
+처음 나온 장: screens
+
+![회원가입](../chapters/screens/captures/done-회원가입.png)
+
+## 내 정보
+처음 나온 장: screens
+
+![내 정보](../chapters/screens/captures/done-내-정보.png)

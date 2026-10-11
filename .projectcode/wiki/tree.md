@@ -1,17 +1,23 @@
 # 폴더 구조
 
-비교 기준: done/project-setup. 새로 생긴 파일과 고친 파일을 표시했다.
+비교 기준: done/layout. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
   src/
     components/
-      Header.jsx   새로
-      Layout.jsx   새로
+      Header.jsx
+      Layout.jsx
     pages/
-      Home.jsx   새로
+      Detail.jsx   새로
+      Home.jsx   고침
+      JoinForm.jsx   새로
+      LoginForm.jsx   새로
+      SaveForm.jsx   새로
+      UpdateForm.jsx   새로
+      UserInfo.jsx   새로
     App.jsx   고침
-    index.css   고침
+    index.css
     main.jsx
   .gitignore
   index.html
