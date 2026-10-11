@@ -1,0 +1,28 @@
+# layout 작업
+
+- [ ] 테스트 작성
+- [ ] T1 라우터로 홈 화면 띄우기
+  - 근거: S1
+  - 파일: react-blog/src/App.jsx, react-blog/src/pages/Home.jsx
+  - 실행하면: / 에 홈 글자가 보인다. Hello World는 사라진다
+  - Why: 주소마다 화면을 바꾸려면 라우터가 먼저 있어야 한다
+  - 다른 장: project-setup
+- [ ] T2 레이아웃에 헤더 메뉴 두기
+  - 근거: S1, S3, S4
+  - 파일: react-blog/src/components/Layout.jsx, react-blog/src/components/Header.jsx, react-blog/src/App.jsx
+  - 실행하면: 메뉴 5개 아래에 홈이 보이고 로그인을 누르면 주소가 /login-form으로 바뀐다
+  - Why: 모든 화면에 같은 헤더를 두려면 화면이 바뀌는 자리를 레이아웃 안에 따로 둬야 한다
+- [ ] T3 바깥 여백과 구분선 주기
+  - 근거: S2
+  - 파일: react-blog/src/components/Layout.jsx
+  - 실행하면: 메뉴와 홈이 가운데 너비 안에 여백을 두고 놓이고 사이에 선이 생긴다
+  - Why: 화면 가장자리에 글자가 붙지 않아야 읽기 쉽다
+- [ ] T4 지금 메뉴 강조하기
+  - 근거: S5
+  - 파일: react-blog/src/index.css, react-blog/src/components/Header.jsx
+  - 실행하면: 홈 메뉴가 검정 바탕으로 칠해진다
+  - Why: 지금 어느 화면에 있는지 메뉴만 보고 알 수 있다
+  - 다른 장: project-setup
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
