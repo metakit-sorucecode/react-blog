@@ -6,7 +6,7 @@
   - 파일: react-blog/
   - 실행하면: npm run dev로 start의 옛 화면이 그대로 뜬다
   - Why: 설치된 라이브러리를 그대로 쓰려면 start를 복사해야 한다
-- [ ] T2 옛 코드를 지우고 Hello World 띄우기
+- [x] T2 옛 코드를 지우고 Hello World 띄우기
   - 근거: S1, S2, S3, S4
   - 파일: react-blog/src/main.jsx, react-blog/src/App.jsx, react-blog/vite.config.js, react-blog/src (지운 폴더)
   - 실행하면: 흰 바탕에 큰 굵은 글자로 Hello World만 보인다
