@@ -1,0 +1,24 @@
+# join 작업
+
+- [ ] 테스트 작성
+- [ ] T1 입력값을 state로 기억하기
+  - 근거: S1
+  - 파일: react-blog/src/pages/JoinForm.jsx
+  - 실행하면: 세 칸에 친 글자가 그대로 보이고, React 개발자 도구에서 state 세 개가 바뀐다
+  - Why: 입력한 값을 서버로 보내려면 화면이 기억하고 있어야 한다
+  - 다른 장: component-split
+- [ ] T2 가입하기를 누르면 서버에 보내기
+  - 근거: S1
+  - 파일: react-blog/src/pages/JoinForm.jsx, react-blog/src/components/FormCard.jsx
+  - 실행하면: 새로고침 없이 네트워크 탭에 POST /join이 보이고 응답이 성공이다
+  - Why: 제출을 막고 기억한 값을 서버에 보내야 사용자가 저장된다
+  - 다른 장: component-split
+- [ ] T3 가입에 성공하면 안내를 띄우고 로그인 화면으로 가기
+  - 근거: S2, S3
+  - 파일: react-blog/src/pages/JoinForm.jsx
+  - 실행하면: 회원가입 완료 안내가 뜨고, 확인을 누르면 로그인 화면으로 간다
+  - Why: 가입이 끝났음을 알리고 바로 로그인할 수 있게 한다
+  - 다른 장: component-split
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
