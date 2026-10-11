@@ -21,7 +21,7 @@
 ## 장
 | 번호 | 장 ID | 이름 | 종류 | 배울 것 | 상태 |
 |---|---|---|---|---|---|
-| 1 | project-setup | 출발점 (강의 전 준비) | 기능 | 실행 방법, 폴더 구조 | 대기 |
+| 1 | project-setup | 출발점 (강의 전 준비) | 기능 | 실행 방법, 폴더 구조 | 진행 중 |
 | 2 | layout | 레이아웃과 헤더 | 기능 | Layout과 Outlet, 헤더 메뉴, Tailwind와 DaisyUI 최소 스타일 | 대기 |
 | 3 | screens | 화면 그리기와 라우트 | 기능 | 화면 7개 정적 마크업, 라우트 연결, grid 글 목록 | 대기 |
 | 4 | component-split | 겹치는 화면을 컴포넌트로 | 리팩터 | 컴포넌트 분리, props, map | 대기 |
@@ -36,10 +36,11 @@
 | 13 | my-info | 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 대기 |
 | 14 | react-query | 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, invalidateQueries, 로그아웃 때 캐시 비우기, Devtools | 대기 |
 | 15 | paging-search | 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 |
-| 16 | form-hook | 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset | 대기 |
-| 17 | validation | 입력 검사 | 기능 | zod 스키마, zodResolver, 에러 문구 | 대기 |
-| 18 | error-handling | 에러 처리 | 기능 | sonner 토스트, 로딩 표시, 없는 글 안내, errorElement | 대기 |
-| 19 | auth-guard | 로그인 확인 | 기능 | 로그인 안내, 남의 글 수정 막기 | 대기 |
+| 16 | search-debounce | 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 |
+| 17 | form-hook | 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset | 대기 |
+| 18 | validation | 입력 검사 | 기능 | zod 스키마, zodResolver, 에러 문구 | 대기 |
+| 19 | error-handling | 에러 처리 | 기능 | sonner 토스트, 로딩 표시, 없는 글 안내, errorElement | 대기 |
+| 20 | auth-guard | 로그인 확인 | 기능 | 로그인 안내, 남의 글 수정 막기 | 대기 |
 
 ## 장 상세
 
@@ -47,7 +48,6 @@
 - react-blog-modern-start를 react-blog로 복사한다
 - src의 app, features, shared, test 폴더를 지운다
 - dist와 GUIDE.md를 지운다
-- package.json에서 쓰지 않는 Redux 두 개를 뺀다
 - vite.config.js에서 vitest 설정을 뺀다
 - index.css는 Tailwind와 DaisyUI 두 줄만 남긴다
 - src에는 main.jsx와 App.jsx만 남고 App이 Hello World를 보인다
@@ -95,7 +95,7 @@
 ### 7 join 회원가입
 - 그려 둔 회원가입 폼에 useState를 붙여 아이디, 비밀번호, 이메일을 받는다
 - 가입하기를 누르면 서버에 보내고 로그인 화면으로 간다
-- 실패 처리는 18장에서 한다
+- 실패 처리는 19장에서 한다
 - API: POST /join
 - 끝나면 새 아이디로 가입된다
 
@@ -160,26 +160,32 @@
 - API: GET /?page=&keyword=
 - 끝나면 페이지를 넘기고 제목으로 찾는다
 
-### 16 form-hook 폼을 react-hook-form으로 (리팩터)
+### 16 search-debounce 검색 디바운스
+- 검색어를 바로 요청에 쓰지 않고 입력이 멈추고 0.5초 뒤에 쓴다
+- useEffect와 setTimeout으로 커스텀 훅 useDebounce를 만든다
+- 새 라이브러리는 쓰지 않는다
+- 끝나면 빠르게 쳐도 요청은 마지막 한 번만 간다
+
+### 17 form-hook 폼을 react-hook-form으로 (리팩터)
 - 회원가입, 로그인, 글쓰기, 글 수정, 댓글, 내 정보 폼의 useState를 register와 handleSubmit으로 바꾼다
 - 글 수정과 내 정보 폼은 reset으로 값을 채운다
 - 화면 동작은 같다
 
-### 17 validation 입력 검사
+### 18 validation 입력 검사
 - 폼마다 zod 스키마를 만들고 zodResolver로 연결한다
 - 아이디와 비밀번호 필수, 이메일 형식, 제목과 내용 필수, 댓글 필수
 - 틀리면 입력 아래에 에러 문구를 보이고 요청을 보내지 않는다
 - form에 noValidate를 두어 브라우저 검사 대신 zod 문구가 보이게 한다
 - 끝나면 빈칸이나 틀린 이메일로 제출하면 에러 문구가 보인다
 
-### 18 error-handling 에러 처리
+### 19 error-handling 에러 처리
 - 서버 에러의 msg를 sonner 토스트로 보인다. 중복 아이디, 로그인 실패, 권한 없음
 - 목록과 상세를 받는 동안 로딩 표시를 보인다
 - 없는 글은 게시글이 없다는 안내와 목록 링크를 보인다
 - 라우터 errorElement로 화면 오류를 안내한다
 - 끝나면 실패한 요청마다 이유가 보인다
 
-### 19 auth-guard 로그인 확인
+### 20 auth-guard 로그인 확인
 - 로그인하지 않으면 글쓰기와 내 정보 화면 대신 로그인 안내와 링크를 보인다
 - 상세의 댓글 입력 자리에 로그인 안내를 보인다
 - 남의 글 수정 화면은 폼 대신 안내를 보인다

@@ -23,6 +23,7 @@
 ## 출발점
 - react-blog-modern-start를 복사해 시작한다. 인터넷이 없어 create-vite를 쓸 수 없다
 - 라이브러리는 node_modules에 미리 설치되어 있다
+- package.json과 node_modules는 건드리지 않는다. 지우면 다시 받을 수 없다
 - src 파일은 모두 .jsx로 쓴다. 설정 파일은 .js로 둔다
 
 ## 디자인
