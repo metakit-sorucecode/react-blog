@@ -35,7 +35,12 @@ async function takeScreen(browser, shot) {
   page.on("console", (message) => logs.push(message.text()))
   await page.goto(spec.web + (shot.path || "/"))
   for (const step of shot.steps || []) {
-    if (step.fill) await page.getByLabel(step.fill[0]).fill(step.fill[1])
+    if (step.fill) {
+      // label이 없는 칸은 placeholder로 찾는다
+      const byLabel = page.getByLabel(step.fill[0])
+      const field = (await byLabel.count()) > 0 ? byLabel : page.getByPlaceholder(step.fill[0])
+      await field.fill(step.fill[1])
+    }
     if (step.click) await page.getByRole("button", { name: step.click }).click()
     await page.waitForLoadState("networkidle")
   }
