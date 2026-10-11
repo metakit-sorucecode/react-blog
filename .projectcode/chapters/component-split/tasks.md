@@ -1,0 +1,42 @@
+# component-split 작업
+
+- [ ] 테스트 작성
+- [ ] T1 글 카드를 컴포넌트로 빼고 props로 넘기기
+  - 근거: S1
+  - 파일: react-blog/src/components/BoardCard.jsx, react-blog/src/pages/Home.jsx
+  - 실행하면: 홈 카드 3개가 그대로 보인다. Home은 BoardCard를 세 번 쓴다
+  - Why: 같은 카드 마크업을 한 곳에 두고 다른 값만 props로 넘기면 고칠 곳이 하나가 된다
+  - 다른 장: screens
+- [ ] T2 글 배열을 map으로 그리기
+  - 근거: S1
+  - 파일: react-blog/src/pages/Home.jsx
+  - 실행하면: 홈 카드 3개가 그대로 보인다. BoardCard는 한 번만 쓴다
+  - Why: 글이 몇 개든 배열만 바꾸면 카드가 그려진다
+  - 다른 장: screens
+- [ ] T3 댓글 줄을 컴포넌트로 빼고 map으로 그리기
+  - 근거: S2
+  - 파일: react-blog/src/components/ReplyItem.jsx, react-blog/src/pages/Detail.jsx
+  - 실행하면: 상세 댓글 2줄이 그대로 보인다
+  - Why: 글 카드에서 배운 조각과 map을 댓글에도 똑같이 쓴다
+  - 다른 장: screens
+- [ ] T4 폼 틀을 컴포넌트로 빼고 children으로 넘기기
+  - 근거: S3
+  - 파일: react-blog/src/components/FormCard.jsx, react-blog/src/pages/LoginForm.jsx, react-blog/src/pages/JoinForm.jsx, react-blog/src/pages/UserInfo.jsx, react-blog/src/pages/SaveForm.jsx, react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 폼 5개가 그대로 보인다. 다섯 화면 모두 FormCard를 쓴다
+  - Why: 틀은 같고 안의 입력칸만 다르니 안쪽 마크업을 children으로 넘긴다
+  - 다른 장: screens
+- [ ] T5 입력칸을 컴포넌트로 빼고 props 펼치기
+  - 근거: S4
+  - 파일: react-blog/src/components/Input.jsx, react-blog/src/pages/LoginForm.jsx, react-blog/src/pages/JoinForm.jsx, react-blog/src/pages/UserInfo.jsx, react-blog/src/pages/SaveForm.jsx, react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 입력칸 모습, 비밀번호 가림, 아이디 읽기만이 그대로다
+  - Why: 입력칸마다 넘기는 속성이 달라 props를 하나씩 꺼내지 않고 통째로 펼쳐 넘긴다
+  - 다른 장: screens
+- [ ] T6 글쓰기와 수정을 글 폼 하나로 합치기
+  - 근거: S5
+  - 파일: react-blog/src/components/BoardForm.jsx, react-blog/src/pages/SaveForm.jsx, react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 글쓰기와 수정 화면이 그대로 보인다. 두 화면은 각각 한 줄이다
+  - Why: 두 화면은 제목과 버튼 글자만 달라 글 폼 하나를 다시 쓴다
+  - 다른 장: screens
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식

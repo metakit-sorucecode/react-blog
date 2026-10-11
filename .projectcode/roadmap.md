@@ -24,7 +24,7 @@
 | 1 | project-setup | 출발점 (강의 전 준비) | 기능 | 실행 방법, 폴더 구조 | 완료 |
 | 2 | layout | 레이아웃과 헤더 | 기능 | Layout과 Outlet, 헤더 메뉴, NavLink로 지금 메뉴 강조, Tailwind와 DaisyUI 최소 스타일 | 완료 |
 | 3 | screens | 화면 그리기와 라우트 | 기능 | 화면 7개 정적 마크업, 라우트 연결, grid 글 목록 | 완료 |
-| 4 | component-split | 겹치는 화면을 컴포넌트로 | 리팩터 | 컴포넌트 분리, props, map | 대기 |
+| 4 | component-split | 겹치는 화면을 컴포넌트로 | 리팩터 | 컴포넌트 분리, props, children, props 펼침, map | 진행 중 |
 | 5 | board-list | 글 목록 | 기능 | axios GET, useEffect로 서버 데이터 그리기 | 대기 |
 | 6 | board-detail | 글 상세 | 기능 | useParams, 상세와 댓글 목록 그리기 | 대기 |
 | 7 | join | 회원가입 | 기능 | useState 폼, axios POST, 성공하면 이동 | 대기 |
@@ -74,10 +74,12 @@
 - 끝나면 헤더 메뉴와 글 카드로 모든 화면을 오간다
 
 ### 4 component-split 겹치는 화면을 컴포넌트로 (리팩터)
-- 3장에서 여러 번 쓴 마크업을 찾는다. 예: 글 카드, 댓글 줄, 입력칸
+- 3장에서 여러 번 쓴 마크업을 찾는다. 글 카드, 댓글 줄, 폼 틀, 입력칸, 글쓰기와 수정 폼
 - 겹치는 것을 컴포넌트로 빼고 다른 값은 props로 넘긴다
 - 같은 카드를 여러 번 쓴 곳은 배열과 map으로 바꾼다
-- 어떤 것을 뺄지는 plan에서 정한다
+- 폼 틀은 안의 내용을 children으로 받는다
+- 입력칸은 받은 속성을 펼쳐서 넘긴다
+- 글쓰기와 수정은 글 폼 하나를 쓰고 글자만 props로 넘긴다
 - 화면 동작은 같다
 
 ### 5 board-list 글 목록
