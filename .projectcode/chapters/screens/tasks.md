@@ -9,7 +9,7 @@
   - 실행하면: 홈에 제목1, 제목2, 제목3 카드가 세 칸으로 보인다
   - Why: 글 목록 자리를 먼저 그려야 뒤 장에서 서버 글로 바꿀 수 있다
   - 다른 장: layout
-- [ ] T2 글 상세 화면 그리고 카드에서 잇기
+- [x] T2 글 상세 화면 그리고 카드에서 잇기
   - 근거: S2, S3
   - 파일: react-blog/src/pages/Detail.jsx, react-blog/src/pages/Home.jsx, react-blog/src/App.jsx
   - 실행하면: 카드 제목을 누르면 상세와 댓글 목록이 보인다

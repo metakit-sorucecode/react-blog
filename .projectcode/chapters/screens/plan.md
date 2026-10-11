@@ -26,6 +26,7 @@ Detail.jsx
 - h1(text-2xl font-bold) 제목1, p 작성자 ssar를 붙여 둔다
 - 내용1은 p에 my-8을 줘 본문 자리를 띄운다
 - 수정은 Link에 btn을 줘 /update-form/1로 간다. 삭제는 button에 btn을 준다
+- 두 버튼은 div(flex gap-2)로 감싼다. JSX는 줄바꿈 공백을 지워 버튼이 붙는다
 - hr(my-8) 아래 h2(font-bold) 댓글을 둔다
 - 댓글 목록은 ul에 list, li에 list-row를 준다
 - li 안에 작성자 span, 댓글 span, 휴지통 button(btn btn-ghost btn-xs) 순서로 둔다. 둘째 칸이 가운데를 채운다
