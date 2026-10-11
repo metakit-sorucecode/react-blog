@@ -6,3 +6,4 @@
 | T2-Hello-World.png | project-setup | T2 | 홈 | 흰 바탕에 큰 굵은 글자로 Hello World만 보인다 |
 | T3-포맷-뒤.png | project-setup | T3 | 홈 | 포맷을 돌린 뒤에도 Hello World가 그대로 보인다 |
 | T4-서버-글목록.json | project-setup | T4 | GET / | 테스트 실행기가 띄운 서버가 글 목록을 돌려준다 |
+| done-출발점.png | project-setup | done | 홈 | 학생이 받는 출발점. 흰 바탕에 Hello World만 보인다 |

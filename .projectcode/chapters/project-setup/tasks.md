@@ -24,6 +24,6 @@
 - [x] 테스트 보강
   - 근거: 빠짐. S5 테스트가 포맷이 맞은 src로만 확인해 format이 일하지 않아도 통과했다
   - 파일: tests/project-setup/project-setup.spec.js
-- [ ] 수렴 점검
-- [ ] 캡처
-- [ ] 도식
+- [x] 수렴 점검
+- [x] 캡처
+- [x] 도식

@@ -11,6 +11,8 @@
       "see": "포맷을 돌린 뒤에도 Hello World가 그대로 보인다" },
     { "file": "T4-서버-글목록.json", "task": "T4", "screen": "GET /",
       "see": "테스트 실행기가 띄운 서버가 글 목록을 돌려준다",
-      "request": { "method": "GET", "path": "/" } }
+      "request": { "method": "GET", "path": "/" } },
+    { "file": "done-출발점.png", "task": "done", "screen": "홈",
+      "see": "학생이 받는 출발점. 흰 바탕에 Hello World만 보인다" }
   ]
 }
