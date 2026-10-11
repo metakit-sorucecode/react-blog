@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/"
+  },
+  "status": 200,
+  "response": {
+    "status": 200,
+    "msg": "성공",
+    "body": {
+      "totalPage": 2,
+      "number": 0,
+      "isFirst": true,
+      "isLast": false,
+      "boards": [
+        {
+          "id": 4,
+          "title": "제목4"
+        },
+        {
+          "id": 3,
+          "title": "제목3"
+        },
+        {
+          "id": 2,
+          "title": "제목2"
+        }
+      ]
+    }
+  }
+}

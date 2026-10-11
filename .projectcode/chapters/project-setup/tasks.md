@@ -16,7 +16,7 @@
   - 파일: react-blog/package.json
   - 실행하면: npm run format으로 src 파일 모양이 맞춰진다
   - Why: 따라 친 코드의 모양을 한 번에 맞춘다
-- [ ] T4 서버와 프론트를 함께 띄우는 테스트 실행기
+- [x] T4 서버와 프론트를 함께 띄우는 테스트 실행기
   - 근거: S6
   - 파일: package.json, playwright.config.js, .gitignore
   - 실행하면: 루트에서 npx playwright test가 server-node와 react-blog를 띄우고 테스트를 돈다
