@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
 
 export default function Detail() {
+  const { id } = useParams();
+
   const replies = [
     { id: 1, username: "cos", comment: "댓글1" },
     { id: 2, username: "love", comment: "댓글2" },
@@ -13,7 +15,7 @@ export default function Detail() {
       <p>작성자 ssar</p>
       <p className="my-8">내용1</p>
       <div className="flex gap-2">
-        <Link to="/update-form/1" className="btn">
+        <Link to={`/update-form/${id}`} className="btn">
           수정
         </Link>
         <button className="btn">삭제</button>

@@ -1,7 +1,7 @@
 # board-detail 작업
 
 - [x] 테스트 작성
-- [ ] T1 주소에서 글 번호를 꺼내 수정 링크에 쓰기
+- [x] T1 주소에서 글 번호를 꺼내 수정 링크에 쓰기
   - 근거: S5
   - 파일: react-blog/src/pages/Detail.jsx
   - 실행하면: /board/4에서 수정을 누르면 /update-form/4로 간다. 나머지는 아직 예시 글자다
