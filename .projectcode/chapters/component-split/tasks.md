@@ -13,7 +13,7 @@
   - 실행하면: 홈 카드 3개가 그대로 보인다. BoardCard는 한 번만 쓴다
   - Why: 글이 몇 개든 배열만 바꾸면 카드가 그려진다
   - 다른 장: screens
-- [ ] T3 댓글 줄을 컴포넌트로 빼고 map으로 그리기
+- [x] T3 댓글 줄을 컴포넌트로 빼고 map으로 그리기
   - 근거: S2
   - 파일: react-blog/src/components/ReplyItem.jsx, react-blog/src/pages/Detail.jsx
   - 실행하면: 상세 댓글 2줄이 그대로 보인다
