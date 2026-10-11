@@ -1,0 +1,16 @@
+{
+  "chapter": "project-setup",
+  "web": "http://localhost:5173",
+  "api": "http://localhost:8080",
+  "shots": [
+    { "file": "T1-start-복사.png", "task": "T1", "screen": "홈",
+      "see": "start의 옛 블로그 화면이 그대로 뜬다" },
+    { "file": "T2-Hello-World.png", "task": "T2", "screen": "홈",
+      "see": "흰 바탕에 큰 굵은 글자로 Hello World만 보인다" },
+    { "file": "T3-포맷-뒤.png", "task": "T3", "screen": "홈",
+      "see": "포맷을 돌린 뒤에도 Hello World가 그대로 보인다" },
+    { "file": "T4-서버-글목록.json", "task": "T4", "screen": "GET /",
+      "see": "테스트 실행기가 띄운 서버가 글 목록을 돌려준다",
+      "request": { "method": "GET", "path": "/" } }
+  ]
+}
