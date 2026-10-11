@@ -31,7 +31,7 @@
   - 실행하면: 입력칸 모습, 비밀번호 가림, 아이디 읽기만이 그대로다
   - Why: 입력칸마다 넘기는 속성이 달라 props를 하나씩 꺼내지 않고 통째로 펼쳐 넘긴다
   - 다른 장: screens
-- [ ] T6 글쓰기와 수정을 글 폼 하나로 합치기
+- [x] T6 글쓰기와 수정을 글 폼 하나로 합치기
   - 근거: S5
   - 파일: react-blog/src/components/BoardForm.jsx, react-blog/src/pages/SaveForm.jsx, react-blog/src/pages/UpdateForm.jsx
   - 실행하면: 글쓰기와 수정 화면이 그대로 보인다. 두 화면은 각각 한 줄이다
