@@ -7,7 +7,7 @@
   - 실행하면: 홈 카드 3개가 그대로 보인다. Home은 BoardCard를 세 번 쓴다
   - Why: 같은 카드 마크업을 한 곳에 두고 다른 값만 props로 넘기면 고칠 곳이 하나가 된다
   - 다른 장: screens
-- [ ] T2 글 배열을 map으로 그리기
+- [x] T2 글 배열을 map으로 그리기
   - 근거: S1
   - 파일: react-blog/src/pages/Home.jsx
   - 실행하면: 홈 카드 3개가 그대로 보인다. BoardCard는 한 번만 쓴다
