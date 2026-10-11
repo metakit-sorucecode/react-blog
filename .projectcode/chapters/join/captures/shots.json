@@ -89,6 +89,51 @@
           "click": "가입하기"
         }
       ]
+    },
+    {
+      "file": "done-가입-뒤-로그인.png",
+      "task": "done",
+      "screen": "회원가입 뒤 /login-form",
+      "path": "/join-form",
+      "see": "가입하기를 누르면 안내를 닫은 뒤 로그인 화면으로 와 있고 헤더의 로그인 메뉴가 강조된다",
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "kang"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "fill": [
+            "이메일",
+            "kang@nate.com"
+          ]
+        },
+        {
+          "click": "가입하기"
+        }
+      ]
+    },
+    {
+      "file": "done-가입-API.json",
+      "task": "done",
+      "screen": "POST /join",
+      "see": "status 200이고 body에 새 id, username kim, email kim@nate.com이 있다",
+      "request": {
+        "method": "POST",
+        "path": "/join",
+        "body": {
+          "username": "kim",
+          "password": "1234",
+          "email": "kim@nate.com"
+        }
+      }
     }
   ]
 }

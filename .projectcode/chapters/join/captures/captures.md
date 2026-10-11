@@ -5,3 +5,5 @@
 | T1-입력값-기억.png | join | T1 | 회원가입 /join-form | 아이디 kim, 가려진 비밀번호, 이메일 kim@nate.com이 칸에 그대로 보인다 |
 | T2-서버에-보내기.png | join | T2 | 회원가입 /join-form | 가입하기를 누른 뒤에도 새로고침되지 않아 아이디 jung, 비밀번호, 이메일 jung@nate.com이 칸에 남아 있다 |
 | T3-로그인-화면으로.png | join | T3 | 회원가입 뒤 /login-form | 회원가입 완료 안내를 닫은 뒤 로그인 화면이 보이고 헤더의 로그인 메뉴가 강조된다. 안내 창은 브라우저 창이라 사진에 없다 |
+| done-가입-뒤-로그인.png | join | done | 회원가입 뒤 /login-form | 가입하기를 누르면 안내를 닫은 뒤 로그인 화면으로 와 있고 헤더의 로그인 메뉴가 강조된다 |
+| done-가입-API.json | join | done | POST /join | status 200이고 body에 새 id, username kim, email kim@nate.com이 있다 |

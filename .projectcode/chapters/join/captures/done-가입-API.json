@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/join",
+    "body": {
+      "username": "kim",
+      "password": "1234",
+      "email": "kim@nate.com"
+    }
+  },
+  "status": 200,
+  "response": {
+    "status": 200,
+    "msg": "성공",
+    "body": {
+      "id": 19,
+      "username": "kim",
+      "email": "kim@nate.com"
+    }
+  }
+}
