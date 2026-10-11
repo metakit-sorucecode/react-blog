@@ -41,7 +41,11 @@ async function takeScreen(browser, shot) {
       const field = (await byLabel.count()) > 0 ? byLabel : page.getByPlaceholder(step.fill[0])
       await field.fill(step.fill[1])
     }
-    if (step.click) await page.getByRole("button", { name: step.click }).click()
+    if (step.click) {
+      await page.getByRole("button", { name: step.click }).click()
+      // 이미 조용했던 페이지는 networkidle이 바로 끝나므로 응답과 이동을 기다린다
+      await page.waitForTimeout(1000)
+    }
     await page.waitForLoadState("networkidle")
   }
   await page.screenshot({ path: join(outDir, shot.file), fullPage: true })
