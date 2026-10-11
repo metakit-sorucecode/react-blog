@@ -1,11 +1,8 @@
+import { useState } from "react";
 import BoardCard from "../components/BoardCard";
 
 export default function Home() {
-  const boards = [
-    { id: 1, title: "제목1" },
-    { id: 2, title: "제목2" },
-    { id: 3, title: "제목3" },
-  ];
+  const [boards, setBoards] = useState([]);
 
   return (
     <div className="grid grid-cols-3 gap-8">

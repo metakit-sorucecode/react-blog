@@ -1,0 +1,19 @@
+{
+  "chapter": "board-list",
+  "web": "http://localhost:5173",
+  "api": "http://localhost:8080",
+  "shots": [
+    {
+      "file": "T1-빈-목록.png",
+      "task": "T1",
+      "screen": "홈",
+      "see": "헤더 아래에 카드가 하나도 없다"
+    },
+    {
+      "file": "T2-서버-글-목록.png",
+      "task": "T2",
+      "screen": "홈",
+      "see": "서버에서 받은 제목4, 제목3, 제목2 카드가 세 칸으로 놓여 있다"
+    }
+  ]
+}
