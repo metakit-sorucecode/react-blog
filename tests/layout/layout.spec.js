@@ -27,7 +27,7 @@ async function backgroundBrightness(locator) {
 test("S1 홈 주소(/)에 들어가면 맨 위에 헤더가 보이고 그 아래에 홈 화면이 보인다", async ({ page }) => {
   await page.goto("/");
   const header = menu(page, "로그인");
-  const home = page.getByRole("heading", { name: "홈" });
+  const home = page.getByText("제목1", { exact: true });
   await expect(header).toBeVisible();
   await expect(home).toBeVisible();
 
@@ -38,7 +38,7 @@ test("S1 홈 주소(/)에 들어가면 맨 위에 헤더가 보이고 그 아래
 
 test("S2 헤더와 홈 화면은 화면 가장자리에서 여백을 두고 놓인다", async ({ page }) => {
   await page.goto("/");
-  const home = page.getByRole("heading", { name: "홈" });
+  const home = page.getByText("제목1", { exact: true });
   await expect(home).toBeVisible();
 
   const width = page.viewportSize().width;

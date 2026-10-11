@@ -32,15 +32,15 @@ async function brightness(page, selector, property) {
 
 test("S1 react-blog 개발 서버를 띄우면 5173 주소에 첫 화면이 보인다", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading").first()).toBeVisible();
+  await expect(page.getByRole("link").first()).toBeVisible();
 });
 
 test("S2 첫 화면은 흰 바탕에 검정 글자로 보인다. 스타일 도구가 연결됐다는 확인이다", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading").first()).toBeVisible();
+  await expect(page.getByRole("link").first()).toBeVisible();
 
   expect(await brightness(page, "html", "backgroundColor")).toBeGreaterThan(240);
-  expect(await brightness(page, "h1", "color")).toBeLessThan(80);
+  expect(await brightness(page, "body", "color")).toBeLessThan(80);
 });
 
 test("S3 소스 폴더의 코드 파일은 모두 .jsx이고 스타일 파일은 index.css 하나다", () => {

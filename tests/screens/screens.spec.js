@@ -1,0 +1,122 @@
+import { test, expect } from "@playwright/test";
+
+function heading(page, name) {
+  return page.getByRole("heading", { name, exact: true });
+}
+
+function button(page, name) {
+  return page.getByRole("button", { name, exact: true });
+}
+
+test("S1 홈에 예시 글 카드 3개가 grid로 놓인다. 카드에는 제목1, 제목2, 제목3이 보인다", async ({ page }) => {
+  await page.goto("/");
+  const titles = ["제목1", "제목2", "제목3"].map((name) => page.getByText(name, { exact: true }));
+  for (const title of titles) {
+    await expect(title).toBeVisible();
+  }
+
+  // 한 줄에 세 칸으로 놓이면 높이가 같고 왼쪽에서 오른쪽으로 이어진다
+  const boxes = [];
+  for (const title of titles) {
+    boxes.push(await title.boundingBox());
+  }
+  expect(Math.abs(boxes[0].y - boxes[1].y)).toBeLessThan(2);
+  expect(Math.abs(boxes[1].y - boxes[2].y)).toBeLessThan(2);
+  expect(boxes[0].x).toBeLessThan(boxes[1].x);
+  expect(boxes[1].x).toBeLessThan(boxes[2].x);
+});
+
+test("S2 카드 제목을 누르면 상세 화면(/board/1)으로 간다", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "제목1", exact: true }).click();
+  await expect(page).toHaveURL(/5173\/board\/1$/);
+  await expect(heading(page, "제목1")).toBeVisible();
+});
+
+test("S3 상세 화면에 제목, 작성자, 내용, 수정과 삭제 버튼, 댓글 목록, 댓글 입력이 보인다", async ({ page }) => {
+  await page.goto("/board/1");
+  await expect(heading(page, "제목1")).toBeVisible();
+  await expect(page.getByText("작성자 ssar")).toBeVisible();
+  await expect(page.getByText("내용1", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "수정", exact: true })).toBeVisible();
+  await expect(button(page, "삭제")).toBeVisible();
+  await expect(heading(page, "댓글")).toBeVisible();
+  await expect(page.getByText("댓글1", { exact: true })).toBeVisible();
+  await expect(page.getByText("댓글2", { exact: true })).toBeVisible();
+  await expect(button(page, "🗑")).toHaveCount(2);
+  await expect(page.getByPlaceholder("댓글을 입력하세요")).toBeVisible();
+  await expect(button(page, "등록")).toBeVisible();
+});
+
+test("S4 상세의 수정 버튼을 누르면 수정 화면(/update-form/1)으로 간다", async ({ page }) => {
+  await page.goto("/board/1");
+  await page.getByRole("link", { name: "수정", exact: true }).click();
+  await expect(page).toHaveURL(/5173\/update-form\/1$/);
+  await expect(heading(page, "글 수정")).toBeVisible();
+});
+
+test("S5 글쓰기 화면(/save-form)에 제목과 내용 입력칸, 글쓰기 버튼이 보인다", async ({ page }) => {
+  await page.goto("/save-form");
+  await expect(heading(page, "글쓰기")).toBeVisible();
+  await expect(page.getByPlaceholder("제목")).toBeVisible();
+  await expect(page.getByPlaceholder("내용")).toBeVisible();
+  await expect(button(page, "글쓰기")).toBeVisible();
+});
+
+test("S6 수정 화면에 제목과 내용 입력칸, 수정하기 버튼이 보인다", async ({ page }) => {
+  await page.goto("/update-form/1");
+  await expect(heading(page, "글 수정")).toBeVisible();
+  await expect(page.getByPlaceholder("제목")).toBeVisible();
+  await expect(page.getByPlaceholder("내용")).toBeVisible();
+  await expect(button(page, "수정하기")).toBeVisible();
+});
+
+test("S7 로그인 화면(/login-form)에 아이디와 비밀번호 입력칸, 로그인 버튼이 보인다", async ({ page }) => {
+  await page.goto("/login-form");
+  await expect(heading(page, "로그인")).toBeVisible();
+  await expect(page.getByPlaceholder("아이디")).toBeVisible();
+  await expect(page.getByPlaceholder("비밀번호")).toHaveAttribute("type", "password");
+  await expect(button(page, "로그인")).toBeVisible();
+});
+
+test("S8 회원가입 화면(/join-form)에 아이디, 비밀번호, 이메일 입력칸, 가입하기 버튼이 보인다", async ({ page }) => {
+  await page.goto("/join-form");
+  await expect(heading(page, "회원가입")).toBeVisible();
+  await expect(page.getByPlaceholder("아이디")).toBeVisible();
+  await expect(page.getByPlaceholder("비밀번호")).toHaveAttribute("type", "password");
+  await expect(page.getByPlaceholder("이메일")).toBeVisible();
+  await expect(button(page, "가입하기")).toBeVisible();
+});
+
+test("S9 내 정보 화면(/user-info)에 아이디(읽기만), 이메일, 새 비밀번호 입력칸, 수정하기 버튼이 보인다", async ({ page }) => {
+  await page.goto("/user-info");
+  await expect(heading(page, "내 정보")).toBeVisible();
+  const username = page.getByRole("textbox").first();
+  await expect(username).toHaveValue("ssar");
+  await expect(username).not.toBeEditable();
+  await expect(page.getByPlaceholder("이메일")).toBeVisible();
+  await expect(page.getByPlaceholder("새 비밀번호")).toHaveAttribute("type", "password");
+  await expect(button(page, "수정하기")).toBeVisible();
+});
+
+test("S10 헤더 메뉴를 누르면 각 화면이 헤더 아래에 보인다", async ({ page }) => {
+  const menus = [
+    { name: "로그인", screen: heading(page, "로그인") },
+    { name: "회원가입", screen: heading(page, "회원가입") },
+    { name: "글쓰기", screen: heading(page, "글쓰기") },
+    { name: "내 정보", screen: heading(page, "내 정보") },
+    { name: "홈", screen: page.getByText("제목1", { exact: true }) },
+  ];
+
+  // 홈에서 한 번 들어온 뒤 메뉴만 눌러 화면을 오간다
+  await page.goto("/");
+  for (const { name, screen } of menus) {
+    const link = page.getByRole("link", { name, exact: true });
+    await link.click();
+    await expect(screen).toBeVisible();
+
+    const linkBox = await link.boundingBox();
+    const screenBox = await screen.boundingBox();
+    expect(screenBox.y).toBeGreaterThan(linkBox.y + linkBox.height);
+  }
+});
