@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
 
@@ -10,6 +11,14 @@ export default function Detail() {
     username: "",
     replies: [],
   });
+
+  useEffect(() => {
+    async function loadBoard() {
+      const res = await axios.get(`http://localhost:8080/api/boards/${id}`);
+      setBoard(res.data.body);
+    }
+    loadBoard();
+  }, [id]);
 
   return (
     <div>

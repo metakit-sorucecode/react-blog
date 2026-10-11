@@ -13,7 +13,7 @@
   - 실행하면: 상세에 제목, 내용, 댓글이 비어 있다
   - Why: 서버 응답은 늦게 오므로 화면은 빈 글로 먼저 그려지고 state가 바뀌면 다시 그려진다
   - 다른 장: component-split
-- [ ] T3 useEffect에서 서버 상세 받아 그리기
+- [x] T3 useEffect에서 서버 상세 받아 그리기
   - 근거: S1, S2, S3
   - 파일: react-blog/src/pages/Detail.jsx
   - 실행하면: /board/4에 제목4, 작성자 love, 내용4와 댓글 ssar 댓글1, ssar 댓글2, cos 댓글3이 보인다
