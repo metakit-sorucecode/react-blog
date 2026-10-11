@@ -30,26 +30,38 @@ test("S1 홈에 예시 글 카드 3개가 grid로 놓인다. 카드에는 제목
 
 test("S2 카드 제목을 누르면 상세 화면(/board/1)으로 간다", async ({ page }) => {
   // board-list 장부터 카드는 서버 글 번호의 상세 주소로 간다
+  // board-detail 장부터 상세 제목은 누른 글의 제목이다
   await page.goto("/");
-  await page.getByRole("link", { name: /^제목/ }).first().click();
+  const card = page.getByRole("link", { name: /^제목/ }).first();
+  const title = await card.textContent();
+  await card.click();
   await expect(page).toHaveURL(/5173\/board\/\d+$/);
-  await expect(heading(page, "제목1")).toBeVisible();
+  await expect(heading(page, title)).toBeVisible();
 });
 
 test("S3 상세 화면에 제목, 작성자, 내용, 수정과 삭제 버튼, 댓글 목록, 댓글 입력이 보인다", async ({
   page,
+  request,
 }) => {
-  await page.goto("/board/1");
-  await expect(heading(page, "제목1")).toBeVisible();
-  await expect(page.getByText("작성자 ssar")).toBeVisible();
-  await expect(page.getByText("내용1", { exact: true })).toBeVisible();
+  // board-detail 장부터 상세 글자는 서버에서 온다. 첫 페이지 첫 글로 본다
+  const list = await request.get("http://localhost:8080/?page=0");
+  const [first] = (await list.json()).body.boards;
+  const res = await request.get(`http://localhost:8080/api/boards/${first.id}`);
+  const board = (await res.json()).body;
+  expect(board.replies.length).toBeGreaterThan(0);
+
+  await page.goto(`/board/${board.id}`);
+  await expect(heading(page, board.title)).toBeVisible();
+  await expect(page.getByText(`작성자 ${board.username}`)).toBeVisible();
+  await expect(page.getByText(board.content, { exact: true })).toBeVisible();
   // 수정은 상세에서 수정 화면으로 잇는 S4에서 링크가 된다. 여기서는 보이는지만 본다
   await expect(page.getByText("수정", { exact: true })).toBeVisible();
   await expect(button(page, "삭제")).toBeVisible();
   await expect(heading(page, "댓글")).toBeVisible();
-  await expect(page.getByText("댓글1", { exact: true })).toBeVisible();
-  await expect(page.getByText("댓글2", { exact: true })).toBeVisible();
-  await expect(button(page, "🗑")).toHaveCount(2);
+  for (const reply of board.replies) {
+    await expect(page.getByText(reply.comment, { exact: true })).toBeVisible();
+  }
+  await expect(button(page, "🗑")).toHaveCount(board.replies.length);
   await expect(page.getByPlaceholder("댓글을 입력하세요")).toBeVisible();
   await expect(button(page, "등록")).toBeVisible();
 });

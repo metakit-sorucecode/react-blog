@@ -1,6 +1,6 @@
 # board-detail 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 주소에서 글 번호를 꺼내 수정 링크에 쓰기
   - 근거: S5
   - 파일: react-blog/src/pages/Detail.jsx
