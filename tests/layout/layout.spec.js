@@ -24,10 +24,13 @@ async function backgroundBrightness(locator) {
   });
 }
 
-test("S1 홈 주소(/)에 들어가면 맨 위에 헤더가 보이고 그 아래에 홈 화면이 보인다", async ({ page }) => {
+test("S1 홈 주소(/)에 들어가면 맨 위에 헤더가 보이고 그 아래에 홈 화면이 보인다", async ({
+  page,
+}) => {
   await page.goto("/");
   const header = menu(page, "로그인");
-  const home = page.getByText("제목1", { exact: true });
+  // 홈의 첫 글 카드. board-list 장부터 카드 글자는 서버에서 온다
+  const home = page.getByRole("link", { name: /^제목/ }).first();
   await expect(header).toBeVisible();
   await expect(home).toBeVisible();
 
@@ -36,9 +39,12 @@ test("S1 홈 주소(/)에 들어가면 맨 위에 헤더가 보이고 그 아래
   expect(homeBox.y).toBeGreaterThan(headerBox.y + headerBox.height);
 });
 
-test("S2 헤더와 홈 화면은 화면 가장자리에서 여백을 두고 놓인다", async ({ page }) => {
+test("S2 헤더와 홈 화면은 화면 가장자리에서 여백을 두고 놓인다", async ({
+  page,
+}) => {
   await page.goto("/");
-  const home = page.getByText("제목1", { exact: true });
+  // 홈의 첫 글 카드. board-list 장부터 카드 글자는 서버에서 온다
+  const home = page.getByRole("link", { name: /^제목/ }).first();
   await expect(home).toBeVisible();
 
   const width = page.viewportSize().width;
@@ -50,7 +56,9 @@ test("S2 헤더와 홈 화면은 화면 가장자리에서 여백을 두고 놓�
   }
 });
 
-test("S3 헤더에 홈, 로그인, 회원가입, 글쓰기, 내 정보 메뉴가 보인다", async ({ page }) => {
+test("S3 헤더에 홈, 로그인, 회원가입, 글쓰기, 내 정보 메뉴가 보인다", async ({
+  page,
+}) => {
   await page.goto("/");
   for (const { name } of menus) {
     await expect(menu(page, name)).toBeVisible();
@@ -66,7 +74,9 @@ test("S4 메뉴를 누르면 그 주소로 간다", async ({ page }) => {
   }
 });
 
-test("S5 지금 보고 있는 화면의 메뉴가 강조된다. 홈에서는 홈 메뉴만 강조된다", async ({ page }) => {
+test("S5 지금 보고 있는 화면의 메뉴가 강조된다. 홈에서는 홈 메뉴만 강조된다", async ({
+  page,
+}) => {
   await page.goto("/");
   await expect(menu(page, "홈")).toBeVisible();
 

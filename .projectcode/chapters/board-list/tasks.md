@@ -1,6 +1,6 @@
 # board-list 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 글 목록을 state로 바꾸고 빈 목록에서 시작하기
   - 근거: S2
   - 파일: react-blog/src/pages/Home.jsx
