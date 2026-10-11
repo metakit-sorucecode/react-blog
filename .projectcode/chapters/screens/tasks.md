@@ -27,7 +27,7 @@
   - 실행하면: 상세의 수정을 누르면 글 수정 폼이 보인다
   - Why: 수정 화면은 메뉴가 없어서 상세에서 들어가는 길이 필요하다
   - 다른 장: layout
-- [ ] T5 로그인 화면 그리기
+- [x] T5 로그인 화면 그리기
   - 근거: S7
   - 파일: react-blog/src/pages/LoginForm.jsx, react-blog/src/App.jsx
   - 실행하면: 로그인 메뉴를 누르면 로그인 폼이 보인다
