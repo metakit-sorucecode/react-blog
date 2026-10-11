@@ -9,23 +9,56 @@
 ## 배울 것이 처음 나온 장
 | 배울 것 | 장 |
 |---|---|
-| 기능 | 1 project-setup |
-| 기능 | 2 layout |
-| 기능 | 3 screens |
-| 리팩터 | 4 component-split |
-| 기능 | 5 board-list |
-| 기능 | 6 board-detail |
-| 기능 | 7 join |
-| 기능 | 8 login |
-| 기능 | 9 login-keep |
-| 기능 | 10 board-save |
-| 기능 | 11 board-update-delete |
-| 기능 | 12 reply |
-| 기능 | 13 my-info |
-| 리팩터 | 14 react-query |
-| 기능 | 15 paging-search |
-| 기능 | 16 search-debounce |
-| 리팩터 | 17 form-hook |
-| 기능 | 18 validation |
-| 기능 | 19 error-handling |
-| 기능 | 20 auth-guard |
+| 실행 방법 | 1 project-setup |
+| 폴더 구조 | 1 project-setup |
+| Layout과 Outlet | 2 layout |
+| 헤더 메뉴 | 2 layout |
+| NavLink로 지금 메뉴 강조 | 2 layout |
+| Tailwind와 DaisyUI 최소 스타일 | 2 layout |
+| 화면 7개 정적 마크업 | 3 screens |
+| 라우트 연결 | 3 screens |
+| grid 글 목록 | 3 screens |
+| 컴포넌트 분리 | 4 component-split |
+| props | 4 component-split |
+| map | 4 component-split |
+| axios GET | 5 board-list |
+| useEffect로 서버 데이터 그리기 | 5 board-list |
+| useParams | 6 board-detail |
+| 상세와 댓글 목록 그리기 | 6 board-detail |
+| useState 폼 | 7 join |
+| axios POST | 7 join |
+| 성공하면 이동 | 7 join |
+| 응답 헤더 토큰 | 8 login |
+| zustand 로그인 상태 | 8 login |
+| 헤더 메뉴 바꾸기 | 8 login |
+| 로그아웃 | 8 login |
+| localStorage | 9 login-keep |
+| jwt-decode로 복원 | 9 login-keep |
+| axios 인스턴스와 인터셉터로 토큰 보내기 | 10 board-save |
+| owner로 버튼 보이기 | 11 board-update-delete |
+| 기존 값 채운 폼 | 11 board-update-delete |
+| PUT과 DELETE | 11 board-update-delete |
+| 요청 뒤 상세 다시 불러오기 | 12 reply |
+| 조회한 값으로 폼 채우기 | 13 my-info |
+| PUT | 13 my-info |
+| useQuery | 14 react-query |
+| useMutation | 14 react-query |
+| invalidateQueries | 14 react-query |
+| 로그아웃 때 캐시 비우기 | 14 react-query |
+| Devtools | 14 react-query |
+| queryKey에 page와 keyword | 15 paging-search |
+| 이전 화면 유지 | 15 paging-search |
+| 커스텀 훅 useDebounce | 16 search-debounce |
+| 입력이 멈춘 뒤 요청 | 16 search-debounce |
+| register | 17 form-hook |
+| handleSubmit | 17 form-hook |
+| reset | 17 form-hook |
+| zod 스키마 | 18 validation |
+| zodResolver | 18 validation |
+| 에러 문구 | 18 validation |
+| sonner 토스트 | 19 error-handling |
+| 로딩 표시 | 19 error-handling |
+| 없는 글 안내 | 19 error-handling |
+| errorElement | 19 error-handling |
+| 로그인 안내 | 20 auth-guard |
+| 남의 글 수정 막기 | 20 auth-guard |

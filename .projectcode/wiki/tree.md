@@ -1,12 +1,17 @@
 # 폴더 구조
 
-첫 장이라 비교하지 않았다.
+비교 기준: done/project-setup. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
   src/
-    App.jsx
-    index.css
+    components/
+      Header.jsx   새로
+      Layout.jsx   새로
+    pages/
+      Home.jsx   새로
+    App.jsx   고침
+    index.css   고침
     main.jsx
   .gitignore
   index.html

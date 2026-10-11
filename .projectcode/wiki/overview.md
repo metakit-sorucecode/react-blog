@@ -6,7 +6,7 @@
 | 번호 | 장 | 종류 | 배울 것 | 상태 | task | 사진 |
 |---|---|---|---|---|---|---|
 | 1 | project-setup 출발점 (강의 전 준비) | 기능 | 실행 방법, 폴더 구조 | 완료 | 4 | 5 |
-| 2 | layout 레이아웃과 헤더 | 기능 | Layout과 Outlet, 헤더 메뉴, Tailwind와 DaisyUI 최소 스타일 | 대기 | - | - |
+| 2 | layout 레이아웃과 헤더 | 기능 | Layout과 Outlet, 헤더 메뉴, NavLink로 지금 메뉴 강조, Tailwind와 DaisyUI 최소 스타일 | 완료 | 4 | 5 |
 | 3 | screens 화면 그리기와 라우트 | 기능 | 화면 7개 정적 마크업, 라우트 연결, grid 글 목록 | 대기 | - | - |
 | 4 | component-split 겹치는 화면을 컴포넌트로 | 리팩터 | 컴포넌트 분리, props, map | 대기 | - | - |
 | 5 | board-list 글 목록 | 기능 | axios GET, useEffect로 서버 데이터 그리기 | 대기 | - | - |
@@ -36,4 +36,5 @@
 - server-node 수정
 - 학생이 쓰는 테스트 (vitest, msw)
 - lucide-react 아이콘
+- 좁은 화면에서 헤더 메뉴 접기
 - 배포
