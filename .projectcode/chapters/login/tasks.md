@@ -7,7 +7,7 @@
   - 실행하면: 두 칸에 친 글자가 그대로 보인다
   - Why: 입력한 아이디와 비밀번호를 서버로 보내려면 화면이 기억하고 있어야 한다
   - 다른 장: component-split
-- [ ] T2 로그인을 누르면 서버에 보내기
+- [x] T2 로그인을 누르면 서버에 보내기
   - 근거: S1
   - 파일: react-blog/src/pages/LoginForm.jsx
   - 실행하면: 새로고침 없이 네트워크 탭에 POST /login이 보이고, 응답 헤더에 Authorization: Bearer ...가 있다

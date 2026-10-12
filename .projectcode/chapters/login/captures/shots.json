@@ -9,7 +9,44 @@
       "screen": "로그인 /login-form",
       "path": "/login-form",
       "see": "아이디 ssar, 가려진 비밀번호가 칸에 그대로 보인다",
-      "steps": [{ "fill": ["아이디", "ssar"] }, { "fill": ["비밀번호", "1234"] }]
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "T2-서버에-보내기.png",
+      "task": "T2",
+      "screen": "로그인 /login-form",
+      "path": "/login-form",
+      "see": "로그인을 누른 뒤에도 새로고침되지 않아 아이디 ssar와 가려진 비밀번호가 칸에 남아 있다",
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        }
+      ]
     }
   ]
 }

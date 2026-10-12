@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
@@ -9,8 +10,13 @@ export default function LoginForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await axios.post("http://localhost:8080/login", form);
+  }
+
   return (
-    <FormCard title="로그인">
+    <FormCard title="로그인" onSubmit={handleSubmit}>
       <Input
         name="username"
         placeholder="아이디"
