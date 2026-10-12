@@ -43,7 +43,7 @@ SaveForm.jsx, UpdateForm.jsx, LoginForm.jsx, JoinForm.jsx, UserInfo.jsx
 - form에 onSubmit을 쓰지 않는다. 제출 동작은 각 폼 장에서 붙인다
 
 App.jsx
-- Layout의 children에 라우트 6개를 더한다
+- Layout Route 안에 Route 6개를 더한다
 - board/:id, save-form, update-form/:id, login-form, join-form, user-info
 
 ## 핵심 코드
@@ -68,8 +68,8 @@ App.jsx
   <button className="btn">로그인</button>
 </form>
 
-{ path: "board/:id", element: <Detail /> },
-{ path: "update-form/:id", element: <UpdateForm /> },
+<Route path="board/:id" element={<Detail />} />
+<Route path="update-form/:id" element={<UpdateForm />} />
 
 ## 할 일 연결
 | 할 일 | 파일 |
