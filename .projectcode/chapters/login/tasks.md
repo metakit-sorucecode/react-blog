@@ -1,0 +1,36 @@
+# login 작업
+
+- [ ] 테스트 작성
+- [ ] T1 로그인 입력값을 객체로 기억하기
+  - 근거: S1
+  - 파일: react-blog/src/pages/LoginForm.jsx
+  - 실행하면: 두 칸에 친 글자가 그대로 보인다
+  - Why: 입력한 아이디와 비밀번호를 서버로 보내려면 화면이 기억하고 있어야 한다
+  - 다른 장: component-split
+- [ ] T2 로그인을 누르면 서버에 보내기
+  - 근거: S1
+  - 파일: react-blog/src/pages/LoginForm.jsx
+  - 실행하면: 새로고침 없이 네트워크 탭에 POST /login이 보이고, 응답 헤더에 Authorization: Bearer ...가 있다
+  - Why: 서버가 아이디와 비밀번호를 확인해야 토큰을 받을 수 있다
+  - 다른 장: component-split
+- [ ] T3 로그인 상태를 스토어에 기억하고 홈으로 가기
+  - 근거: S2
+  - 파일: react-blog/src/store/authStore.jsx, react-blog/src/pages/LoginForm.jsx
+  - 실행하면: ssar, 1234로 로그인하면 홈으로 간다. 헤더 메뉴는 아직 그대로다
+  - Why: 받은 토큰과 아이디를 여러 화면이 함께 보려면 컴포넌트 밖 스토어에 두어야 한다
+  - 다른 장: component-split
+- [ ] T4 로그인 여부로 헤더 메뉴 바꾸기
+  - 근거: S3, S4
+  - 파일: react-blog/src/components/Header.jsx
+  - 실행하면: 로그인 전에는 홈, 로그인, 회원가입이 보인다. 로그인 뒤에는 홈, 글쓰기, 내 정보, 로그아웃, ssar님이 보인다
+  - Why: 로그인했는지에 따라 쓸 수 있는 메뉴가 다르다
+  - 다른 장: layout
+- [ ] T5 로그아웃하면 로그인 상태 비우기
+  - 근거: S5
+  - 파일: react-blog/src/store/authStore.jsx, react-blog/src/components/Header.jsx
+  - 실행하면: 로그아웃을 누르면 홈으로 가고 헤더가 로그인 전 메뉴로 돌아간다
+  - Why: 기억한 토큰과 아이디를 지워야 다른 사람이 이어서 쓰지 못한다
+  - 다른 장: layout
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
