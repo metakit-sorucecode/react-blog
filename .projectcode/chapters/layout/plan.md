@@ -15,9 +15,9 @@
 
 ## 코드 계획
 App.jsx
-- createBrowserRouter로 라우터를 만든다
-- 루트 / 의 element는 Layout이고 children에 홈을 index로 둔다
-- App은 RouterProvider를 돌려준다
+- App은 BrowserRouter 안에 Routes를 두고 돌려준다
+- / Route의 element는 Layout이고 그 안에 홈 Route를 index로 둔다
+- loader와 errorElement를 쓰지 않아서 JSX로 쓰는 BrowserRouter를 쓴다
 
 Layout.jsx
 - div 하나에 max-w-3xl mx-auto p-8로 바깥 여백을 준다
@@ -38,9 +38,13 @@ Home.jsx
 - h1 하나로 홈을 보인다
 
 ## 핵심 코드
-const router = createBrowserRouter([
-  { path: "/", element: <Layout />, children: [{ index: true, element: <Home /> }] },
-]);
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+    </Route>
+  </Routes>
+</BrowserRouter>
 
 <div className="max-w-3xl mx-auto p-8">
   <Header />
