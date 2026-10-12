@@ -55,6 +55,16 @@
 
 ![회원가입 뒤 로그인](../chapters/join/captures/done-가입-뒤-로그인.png)
 
+## 홈 (로그인 뒤 헤더)
+처음 나온 장: login
+
+![로그인 뒤 헤더](../chapters/login/captures/done-로그인-뒤.png)
+
+## 홈 (로그아웃 뒤 헤더)
+처음 나온 장: login
+
+![로그아웃 뒤 헤더](../chapters/login/captures/done-로그아웃-뒤.png)
+
 ## 내 정보
 처음 나온 장: screens
 

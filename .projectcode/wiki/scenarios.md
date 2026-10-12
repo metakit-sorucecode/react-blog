@@ -104,6 +104,28 @@ flowchart LR
 - server-node/src/routes/users.js
 - server-node/src/db.js
 
+## 로그인과 로그아웃
+
+```mermaid
+flowchart LR
+  A[LoginForm] --> B["POST /login"]
+  B --> C[routes/users.js]
+  C --> D[(users)]
+  A --> E[useAuthStore]
+  E --> F[Header]
+  F --> E
+```
+
+만든 장: screens, component-split, login
+맡는 파일
+- react-blog/src/pages/LoginForm.jsx
+- react-blog/src/store/authStore.jsx
+- react-blog/src/components/Header.jsx
+- react-blog/src/components/FormCard.jsx
+- react-blog/src/components/Input.jsx
+- server-node/src/routes/users.js
+- server-node/src/auth.js
+
 ## 폼 화면 조각
 
 ```mermaid
@@ -127,4 +149,7 @@ flowchart LR
 - react-blog/src/pages/JoinForm.jsx
 - react-blog/src/pages/UserInfo.jsx
 
-홈 목록과 상세는 서버에서 받고 회원가입은 서버에 저장한다. 다른 폼 화면은 아직 보내지 않는다. 로그인, 글쓰기 시나리오는 아직 만든 장이 없다.
+홈 목록과 상세는 서버에서 받는다.
+회원가입은 서버에 저장한다.
+로그인은 토큰을 받아 스토어에 기억하고 헤더가 그것을 본다.
+글쓰기, 글 수정, 내 정보 폼은 아직 보내지 않는다.

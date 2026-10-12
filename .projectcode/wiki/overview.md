@@ -12,7 +12,7 @@
 | 5 | board-list 글 목록 | 기능 | axios GET, useEffect로 서버 데이터 그리기 | 완료 | 2 | 4 |
 | 6 | board-detail 글 상세 | 기능 | useParams, 상세와 댓글 목록 그리기 | 완료 | 3 | 5 |
 | 7 | join 회원가입 | 기능 | useState 폼, axios POST, 성공하면 이동 | 완료 | 4 | 6 |
-| 8 | login 로그인 | 기능 | 응답 헤더 토큰, zustand 로그인 상태, 헤더 메뉴 바꾸기, 로그아웃 | 대기 | - | - |
+| 8 | login 로그인 | 기능 | 응답 헤더 토큰, zustand 로그인 상태, 헤더 메뉴 바꾸기, 로그아웃 | 완료 | 5 | 8 |
 | 9 | login-keep 로그인 유지 | 기능 | localStorage, jwt-decode로 복원 | 대기 | - | - |
 | 10 | board-save 글쓰기 | 기능 | axios 인스턴스와 인터셉터로 토큰 보내기 | 대기 | - | - |
 | 11 | board-update-delete 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 대기 | - | - |
@@ -30,6 +30,7 @@
 - 토큰 만료와 401 자동 로그아웃: 장 정하지 않음
 - 버튼 중복 클릭 막기: 장 정하지 않음
 - 공백만 입력한 값 막기: 장 정하지 않음
+- 로그인한 뒤 로그인, 회원가입 화면 막기: 장 정하지 않음
 
 ## 하지 않는 것
 - react-blog-modern-end 코드 변경
