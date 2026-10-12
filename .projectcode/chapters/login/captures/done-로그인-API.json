@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/login",
+    "body": {
+      "username": "ssar",
+      "password": "1234"
+    }
+  },
+  "status": 200,
+  "response": {
+    "status": 200,
+    "msg": "성공",
+    "body": null
+  }
+}
