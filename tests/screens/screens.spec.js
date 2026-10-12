@@ -141,11 +141,10 @@ test("S9 내 정보 화면(/user-info)에 아이디(읽기만), 이메일, 새 �
 test("S10 헤더 메뉴를 누르면 각 화면이 헤더 아래에 보인다", async ({
   page,
 }) => {
+  // login 장부터 글쓰기와 내 정보 메뉴는 로그인 뒤에만 보인다. 그 두 메뉴는 tests/login이 본다
   const menus = [
     { name: "로그인", screen: heading(page, "로그인") },
     { name: "회원가입", screen: heading(page, "회원가입") },
-    { name: "글쓰기", screen: heading(page, "글쓰기") },
-    { name: "내 정보", screen: heading(page, "내 정보") },
     { name: "홈", screen: page.getByRole("link", { name: /^제목/ }).first() },
   ];
 

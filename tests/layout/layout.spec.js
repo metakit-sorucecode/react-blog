@@ -1,11 +1,10 @@
 import { test, expect } from "@playwright/test";
 
+// login 장부터 글쓰기와 내 정보는 로그인 뒤에만 보인다. 그 두 메뉴는 tests/login이 본다
 const menus = [
   { name: "홈", path: "/" },
   { name: "로그인", path: "/login-form" },
   { name: "회원가입", path: "/join-form" },
-  { name: "글쓰기", path: "/save-form" },
-  { name: "내 정보", path: "/user-info" },
 ];
 
 function menu(page, name) {
