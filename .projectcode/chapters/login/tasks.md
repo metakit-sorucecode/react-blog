@@ -13,7 +13,7 @@
   - 실행하면: 새로고침 없이 네트워크 탭에 POST /login이 보이고, 응답 헤더에 Authorization: Bearer ...가 있다
   - Why: 서버가 아이디와 비밀번호를 확인해야 토큰을 받을 수 있다
   - 다른 장: component-split
-- [ ] T3 로그인 상태를 스토어에 기억하고 홈으로 가기
+- [x] T3 로그인 상태를 스토어에 기억하고 홈으로 가기
   - 근거: S2
   - 파일: react-blog/src/store/authStore.jsx, react-blog/src/pages/LoginForm.jsx
   - 실행하면: ssar, 1234로 로그인하면 홈으로 간다. 헤더 메뉴는 아직 그대로다

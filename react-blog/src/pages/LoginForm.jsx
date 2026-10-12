@@ -1,10 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
+import { useAuthStore } from "../store/authStore";
 
 export default function LoginForm() {
   const [form, setForm] = useState({ username: "", password: "" });
+  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -12,7 +16,10 @@ export default function LoginForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await axios.post("http://localhost:8080/login", form);
+    const res = await axios.post("http://localhost:8080/login", form);
+    const jwt = res.headers.authorization;
+    login(jwt, form.username);
+    navigate("/");
   }
 
   return (
