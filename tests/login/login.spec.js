@@ -27,6 +27,14 @@ function logoutButton(page) {
   return page.getByRole("button", { name: "로그아웃", exact: true });
 }
 
+// 홈 메뉴가 든 목록이 헤더다. 칸마다 글자를 차례대로 꺼낸다
+function headerItems(page) {
+  return page
+    .getByRole("list")
+    .filter({ has: menu(page, "홈") })
+    .getByRole("listitem");
+}
+
 test("S1 아이디와 비밀번호를 입력하고 로그인을 누르면 입력한 값을 서버(POST /login)에 보낸다", async ({
   page,
 }) => {
@@ -90,6 +98,13 @@ test("S4 로그인 뒤 헤더 메뉴는 홈, 글쓰기, 내 정보, 로그아웃
   for (const name of ["로그인", "회원가입"]) {
     await expect(menu(page, name)).toHaveCount(0);
   }
+  await expect(headerItems(page)).toHaveText([
+    "홈",
+    "글쓰기",
+    "내 정보",
+    "로그아웃",
+    "ssar님",
+  ]);
 
   // 로그인 뒤 메뉴가 제 화면으로 가는지도 본다
   await menu(page, "내 정보").click();
@@ -115,4 +130,5 @@ test("S5 로그아웃을 누르면 로그인 상태를 비우고 홈으로 간�
   }
   await expect(menu(page, "글쓰기")).toHaveCount(0);
   await expect(page.getByText("ssar님", { exact: true })).toHaveCount(0);
+  await expect(headerItems(page)).toHaveText(["홈", "로그인", "회원가입"]);
 });
