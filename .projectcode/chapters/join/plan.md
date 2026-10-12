@@ -25,6 +25,12 @@ JoinForm.jsx
 - useNavigate로 /login-form에 간다
 - FormCard에 onSubmit={handleSubmit}을 넘긴다
 
+JoinForm.jsx (T4 객체로 묶기)
+- 세 useState를 form 객체 하나로 바꾼다. 처음 값은 username, password, email이 모두 빈 글자다
+- 세 Input에 name을 붙이고 value는 form.username처럼 꺼내 쓴다
+- handleChange 하나가 form을 복사하고 바뀐 칸만 덮어쓴다
+- axios.post에 form을 그대로 넘긴다
+
 ## 핵심 코드
 const [username, setUsername] = useState("");
 
@@ -46,11 +52,24 @@ async function handleSubmit(e) {
 export default function FormCard({ title, onSubmit, children }) {
   return <form onSubmit={onSubmit} ...>
 
+T4
+const [form, setForm] = useState({ username: "", password: "", email: "" });
+
+function handleChange(e) {
+  setForm({ ...form, [e.target.name]: e.target.value });
+}
+
+<Input name="username" placeholder="아이디" value={form.username} onChange={handleChange} />
+
+await axios.post("http://localhost:8080/join", form);
+
 ## 수업에서 짚을 것
 - 서버가 받는 이름이 username이라 state 이름도 username으로 맞춘다. 객체에 그대로 넣을 수 있다
 - form 안의 버튼은 누르면 제출된다. 막지 않으면 페이지가 새로고침되어 state가 사라진다
 - await가 있어서 서버 응답을 받은 뒤에 안내와 이동이 일어난다
 - 실패하면 await에서 멈추고 콘솔에 에러만 남는다. 안내는 error-handling 장에서 한다
+- setForm은 합쳐 주지 않고 통째로 바꾼다. ...form을 빼면 다른 칸 값이 사라진다
+- 뒤 장의 폼도 이 방식으로 쓴다
 
 ## 할 일 연결
 | 할 일 | 파일 |

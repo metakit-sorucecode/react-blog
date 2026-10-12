@@ -22,3 +22,9 @@
 - [x] 수렴 점검
 - [x] 캡처
 - [x] 도식
+- [ ] T4 입력값을 객체 하나로 묶기
+  - 근거: S1, 고침 T1
+  - 파일: react-blog/src/pages/JoinForm.jsx
+  - 실행하면: 세 칸에 친 글자가 그대로 보이고, React 개발자 도구에서 state가 객체 하나로 바뀐다. 가입하면 전처럼 로그인 화면으로 간다
+  - Why: 칸마다 useState와 onChange를 따로 두면 칸이 늘 때마다 코드가 같이 는다. 객체 하나와 바뀜 처리 하나로 모은다
+  - 다른 장: component-split
