@@ -26,7 +26,7 @@
 - [x] 수렴 점검
 - [x] 캡처
 - [x] 도식
-- [ ] T5 라우터를 BrowserRouter로 바꾸기
+- [x] T5 라우터를 BrowserRouter로 바꾸기
   - 근거: S1, 고침 T1, T2
   - 파일: react-blog/src/App.jsx
   - 실행하면: 화면은 그대로다. 메뉴 아래에 홈이 보이고 메뉴를 누르면 주소가 바뀐다

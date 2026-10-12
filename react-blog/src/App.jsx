@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
@@ -8,22 +8,20 @@ import LoginForm from "./pages/LoginForm";
 import JoinForm from "./pages/JoinForm";
 import UserInfo from "./pages/UserInfo";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: "board/:id", element: <Detail /> },
-      { path: "save-form", element: <SaveForm /> },
-      { path: "update-form/:id", element: <UpdateForm /> },
-      { path: "login-form", element: <LoginForm /> },
-      { path: "join-form", element: <JoinForm /> },
-      { path: "user-info", element: <UserInfo /> },
-    ],
-  },
-]);
-
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="board/:id" element={<Detail />} />
+          <Route path="save-form" element={<SaveForm />} />
+          <Route path="update-form/:id" element={<UpdateForm />} />
+          <Route path="login-form" element={<LoginForm />} />
+          <Route path="join-form" element={<JoinForm />} />
+          <Route path="user-info" element={<UserInfo />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
