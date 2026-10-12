@@ -13,7 +13,7 @@
     "status": 200,
     "msg": "성공",
     "body": {
-      "id": 19,
+      "id": 14,
       "username": "kim",
       "email": "kim@nate.com"
     }

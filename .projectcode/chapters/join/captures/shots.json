@@ -91,6 +91,33 @@
       ]
     },
     {
+      "file": "T4-객체로-묶기.png",
+      "task": "T4",
+      "screen": "회원가입 /join-form",
+      "path": "/join-form",
+      "see": "아이디 lee, 가려진 비밀번호, 이메일 lee@nate.com이 칸에 그대로 보인다",
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "lee"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "fill": [
+            "이메일",
+            "lee@nate.com"
+          ]
+        }
+      ]
+    },
+    {
       "file": "done-가입-뒤-로그인.png",
       "task": "done",
       "screen": "회원가입 뒤 /login-form",

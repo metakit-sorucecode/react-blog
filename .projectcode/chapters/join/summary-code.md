@@ -136,3 +136,69 @@
  
    return (
 ```
+
+## T4 입력값을 객체 하나로 묶기
+커밋: 5bb27a4
+
+| 파일 | 변경 |
+|---|---|
+| src/pages/JoinForm.jsx | 고침 |
+
+```diff
+// src/pages/JoinForm.jsx
+@@ -5,18 +5,16 @@ import FormCard from "../components/FormCard";
+ import Input from "../components/Input";
+ 
+ export default function JoinForm() {
+-  const [username, setUsername] = useState("");
+-  const [password, setPassword] = useState("");
+-  const [email, setEmail] = useState("");
++  const [form, setForm] = useState({ username: "", password: "", email: "" });
+   const navigate = useNavigate();
+ 
++  function handleChange(e) {
++    setForm({ ...form, [e.target.name]: e.target.value });
++  }
++
+   async function handleSubmit(e) {
+     e.preventDefault();
+-    await axios.post("http://localhost:8080/join", {
+-      username,
+-      password,
+-      email,
+-    });
++    await axios.post("http://localhost:8080/join", form);
+     alert("회원가입 완료");
+     navigate("/login-form");
+   }
+@@ -24,20 +22,23 @@ export default function JoinForm() {
+   return (
+     <FormCard title="회원가입" onSubmit={handleSubmit}>
+       <Input
++        name="username"
+         placeholder="아이디"
+-        value={username}
+-        onChange={(e) => setUsername(e.target.value)}
++        value={form.username}
++        onChange={handleChange}
+       />
+       <Input
++        name="password"
+         type="password"
+         placeholder="비밀번호"
+-        value={password}
+-        onChange={(e) => setPassword(e.target.value)}
++        value={form.password}
++        onChange={handleChange}
+       />
+       <Input
++        name="email"
+         placeholder="이메일"
+-        value={email}
+-        onChange={(e) => setEmail(e.target.value)}
++        value={form.email}
++        onChange={handleChange}
+       />
+       <button className="btn">가입하기</button>
+     </FormCard>
+```
