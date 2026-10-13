@@ -1,0 +1,80 @@
+{
+  "chapter": "login-keep",
+  "web": "http://localhost:5173",
+  "api": "http://localhost:8080",
+  "shots": [
+    {
+      "file": "T1-토큰-저장.png",
+      "task": "T1",
+      "screen": "로그인 뒤 새로고침한 /",
+      "path": "/login-form",
+      "see": "localStorage에 jwt가 Bearer 토큰으로 남아 있다(T1-토큰-저장.storage.json). 새로고침한 화면의 헤더는 아직 홈, 로그인, 회원가입이다",
+      "storage": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "reload": true }
+      ]
+    },
+    {
+      "file": "T2-로그인-되살리기.png",
+      "task": "T2",
+      "screen": "로그아웃하고 새로고침한 /",
+      "path": "/login-form",
+      "see": "로그아웃했는데 새로고침하면 헤더가 다시 홈, 글쓰기, 내 정보, 로그아웃, ssar님이다. localStorage에 jwt가 남아 있다",
+      "storage": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "click": "로그아웃" },
+        { "reload": true }
+      ]
+    },
+    {
+      "file": "T3-토큰-지우기.png",
+      "task": "T3",
+      "screen": "로그아웃하고 새로고침한 /",
+      "path": "/login-form",
+      "see": "로그아웃하고 새로고침해도 헤더가 홈, 로그인, 회원가입이다. localStorage가 비어 있다",
+      "storage": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "click": "로그아웃" },
+        { "reload": true }
+      ]
+    },
+    {
+      "file": "done-새로고침-로그인-유지.png",
+      "task": "done",
+      "screen": "로그인 뒤 새로고침한 /",
+      "path": "/login-form",
+      "see": "ssar로 로그인하고 새로고침해도 헤더가 홈, 글쓰기, 내 정보, 로그아웃, ssar님이다",
+      "storage": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "reload": true }
+      ]
+    },
+    {
+      "file": "done-로그아웃-뒤-새로고침.png",
+      "task": "done",
+      "screen": "로그아웃하고 새로고침한 /",
+      "path": "/login-form",
+      "see": "로그아웃하고 새로고침하면 헤더가 홈, 로그인, 회원가입이고 localStorage가 비어 있다",
+      "storage": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "click": "로그아웃" },
+        { "reload": true }
+      ]
+    }
+  ]
+}

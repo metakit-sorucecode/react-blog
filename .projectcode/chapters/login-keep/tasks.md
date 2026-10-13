@@ -1,7 +1,7 @@
 # login-keep 작업
 
 - [x] 테스트 작성
-- [ ] T1 로그인하면 토큰을 브라우저에 저장하기
+- [x] T1 로그인하면 토큰을 브라우저에 저장하기
   - 근거: S1
   - 파일: react-blog/src/store/authStore.jsx
   - 실행하면: ssar로 로그인한 뒤 개발자 도구 Application 탭의 Local Storage에 jwt가 보인다. 새로고침하면 아직 로그인 전 메뉴로 돌아간다
