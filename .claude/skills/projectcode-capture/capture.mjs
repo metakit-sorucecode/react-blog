@@ -46,11 +46,16 @@ async function takeScreen(browser, shot) {
       // 이미 조용했던 페이지는 networkidle이 바로 끝나므로 응답과 이동을 기다린다
       await page.waitForTimeout(1000)
     }
+    if (step.reload) await page.reload()
     await page.waitForLoadState("networkidle")
   }
   await page.screenshot({ path: join(outDir, shot.file), fullPage: true })
   if (shot.console) {
     writeFileSync(join(outDir, shot.file.replace(/\.png$/, ".console.txt")), logs.join("\n"))
+  }
+  if (shot.storage) {
+    const items = await page.evaluate(() => ({ ...localStorage }))
+    writeFileSync(join(outDir, shot.file.replace(/\.png$/, ".storage.json")), JSON.stringify(items, null, 2))
   }
   await page.close()
 }
