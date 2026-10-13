@@ -5,7 +5,7 @@
 ```mermaid
 flowchart LR
   A[index.html] --> B[main.jsx]
-  B --> C[App 라우터]
+  B --> C["라우트 (Route)"]
   C --> D[Layout]
   D --> E[Header 메뉴]
   D --> F[Outlet 자리]
