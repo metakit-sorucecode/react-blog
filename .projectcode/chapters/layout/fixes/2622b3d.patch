@@ -1,0 +1,30 @@
+diff --git a/react-blog/src/App.jsx b/react-blog/src/App.jsx
+index e51399f..7d17780 100644
+--- a/react-blog/src/App.jsx
++++ b/react-blog/src/App.jsx
+@@ -1,15 +1,15 @@
+-import { createBrowserRouter, RouterProvider } from "react-router-dom";
++import { BrowserRouter, Routes, Route } from "react-router-dom";
+ import Layout from "./components/Layout";
+ import Home from "./pages/Home";
+ 
+-const router = createBrowserRouter([
+-  {
+-    path: "/",
+-    element: <Layout />,
+-    children: [{ index: true, element: <Home /> }],
+-  },
+-]);
+-
+ export default function App() {
+-  return <RouterProvider router={router} />;
++  return (
++    <BrowserRouter>
++      <Routes>
++        <Route path="/" element={<Layout />}>
++          <Route index element={<Home />} />
++        </Route>
++      </Routes>
++    </BrowserRouter>
++  );
+ }

@@ -4,7 +4,7 @@
   "api": "http://localhost:8080",
   "shots": [
     { "file": "T1-라우터-홈.png", "task": "T1", "screen": "홈",
-      "see": "Hello World 대신 홈 글자만 보인다" },
+      "see": "Hello World 대신 홈 글자만 보인다", "missing": true },
     { "file": "T2-헤더-메뉴.png", "task": "T2", "screen": "홈",
       "see": "메뉴 5개 아래에 홈 글자가 보인다" },
     { "file": "T3-여백-구분선.png", "task": "T3", "screen": "홈",

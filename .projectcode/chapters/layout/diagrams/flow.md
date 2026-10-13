@@ -2,7 +2,7 @@
 
 ```mermaid
 flowchart LR
-  A[주소 / 접속] --> B[App 라우터]
+  A[주소 / 접속] --> B["라우트 (Route)"]
   B --> C[Layout]
   C --> D[Header 메뉴]
   C --> E["자리 (Outlet)"]

@@ -158,3 +158,40 @@ export default function Layout() {
 
 ## 학생 코드 밖
 - 테스트 작성 커밋 2a3ec59: 학생 코드 변경 없음
+
+## T5 라우터를 BrowserRouter로 바꾸기
+커밋: 2622b3d
+
+| 파일 | 변경 |
+|---|---|
+| src/App.jsx | 고침 |
+
+```diff
+// src/App.jsx
+@@ -1,15 +1,15 @@
+-import { createBrowserRouter, RouterProvider } from "react-router-dom";
++import { BrowserRouter, Routes, Route } from "react-router-dom";
+ import Layout from "./components/Layout";
+ import Home from "./pages/Home";
+ 
+-const router = createBrowserRouter([
+-  {
+-    path: "/",
+-    element: <Layout />,
+-    children: [{ index: true, element: <Home /> }],
+-  },
+-]);
+-
+ export default function App() {
+-  return <RouterProvider router={router} />;
++  return (
++    <BrowserRouter>
++      <Routes>
++        <Route path="/" element={<Layout />}>
++          <Route index element={<Home />} />
++        </Route>
++      </Routes>
++    </BrowserRouter>
++  );
+ }
+```
