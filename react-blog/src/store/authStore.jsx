@@ -11,5 +11,8 @@ export const useAuthStore = create((set) => ({
     localStorage.setItem("jwt", jwt);
     set({ isLogin: true, jwt, username });
   },
-  logout: () => set({ isLogin: false, jwt: "", username: "" }),
+  logout: () => {
+    localStorage.removeItem("jwt");
+    set({ isLogin: false, jwt: "", username: "" });
+  },
 }));
