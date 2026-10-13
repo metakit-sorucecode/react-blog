@@ -49,7 +49,7 @@
 - [x] 캡처
 - [x] 도식
 - [x] T8 라우트 6개를 Route로 쓰기
-  - 근거: S2, S10, 고침 T2, T3, T4, T5, T6, T7
+  - 근거: S2, S3, S4, S5, S6, S7, S8, S9, S10, 고침 T2, T3, T4, T5, T6, T7
   - 파일: react-blog/src/App.jsx
   - 실행하면: 화면은 그대로다. 메뉴 5개와 카드, 수정 링크가 모두 화면으로 간다
   - Why: layout 장 라우터가 BrowserRouter로 바뀌어 라우트도 Route 태그로 쓴다
