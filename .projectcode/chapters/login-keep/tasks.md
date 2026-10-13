@@ -1,6 +1,6 @@
 # login-keep 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 로그인하면 토큰을 브라우저에 저장하기
   - 근거: S1
   - 파일: react-blog/src/store/authStore.jsx
