@@ -1,6 +1,6 @@
 # reply 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 내 댓글에만 휴지통 보이기
   - 근거: S1
   - 파일: react-blog/src/pages/Detail.jsx, react-blog/src/components/ReplyItem.jsx

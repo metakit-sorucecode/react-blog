@@ -76,7 +76,9 @@ test("S3 상세 화면에 제목, 작성자, 내용, 수정과 삭제 버튼, �
   for (const reply of board.replies) {
     await expect(page.getByText(reply.comment, { exact: true })).toBeVisible();
   }
-  await expect(button(page, "🗑")).toHaveCount(board.replies.length);
+  // reply 장부터 휴지통은 로그인한 작성자의 댓글에만 보인다
+  const mine = board.replies.filter((r) => r.username === board.username);
+  await expect(button(page, "🗑")).toHaveCount(mine.length);
   await expect(page.getByPlaceholder("댓글을 입력하세요")).toBeVisible();
   await expect(button(page, "등록")).toBeVisible();
 });
