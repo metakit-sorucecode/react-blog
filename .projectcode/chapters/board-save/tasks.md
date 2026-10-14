@@ -1,0 +1,29 @@
+# board-save 작업
+
+- [ ] 테스트 작성
+- [ ] T1 글쓰기 입력값을 객체로 기억하기
+  - 근거: S1
+  - 파일: react-blog/src/pages/SaveForm.jsx, react-blog/src/components/BoardForm.jsx
+  - 실행하면: 글쓰기 화면에 제목과 내용을 치면 칸에 그대로 남는다. 수정 화면도 전처럼 글자가 쳐진다
+  - Why: 기억한 값이 있어야 글쓰기를 누를 때 서버에 보낼 수 있다
+  - 다른 장: component-split
+- [ ] T2 axios 인스턴스 http 만들고 앞 요청 바꾸기
+  - 근거: S4
+  - 파일: react-blog/src/api/http.jsx, react-blog/src/pages/Home.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/pages/JoinForm.jsx, react-blog/src/pages/LoginForm.jsx
+  - 실행하면: 목록, 상세, 회원가입, 로그인이 전처럼 된다. 서버 주소는 http.jsx에만 있다
+  - Why: 모든 요청이 한 통로를 지나야 다음 단계에서 토큰을 한 번에 붙일 수 있다
+  - 다른 장: board-list, board-detail, join, login
+- [ ] T3 요청마다 토큰 붙이기
+  - 근거: S4
+  - 파일: react-blog/src/api/http.jsx
+  - 실행하면: 로그인한 뒤 홈을 열면 개발자 도구 Network 탭의 목록 요청 헤더에 Authorization: Bearer ...가 보인다
+  - Why: 글쓰기처럼 로그인이 필요한 요청은 토큰이 없으면 서버가 401로 막는다
+- [ ] T4 글쓰기를 누르면 서버에 보내고 홈으로 가기
+  - 근거: S2, S3
+  - 파일: react-blog/src/pages/SaveForm.jsx
+  - 실행하면: 로그인하고 글을 쓰면 홈으로 가고 새 글이 목록 맨 위에 보인다
+  - Why: 토큰이 붙는 통로가 생겼으니 글쓰기 요청만 보내면 저장된다
+  - 다른 장: component-split
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
