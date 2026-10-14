@@ -166,8 +166,13 @@ test("S5 휴지통을 누르면 서버에서 그 댓글을 지우고 상세를 �
     (req) => req.url() === `${REPLY_API}/${replyId}` && req.method() === "DELETE",
     { timeout: 5000 },
   );
+  const reloaded = page.waitForRequest(
+    (req) => req.url() === `${API}/api/boards/${id}` && req.method() === "GET",
+    { timeout: 5000 },
+  );
   await trash(row).click();
   await deleted;
+  await reloaded;
 
   await expect(row).toHaveCount(0);
   const res = await request.get(`${API}/api/boards/${id}`);

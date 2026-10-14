@@ -31,6 +31,9 @@
   - 실행하면: 댓글1의 휴지통을 누르면 목록에서 댓글1이 사라진다
   - Why: 등록과 같은 loadBoard로 다시 받아야 지운 댓글이 화면에서도 빠진다
   - 다른 장: board-detail, component-split
+- [x] 테스트 보강
+  - 근거: S5. 테스트가 상세를 다시 받는 요청을 보지 않았다
+  - 파일: tests/reply/reply.spec.js
 - [ ] 수렴 점검
 - [ ] 캡처
 - [ ] 도식
