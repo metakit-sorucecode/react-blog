@@ -145,8 +145,8 @@ test("S9 내 정보 화면(/user-info)에 아이디(읽기만), 이메일, 새 �
 }) => {
   await page.goto("/user-info");
   await expect(heading(page, "내 정보")).toBeVisible();
+  // my-info 장부터 아이디 칸은 서버에서 받은 값을 채운다. 채우는 것은 tests/my-info가 본다
   const username = page.getByRole("textbox").first();
-  await expect(username).toHaveValue("ssar");
   await expect(username).not.toBeEditable();
   await expect(page.getByPlaceholder("이메일")).toBeVisible();
   await expect(page.getByPlaceholder("새 비밀번호")).toHaveAttribute(

@@ -1,6 +1,6 @@
 # my-info 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 내 정보 입력값을 객체로 기억하기
   - 근거: S2
   - 파일: react-blog/src/pages/UserInfo.jsx
