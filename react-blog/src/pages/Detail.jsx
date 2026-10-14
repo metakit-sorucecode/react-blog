@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import http from "../api/http";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
 
 export default function Detail() {
@@ -12,6 +12,7 @@ export default function Detail() {
     owner: false,
     replies: [],
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadBoard() {
@@ -20,6 +21,11 @@ export default function Detail() {
     }
     loadBoard();
   }, [id]);
+
+  async function handleDelete() {
+    await http.delete(`/api/boards/${id}`);
+    navigate("/");
+  }
 
   return (
     <div>
@@ -31,7 +37,9 @@ export default function Detail() {
           <Link to={`/update-form/${id}`} className="btn">
             수정
           </Link>
-          <button className="btn">삭제</button>
+          <button className="btn" onClick={handleDelete}>
+            삭제
+          </button>
         </div>
       )}
 
