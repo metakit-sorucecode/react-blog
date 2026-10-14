@@ -1,6 +1,6 @@
 # board-save 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 글쓰기 입력값을 객체로 기억하기
   - 근거: S1
   - 파일: react-blog/src/pages/SaveForm.jsx, react-blog/src/components/BoardForm.jsx
