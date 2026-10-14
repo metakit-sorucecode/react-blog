@@ -1,5 +1,5 @@
 // projectcode 따라치기 엔진
-// 사용: node codealong.mjs [--branch lecture] [--out .projectcode/codealong] [--student react-blog]
+// 사용: node codealong.mjs [--branch lecture] [--out .projectcode/code] [--student react-blog]
 // lecture 브랜치의 커밋을 차례로 읽어 따라치기.md와 합류 지점마다 완성 md를 쓴다.
 // 커밋 하나가 따라치기 한 단계다. 첫 커밋은 시작 키트를 복사한 상태라 코드를 쓰지 않는다.
 
@@ -12,7 +12,7 @@ const arg = (name, fallback) => {
   return i > 0 ? process.argv[i + 1] : fallback
 }
 const branch = arg("--branch", "lecture")
-const out = arg("--out", ".projectcode/codealong")
+const out = arg("--out", ".projectcode/code")
 const student = arg("--student", "react-blog")
 
 const git = (args) =>

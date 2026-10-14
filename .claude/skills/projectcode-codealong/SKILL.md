@@ -19,7 +19,7 @@ description: 학생에게 줄 따라치기.md와 합류 지점마다 완성 md(�
 ## 파일
 
 ```
-.projectcode/codealong/
+.projectcode/code/
   따라치기.md        장마다 단계마다 왜, 실행하면, 코드, 사진
   그림완성.md        합류 지점 하나마다 하나. 이름은 roadmap에서 정한다
   images/            쓰인 사진 사본
@@ -87,7 +87,7 @@ Source: 5926288 4c0da83
 
 4. 뽑기
    메인 저장소 루트에서 실행한다.
-   node .claude/skills/projectcode-codealong/codealong.mjs --branch lecture --out .projectcode/codealong
+   node .claude/skills/projectcode-codealong/codealong.mjs --branch lecture --out .projectcode/code
    - 따라치기.md: 단계마다 왜, 실행하면은 tasks.md에서, 코드는 lecture 커밋의 diff에서, 사진은 그 task의 shots.json 사진에서 가져온다. 새 파일은 통째로, 고친 파일은 diff, 지운 파일은 지운다 한 줄이다
    - 합류 지점 md: 시작 키트에서 그 장 끝까지 바뀐 파일을 통째로 준다. 지울 것, 설정, components, pages, index.css, main.jsx, App.jsx 순서다. App.jsx는 모든 page를 불러오므로 마지막이다. 끝에 장 끝 사진과 다음에 이어 칠 장을 적는다
 
