@@ -9,7 +9,6 @@ react-blog/
       http.jsx   새로
     components/
       BoardCard.jsx
-      BoardForm.jsx   고침
       FormCard.jsx
       Header.jsx
       Input.jsx

@@ -1,0 +1,97 @@
+diff --git a/react-blog/src/components/BoardForm.jsx b/react-blog/src/components/BoardForm.jsx
+deleted file mode 100644
+index 585326d..0000000
+--- a/react-blog/src/components/BoardForm.jsx
++++ /dev/null
+@@ -1,29 +0,0 @@
+-import FormCard from "./FormCard";
+-import Input from "./Input";
+-
+-export default function BoardForm({
+-  title,
+-  buttonText,
+-  form = {},
+-  onChange,
+-  onSubmit,
+-}) {
+-  return (
+-    <FormCard title={title} onSubmit={onSubmit}>
+-      <Input
+-        name="title"
+-        placeholder="제목"
+-        value={form.title}
+-        onChange={onChange}
+-      />
+-      <textarea
+-        className="textarea"
+-        name="content"
+-        placeholder="내용"
+-        value={form.content}
+-        onChange={onChange}
+-      />
+-      <button className="btn">{buttonText}</button>
+-    </FormCard>
+-  );
+-}
+diff --git a/react-blog/src/pages/SaveForm.jsx b/react-blog/src/pages/SaveForm.jsx
+index 414b78c..0bd1782 100644
+--- a/react-blog/src/pages/SaveForm.jsx
++++ b/react-blog/src/pages/SaveForm.jsx
+@@ -1,7 +1,8 @@
+ import { useState } from "react";
+ import { useNavigate } from "react-router-dom";
+ import http from "../api/http";
+-import BoardForm from "../components/BoardForm";
++import FormCard from "../components/FormCard";
++import Input from "../components/Input";
+ 
+ export default function SaveForm() {
+   const [form, setForm] = useState({ title: "", content: "" });
+@@ -18,12 +19,21 @@ export default function SaveForm() {
+   }
+ 
+   return (
+-    <BoardForm
+-      title="글쓰기"
+-      buttonText="글쓰기"
+-      form={form}
+-      onChange={handleChange}
+-      onSubmit={handleSubmit}
+-    />
++    <FormCard title="글쓰기" onSubmit={handleSubmit}>
++      <Input
++        name="title"
++        placeholder="제목"
++        value={form.title}
++        onChange={handleChange}
++      />
++      <textarea
++        className="textarea"
++        name="content"
++        placeholder="내용"
++        value={form.content}
++        onChange={handleChange}
++      />
++      <button className="btn">글쓰기</button>
++    </FormCard>
+   );
+ }
+diff --git a/react-blog/src/pages/UpdateForm.jsx b/react-blog/src/pages/UpdateForm.jsx
+index 496dc45..16b1963 100644
+--- a/react-blog/src/pages/UpdateForm.jsx
++++ b/react-blog/src/pages/UpdateForm.jsx
+@@ -1,5 +1,12 @@
+-import BoardForm from "../components/BoardForm";
++import FormCard from "../components/FormCard";
++import Input from "../components/Input";
+ 
+ export default function UpdateForm() {
+-  return <BoardForm title="글 수정" buttonText="수정하기" />;
++  return (
++    <FormCard title="글 수정">
++      <Input placeholder="제목" />
++      <textarea className="textarea" placeholder="내용" />
++      <button className="btn">수정하기</button>
++    </FormCard>
++  );
+ }

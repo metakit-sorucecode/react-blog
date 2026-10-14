@@ -12,21 +12,21 @@
   {
     "method": "GET",
     "url": "http://localhost:8080/?page=0",
-    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA2Mjc1LCJleHAiOjE3OTI2MTEwNzV9.guCY9dw3t6pTksgTWUUIWGPAAuwmLut9dWq467QN9eU",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA5MDM1LCJleHAiOjE3OTI2MTM4MzV9.gqul-PebAGMpWTjS8teyqKWlgKv9fx2b6k-GTE9LGJ8",
     "body": null,
     "status": 200
   },
   {
     "method": "GET",
     "url": "http://localhost:8080/?page=0",
-    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA2Mjc1LCJleHAiOjE3OTI2MTEwNzV9.guCY9dw3t6pTksgTWUUIWGPAAuwmLut9dWq467QN9eU",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA5MDM1LCJleHAiOjE3OTI2MTM4MzV9.gqul-PebAGMpWTjS8teyqKWlgKv9fx2b6k-GTE9LGJ8",
     "body": null,
     "status": 200
   },
   {
     "method": "POST",
     "url": "http://localhost:8080/api/boards",
-    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA2Mjc1LCJleHAiOjE3OTI2MTEwNzV9.guCY9dw3t6pTksgTWUUIWGPAAuwmLut9dWq467QN9eU",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA5MDM1LCJleHAiOjE3OTI2MTM4MzV9.gqul-PebAGMpWTjS8teyqKWlgKv9fx2b6k-GTE9LGJ8",
     "body": {
       "title": "제목 새 글",
       "content": "새 내용"
@@ -36,14 +36,14 @@
   {
     "method": "GET",
     "url": "http://localhost:8080/?page=0",
-    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA2Mjc1LCJleHAiOjE3OTI2MTEwNzV9.guCY9dw3t6pTksgTWUUIWGPAAuwmLut9dWq467QN9eU",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA5MDM1LCJleHAiOjE3OTI2MTM4MzV9.gqul-PebAGMpWTjS8teyqKWlgKv9fx2b6k-GTE9LGJ8",
     "body": null,
     "status": 200
   },
   {
     "method": "GET",
     "url": "http://localhost:8080/?page=0",
-    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA2Mjc1LCJleHAiOjE3OTI2MTEwNzV9.guCY9dw3t6pTksgTWUUIWGPAAuwmLut9dWq467QN9eU",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA5MDM1LCJleHAiOjE3OTI2MTM4MzV9.gqul-PebAGMpWTjS8teyqKWlgKv9fx2b6k-GTE9LGJ8",
     "body": null,
     "status": 200
   }
