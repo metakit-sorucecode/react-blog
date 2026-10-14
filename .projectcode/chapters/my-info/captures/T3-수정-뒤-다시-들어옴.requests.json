@@ -1,0 +1,78 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "ssar",
+      "password": "1234"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/user",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/user",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8080/api/user",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": {
+      "email": "ssar@gmail.com",
+      "password": ""
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/user",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/user",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2OTA0LCJleHAiOjE3OTI2MjE3MDR9.wZYSrTdCSq5Cjxh3k9sDlb9RRG26fXpLiKHsfb3156g",
+    "body": null,
+    "status": 200
+  }
+]
