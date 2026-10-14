@@ -32,6 +32,7 @@ export default function Detail() {
   async function handleReplySubmit(e) {
     e.preventDefault();
     await http.post("/api/replies", { boardId: id, comment });
+    setComment("");
     loadBoard();
   }
 
