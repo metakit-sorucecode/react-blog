@@ -445,3 +445,52 @@ export default function BoardForm({ title, buttonText }) {
 +  return <BoardForm title="글 수정" buttonText="수정하기" />;
  }
 ```
+
+## T7 글 폼 조각을 걷어 내고 두 화면이 폼 틀을 직접 쓰기
+커밋: 4c0da83
+
+| 파일 | 변경 |
+|---|---|
+| src/components/BoardForm.jsx | 지움 |
+| src/pages/SaveForm.jsx | 고침 |
+| src/pages/UpdateForm.jsx | 고침 |
+
+지운다: src/components/BoardForm.jsx
+
+```diff
+// src/pages/SaveForm.jsx
+@@ -1,5 +1,12 @@
+-import BoardForm from "../components/BoardForm";
++import FormCard from "../components/FormCard";
++import Input from "../components/Input";
+ 
+ export default function SaveForm() {
+-  return <BoardForm title="글쓰기" buttonText="글쓰기" />;
++  return (
++    <FormCard title="글쓰기">
++      <Input placeholder="제목" />
++      <textarea className="textarea" placeholder="내용" />
++      <button className="btn">글쓰기</button>
++    </FormCard>
++  );
+ }
+```
+
+```diff
+// src/pages/UpdateForm.jsx
+@@ -1,5 +1,12 @@
+-import BoardForm from "../components/BoardForm";
++import FormCard from "../components/FormCard";
++import Input from "../components/Input";
+ 
+ export default function UpdateForm() {
+-  return <BoardForm title="글 수정" buttonText="수정하기" />;
++  return (
++    <FormCard title="글 수정">
++      <Input placeholder="제목" />
++      <textarea className="textarea" placeholder="내용" />
++      <button className="btn">수정하기</button>
++    </FormCard>
++  );
+ }
+```

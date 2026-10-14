@@ -24,13 +24,13 @@
 | 1 | project-setup | 출발점 (강의 전 준비) | 기능 | 실행 방법, 폴더 구조 | 완료 |
 | 2 | layout | 레이아웃과 헤더 | 기능 | Layout과 Outlet, 헤더 메뉴, NavLink로 지금 메뉴 강조, Tailwind와 DaisyUI 최소 스타일 | 완료 |
 | 3 | screens | 화면 그리기와 라우트 | 기능 | 화면 7개 정적 마크업, 라우트 연결, grid 글 목록 | 완료 |
-| 4 | component-split | 겹치는 화면을 컴포넌트로 | 리팩터 | 컴포넌트 분리, props, children, props 펼침, map | 수정 중 |
+| 4 | component-split | 겹치는 화면을 컴포넌트로 | 리팩터 | 컴포넌트 분리, props, children, props 펼침, map | 완료 |
 | 5 | board-list | 글 목록 | 기능 | axios GET, useEffect로 서버 데이터 그리기 | 완료 |
 | 6 | board-detail | 글 상세 | 기능 | useParams, 상세와 댓글 목록 그리기 | 완료 |
 | 7 | join | 회원가입 | 기능 | useState 폼, axios POST, 성공하면 이동 | 완료 |
 | 8 | login | 로그인 | 기능 | 응답 헤더 토큰, zustand 로그인 상태, 헤더 메뉴 바꾸기, 로그아웃 | 완료 |
 | 9 | login-keep | 로그인 유지 | 기능 | localStorage, jwt-decode로 복원 | 완료 |
-| 10 | board-save | 글쓰기 | 기능 | axios 인스턴스와 인터셉터로 토큰 보내기 | 수정 중 |
+| 10 | board-save | 글쓰기 | 기능 | axios 인스턴스와 인터셉터로 토큰 보내기 | 완료 |
 | 11 | board-update-delete | 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 대기 |
 | 12 | reply | 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 대기 |
 | 13 | my-info | 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 대기 |

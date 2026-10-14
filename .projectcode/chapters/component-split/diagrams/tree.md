@@ -7,7 +7,6 @@ react-blog/
   src/
     components/
       BoardCard.jsx   새로
-      BoardForm.jsx   새로
       FormCard.jsx   새로
       Header.jsx
       Input.jsx   새로
