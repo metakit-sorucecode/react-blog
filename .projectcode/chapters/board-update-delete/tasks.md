@@ -1,0 +1,33 @@
+# board-update-delete 작업
+
+- [ ] 테스트 작성
+- [ ] T1 내 글에만 수정과 삭제 버튼 보이기
+  - 근거: S1
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: ssar로 로그인하면 /board/1에는 버튼이 보이고 /board/4에는 없다. 로그인 전에는 어느 글에도 없다
+  - Why: 서버가 알려 준 owner로 내 글인지 가려야 남의 글에 버튼을 보이지 않는다
+  - 다른 장: board-detail
+- [ ] T2 수정 입력값을 객체로 기억하기
+  - 근거: S3
+  - 파일: react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 수정 화면 칸에 친 글자가 그대로 남는다. 아직 빈 칸에서 시작한다
+  - Why: 칸이 state와 이어져 있어야 받아 온 값을 채우고 고칠 수 있다
+  - 다른 장: component-split
+- [ ] T3 수정 화면에 기존 제목과 내용 채우기
+  - 근거: S2
+  - 파일: react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: /update-form/1에 들어가면 제목1, 내용1이 채워져 있다
+  - Why: 고치려면 지금 글이 먼저 보여야 한다
+- [ ] T4 수정하기를 누르면 서버에 보내고 상세로 가기
+  - 근거: S4
+  - 파일: react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 고친 뒤 수정하기를 누르면 /board/1로 가고 고친 제목과 내용이 보인다
+  - Why: 고친 값을 PUT으로 보내야 서버의 글이 바뀐다
+- [ ] T5 삭제를 누르면 서버에서 지우고 홈으로 가기
+  - 근거: S5
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: /board/1에서 삭제를 누르면 홈으로 가고 목록에 제목1이 없다
+  - Why: 지운 글의 상세에는 남을 수 없어서 목록으로 돌아간다
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식

@@ -31,7 +31,7 @@
 | 8 | login | 로그인 | 기능 | 응답 헤더 토큰, zustand 로그인 상태, 헤더 메뉴 바꾸기, 로그아웃 | 완료 |
 | 9 | login-keep | 로그인 유지 | 기능 | localStorage, jwt-decode로 복원 | 완료 |
 | 10 | board-save | 글쓰기 | 기능 | axios 인스턴스와 인터셉터로 토큰 보내기 | 완료 |
-| 11 | board-update-delete | 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 대기 |
+| 11 | board-update-delete | 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 진행 중 |
 | 12 | reply | 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 대기 |
 | 13 | my-info | 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 대기 |
 | 14 | react-query | 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries로 필요한 키만 갱신, 로그아웃 때 캐시 비우기, Devtools | 대기 |
@@ -198,6 +198,7 @@
 - 공백만 입력한 값 막기
 - 로그인한 뒤 로그인, 회원가입 화면 막기
 - 저장된 토큰이 망가졌을 때 지우고 로그인 전으로 시작하기
+- 글 삭제 전 확인 창
 
 ## 하지 않는 것
 - react-blog-modern-end 코드 변경
@@ -211,3 +212,4 @@
 - 다른 탭의 로그인, 로그아웃 따라가기
 - zod 스키마 검사
 - pattern 같은 여러 규칙의 입력 검사
+- 글 수정 화면의 취소 버튼
