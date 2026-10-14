@@ -219,6 +219,28 @@ flowchart LR
 - server-node/src/routes/boards.js
 - server-node/src/auth.js
 
+## 내 정보 수정
+
+```mermaid
+flowchart LR
+  A[UserInfo] --> B[http]
+  B --> C["GET /api/user"]
+  B --> D["PUT /api/user"]
+  C --> E[routes/users.js]
+  D --> E
+  E --> F[(users)]
+  A --> G[Home]
+```
+
+만든 장: screens, component-split, board-save, my-info
+맡는 파일
+- react-blog/src/pages/UserInfo.jsx
+- react-blog/src/components/FormCard.jsx
+- react-blog/src/components/Input.jsx
+- react-blog/src/api/http.jsx
+- server-node/src/routes/users.js
+- server-node/src/auth.js
+
 ## 폼 화면 조각
 
 ```mermaid
@@ -243,9 +265,9 @@ flowchart LR
 회원가입은 서버에 저장한다.
 로그인은 토큰을 받아 스토어에 기억하고 헤더가 그것을 본다.
 토큰은 localStorage에도 남아 새로고침해도 로그인이 유지된다. 로그아웃하면 지운다.
-서버 요청은 모두 http를 지나고, 로그인했으면 토큰이 붙는다.
+서버 요청은 모두 http를 지나고 로그인했으면 토큰이 붙는다.
 글쓰기는 토큰과 함께 보내고 홈으로 간다.
 상세는 owner가 true인 내 글에만 수정, 삭제 버튼을 보인다.
 글 수정은 기존 값을 채운 폼으로 PUT을 보내고 상세로 간다. 글 삭제는 DELETE를 보내고 홈으로 간다.
 댓글은 등록하거나 owner인 댓글의 휴지통을 누르면 서버에 보내고 상세를 다시 받는다.
-내 정보 폼은 아직 보내지 않는다.
+내 정보는 받은 아이디와 이메일로 폼을 채우고 수정하기를 누르면 PUT을 보내고 홈으로 간다.

@@ -1,6 +1,6 @@
 # 폴더 구조
 
-비교 기준: done/board-update-delete. 새로 생긴 파일과 고친 파일을 표시했다.
+비교 기준: done/reply. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
@@ -13,15 +13,15 @@ react-blog/
       Header.jsx
       Input.jsx
       Layout.jsx
-      ReplyItem.jsx   고침
+      ReplyItem.jsx
     pages/
-      Detail.jsx   고침
+      Detail.jsx
       Home.jsx
       JoinForm.jsx
       LoginForm.jsx
       SaveForm.jsx
       UpdateForm.jsx
-      UserInfo.jsx
+      UserInfo.jsx   고침
     store/
       authStore.jsx
     App.jsx
@@ -59,4 +59,3 @@ package-lock.json
 package.json
 playwright.config.js
 ```
-

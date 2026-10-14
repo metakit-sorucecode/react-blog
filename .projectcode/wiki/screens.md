@@ -114,3 +114,18 @@
 처음 나온 장: screens
 
 ![내 정보](../chapters/screens/captures/done-내-정보.png)
+
+## 내 정보 (받은 값 채움)
+처음 나온 장: my-info
+
+![내 정보 받은 값](../chapters/my-info/captures/done-내-정보.png)
+
+## 내 정보 (수정 뒤 다시 들어옴)
+처음 나온 장: my-info
+
+![내 정보 수정 뒤](../chapters/my-info/captures/done-수정-뒤-다시-들어옴.png)
+
+## 홈 (새 비밀번호로 로그인)
+처음 나온 장: my-info
+
+![새 비밀번호 로그인](../chapters/my-info/captures/done-새-비밀번호-로그인.png)

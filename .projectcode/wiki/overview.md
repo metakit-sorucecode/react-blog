@@ -17,7 +17,7 @@
 | 10 | board-save 글쓰기 | 기능 | axios 인스턴스와 인터셉터로 토큰 보내기 | 완료 | 5 | 5 |
 | 11 | board-update-delete 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 완료 | 5 | 8 |
 | 12 | reply 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 완료 | 5 | 8 |
-| 13 | my-info 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 대기 | - | - |
+| 13 | my-info 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 완료 | 3 | 6 |
 | 14 | react-query 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries로 필요한 키만 갱신, 로그아웃 때 캐시 비우기, Devtools | 대기 | - | - |
 | 15 | error-handling 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내 | 대기 | - | - |
 | 16 | paging-search 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 | - | - |
@@ -46,3 +46,4 @@
 - zod 스키마 검사
 - pattern 같은 여러 규칙의 입력 검사
 - 글 수정 화면의 취소 버튼
+- 내 정보의 새 비밀번호 확인 칸
