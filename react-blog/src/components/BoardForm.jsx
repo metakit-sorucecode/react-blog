@@ -1,11 +1,22 @@
 import FormCard from "./FormCard";
 import Input from "./Input";
 
-export default function BoardForm({ title, buttonText }) {
+export default function BoardForm({ title, buttonText, form = {}, onChange }) {
   return (
     <FormCard title={title}>
-      <Input placeholder="제목" />
-      <textarea className="textarea" placeholder="내용" />
+      <Input
+        name="title"
+        placeholder="제목"
+        value={form.title}
+        onChange={onChange}
+      />
+      <textarea
+        className="textarea"
+        name="content"
+        placeholder="내용"
+        value={form.content}
+        onChange={onChange}
+      />
       <button className="btn">{buttonText}</button>
     </FormCard>
   );

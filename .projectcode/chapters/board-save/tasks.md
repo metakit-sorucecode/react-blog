@@ -1,7 +1,7 @@
 # board-save 작업
 
 - [x] 테스트 작성
-- [ ] T1 글쓰기 입력값을 객체로 기억하기
+- [x] T1 글쓰기 입력값을 객체로 기억하기
   - 근거: S1
   - 파일: react-blog/src/pages/SaveForm.jsx, react-blog/src/components/BoardForm.jsx
   - 실행하면: 글쓰기 화면에 제목과 내용을 치면 칸에 그대로 남는다. 수정 화면도 전처럼 글자가 쳐진다
