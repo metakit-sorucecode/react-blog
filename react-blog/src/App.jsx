@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import SaveForm from "./pages/SaveForm";
 import UpdateForm from "./pages/UpdateForm";
+import LoginForm from "./pages/LoginForm";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="board/:id" element={<Detail />} />
           <Route path="save-form" element={<SaveForm />} />
           <Route path="update-form/:id" element={<UpdateForm />} />
+          <Route path="login-form" element={<LoginForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
