@@ -111,6 +111,50 @@ flowchart LR
 - server-node/src/routes/boards.js
 - server-node/src/auth.js
 
+## 댓글 쓰기
+
+```mermaid
+flowchart LR
+  A[Detail] --> B[http]
+  B --> C["POST /api/replies"]
+  C --> D[routes/replies.js]
+  D --> E[(replies)]
+  B --> F["GET /api/boards/:id"]
+  F --> G[routes/boards.js]
+  G --> E
+```
+
+만든 장: screens, board-detail, board-save, reply
+맡는 파일
+- react-blog/src/pages/Detail.jsx
+- react-blog/src/api/http.jsx
+- server-node/src/routes/replies.js
+- server-node/src/routes/boards.js
+- server-node/src/auth.js
+
+## 댓글 삭제
+
+```mermaid
+flowchart LR
+  A[ReplyItem] --> B[Detail]
+  B --> C[http]
+  C --> D["DELETE /api/replies/:id"]
+  D --> E[routes/replies.js]
+  E --> F[(replies)]
+  C --> G["GET /api/boards/:id"]
+  G --> H[routes/boards.js]
+  H --> F
+```
+
+만든 장: screens, component-split, board-detail, board-save, reply
+맡는 파일
+- react-blog/src/components/ReplyItem.jsx
+- react-blog/src/pages/Detail.jsx
+- react-blog/src/api/http.jsx
+- server-node/src/routes/replies.js
+- server-node/src/routes/boards.js
+- server-node/src/auth.js
+
 ## 회원가입
 
 ```mermaid
@@ -203,4 +247,5 @@ flowchart LR
 글쓰기는 토큰과 함께 보내고 홈으로 간다.
 상세는 owner가 true인 내 글에만 수정, 삭제 버튼을 보인다.
 글 수정은 기존 값을 채운 폼으로 PUT을 보내고 상세로 간다. 글 삭제는 DELETE를 보내고 홈으로 간다.
-댓글 쓰기와 삭제, 내 정보 폼은 아직 보내지 않는다.
+댓글은 등록하거나 owner인 댓글의 휴지통을 누르면 서버에 보내고 상세를 다시 받는다.
+내 정보 폼은 아직 보내지 않는다.

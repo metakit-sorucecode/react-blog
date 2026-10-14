@@ -40,6 +40,21 @@
 
 ![남의 글 상세](../chapters/board-update-delete/captures/done-남의-글-상세.png)
 
+## 상세 (내 댓글에만 휴지통)
+처음 나온 장: reply
+
+![내 댓글 휴지통](../chapters/reply/captures/done-내-댓글-휴지통.png)
+
+## 상세 (댓글 등록 뒤)
+처음 나온 장: reply
+
+![댓글 등록 뒤](../chapters/reply/captures/done-댓글-등록-뒤.png)
+
+## 상세 (댓글 삭제 뒤)
+처음 나온 장: reply
+
+![댓글 삭제 뒤](../chapters/reply/captures/done-댓글-삭제-뒤.png)
+
 ## 글쓰기
 처음 나온 장: screens
 
