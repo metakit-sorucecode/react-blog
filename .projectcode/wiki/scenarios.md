@@ -40,10 +40,11 @@ flowchart LR
   A --> E[BoardCard]
 ```
 
-만든 장: screens, component-split, board-list
+만든 장: screens, component-split, board-list, board-save
 맡는 파일
 - react-blog/src/pages/Home.jsx
 - react-blog/src/components/BoardCard.jsx
+- react-blog/src/api/http.jsx
 - server-node/src/routes/boards.js
 - server-node/src/db.js
 
@@ -58,10 +59,11 @@ flowchart LR
   A --> F[ReplyItem]
 ```
 
-만든 장: screens, component-split, board-detail
+만든 장: screens, component-split, board-detail, board-save
 맡는 파일
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/components/ReplyItem.jsx
+- react-blog/src/api/http.jsx
 - server-node/src/routes/boards.js
 - server-node/src/db.js
 
@@ -96,11 +98,12 @@ flowchart LR
   A --> E[LoginForm]
 ```
 
-만든 장: screens, component-split, join
+만든 장: screens, component-split, join, board-save
 맡는 파일
 - react-blog/src/pages/JoinForm.jsx
 - react-blog/src/components/FormCard.jsx
 - react-blog/src/components/Input.jsx
+- react-blog/src/api/http.jsx
 - server-node/src/routes/users.js
 - server-node/src/db.js
 
@@ -117,14 +120,35 @@ flowchart LR
   E --> G[(localStorage)]
 ```
 
-만든 장: screens, component-split, login, login-keep
+만든 장: screens, component-split, login, login-keep, board-save
 맡는 파일
 - react-blog/src/pages/LoginForm.jsx
 - react-blog/src/store/authStore.jsx
 - react-blog/src/components/Header.jsx
 - react-blog/src/components/FormCard.jsx
 - react-blog/src/components/Input.jsx
+- react-blog/src/api/http.jsx
 - server-node/src/routes/users.js
+- server-node/src/auth.js
+
+## 글쓰기
+
+```mermaid
+flowchart LR
+  A[SaveForm] --> B[BoardForm]
+  A --> C[http]
+  C --> D["POST /api/boards"]
+  D --> E[routes/boards.js]
+  E --> F[(boards)]
+  A --> G[Home]
+```
+
+만든 장: screens, component-split, board-save
+맡는 파일
+- react-blog/src/pages/SaveForm.jsx
+- react-blog/src/components/BoardForm.jsx
+- react-blog/src/api/http.jsx
+- server-node/src/routes/boards.js
 - server-node/src/auth.js
 
 ## 폼 화면 조각
@@ -154,4 +178,6 @@ flowchart LR
 회원가입은 서버에 저장한다.
 로그인은 토큰을 받아 스토어에 기억하고 헤더가 그것을 본다.
 토큰은 localStorage에도 남아 새로고침해도 로그인이 유지된다. 로그아웃하면 지운다.
-글쓰기, 글 수정, 내 정보 폼은 아직 보내지 않는다.
+서버 요청은 모두 http를 지나고, 로그인했으면 토큰이 붙는다.
+글쓰기는 토큰과 함께 보내고 홈으로 간다.
+글 수정, 내 정보 폼은 아직 보내지 않는다.

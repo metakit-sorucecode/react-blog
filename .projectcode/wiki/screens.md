@@ -35,6 +35,11 @@
 
 ![글쓰기](../chapters/screens/captures/done-글쓰기.png)
 
+## 홈 (글쓰기 뒤 새 글)
+처음 나온 장: board-save
+
+![글쓰기 뒤 홈](../chapters/board-save/captures/done-글쓰기-뒤-홈.png)
+
 ## 글 수정
 처음 나온 장: screens
 
