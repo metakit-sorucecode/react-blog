@@ -13,7 +13,7 @@
   - 실행하면: 목록, 상세, 회원가입, 로그인이 전처럼 된다. 서버 주소는 http.jsx에만 있다
   - Why: 모든 요청이 한 통로를 지나야 다음 단계에서 토큰을 한 번에 붙일 수 있다
   - 다른 장: board-list, board-detail, join, login
-- [ ] T3 요청마다 토큰 붙이기
+- [x] T3 요청마다 토큰 붙이기
   - 근거: S4
   - 파일: react-blog/src/api/http.jsx
   - 실행하면: 로그인한 뒤 홈을 열면 개발자 도구 Network 탭의 목록 요청 헤더에 Authorization: Bearer ...가 보인다
