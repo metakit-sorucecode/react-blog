@@ -5,4 +5,5 @@ export const useAuthStore = create((set) => ({
   jwt: "",
   username: "",
   login: (jwt, username) => set({ isLogin: true, jwt, username }),
+  logout: () => set({ isLogin: false, jwt: "", username: "" }),
 }));

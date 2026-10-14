@@ -1,9 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 
 export default function Header() {
   const isLogin = useAuthStore((state) => state.isLogin);
   const username = useAuthStore((state) => state.username);
+  const logout = useAuthStore((state) => state.logout);
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/");
+  }
 
   return (
     <ul className="menu menu-horizontal">
@@ -21,7 +28,7 @@ export default function Header() {
             <NavLink to="/user-info">내 정보</NavLink>
           </li>
           <li>
-            <button>로그아웃</button>
+            <button onClick={handleLogout}>로그아웃</button>
           </li>
           <li>
             <span>{username}님</span>
