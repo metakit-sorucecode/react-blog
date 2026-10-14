@@ -65,9 +65,10 @@ export default function BoardForm({ title, buttonText, form = {}, onChange, onSu
 | 할 일 | 파일 |
 |---|---|
 | S1 | SaveForm.jsx, BoardForm.jsx |
-| S2 | http.jsx, SaveForm.jsx |
+| S2 | http.jsx, SaveForm.jsx, BoardForm.jsx |
 | S3 | SaveForm.jsx |
 | S4 | http.jsx, Home.jsx, Detail.jsx |
+| 그대로인 것 | JoinForm.jsx, LoginForm.jsx |
 
 ## 라이브러리
 - 추가 없음. axios 1 (contract에 있음)
