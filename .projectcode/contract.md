@@ -9,7 +9,7 @@
 | 통신 | axios 1 |
 | 상태 | zustand 5, jwt-decode 4 |
 | 서버 데이터 | @tanstack/react-query 5, react-query-devtools 5 |
-| 폼 | react-hook-form 7, zod 3, @hookform/resolvers 3 |
+| 폼 | react-hook-form 7 |
 | 알림 | sonner 1 |
 | 백엔드 | server-node 그대로 (Express 4, lowdb, JWT) |
 | 패키지 관리자 | npm |

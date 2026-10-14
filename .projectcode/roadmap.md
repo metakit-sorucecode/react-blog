@@ -15,7 +15,7 @@
 - axios로 서버와 통신하기
 - JWT 토큰으로 로그인 상태 다루기
 - TanStack Query로 서버 데이터 관리하기
-- react-hook-form과 zod로 입력 검사하기
+- react-hook-form으로 폼 다루기
 - 에러를 화면에 알리기
 
 ## 장
@@ -34,13 +34,12 @@
 | 11 | board-update-delete | 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 대기 |
 | 12 | reply | 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 대기 |
 | 13 | my-info | 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 대기 |
-| 14 | react-query | 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, invalidateQueries, 로그아웃 때 캐시 비우기, Devtools | 대기 |
-| 15 | paging-search | 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 |
-| 16 | search-debounce | 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 |
-| 17 | form-hook | 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset | 대기 |
-| 18 | validation | 입력 검사 | 기능 | zod 스키마, zodResolver, 에러 문구 | 대기 |
-| 19 | error-handling | 에러 처리 | 기능 | sonner 토스트, 로딩 표시, 없는 글 안내, errorElement | 대기 |
-| 20 | auth-guard | 로그인 확인 | 기능 | 로그인 안내, 남의 글 수정 막기 | 대기 |
+| 14 | react-query | 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries로 필요한 키만 갱신, 로그아웃 때 캐시 비우기, Devtools | 대기 |
+| 15 | error-handling | 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내 | 대기 |
+| 16 | paging-search | 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 |
+| 17 | search-debounce | 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 |
+| 18 | form-hook | 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset, 검사 규칙 하나와 errors 문구 | 대기 |
+| 19 | auth-guard | 로그인 확인 | 기능 | 로그인 안내, 남의 글 수정 막기 | 대기 |
 
 ## 장 상세
 
@@ -148,46 +147,43 @@
 
 ### 14 react-query 서버 데이터를 TanStack Query로 (리팩터)
 - main.jsx에 QueryClientProvider와 Devtools를 둔다
+- queryKey는 계층으로 둔다. 목록 ["boards", "list"], 상세 ["boards", "detail", id], 내 정보 ["user"]
 - 목록, 상세, 내 정보 조회를 useQuery로 바꾼다
+- staleTime을 둬서 화면에 다시 들어오면 캐시를 바로 보인다
 - 글, 댓글, 내 정보 쓰기를 useMutation으로 바꾼다
-- 쓰기 뒤 invalidateQueries로 목록과 상세를 새로 받는다
+- 쓰기 뒤 바뀐 데이터의 키만 invalidateQueries로 stale로 만든다. 글 수정은 그 글 상세와 목록, 글쓰기와 삭제는 목록, 댓글은 그 글 상세, 내 정보 수정은 내 정보
+- 화면에서 내려간 쿼리는 stale 표시만 되고 다시 들어갈 때 받는다는 것을 Devtools로 본다
 - 로그아웃하면 queryClient.clear로 캐시를 비운다
 - 화면 동작은 같다. Devtools 버튼만 생긴다
 
-### 15 paging-search 페이징과 검색
+### 15 error-handling 에러 처리
+- 목록과 상세를 받는 동안 isPending으로 로딩 표시를 보인다
+- 없는 글은 isError와 응답 상태 404로 게시글이 없다는 안내와 목록 링크를 보인다
+- http에 응답 인터셉터를 더해 서버 에러의 msg를 sonner 토스트로 보인다. 중복 아이디, 로그인 실패, 권한 없음
+- 없는 주소는 path="*" 라우트로 안내한다
+- 끝나면 실패한 요청마다 이유가 보인다
+
+### 16 paging-search 페이징과 검색
 - 목록 아래에 이전, 다음 버튼을 둔다. isFirst, isLast면 막는다
 - 목록 위에 제목 검색창을 둔다
-- queryKey에 page와 keyword를 넣는다
+- 목록 키를 ["boards", "list", { page, keyword }]로 늘린다. 14장의 ["boards", "list"] 무효화가 모든 페이지에 걸린다
 - placeholderData로 새 목록이 올 때까지 이전 목록과 입력창을 유지한다
 - API: GET /?page=&keyword=
 - 끝나면 페이지를 넘기고 제목으로 찾는다
 
-### 16 search-debounce 검색 디바운스
+### 17 search-debounce 검색 디바운스
 - 검색어를 바로 요청에 쓰지 않고 입력이 멈추고 0.5초 뒤에 쓴다
 - useEffect와 setTimeout으로 커스텀 훅 useDebounce를 만든다
 - 새 라이브러리는 쓰지 않는다
 - 끝나면 빠르게 쳐도 요청은 마지막 한 번만 간다
 
-### 17 form-hook 폼을 react-hook-form으로 (리팩터)
+### 18 form-hook 폼을 react-hook-form으로 (리팩터)
 - 회원가입, 로그인, 글쓰기, 글 수정, 댓글, 내 정보 폼의 form 객체와 handleChange를 register와 handleSubmit으로 바꾼다
 - 글 수정과 내 정보 폼은 reset으로 값을 채운다
-- 화면 동작은 같다
+- register에 검사 규칙 하나를 둔다. 예: minLength. 틀리면 입력 아래에 errors 문구를 보이고 요청을 보내지 않는다
+- 규칙 하나 말고는 화면 동작이 같다
 
-### 18 validation 입력 검사
-- 폼마다 zod 스키마를 만들고 zodResolver로 연결한다
-- 아이디와 비밀번호 필수, 이메일 형식, 제목과 내용 필수, 댓글 필수
-- 틀리면 입력 아래에 에러 문구를 보이고 요청을 보내지 않는다
-- form에 noValidate를 두어 브라우저 검사 대신 zod 문구가 보이게 한다
-- 끝나면 빈칸이나 틀린 이메일로 제출하면 에러 문구가 보인다
-
-### 19 error-handling 에러 처리
-- 서버 에러의 msg를 sonner 토스트로 보인다. 중복 아이디, 로그인 실패, 권한 없음
-- 목록과 상세를 받는 동안 로딩 표시를 보인다
-- 없는 글은 게시글이 없다는 안내와 목록 링크를 보인다
-- 라우터 errorElement로 화면 오류와 없는 주소를 안내한다
-- 끝나면 실패한 요청마다 이유가 보인다
-
-### 20 auth-guard 로그인 확인
+### 19 auth-guard 로그인 확인
 - 로그인하지 않으면 글쓰기와 내 정보 화면 대신 로그인 안내와 링크를 보인다
 - 상세의 댓글 입력 자리에 로그인 안내를 보인다
 - 남의 글 수정 화면은 폼 대신 안내를 보인다
@@ -213,3 +209,5 @@
 - 댓글이 없을 때 안내
 - 회원가입 비밀번호 확인 칸
 - 다른 탭의 로그인, 로그아웃 따라가기
+- zod 스키마 검사
+- pattern 같은 여러 규칙의 입력 검사
