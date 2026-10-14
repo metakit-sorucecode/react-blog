@@ -33,6 +33,19 @@ async function takeScreen(browser, shot) {
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } })
   const logs = []
   page.on("console", (message) => logs.push(message.text()))
+  // 서버로 간 요청의 주소, 토큰, 보낸 값, 응답 상태를 남긴다
+  const requests = []
+  page.on("requestfinished", async (request) => {
+    if (!request.url().startsWith(spec.api)) return
+    const response = await request.response()
+    requests.push({
+      method: request.method(),
+      url: request.url(),
+      authorization: request.headers()["authorization"] || null,
+      body: request.postData() ? JSON.parse(request.postData()) : null,
+      status: response ? response.status() : null,
+    })
+  })
   await page.goto(spec.web + (shot.path || "/"))
   for (const step of shot.steps || []) {
     if (step.fill) {
@@ -47,6 +60,7 @@ async function takeScreen(browser, shot) {
       await page.waitForTimeout(1000)
     }
     if (step.reload) await page.reload()
+    if (step.goto) await page.goto(spec.web + step.goto)
     await page.waitForLoadState("networkidle")
   }
   await page.screenshot({ path: join(outDir, shot.file), fullPage: true })
@@ -56,6 +70,9 @@ async function takeScreen(browser, shot) {
   if (shot.storage) {
     const items = await page.evaluate(() => ({ ...localStorage }))
     writeFileSync(join(outDir, shot.file.replace(/\.png$/, ".storage.json")), JSON.stringify(items, null, 2))
+  }
+  if (shot.requests) {
+    writeFileSync(join(outDir, shot.file.replace(/\.png$/, ".requests.json")), JSON.stringify(requests, null, 2))
   }
   await page.close()
 }
