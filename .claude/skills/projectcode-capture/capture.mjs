@@ -91,9 +91,9 @@ async function takeRequest(shot) {
 function writeList() {
   const rows = spec.shots.map((s) => {
     const see = s.missing ? `${s.see} (fix 뒤 다시 찍지 못함)` : s.see
-    return `| ${s.file} | ${spec.chapter} | ${s.task} | ${s.screen} | ${see} |`
+    return `| ${s.file} | ${spec.chapter} | ${s.task} | ${s.commit || ""} | ${s.screen} | ${see} |`
   })
-  const lines = ["# 캡처", "", "| 파일 | 장 | task | 찍은 화면 | 보이는 것 |", "|---|---|---|---|---|", ...rows, ""]
+  const lines = ["# 캡처", "", "| 파일 | 장 | task | 커밋 | 찍은 화면 | 보이는 것 |", "|---|---|---|---|---|---|", ...rows, ""]
   writeFileSync(join(outDir, "captures.md"), lines.join("\n"))
 }
 
