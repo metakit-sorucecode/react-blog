@@ -7,7 +7,7 @@
   - 실행하면: 글쓰기 화면에 제목과 내용을 치면 칸에 그대로 남는다. 수정 화면도 전처럼 글자가 쳐진다
   - Why: 기억한 값이 있어야 글쓰기를 누를 때 서버에 보낼 수 있다
   - 다른 장: component-split
-- [ ] T2 axios 인스턴스 http 만들고 앞 요청 바꾸기
+- [x] T2 axios 인스턴스 http 만들고 앞 요청 바꾸기
   - 근거: S4, 그대로인 것
   - 파일: react-blog/src/api/http.jsx, react-blog/src/pages/Home.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/pages/JoinForm.jsx, react-blog/src/pages/LoginForm.jsx
   - 실행하면: 목록, 상세, 회원가입, 로그인이 전처럼 된다. 서버 주소는 http.jsx에만 있다

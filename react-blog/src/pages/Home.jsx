@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import http from "../api/http";
 import BoardCard from "../components/BoardCard";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
 
   useEffect(() => {
     async function loadBoards() {
-      const res = await axios.get("http://localhost:8080/?page=0");
+      const res = await http.get("/?page=0");
       setBoards(res.data.body.boards);
     }
     loadBoards();
