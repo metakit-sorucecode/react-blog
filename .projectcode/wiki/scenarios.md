@@ -75,7 +75,7 @@ flowchart LR
   B --> C[Detail]
   C --> D[ReplyItem]
   C --> E[UpdateForm]
-  E --> F[BoardForm]
+  E --> F[FormCard]
 ```
 
 만든 장: screens, component-split, board-list, board-detail
@@ -85,7 +85,7 @@ flowchart LR
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/components/ReplyItem.jsx
 - react-blog/src/pages/UpdateForm.jsx
-- react-blog/src/components/BoardForm.jsx
+- react-blog/src/components/FormCard.jsx
 - react-blog/src/App.jsx
 
 ## 회원가입
@@ -135,7 +135,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  A[SaveForm] --> B[BoardForm]
+  A[SaveForm] --> B[FormCard]
   A --> C[http]
   C --> D["POST /api/boards"]
   D --> E[routes/boards.js]
@@ -146,7 +146,8 @@ flowchart LR
 만든 장: screens, component-split, board-save
 맡는 파일
 - react-blog/src/pages/SaveForm.jsx
-- react-blog/src/components/BoardForm.jsx
+- react-blog/src/components/FormCard.jsx
+- react-blog/src/components/Input.jsx
 - react-blog/src/api/http.jsx
 - server-node/src/routes/boards.js
 - server-node/src/auth.js
@@ -155,10 +156,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  A[SaveForm] --> C[BoardForm]
-  B[UpdateForm] --> C
-  C --> D[FormCard]
-  C --> E[Input]
+  A["Save, Update"] --> D[FormCard]
+  A --> E[Input]
   F["Login, Join, UserInfo"] --> D
   F --> E
 ```
@@ -167,7 +166,6 @@ flowchart LR
 맡는 파일
 - react-blog/src/components/FormCard.jsx
 - react-blog/src/components/Input.jsx
-- react-blog/src/components/BoardForm.jsx
 - react-blog/src/pages/SaveForm.jsx
 - react-blog/src/pages/UpdateForm.jsx
 - react-blog/src/pages/LoginForm.jsx
