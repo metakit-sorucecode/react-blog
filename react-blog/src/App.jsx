@@ -6,6 +6,7 @@ import SaveForm from "./pages/SaveForm";
 import UpdateForm from "./pages/UpdateForm";
 import LoginForm from "./pages/LoginForm";
 import JoinForm from "./pages/JoinForm";
+import UserInfo from "./pages/UserInfo";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="update-form/:id" element={<UpdateForm />} />
           <Route path="login-form" element={<LoginForm />} />
           <Route path="join-form" element={<JoinForm />} />
+          <Route path="user-info" element={<UserInfo />} />
         </Route>
       </Routes>
     </BrowserRouter>
