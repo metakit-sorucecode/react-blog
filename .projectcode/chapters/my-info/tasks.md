@@ -7,7 +7,7 @@
   - 실행하면: 이메일과 새 비밀번호 칸에 친 글자가 그대로 남는다. 아이디 칸은 아직 비어 있다
   - Why: 칸이 state와 이어져 있어야 받아 온 값을 채우고 고칠 수 있다
   - 다른 장: component-split
-- [ ] T2 내 정보를 받아 아이디와 이메일 채우기
+- [x] T2 내 정보를 받아 아이디와 이메일 채우기
   - 근거: S1
   - 파일: react-blog/src/pages/UserInfo.jsx
   - 실행하면: ssar로 로그인하고 내 정보에 들어가면 ssar, ssar@nate.com이 채워져 있다
