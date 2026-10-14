@@ -18,16 +18,19 @@
   - 파일: react-blog/src/pages/UpdateForm.jsx
   - 실행하면: /update-form/1에 들어가면 제목1, 내용1이 채워져 있다
   - Why: 고치려면 지금 글이 먼저 보여야 한다
+  - 다른 장: component-split
 - [x] T4 수정하기를 누르면 서버에 보내고 상세로 가기
   - 근거: S4
   - 파일: react-blog/src/pages/UpdateForm.jsx
   - 실행하면: 고친 뒤 수정하기를 누르면 /board/1로 가고 고친 제목과 내용이 보인다
   - Why: 고친 값을 PUT으로 보내야 서버의 글이 바뀐다
+  - 다른 장: component-split
 - [x] T5 삭제를 누르면 서버에서 지우고 홈으로 가기
   - 근거: S5
   - 파일: react-blog/src/pages/Detail.jsx
   - 실행하면: /board/1에서 삭제를 누르면 홈으로 가고 목록에 제목1이 없다
   - Why: 지운 글의 상세에는 남을 수 없어서 목록으로 돌아간다
-- [ ] 수렴 점검
+  - 다른 장: board-detail
+- [x] 수렴 점검
 - [ ] 캡처
 - [ ] 도식
