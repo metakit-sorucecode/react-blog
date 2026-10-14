@@ -1,19 +1,21 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
 
 export default function Detail() {
   const { id } = useParams();
-
-  const replies = [
-    { id: 1, username: "cos", comment: "댓글1" },
-    { id: 2, username: "love", comment: "댓글2" },
-  ];
+  const [board, setBoard] = useState({
+    title: "",
+    content: "",
+    username: "",
+    replies: [],
+  });
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">제목1</h1>
-      <p>작성자 ssar</p>
-      <p className="my-8">내용1</p>
+      <h1 className="text-2xl font-bold">{board.title}</h1>
+      <p>작성자 {board.username}</p>
+      <p className="my-8">{board.content}</p>
       <div className="flex gap-2">
         <Link to={`/update-form/${id}`} className="btn">
           수정
@@ -25,7 +27,7 @@ export default function Detail() {
 
       <h2 className="font-bold">댓글</h2>
       <ul className="list">
-        {replies.map((reply) => (
+        {board.replies.map((reply) => (
           <ReplyItem
             key={reply.id}
             username={reply.username}
