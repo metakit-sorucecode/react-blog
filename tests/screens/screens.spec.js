@@ -43,11 +43,16 @@ test("S3 상세 화면에 제목, 작성자, 내용, 수정과 삭제 버튼, �
   page,
   request,
 }) => {
-  // board-detail 장부터 상세 글자는 서버에서 온다. 첫 페이지 첫 글로 본다
+  // board-detail 장부터 상세 글자는 서버에서 온다. 첫 페이지에서 댓글이 있는 글로 본다
+  // board-save 장부터 댓글 없는 새 글이 맨 위에 오므로 없으면 시드의 제목4(댓글 3개)로 본다
   const list = await request.get("http://localhost:8080/?page=0");
-  const [first] = (await list.json()).body.boards;
-  const res = await request.get(`http://localhost:8080/api/boards/${first.id}`);
-  const board = (await res.json()).body;
+  const ids = (await list.json()).body.boards.map((b) => b.id);
+  let board;
+  for (const id of [...ids, 4]) {
+    const res = await request.get(`http://localhost:8080/api/boards/${id}`);
+    board = (await res.json()).body;
+    if (board.replies.length > 0) break;
+  }
   expect(board.replies.length).toBeGreaterThan(0);
 
   await page.goto(`/board/${board.id}`);

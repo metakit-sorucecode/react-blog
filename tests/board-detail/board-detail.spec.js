@@ -24,12 +24,14 @@ function replyRows(page) {
 }
 
 // 댓글이 있는 첫 페이지 글
+// board-save 장부터 댓글 없는 새 글이 맨 위에 오므로 없으면 시드의 제목4(댓글 3개)로 본다
 async function boardWithReplies(request) {
-  for (const { id } of await firstPage(request)) {
+  const ids = (await firstPage(request)).map((b) => b.id);
+  for (const id of [...ids, 4]) {
     const board = await detail(request, id);
     if (board.replies.length > 0) return board;
   }
-  throw new Error("댓글이 있는 글이 첫 페이지에 없다");
+  throw new Error("댓글이 있는 글이 없다");
 }
 
 test("S1 상세 주소에 들어가면 주소의 글 번호로 서버에서 상세(GET /api/boards/:id)를 받는다", async ({
