@@ -4,7 +4,9 @@ export default function Header() {
   return (
     <ul className="menu menu-horizontal">
       <li>
-        <NavLink to="/">홈</NavLink>
+        <NavLink to="/" end>
+          홈
+        </NavLink>
       </li>
       <li>
         <NavLink to="/login-form">로그인</NavLink>

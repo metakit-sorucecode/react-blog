@@ -1,2 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.menu .active {
+  @apply menu-active;
+}
