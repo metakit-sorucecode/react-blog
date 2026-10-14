@@ -1,0 +1,36 @@
+# reply 작업
+
+- [ ] 테스트 작성
+- [ ] T1 내 댓글에만 휴지통 보이기
+  - 근거: S1
+  - 파일: react-blog/src/pages/Detail.jsx, react-blog/src/components/ReplyItem.jsx
+  - 실행하면: ssar로 로그인하면 /board/4의 댓글1, 댓글2에만 휴지통이 보이고 댓글3에는 없다. 로그인 전에는 어느 댓글에도 없다
+  - Why: 서버가 알려 준 owner로 내 댓글인지 가려야 남의 댓글에 휴지통을 보이지 않는다
+  - 다른 장: board-detail, component-split
+- [ ] T2 댓글 입력값을 state로 기억하기
+  - 근거: S2
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: 댓글 칸에 친 글자가 그대로 남는다. 등록은 아직 동작하지 않는다
+  - Why: 기억한 값이 있어야 등록할 때 서버에 보낼 수 있다
+  - 다른 장: board-detail
+- [ ] T3 등록하면 서버에 보내고 상세 다시 받기
+  - 근거: S3
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: 등록을 누르면 댓글 목록 끝에 ssar와 새 댓글이 바로 붙는다. 입력칸에는 글자가 남아 있다
+  - Why: 서버에 저장된 댓글 목록을 다시 받아야 화면이 서버와 같아진다
+  - 다른 장: board-detail
+- [ ] T4 등록 뒤 입력칸 비우기
+  - 근거: S4
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: 등록하면 새 댓글이 붙고 입력칸이 빈다
+  - Why: 칸이 비어야 다음 댓글을 바로 쓸 수 있다
+  - 다른 장: board-detail
+- [ ] T5 휴지통을 누르면 지우고 상세 다시 받기
+  - 근거: S5
+  - 파일: react-blog/src/pages/Detail.jsx, react-blog/src/components/ReplyItem.jsx
+  - 실행하면: 댓글1의 휴지통을 누르면 목록에서 댓글1이 사라진다
+  - Why: 등록과 같은 loadBoard로 다시 받아야 지운 댓글이 화면에서도 빠진다
+  - 다른 장: board-detail, component-split
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
