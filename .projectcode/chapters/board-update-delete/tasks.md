@@ -1,6 +1,6 @@
 # board-update-delete 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 내 글에만 수정과 삭제 버튼 보이기
   - 근거: S1
   - 파일: react-blog/src/pages/Detail.jsx

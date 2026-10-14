@@ -110,11 +110,15 @@ test("S4 상세를 받기 전에는 예시 글자가 없고 제목, 내용, 댓�
 
 test("S5 수정 버튼을 누르면 그 글 번호의 수정 주소로 간다", async ({
   page,
-  request,
 }) => {
-  const [first, second] = await firstPage(request);
+  // board-update-delete 장부터 수정 버튼은 내 글에만 보인다. ssar로 로그인해 ssar의 시드 글 둘로 본다
+  await page.goto("/login-form");
+  await page.getByPlaceholder("아이디").fill("ssar");
+  await page.getByPlaceholder("비밀번호").fill("1234");
+  await page.getByRole("button", { name: "로그인", exact: true }).click();
+  await expect(page).toHaveURL(/5173\/$/);
 
-  for (const { id } of [first, second]) {
+  for (const id of [1, 2]) {
     await page.goto(`/board/${id}`);
     await page.getByRole("link", { name: "수정", exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`5173/update-form/${id}$`));

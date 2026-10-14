@@ -8,6 +8,15 @@ function button(page, name) {
   return page.getByRole("button", { name, exact: true });
 }
 
+// board-update-delete 장부터 수정과 삭제 버튼은 내 글에만 보인다. 글쓴이로 로그인해서 본다
+async function login(page, username) {
+  await page.goto("/login-form");
+  await page.getByPlaceholder("아이디").fill(username);
+  await page.getByPlaceholder("비밀번호").fill("1234");
+  await button(page, "로그인").click();
+  await expect(page).toHaveURL(/5173\/$/);
+}
+
 test("S1 홈에 예시 글 카드 3개가 grid로 놓인다. 카드에는 제목1, 제목2, 제목3이 보인다", async ({
   page,
 }) => {
@@ -55,6 +64,7 @@ test("S3 상세 화면에 제목, 작성자, 내용, 수정과 삭제 버튼, �
   }
   expect(board.replies.length).toBeGreaterThan(0);
 
+  await login(page, board.username);
   await page.goto(`/board/${board.id}`);
   await expect(heading(page, board.title)).toBeVisible();
   await expect(page.getByText(`작성자 ${board.username}`)).toBeVisible();
@@ -74,6 +84,7 @@ test("S3 상세 화면에 제목, 작성자, 내용, 수정과 삭제 버튼, �
 test("S4 상세의 수정 버튼을 누르면 수정 화면(/update-form/1)으로 간다", async ({
   page,
 }) => {
+  await login(page, "ssar");
   await page.goto("/board/1");
   await page.getByRole("link", { name: "수정", exact: true }).click();
   await expect(page).toHaveURL(/5173\/update-form\/1$/);
