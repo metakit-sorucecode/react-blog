@@ -1,0 +1,24 @@
+# my-info 작업
+
+- [ ] 테스트 작성
+- [ ] T1 내 정보 입력값을 객체로 기억하기
+  - 근거: S2
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 실행하면: 이메일과 새 비밀번호 칸에 친 글자가 그대로 남는다. 아이디 칸은 아직 비어 있다
+  - Why: 칸이 state와 이어져 있어야 받아 온 값을 채우고 고칠 수 있다
+  - 다른 장: component-split
+- [ ] T2 내 정보를 받아 아이디와 이메일 채우기
+  - 근거: S1
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 실행하면: ssar로 로그인하고 내 정보에 들어가면 ssar, ssar@nate.com이 채워져 있다
+  - Why: 고치려면 지금 내 정보가 먼저 보여야 한다
+  - 다른 장: component-split
+- [ ] T3 수정하기를 누르면 서버에 보내고 홈으로 가기
+  - 근거: S3, S4, S5
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 실행하면: 이메일을 고치고 수정하기를 누르면 홈으로 간다. 내 정보에 다시 들어오면 바뀐 이메일이 보인다
+  - Why: 고친 값을 PUT으로 보내야 서버의 내 정보가 바뀐다
+  - 다른 장: component-split
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
