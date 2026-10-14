@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>그림완성</title>
+<style>
+:root{--bg:#ffffff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--code:#f6f8fa;--add:#dafbe1;--add-fg:#116329;--rem:#ffebe9;--rem-fg:#a40e26;--hunk:#ddf4ff;--accent:#0969da}
+@media (prefers-color-scheme: dark){:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#3d444d;--code:#151b23;--add:#12261e;--add-fg:#6fdd8b;--rem:#25171c;--rem-fg:#ff9492;--hunk:#121d2f;--accent:#4493f8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Malgun Gothic",sans-serif}
+main{max-width:980px;margin:0 auto;padding:24px 16px 80px}
+nav{display:flex;flex-wrap:wrap;gap:6px 14px;padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:8px}
+nav a{color:var(--accent);text-decoration:none;font-size:14px}
+h1{font-size:26px;margin:8px 0 4px}h2{font-size:22px;margin:40px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}h3{font-size:18px;margin:28px 0 8px}
+.file{border:1px solid var(--line);border-radius:8px;margin:12px 0;overflow:hidden}
+.head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;background:var(--code);border-bottom:1px solid var(--line)}
+.tag{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+.tag.new{color:var(--add-fg)}.tag.modify{color:var(--accent)}.tag.overwrite{color:var(--muted)}.tag.del{color:var(--rem-fg)}
+.path{font-size:14px}
+.btns{margin-left:auto;display:flex;gap:6px}
+button{font:inherit;font-size:13px;padding:3px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);cursor:pointer}
+button.done{color:var(--add-fg);border-color:var(--add-fg)}
+pre{margin:0;overflow-x:auto;background:var(--bg)}
+pre code{display:block;min-width:max-content;font:13.5px/1.5 ui-monospace,Consolas,"D2Coding",monospace}
+.ln{display:block;padding:0 12px;white-space:pre}
+.ln.add{background:var(--add)}.ln.rem{background:var(--rem)}.ln.hunk{background:var(--hunk);color:var(--muted)}
+.dels{margin:0;padding:8px 12px 8px 32px}
+</style>
+</head>
+<body>
+<main>
+<nav><a href="#prep">준비</a><a href="#whole">3장까지 통째로</a><a href="#component-split">4 component-split 겹치는 화면을 컴포넌트로</a></nav>
+<h1>그림완성</h1>
+<p>4 component-split 겹치는 화면을 컴포넌트로까지 끝낸 코드다.</p>
+<p>시작 키트를 react-blog 폴더로 복사한 뒤 아래 순서대로 한다.</p>
+<h2 id="prep">준비</h2>
+<ul><li>서버: cd server-node, npm start (8080)</li><li>서버 데이터 초기화: db.json을 지우고 다시 실행</li><li>프론트: cd react-blog, npm run dev (5173)</li><li>프론트 포트는 5173만 쓴다. 서버 CORS가 5173만 허용한다</li><li>브라우저: http://localhost:5173</li></ul>
+<h2 id="whole">3장까지 통째로</h2>
+<p>3 screens까지 끝낸 파일이다.</p>
+<div class="file"><div class="head"><span class="tag del">삭제할 파일</span></div><ul class="dels"><li><code>src/app/router.jsx</code></li><li><code>src/features/auth/JoinForm.jsx</code></li><li><code>src/features/auth/LoginForm.jsx</code></li><li><code>src/features/board/BoardItem.jsx</code></li><li><code>src/features/board/Detail.jsx</code></li><li><code>src/features/board/Home.jsx</code></li><li><code>src/features/board/Home.test.jsx</code></li><li><code>src/features/board/SaveForm.jsx</code></li><li><code>src/features/board/UpdateForm.jsx</code></li><li><code>src/features/reply/ReplyForm.jsx</code></li><li><code>src/features/reply/ReplyItem.jsx</code></li><li><code>src/features/user/MyInfoForm.jsx</code></li><li><code>src/features/user/MyInfoForm.test.jsx</code></li><li><code>src/shared/components/ErrorFallback.jsx</code></li><li><code>src/shared/components/Header.jsx</code></li><li><code>src/shared/components/Header.test.jsx</code></li><li><code>src/shared/components/Layout.jsx</code></li><li><code>src/shared/dummy/db.js</code></li><li><code>src/shared/dummy/DummyProvider.jsx</code></li><li><code>src/test/setup.js</code></li></ul></div>
+<div class="file"><div class="head"><span class="tag overwrite">덮어쓸 파일</span><code class="path">package.json</code><span class="btns"><button data-copy="f77">코드 복사</button></span></div><pre><code><span class="ln ">{</span><span class="ln ">  &quot;name&quot;: &quot;react-blog-modern-start&quot;,</span><span class="ln ">  &quot;private&quot;: true,</span><span class="ln ">  &quot;version&quot;: &quot;1.0.0&quot;,</span><span class="ln ">  &quot;type&quot;: &quot;module&quot;,</span><span class="ln ">  &quot;scripts&quot;: {</span><span class="ln ">    &quot;dev&quot;: &quot;vite&quot;,</span><span class="ln ">    &quot;build&quot;: &quot;vite build&quot;,</span><span class="ln ">    &quot;preview&quot;: &quot;vite preview&quot;,</span><span class="ln ">    &quot;test&quot;: &quot;vitest run&quot;,</span><span class="ln ">    &quot;format&quot;: &quot;prettier --write src&quot;</span><span class="ln ">  },</span><span class="ln ">  &quot;dependencies&quot;: {</span><span class="ln ">    &quot;@hookform/resolvers&quot;: &quot;^3.9.0&quot;,</span><span class="ln ">    &quot;@reduxjs/toolkit&quot;: &quot;^2.8.2&quot;,</span><span class="ln ">    &quot;@tanstack/react-query&quot;: &quot;^5.59.0&quot;,</span><span class="ln ">    &quot;@tanstack/react-query-devtools&quot;: &quot;^5.59.0&quot;,</span><span class="ln ">    &quot;axios&quot;: &quot;^1.11.0&quot;,</span><span class="ln ">    &quot;jwt-decode&quot;: &quot;^4.0.0&quot;,</span><span class="ln ">    &quot;lucide-react&quot;: &quot;^0.454.0&quot;,</span><span class="ln ">    &quot;react&quot;: &quot;^19.1.1&quot;,</span><span class="ln ">    &quot;react-dom&quot;: &quot;^19.1.1&quot;,</span><span class="ln ">    &quot;react-hook-form&quot;: &quot;^7.53.0&quot;,</span><span class="ln ">    &quot;react-redux&quot;: &quot;^9.2.0&quot;,</span><span class="ln ">    &quot;react-router-dom&quot;: &quot;^7.8.1&quot;,</span><span class="ln ">    &quot;sonner&quot;: &quot;^1.5.0&quot;,</span><span class="ln ">    &quot;zod&quot;: &quot;^3.23.8&quot;,</span><span class="ln ">    &quot;zustand&quot;: &quot;^5.0.0&quot;</span><span class="ln ">  },</span><span class="ln ">  &quot;devDependencies&quot;: {</span><span class="ln ">    &quot;@tailwindcss/vite&quot;: &quot;^4.0.0&quot;,</span><span class="ln ">    &quot;@testing-library/jest-dom&quot;: &quot;^6.8.0&quot;,</span><span class="ln ">    &quot;@testing-library/react&quot;: &quot;^16.3.0&quot;,</span><span class="ln ">    &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,</span><span class="ln ">    &quot;@vitejs/plugin-react&quot;: &quot;^4.3.1&quot;,</span><span class="ln ">    &quot;daisyui&quot;: &quot;^5.0.0&quot;,</span><span class="ln ">    &quot;eslint&quot;: &quot;^9.12.0&quot;,</span><span class="ln ">    &quot;@eslint/js&quot;: &quot;^9.12.0&quot;,</span><span class="ln ">    &quot;eslint-config-prettier&quot;: &quot;^9.1.0&quot;,</span><span class="ln ">    &quot;eslint-plugin-react-hooks&quot;: &quot;^5.0.0&quot;,</span><span class="ln ">    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.12&quot;,</span><span class="ln ">    &quot;globals&quot;: &quot;^15.11.0&quot;,</span><span class="ln ">    &quot;jsdom&quot;: &quot;^25.0.0&quot;,</span><span class="ln ">    &quot;msw&quot;: &quot;^2.4.0&quot;,</span><span class="ln ">    &quot;prettier&quot;: &quot;^3.3.3&quot;,</span><span class="ln ">    &quot;tailwindcss&quot;: &quot;^4.0.0&quot;,</span><span class="ln ">    &quot;vite&quot;: &quot;^5.4.0&quot;,</span><span class="ln ">    &quot;vitest&quot;: &quot;^2.1.0&quot;</span><span class="ln ">  }</span><span class="ln ">}</span></code></pre><textarea hidden id="d77">{
+  &quot;name&quot;: &quot;react-blog-modern-start&quot;,
+  &quot;private&quot;: true,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;vite&quot;,
+    &quot;build&quot;: &quot;vite build&quot;,
+    &quot;preview&quot;: &quot;vite preview&quot;,
+    &quot;test&quot;: &quot;vitest run&quot;,
+    &quot;format&quot;: &quot;prettier --write src&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@hookform/resolvers&quot;: &quot;^3.9.0&quot;,
+    &quot;@reduxjs/toolkit&quot;: &quot;^2.8.2&quot;,
+    &quot;@tanstack/react-query&quot;: &quot;^5.59.0&quot;,
+    &quot;@tanstack/react-query-devtools&quot;: &quot;^5.59.0&quot;,
+    &quot;axios&quot;: &quot;^1.11.0&quot;,
+    &quot;jwt-decode&quot;: &quot;^4.0.0&quot;,
+    &quot;lucide-react&quot;: &quot;^0.454.0&quot;,
+    &quot;react&quot;: &quot;^19.1.1&quot;,
+    &quot;react-dom&quot;: &quot;^19.1.1&quot;,
+    &quot;react-hook-form&quot;: &quot;^7.53.0&quot;,
+    &quot;react-redux&quot;: &quot;^9.2.0&quot;,
+    &quot;react-router-dom&quot;: &quot;^7.8.1&quot;,
+    &quot;sonner&quot;: &quot;^1.5.0&quot;,
+    &quot;zod&quot;: &quot;^3.23.8&quot;,
+    &quot;zustand&quot;: &quot;^5.0.0&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@tailwindcss/vite&quot;: &quot;^4.0.0&quot;,
+    &quot;@testing-library/jest-dom&quot;: &quot;^6.8.0&quot;,
+    &quot;@testing-library/react&quot;: &quot;^16.3.0&quot;,
+    &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
+    &quot;@vitejs/plugin-react&quot;: &quot;^4.3.1&quot;,
+    &quot;daisyui&quot;: &quot;^5.0.0&quot;,
+    &quot;eslint&quot;: &quot;^9.12.0&quot;,
+    &quot;@eslint/js&quot;: &quot;^9.12.0&quot;,
+    &quot;eslint-config-prettier&quot;: &quot;^9.1.0&quot;,
+    &quot;eslint-plugin-react-hooks&quot;: &quot;^5.0.0&quot;,
+    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.12&quot;,
+    &quot;globals&quot;: &quot;^15.11.0&quot;,
+    &quot;jsdom&quot;: &quot;^25.0.0&quot;,
+    &quot;msw&quot;: &quot;^2.4.0&quot;,
+    &quot;prettier&quot;: &quot;^3.3.3&quot;,
+    &quot;tailwindcss&quot;: &quot;^4.0.0&quot;,
+    &quot;vite&quot;: &quot;^5.4.0&quot;,
+    &quot;vitest&quot;: &quot;^2.1.0&quot;
+  }
+}</textarea><textarea hidden id="f77">{
+  &quot;name&quot;: &quot;react-blog-modern-start&quot;,
+  &quot;private&quot;: true,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;vite&quot;,
+    &quot;build&quot;: &quot;vite build&quot;,
+    &quot;preview&quot;: &quot;vite preview&quot;,
+    &quot;test&quot;: &quot;vitest run&quot;,
+    &quot;format&quot;: &quot;prettier --write src&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@hookform/resolvers&quot;: &quot;^3.9.0&quot;,
+    &quot;@reduxjs/toolkit&quot;: &quot;^2.8.2&quot;,
+    &quot;@tanstack/react-query&quot;: &quot;^5.59.0&quot;,
+    &quot;@tanstack/react-query-devtools&quot;: &quot;^5.59.0&quot;,
+    &quot;axios&quot;: &quot;^1.11.0&quot;,
+    &quot;jwt-decode&quot;: &quot;^4.0.0&quot;,
+    &quot;lucide-react&quot;: &quot;^0.454.0&quot;,
+    &quot;react&quot;: &quot;^19.1.1&quot;,
+    &quot;react-dom&quot;: &quot;^19.1.1&quot;,
+    &quot;react-hook-form&quot;: &quot;^7.53.0&quot;,
+    &quot;react-redux&quot;: &quot;^9.2.0&quot;,
+    &quot;react-router-dom&quot;: &quot;^7.8.1&quot;,
+    &quot;sonner&quot;: &quot;^1.5.0&quot;,
+    &quot;zod&quot;: &quot;^3.23.8&quot;,
+    &quot;zustand&quot;: &quot;^5.0.0&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@tailwindcss/vite&quot;: &quot;^4.0.0&quot;,
+    &quot;@testing-library/jest-dom&quot;: &quot;^6.8.0&quot;,
+    &quot;@testing-library/react&quot;: &quot;^16.3.0&quot;,
+    &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
+    &quot;@vitejs/plugin-react&quot;: &quot;^4.3.1&quot;,
+    &quot;daisyui&quot;: &quot;^5.0.0&quot;,
+    &quot;eslint&quot;: &quot;^9.12.0&quot;,
+    &quot;@eslint/js&quot;: &quot;^9.12.0&quot;,
+    &quot;eslint-config-prettier&quot;: &quot;^9.1.0&quot;,
+    &quot;eslint-plugin-react-hooks&quot;: &quot;^5.0.0&quot;,
+    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.12&quot;,
+    &quot;globals&quot;: &quot;^15.11.0&quot;,
+    &quot;jsdom&quot;: &quot;^25.0.0&quot;,
+    &quot;msw&quot;: &quot;^2.4.0&quot;,
+    &quot;prettier&quot;: &quot;^3.3.3&quot;,
+    &quot;tailwindcss&quot;: &quot;^4.0.0&quot;,
+    &quot;vite&quot;: &quot;^5.4.0&quot;,
+    &quot;vitest&quot;: &quot;^2.1.0&quot;
+  }
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag overwrite">덮어쓸 파일</span><code class="path">vite.config.js</code><span class="btns"><button data-copy="f78">코드 복사</button></span></div><pre><code><span class="ln ">import { defineConfig } from &quot;vite&quot;;</span><span class="ln ">import react from &quot;@vitejs/plugin-react&quot;;</span><span class="ln ">import tailwindcss from &quot;@tailwindcss/vite&quot;;</span><span class="ln "> </span><span class="ln ">export default defineConfig({</span><span class="ln ">  plugins: [react(), tailwindcss()],</span><span class="ln ">  server: { port: 5173 },</span><span class="ln ">});</span></code></pre><textarea hidden id="d78">import { defineConfig } from &quot;vite&quot;;
+import react from &quot;@vitejs/plugin-react&quot;;
+import tailwindcss from &quot;@tailwindcss/vite&quot;;
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  server: { port: 5173 },
+});</textarea><textarea hidden id="f78">import { defineConfig } from &quot;vite&quot;;
+import react from &quot;@vitejs/plugin-react&quot;;
+import tailwindcss from &quot;@tailwindcss/vite&quot;;
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  server: { port: 5173 },
+});
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/components/Header.jsx</code><span class="btns"><button data-copy="d79">diff 복사</button><button data-copy="f79">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+import { NavLink } from &quot;react-router-dom&quot;;</span><span class="ln add">+</span><span class="ln add">+export default function Header() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;ul className=&quot;menu menu-horizontal&quot;&gt;</span><span class="ln add">+      &lt;li&gt;</span><span class="ln add">+        &lt;NavLink to=&quot;/&quot; end&gt;</span><span class="ln add">+          홈</span><span class="ln add">+        &lt;/NavLink&gt;</span><span class="ln add">+      &lt;/li&gt;</span><span class="ln add">+      &lt;li&gt;</span><span class="ln add">+        &lt;NavLink to=&quot;/login-form&quot;&gt;로그인&lt;/NavLink&gt;</span><span class="ln add">+      &lt;/li&gt;</span><span class="ln add">+      &lt;li&gt;</span><span class="ln add">+        &lt;NavLink to=&quot;/join-form&quot;&gt;회원가입&lt;/NavLink&gt;</span><span class="ln add">+      &lt;/li&gt;</span><span class="ln add">+      &lt;li&gt;</span><span class="ln add">+        &lt;NavLink to=&quot;/save-form&quot;&gt;글쓰기&lt;/NavLink&gt;</span><span class="ln add">+      &lt;/li&gt;</span><span class="ln add">+      &lt;li&gt;</span><span class="ln add">+        &lt;NavLink to=&quot;/user-info&quot;&gt;내 정보&lt;/NavLink&gt;</span><span class="ln add">+      &lt;/li&gt;</span><span class="ln add">+    &lt;/ul&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d79">+import { NavLink } from &quot;react-router-dom&quot;;
++
++export default function Header() {
++  return (
++    &lt;ul className=&quot;menu menu-horizontal&quot;&gt;
++      &lt;li&gt;
++        &lt;NavLink to=&quot;/&quot; end&gt;
++          홈
++        &lt;/NavLink&gt;
++      &lt;/li&gt;
++      &lt;li&gt;
++        &lt;NavLink to=&quot;/login-form&quot;&gt;로그인&lt;/NavLink&gt;
++      &lt;/li&gt;
++      &lt;li&gt;
++        &lt;NavLink to=&quot;/join-form&quot;&gt;회원가입&lt;/NavLink&gt;
++      &lt;/li&gt;
++      &lt;li&gt;
++        &lt;NavLink to=&quot;/save-form&quot;&gt;글쓰기&lt;/NavLink&gt;
++      &lt;/li&gt;
++      &lt;li&gt;
++        &lt;NavLink to=&quot;/user-info&quot;&gt;내 정보&lt;/NavLink&gt;
++      &lt;/li&gt;
++    &lt;/ul&gt;
++  );
++}</textarea><textarea hidden id="f79">import { NavLink } from &quot;react-router-dom&quot;;
+
+export default function Header() {
+  return (
+    &lt;ul className=&quot;menu menu-horizontal&quot;&gt;
+      &lt;li&gt;
+        &lt;NavLink to=&quot;/&quot; end&gt;
+          홈
+        &lt;/NavLink&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;NavLink to=&quot;/login-form&quot;&gt;로그인&lt;/NavLink&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;NavLink to=&quot;/join-form&quot;&gt;회원가입&lt;/NavLink&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;NavLink to=&quot;/save-form&quot;&gt;글쓰기&lt;/NavLink&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;NavLink to=&quot;/user-info&quot;&gt;내 정보&lt;/NavLink&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/components/Layout.jsx</code><span class="btns"><button data-copy="d80">diff 복사</button><button data-copy="f80">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+import { Outlet } from &quot;react-router-dom&quot;;</span><span class="ln add">+import Header from &quot;./Header&quot;;</span><span class="ln add">+</span><span class="ln add">+export default function Layout() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;div className=&quot;max-w-3xl mx-auto p-8&quot;&gt;</span><span class="ln add">+      &lt;Header /&gt;</span><span class="ln add">+      &lt;hr className=&quot;mb-8&quot; /&gt;</span><span class="ln add">+      &lt;Outlet /&gt;</span><span class="ln add">+    &lt;/div&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d80">+import { Outlet } from &quot;react-router-dom&quot;;
++import Header from &quot;./Header&quot;;
++
++export default function Layout() {
++  return (
++    &lt;div className=&quot;max-w-3xl mx-auto p-8&quot;&gt;
++      &lt;Header /&gt;
++      &lt;hr className=&quot;mb-8&quot; /&gt;
++      &lt;Outlet /&gt;
++    &lt;/div&gt;
++  );
++}</textarea><textarea hidden id="f80">import { Outlet } from &quot;react-router-dom&quot;;
+import Header from &quot;./Header&quot;;
+
+export default function Layout() {
+  return (
+    &lt;div className=&quot;max-w-3xl mx-auto p-8&quot;&gt;
+      &lt;Header /&gt;
+      &lt;hr className=&quot;mb-8&quot; /&gt;
+      &lt;Outlet /&gt;
+    &lt;/div&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/pages/Detail.jsx</code><span class="btns"><button data-copy="d81">diff 복사</button><button data-copy="f81">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+import { Link } from &quot;react-router-dom&quot;;</span><span class="ln add">+</span><span class="ln add">+export default function Detail() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;div&gt;</span><span class="ln add">+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;제목1&lt;/h1&gt;</span><span class="ln add">+      &lt;p&gt;작성자 ssar&lt;/p&gt;</span><span class="ln add">+      &lt;p className=&quot;my-8&quot;&gt;내용1&lt;/p&gt;</span><span class="ln add">+      &lt;div className=&quot;flex gap-2&quot;&gt;</span><span class="ln add">+        &lt;Link to=&quot;/update-form/1&quot; className=&quot;btn&quot;&gt;</span><span class="ln add">+          수정</span><span class="ln add">+        &lt;/Link&gt;</span><span class="ln add">+        &lt;button className=&quot;btn&quot;&gt;삭제&lt;/button&gt;</span><span class="ln add">+      &lt;/div&gt;</span><span class="ln add">+</span><span class="ln add">+      &lt;hr className=&quot;my-8&quot; /&gt;</span><span class="ln add">+</span><span class="ln add">+      &lt;h2 className=&quot;font-bold&quot;&gt;댓글&lt;/h2&gt;</span><span class="ln add">+      &lt;ul className=&quot;list&quot;&gt;</span><span class="ln add">+        &lt;li className=&quot;list-row&quot;&gt;</span><span class="ln add">+          &lt;span&gt;cos&lt;/span&gt;</span><span class="ln add">+          &lt;span&gt;댓글1&lt;/span&gt;</span><span class="ln add">+          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;</span><span class="ln add">+        &lt;/li&gt;</span><span class="ln add">+        &lt;li className=&quot;list-row&quot;&gt;</span><span class="ln add">+          &lt;span&gt;love&lt;/span&gt;</span><span class="ln add">+          &lt;span&gt;댓글2&lt;/span&gt;</span><span class="ln add">+          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;</span><span class="ln add">+        &lt;/li&gt;</span><span class="ln add">+      &lt;/ul&gt;</span><span class="ln add">+      &lt;form className=&quot;flex gap-2 mt-4&quot;&gt;</span><span class="ln add">+        &lt;input className=&quot;input flex-1&quot; placeholder=&quot;댓글을 입력하세요&quot; /&gt;</span><span class="ln add">+        &lt;button className=&quot;btn&quot;&gt;등록&lt;/button&gt;</span><span class="ln add">+      &lt;/form&gt;</span><span class="ln add">+    &lt;/div&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d81">+import { Link } from &quot;react-router-dom&quot;;
++
++export default function Detail() {
++  return (
++    &lt;div&gt;
++      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;제목1&lt;/h1&gt;
++      &lt;p&gt;작성자 ssar&lt;/p&gt;
++      &lt;p className=&quot;my-8&quot;&gt;내용1&lt;/p&gt;
++      &lt;div className=&quot;flex gap-2&quot;&gt;
++        &lt;Link to=&quot;/update-form/1&quot; className=&quot;btn&quot;&gt;
++          수정
++        &lt;/Link&gt;
++        &lt;button className=&quot;btn&quot;&gt;삭제&lt;/button&gt;
++      &lt;/div&gt;
++
++      &lt;hr className=&quot;my-8&quot; /&gt;
++
++      &lt;h2 className=&quot;font-bold&quot;&gt;댓글&lt;/h2&gt;
++      &lt;ul className=&quot;list&quot;&gt;
++        &lt;li className=&quot;list-row&quot;&gt;
++          &lt;span&gt;cos&lt;/span&gt;
++          &lt;span&gt;댓글1&lt;/span&gt;
++          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;
++        &lt;/li&gt;
++        &lt;li className=&quot;list-row&quot;&gt;
++          &lt;span&gt;love&lt;/span&gt;
++          &lt;span&gt;댓글2&lt;/span&gt;
++          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;
++        &lt;/li&gt;
++      &lt;/ul&gt;
++      &lt;form className=&quot;flex gap-2 mt-4&quot;&gt;
++        &lt;input className=&quot;input flex-1&quot; placeholder=&quot;댓글을 입력하세요&quot; /&gt;
++        &lt;button className=&quot;btn&quot;&gt;등록&lt;/button&gt;
++      &lt;/form&gt;
++    &lt;/div&gt;
++  );
++}</textarea><textarea hidden id="f81">import { Link } from &quot;react-router-dom&quot;;
+
+export default function Detail() {
+  return (
+    &lt;div&gt;
+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;제목1&lt;/h1&gt;
+      &lt;p&gt;작성자 ssar&lt;/p&gt;
+      &lt;p className=&quot;my-8&quot;&gt;내용1&lt;/p&gt;
+      &lt;div className=&quot;flex gap-2&quot;&gt;
+        &lt;Link to=&quot;/update-form/1&quot; className=&quot;btn&quot;&gt;
+          수정
+        &lt;/Link&gt;
+        &lt;button className=&quot;btn&quot;&gt;삭제&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;hr className=&quot;my-8&quot; /&gt;
+
+      &lt;h2 className=&quot;font-bold&quot;&gt;댓글&lt;/h2&gt;
+      &lt;ul className=&quot;list&quot;&gt;
+        &lt;li className=&quot;list-row&quot;&gt;
+          &lt;span&gt;cos&lt;/span&gt;
+          &lt;span&gt;댓글1&lt;/span&gt;
+          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;
+        &lt;/li&gt;
+        &lt;li className=&quot;list-row&quot;&gt;
+          &lt;span&gt;love&lt;/span&gt;
+          &lt;span&gt;댓글2&lt;/span&gt;
+          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;form className=&quot;flex gap-2 mt-4&quot;&gt;
+        &lt;input className=&quot;input flex-1&quot; placeholder=&quot;댓글을 입력하세요&quot; /&gt;
+        &lt;button className=&quot;btn&quot;&gt;등록&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/pages/Home.jsx</code><span class="btns"><button data-copy="d82">diff 복사</button><button data-copy="f82">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+import { Link } from &quot;react-router-dom&quot;;</span><span class="ln add">+</span><span class="ln add">+export default function Home() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;</span><span class="ln add">+      &lt;div className=&quot;card border&quot;&gt;</span><span class="ln add">+        &lt;div className=&quot;card-body&quot;&gt;</span><span class="ln add">+          &lt;Link to=&quot;/board/1&quot;&gt;제목1&lt;/Link&gt;</span><span class="ln add">+        &lt;/div&gt;</span><span class="ln add">+      &lt;/div&gt;</span><span class="ln add">+      &lt;div className=&quot;card border&quot;&gt;</span><span class="ln add">+        &lt;div className=&quot;card-body&quot;&gt;</span><span class="ln add">+          &lt;Link to=&quot;/board/2&quot;&gt;제목2&lt;/Link&gt;</span><span class="ln add">+        &lt;/div&gt;</span><span class="ln add">+      &lt;/div&gt;</span><span class="ln add">+      &lt;div className=&quot;card border&quot;&gt;</span><span class="ln add">+        &lt;div className=&quot;card-body&quot;&gt;</span><span class="ln add">+          &lt;Link to=&quot;/board/3&quot;&gt;제목3&lt;/Link&gt;</span><span class="ln add">+        &lt;/div&gt;</span><span class="ln add">+      &lt;/div&gt;</span><span class="ln add">+    &lt;/div&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d82">+import { Link } from &quot;react-router-dom&quot;;
++
++export default function Home() {
++  return (
++    &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;
++      &lt;div className=&quot;card border&quot;&gt;
++        &lt;div className=&quot;card-body&quot;&gt;
++          &lt;Link to=&quot;/board/1&quot;&gt;제목1&lt;/Link&gt;
++        &lt;/div&gt;
++      &lt;/div&gt;
++      &lt;div className=&quot;card border&quot;&gt;
++        &lt;div className=&quot;card-body&quot;&gt;
++          &lt;Link to=&quot;/board/2&quot;&gt;제목2&lt;/Link&gt;
++        &lt;/div&gt;
++      &lt;/div&gt;
++      &lt;div className=&quot;card border&quot;&gt;
++        &lt;div className=&quot;card-body&quot;&gt;
++          &lt;Link to=&quot;/board/3&quot;&gt;제목3&lt;/Link&gt;
++        &lt;/div&gt;
++      &lt;/div&gt;
++    &lt;/div&gt;
++  );
++}</textarea><textarea hidden id="f82">import { Link } from &quot;react-router-dom&quot;;
+
+export default function Home() {
+  return (
+    &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;
+      &lt;div className=&quot;card border&quot;&gt;
+        &lt;div className=&quot;card-body&quot;&gt;
+          &lt;Link to=&quot;/board/1&quot;&gt;제목1&lt;/Link&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;card border&quot;&gt;
+        &lt;div className=&quot;card-body&quot;&gt;
+          &lt;Link to=&quot;/board/2&quot;&gt;제목2&lt;/Link&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;card border&quot;&gt;
+        &lt;div className=&quot;card-body&quot;&gt;
+          &lt;Link to=&quot;/board/3&quot;&gt;제목3&lt;/Link&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/pages/JoinForm.jsx</code><span class="btns"><button data-copy="d83">diff 복사</button><button data-copy="f83">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+export default function JoinForm() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln add">+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;회원가입&lt;/h1&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;</span><span class="ln add">+      &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;</span><span class="ln add">+    &lt;/form&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d83">+export default function JoinForm() {
++  return (
++    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
++      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;회원가입&lt;/h1&gt;
++      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
++      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
++      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
++      &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;
++    &lt;/form&gt;
++  );
++}</textarea><textarea hidden id="f83">export default function JoinForm() {
+  return (
+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;회원가입&lt;/h1&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/pages/LoginForm.jsx</code><span class="btns"><button data-copy="d84">diff 복사</button><button data-copy="f84">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+export default function LoginForm() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln add">+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;로그인&lt;/h1&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;</span><span class="ln add">+      &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;</span><span class="ln add">+    &lt;/form&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d84">+export default function LoginForm() {
++  return (
++    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
++      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;로그인&lt;/h1&gt;
++      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
++      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
++      &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;
++    &lt;/form&gt;
++  );
++}</textarea><textarea hidden id="f84">export default function LoginForm() {
+  return (
+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;로그인&lt;/h1&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/pages/SaveForm.jsx</code><span class="btns"><button data-copy="d85">diff 복사</button><button data-copy="f85">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+export default function SaveForm() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln add">+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글쓰기&lt;/h1&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;</span><span class="ln add">+      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;</span><span class="ln add">+      &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;</span><span class="ln add">+    &lt;/form&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d85">+export default function SaveForm() {
++  return (
++    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
++      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글쓰기&lt;/h1&gt;
++      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
++      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
++      &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;
++    &lt;/form&gt;
++  );
++}</textarea><textarea hidden id="f85">export default function SaveForm() {
+  return (
+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글쓰기&lt;/h1&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
+      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/pages/UpdateForm.jsx</code><span class="btns"><button data-copy="d86">diff 복사</button><button data-copy="f86">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+export default function UpdateForm() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln add">+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글 수정&lt;/h1&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;</span><span class="ln add">+      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;</span><span class="ln add">+      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;</span><span class="ln add">+    &lt;/form&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d86">+export default function UpdateForm() {
++  return (
++    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
++      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글 수정&lt;/h1&gt;
++      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
++      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
++      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
++    &lt;/form&gt;
++  );
++}</textarea><textarea hidden id="f86">export default function UpdateForm() {
+  return (
+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글 수정&lt;/h1&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
+      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/pages/UserInfo.jsx</code><span class="btns"><button data-copy="d87">diff 복사</button><button data-copy="f87">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+export default function UserInfo() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln add">+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;내 정보&lt;/h1&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; value=&quot;ssar&quot; readOnly /&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;</span><span class="ln add">+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;</span><span class="ln add">+      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;</span><span class="ln add">+    &lt;/form&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d87">+export default function UserInfo() {
++  return (
++    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
++      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;내 정보&lt;/h1&gt;
++      &lt;input className=&quot;input&quot; value=&quot;ssar&quot; readOnly /&gt;
++      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
++      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;
++      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
++    &lt;/form&gt;
++  );
++}</textarea><textarea hidden id="f87">export default function UserInfo() {
+  return (
+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;내 정보&lt;/h1&gt;
+      &lt;input className=&quot;input&quot; value=&quot;ssar&quot; readOnly /&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag overwrite">덮어쓸 파일</span><code class="path">src/index.css</code><span class="btns"><button data-copy="f88">코드 복사</button></span></div><pre><code><span class="ln ">@import &quot;tailwindcss&quot;;</span><span class="ln ">@plugin &quot;daisyui&quot;;</span><span class="ln "> </span><span class="ln ">.menu .active {</span><span class="ln ">  @apply menu-active;</span><span class="ln ">}</span></code></pre><textarea hidden id="d88">@import &quot;tailwindcss&quot;;
+@plugin &quot;daisyui&quot;;
+
+.menu .active {
+  @apply menu-active;
+}</textarea><textarea hidden id="f88">@import &quot;tailwindcss&quot;;
+@plugin &quot;daisyui&quot;;
+
+.menu .active {
+  @apply menu-active;
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag overwrite">덮어쓸 파일</span><code class="path">src/main.jsx</code><span class="btns"><button data-copy="f89">코드 복사</button></span></div><pre><code><span class="ln ">import { StrictMode } from &quot;react&quot;;</span><span class="ln ">import { createRoot } from &quot;react-dom/client&quot;;</span><span class="ln ">import &quot;./index.css&quot;;</span><span class="ln ">import App from &quot;./App&quot;;</span><span class="ln "> </span><span class="ln ">createRoot(document.getElementById(&quot;root&quot;)).render(</span><span class="ln ">  &lt;StrictMode&gt;</span><span class="ln ">    &lt;App /&gt;</span><span class="ln ">  &lt;/StrictMode&gt;,</span><span class="ln ">);</span></code></pre><textarea hidden id="d89">import { StrictMode } from &quot;react&quot;;
+import { createRoot } from &quot;react-dom/client&quot;;
+import &quot;./index.css&quot;;
+import App from &quot;./App&quot;;
+
+createRoot(document.getElementById(&quot;root&quot;)).render(
+  &lt;StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/StrictMode&gt;,
+);</textarea><textarea hidden id="f89">import { StrictMode } from &quot;react&quot;;
+import { createRoot } from &quot;react-dom/client&quot;;
+import &quot;./index.css&quot;;
+import App from &quot;./App&quot;;
+
+createRoot(document.getElementById(&quot;root&quot;)).render(
+  &lt;StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/StrictMode&gt;,
+);
+</textarea></div>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/App.jsx</code><span class="btns"><button data-copy="d90">diff 복사</button><button data-copy="f90">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+import { BrowserRouter, Routes, Route } from &quot;react-router-dom&quot;;</span><span class="ln add">+import Layout from &quot;./components/Layout&quot;;</span><span class="ln add">+import Home from &quot;./pages/Home&quot;;</span><span class="ln add">+import Detail from &quot;./pages/Detail&quot;;</span><span class="ln add">+import SaveForm from &quot;./pages/SaveForm&quot;;</span><span class="ln add">+import UpdateForm from &quot;./pages/UpdateForm&quot;;</span><span class="ln add">+import LoginForm from &quot;./pages/LoginForm&quot;;</span><span class="ln add">+import JoinForm from &quot;./pages/JoinForm&quot;;</span><span class="ln add">+import UserInfo from &quot;./pages/UserInfo&quot;;</span><span class="ln add">+</span><span class="ln add">+export default function App() {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;BrowserRouter&gt;</span><span class="ln add">+      &lt;Routes&gt;</span><span class="ln add">+        &lt;Route path=&quot;/&quot; element={&lt;Layout /&gt;}&gt;</span><span class="ln add">+          &lt;Route index element={&lt;Home /&gt;} /&gt;</span><span class="ln add">+          &lt;Route path=&quot;board/:id&quot; element={&lt;Detail /&gt;} /&gt;</span><span class="ln add">+          &lt;Route path=&quot;save-form&quot; element={&lt;SaveForm /&gt;} /&gt;</span><span class="ln add">+          &lt;Route path=&quot;update-form/:id&quot; element={&lt;UpdateForm /&gt;} /&gt;</span><span class="ln add">+          &lt;Route path=&quot;login-form&quot; element={&lt;LoginForm /&gt;} /&gt;</span><span class="ln add">+          &lt;Route path=&quot;join-form&quot; element={&lt;JoinForm /&gt;} /&gt;</span><span class="ln add">+          &lt;Route path=&quot;user-info&quot; element={&lt;UserInfo /&gt;} /&gt;</span><span class="ln add">+        &lt;/Route&gt;</span><span class="ln add">+      &lt;/Routes&gt;</span><span class="ln add">+    &lt;/BrowserRouter&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d90">+import { BrowserRouter, Routes, Route } from &quot;react-router-dom&quot;;
++import Layout from &quot;./components/Layout&quot;;
++import Home from &quot;./pages/Home&quot;;
++import Detail from &quot;./pages/Detail&quot;;
++import SaveForm from &quot;./pages/SaveForm&quot;;
++import UpdateForm from &quot;./pages/UpdateForm&quot;;
++import LoginForm from &quot;./pages/LoginForm&quot;;
++import JoinForm from &quot;./pages/JoinForm&quot;;
++import UserInfo from &quot;./pages/UserInfo&quot;;
++
++export default function App() {
++  return (
++    &lt;BrowserRouter&gt;
++      &lt;Routes&gt;
++        &lt;Route path=&quot;/&quot; element={&lt;Layout /&gt;}&gt;
++          &lt;Route index element={&lt;Home /&gt;} /&gt;
++          &lt;Route path=&quot;board/:id&quot; element={&lt;Detail /&gt;} /&gt;
++          &lt;Route path=&quot;save-form&quot; element={&lt;SaveForm /&gt;} /&gt;
++          &lt;Route path=&quot;update-form/:id&quot; element={&lt;UpdateForm /&gt;} /&gt;
++          &lt;Route path=&quot;login-form&quot; element={&lt;LoginForm /&gt;} /&gt;
++          &lt;Route path=&quot;join-form&quot; element={&lt;JoinForm /&gt;} /&gt;
++          &lt;Route path=&quot;user-info&quot; element={&lt;UserInfo /&gt;} /&gt;
++        &lt;/Route&gt;
++      &lt;/Routes&gt;
++    &lt;/BrowserRouter&gt;
++  );
++}</textarea><textarea hidden id="f90">import { BrowserRouter, Routes, Route } from &quot;react-router-dom&quot;;
+import Layout from &quot;./components/Layout&quot;;
+import Home from &quot;./pages/Home&quot;;
+import Detail from &quot;./pages/Detail&quot;;
+import SaveForm from &quot;./pages/SaveForm&quot;;
+import UpdateForm from &quot;./pages/UpdateForm&quot;;
+import LoginForm from &quot;./pages/LoginForm&quot;;
+import JoinForm from &quot;./pages/JoinForm&quot;;
+import UserInfo from &quot;./pages/UserInfo&quot;;
+
+export default function App() {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;Routes&gt;
+        &lt;Route path=&quot;/&quot; element={&lt;Layout /&gt;}&gt;
+          &lt;Route index element={&lt;Home /&gt;} /&gt;
+          &lt;Route path=&quot;board/:id&quot; element={&lt;Detail /&gt;} /&gt;
+          &lt;Route path=&quot;save-form&quot; element={&lt;SaveForm /&gt;} /&gt;
+          &lt;Route path=&quot;update-form/:id&quot; element={&lt;UpdateForm /&gt;} /&gt;
+          &lt;Route path=&quot;login-form&quot; element={&lt;LoginForm /&gt;} /&gt;
+          &lt;Route path=&quot;join-form&quot; element={&lt;JoinForm /&gt;} /&gt;
+          &lt;Route path=&quot;user-info&quot; element={&lt;UserInfo /&gt;} /&gt;
+        &lt;/Route&gt;
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}
+</textarea></div>
+<h2 id="component-split">4 component-split 겹치는 화면을 컴포넌트로</h2>
+<h3>4-1 글 카드를 컴포넌트로 빼고 props로 넘기기</h3>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/components/BoardCard.jsx</code><span class="btns"><button data-copy="d91">diff 복사</button><button data-copy="f91">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+import { Link } from &quot;react-router-dom&quot;;</span><span class="ln add">+</span><span class="ln add">+export default function BoardCard({ id, title }) {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;div className=&quot;card border&quot;&gt;</span><span class="ln add">+      &lt;div className=&quot;card-body&quot;&gt;</span><span class="ln add">+        &lt;Link to={`/board/${id}`}&gt;{title}&lt;/Link&gt;</span><span class="ln add">+      &lt;/div&gt;</span><span class="ln add">+    &lt;/div&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d91">+import { Link } from &quot;react-router-dom&quot;;
++
++export default function BoardCard({ id, title }) {
++  return (
++    &lt;div className=&quot;card border&quot;&gt;
++      &lt;div className=&quot;card-body&quot;&gt;
++        &lt;Link to={`/board/${id}`}&gt;{title}&lt;/Link&gt;
++      &lt;/div&gt;
++    &lt;/div&gt;
++  );
++}</textarea><textarea hidden id="f91">import { Link } from &quot;react-router-dom&quot;;
+
+export default function BoardCard({ id, title }) {
+  return (
+    &lt;div className=&quot;card border&quot;&gt;
+      &lt;div className=&quot;card-body&quot;&gt;
+        &lt;Link to={`/board/${id}`}&gt;{title}&lt;/Link&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/Home.jsx</code><span class="btns"><button data-copy="d92">diff 복사</button><button data-copy="f92">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,23 +1,11 @@</span><span class="ln rem">-import { Link } from &quot;react-router-dom&quot;;</span><span class="ln add">+import BoardCard from &quot;../components/BoardCard&quot;;</span><span class="ln "> </span><span class="ln "> export default function Home() {</span><span class="ln ">   return (</span><span class="ln ">     &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;</span><span class="ln rem">-      &lt;div className=&quot;card border&quot;&gt;</span><span class="ln rem">-        &lt;div className=&quot;card-body&quot;&gt;</span><span class="ln rem">-          &lt;Link to=&quot;/board/1&quot;&gt;제목1&lt;/Link&gt;</span><span class="ln rem">-        &lt;/div&gt;</span><span class="ln rem">-      &lt;/div&gt;</span><span class="ln rem">-      &lt;div className=&quot;card border&quot;&gt;</span><span class="ln rem">-        &lt;div className=&quot;card-body&quot;&gt;</span><span class="ln rem">-          &lt;Link to=&quot;/board/2&quot;&gt;제목2&lt;/Link&gt;</span><span class="ln rem">-        &lt;/div&gt;</span><span class="ln rem">-      &lt;/div&gt;</span><span class="ln rem">-      &lt;div className=&quot;card border&quot;&gt;</span><span class="ln rem">-        &lt;div className=&quot;card-body&quot;&gt;</span><span class="ln rem">-          &lt;Link to=&quot;/board/3&quot;&gt;제목3&lt;/Link&gt;</span><span class="ln rem">-        &lt;/div&gt;</span><span class="ln rem">-      &lt;/div&gt;</span><span class="ln add">+      &lt;BoardCard id={1} title=&quot;제목1&quot; /&gt;</span><span class="ln add">+      &lt;BoardCard id={2} title=&quot;제목2&quot; /&gt;</span><span class="ln add">+      &lt;BoardCard id={3} title=&quot;제목3&quot; /&gt;</span><span class="ln ">     &lt;/div&gt;</span><span class="ln ">   );</span><span class="ln "> }</span></code></pre><textarea hidden id="d92">@@ -1,23 +1,11 @@
+-import { Link } from &quot;react-router-dom&quot;;
++import BoardCard from &quot;../components/BoardCard&quot;;
+ 
+ export default function Home() {
+   return (
+     &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;
+-      &lt;div className=&quot;card border&quot;&gt;
+-        &lt;div className=&quot;card-body&quot;&gt;
+-          &lt;Link to=&quot;/board/1&quot;&gt;제목1&lt;/Link&gt;
+-        &lt;/div&gt;
+-      &lt;/div&gt;
+-      &lt;div className=&quot;card border&quot;&gt;
+-        &lt;div className=&quot;card-body&quot;&gt;
+-          &lt;Link to=&quot;/board/2&quot;&gt;제목2&lt;/Link&gt;
+-        &lt;/div&gt;
+-      &lt;/div&gt;
+-      &lt;div className=&quot;card border&quot;&gt;
+-        &lt;div className=&quot;card-body&quot;&gt;
+-          &lt;Link to=&quot;/board/3&quot;&gt;제목3&lt;/Link&gt;
+-        &lt;/div&gt;
+-      &lt;/div&gt;
++      &lt;BoardCard id={1} title=&quot;제목1&quot; /&gt;
++      &lt;BoardCard id={2} title=&quot;제목2&quot; /&gt;
++      &lt;BoardCard id={3} title=&quot;제목3&quot; /&gt;
+     &lt;/div&gt;
+   );
+ }</textarea><textarea hidden id="f92">import BoardCard from &quot;../components/BoardCard&quot;;
+
+export default function Home() {
+  return (
+    &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;
+      &lt;BoardCard id={1} title=&quot;제목1&quot; /&gt;
+      &lt;BoardCard id={2} title=&quot;제목2&quot; /&gt;
+      &lt;BoardCard id={3} title=&quot;제목3&quot; /&gt;
+    &lt;/div&gt;
+  );
+}
+</textarea></div>
+<h3>4-2 글 배열을 map으로 그리기</h3>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/Home.jsx</code><span class="btns"><button data-copy="d93">diff 복사</button><button data-copy="f93">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,11 +1,17 @@</span><span class="ln "> import BoardCard from &quot;../components/BoardCard&quot;;</span><span class="ln "> </span><span class="ln "> export default function Home() {</span><span class="ln add">+  const boards = [</span><span class="ln add">+    { id: 1, title: &quot;제목1&quot; },</span><span class="ln add">+    { id: 2, title: &quot;제목2&quot; },</span><span class="ln add">+    { id: 3, title: &quot;제목3&quot; },</span><span class="ln add">+  ];</span><span class="ln add">+</span><span class="ln ">   return (</span><span class="ln ">     &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;</span><span class="ln rem">-      &lt;BoardCard id={1} title=&quot;제목1&quot; /&gt;</span><span class="ln rem">-      &lt;BoardCard id={2} title=&quot;제목2&quot; /&gt;</span><span class="ln rem">-      &lt;BoardCard id={3} title=&quot;제목3&quot; /&gt;</span><span class="ln add">+      {boards.map((board) =&gt; (</span><span class="ln add">+        &lt;BoardCard key={board.id} id={board.id} title={board.title} /&gt;</span><span class="ln add">+      ))}</span><span class="ln ">     &lt;/div&gt;</span><span class="ln ">   );</span><span class="ln "> }</span></code></pre><textarea hidden id="d93">@@ -1,11 +1,17 @@
+ import BoardCard from &quot;../components/BoardCard&quot;;
+ 
+ export default function Home() {
++  const boards = [
++    { id: 1, title: &quot;제목1&quot; },
++    { id: 2, title: &quot;제목2&quot; },
++    { id: 3, title: &quot;제목3&quot; },
++  ];
++
+   return (
+     &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;
+-      &lt;BoardCard id={1} title=&quot;제목1&quot; /&gt;
+-      &lt;BoardCard id={2} title=&quot;제목2&quot; /&gt;
+-      &lt;BoardCard id={3} title=&quot;제목3&quot; /&gt;
++      {boards.map((board) =&gt; (
++        &lt;BoardCard key={board.id} id={board.id} title={board.title} /&gt;
++      ))}
+     &lt;/div&gt;
+   );
+ }</textarea><textarea hidden id="f93">import BoardCard from &quot;../components/BoardCard&quot;;
+
+export default function Home() {
+  const boards = [
+    { id: 1, title: &quot;제목1&quot; },
+    { id: 2, title: &quot;제목2&quot; },
+    { id: 3, title: &quot;제목3&quot; },
+  ];
+
+  return (
+    &lt;div className=&quot;grid grid-cols-3 gap-8&quot;&gt;
+      {boards.map((board) =&gt; (
+        &lt;BoardCard key={board.id} id={board.id} title={board.title} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</textarea></div>
+<h3>4-3 댓글 줄을 컴포넌트로 빼고 map으로 그리기</h3>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/components/ReplyItem.jsx</code><span class="btns"><button data-copy="d94">diff 복사</button><button data-copy="f94">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+export default function ReplyItem({ username, comment }) {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;li className=&quot;list-row&quot;&gt;</span><span class="ln add">+      &lt;span&gt;{username}&lt;/span&gt;</span><span class="ln add">+      &lt;span&gt;{comment}&lt;/span&gt;</span><span class="ln add">+      &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;</span><span class="ln add">+    &lt;/li&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d94">+export default function ReplyItem({ username, comment }) {
++  return (
++    &lt;li className=&quot;list-row&quot;&gt;
++      &lt;span&gt;{username}&lt;/span&gt;
++      &lt;span&gt;{comment}&lt;/span&gt;
++      &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;
++    &lt;/li&gt;
++  );
++}</textarea><textarea hidden id="f94">export default function ReplyItem({ username, comment }) {
+  return (
+    &lt;li className=&quot;list-row&quot;&gt;
+      &lt;span&gt;{username}&lt;/span&gt;
+      &lt;span&gt;{comment}&lt;/span&gt;
+      &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;
+    &lt;/li&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/Detail.jsx</code><span class="btns"><button data-copy="d95">diff 복사</button><button data-copy="f95">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,6 +1,12 @@</span><span class="ln "> import { Link } from &quot;react-router-dom&quot;;</span><span class="ln add">+import ReplyItem from &quot;../components/ReplyItem&quot;;</span><span class="ln "> </span><span class="ln "> export default function Detail() {</span><span class="ln add">+  const replies = [</span><span class="ln add">+    { id: 1, username: &quot;cos&quot;, comment: &quot;댓글1&quot; },</span><span class="ln add">+    { id: 2, username: &quot;love&quot;, comment: &quot;댓글2&quot; },</span><span class="ln add">+  ];</span><span class="ln add">+</span><span class="ln ">   return (</span><span class="ln ">     &lt;div&gt;</span><span class="ln ">       &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;제목1&lt;/h1&gt;</span><span class="ln hunk">@@ -17,16 +23,13 @@ export default function Detail() {</span><span class="ln "> </span><span class="ln ">       &lt;h2 className=&quot;font-bold&quot;&gt;댓글&lt;/h2&gt;</span><span class="ln ">       &lt;ul className=&quot;list&quot;&gt;</span><span class="ln rem">-        &lt;li className=&quot;list-row&quot;&gt;</span><span class="ln rem">-          &lt;span&gt;cos&lt;/span&gt;</span><span class="ln rem">-          &lt;span&gt;댓글1&lt;/span&gt;</span><span class="ln rem">-          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;</span><span class="ln rem">-        &lt;/li&gt;</span><span class="ln rem">-        &lt;li className=&quot;list-row&quot;&gt;</span><span class="ln rem">-          &lt;span&gt;love&lt;/span&gt;</span><span class="ln rem">-          &lt;span&gt;댓글2&lt;/span&gt;</span><span class="ln rem">-          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;</span><span class="ln rem">-        &lt;/li&gt;</span><span class="ln add">+        {replies.map((reply) =&gt; (</span><span class="ln add">+          &lt;ReplyItem</span><span class="ln add">+            key={reply.id}</span><span class="ln add">+            username={reply.username}</span><span class="ln add">+            comment={reply.comment}</span><span class="ln add">+          /&gt;</span><span class="ln add">+        ))}</span><span class="ln ">       &lt;/ul&gt;</span><span class="ln ">       &lt;form className=&quot;flex gap-2 mt-4&quot;&gt;</span><span class="ln ">         &lt;input className=&quot;input flex-1&quot; placeholder=&quot;댓글을 입력하세요&quot; /&gt;</span></code></pre><textarea hidden id="d95">@@ -1,6 +1,12 @@
+ import { Link } from &quot;react-router-dom&quot;;
++import ReplyItem from &quot;../components/ReplyItem&quot;;
+ 
+ export default function Detail() {
++  const replies = [
++    { id: 1, username: &quot;cos&quot;, comment: &quot;댓글1&quot; },
++    { id: 2, username: &quot;love&quot;, comment: &quot;댓글2&quot; },
++  ];
++
+   return (
+     &lt;div&gt;
+       &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;제목1&lt;/h1&gt;
+@@ -17,16 +23,13 @@ export default function Detail() {
+ 
+       &lt;h2 className=&quot;font-bold&quot;&gt;댓글&lt;/h2&gt;
+       &lt;ul className=&quot;list&quot;&gt;
+-        &lt;li className=&quot;list-row&quot;&gt;
+-          &lt;span&gt;cos&lt;/span&gt;
+-          &lt;span&gt;댓글1&lt;/span&gt;
+-          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;
+-        &lt;/li&gt;
+-        &lt;li className=&quot;list-row&quot;&gt;
+-          &lt;span&gt;love&lt;/span&gt;
+-          &lt;span&gt;댓글2&lt;/span&gt;
+-          &lt;button className=&quot;btn btn-ghost btn-xs&quot;&gt;🗑&lt;/button&gt;
+-        &lt;/li&gt;
++        {replies.map((reply) =&gt; (
++          &lt;ReplyItem
++            key={reply.id}
++            username={reply.username}
++            comment={reply.comment}
++          /&gt;
++        ))}
+       &lt;/ul&gt;
+       &lt;form className=&quot;flex gap-2 mt-4&quot;&gt;
+         &lt;input className=&quot;input flex-1&quot; placeholder=&quot;댓글을 입력하세요&quot; /&gt;</textarea><textarea hidden id="f95">import { Link } from &quot;react-router-dom&quot;;
+import ReplyItem from &quot;../components/ReplyItem&quot;;
+
+export default function Detail() {
+  const replies = [
+    { id: 1, username: &quot;cos&quot;, comment: &quot;댓글1&quot; },
+    { id: 2, username: &quot;love&quot;, comment: &quot;댓글2&quot; },
+  ];
+
+  return (
+    &lt;div&gt;
+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;제목1&lt;/h1&gt;
+      &lt;p&gt;작성자 ssar&lt;/p&gt;
+      &lt;p className=&quot;my-8&quot;&gt;내용1&lt;/p&gt;
+      &lt;div className=&quot;flex gap-2&quot;&gt;
+        &lt;Link to=&quot;/update-form/1&quot; className=&quot;btn&quot;&gt;
+          수정
+        &lt;/Link&gt;
+        &lt;button className=&quot;btn&quot;&gt;삭제&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;hr className=&quot;my-8&quot; /&gt;
+
+      &lt;h2 className=&quot;font-bold&quot;&gt;댓글&lt;/h2&gt;
+      &lt;ul className=&quot;list&quot;&gt;
+        {replies.map((reply) =&gt; (
+          &lt;ReplyItem
+            key={reply.id}
+            username={reply.username}
+            comment={reply.comment}
+          /&gt;
+        ))}
+      &lt;/ul&gt;
+      &lt;form className=&quot;flex gap-2 mt-4&quot;&gt;
+        &lt;input className=&quot;input flex-1&quot; placeholder=&quot;댓글을 입력하세요&quot; /&gt;
+        &lt;button className=&quot;btn&quot;&gt;등록&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  );
+}
+</textarea></div>
+<h3>4-4 폼 틀을 컴포넌트로 빼고 children으로 넘기기</h3>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/components/FormCard.jsx</code><span class="btns"><button data-copy="d96">diff 복사</button><button data-copy="f96">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+export default function FormCard({ title, children }) {</span><span class="ln add">+  return (</span><span class="ln add">+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln add">+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;{title}&lt;/h1&gt;</span><span class="ln add">+      {children}</span><span class="ln add">+    &lt;/form&gt;</span><span class="ln add">+  );</span><span class="ln add">+}</span></code></pre><textarea hidden id="d96">+export default function FormCard({ title, children }) {
++  return (
++    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
++      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;{title}&lt;/h1&gt;
++      {children}
++    &lt;/form&gt;
++  );
++}</textarea><textarea hidden id="f96">export default function FormCard({ title, children }) {
+  return (
+    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;{title}&lt;/h1&gt;
+      {children}
+    &lt;/form&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/JoinForm.jsx</code><span class="btns"><button data-copy="d97">diff 복사</button><button data-copy="f97">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,11 +1,12 @@</span><span class="ln add">+import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+</span><span class="ln "> export default function JoinForm() {</span><span class="ln ">   return (</span><span class="ln rem">-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln rem">-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;회원가입&lt;/h1&gt;</span><span class="ln add">+    &lt;FormCard title=&quot;회원가입&quot;&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;</span><span class="ln rem">-    &lt;/form&gt;</span><span class="ln add">+    &lt;/FormCard&gt;</span><span class="ln ">   );</span><span class="ln "> }</span></code></pre><textarea hidden id="d97">@@ -1,11 +1,12 @@
++import FormCard from &quot;../components/FormCard&quot;;
++
+ export default function JoinForm() {
+   return (
+-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;회원가입&lt;/h1&gt;
++    &lt;FormCard title=&quot;회원가입&quot;&gt;
+       &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
+       &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+       &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;
+-    &lt;/form&gt;
++    &lt;/FormCard&gt;
+   );
+ }</textarea><textarea hidden id="f97">import FormCard from &quot;../components/FormCard&quot;;
+
+export default function JoinForm() {
+  return (
+    &lt;FormCard title=&quot;회원가입&quot;&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/LoginForm.jsx</code><span class="btns"><button data-copy="d98">diff 복사</button><button data-copy="f98">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,10 +1,11 @@</span><span class="ln add">+import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+</span><span class="ln "> export default function LoginForm() {</span><span class="ln ">   return (</span><span class="ln rem">-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln rem">-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;로그인&lt;/h1&gt;</span><span class="ln add">+    &lt;FormCard title=&quot;로그인&quot;&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;</span><span class="ln rem">-    &lt;/form&gt;</span><span class="ln add">+    &lt;/FormCard&gt;</span><span class="ln ">   );</span><span class="ln "> }</span></code></pre><textarea hidden id="d98">@@ -1,10 +1,11 @@
++import FormCard from &quot;../components/FormCard&quot;;
++
+ export default function LoginForm() {
+   return (
+-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;로그인&lt;/h1&gt;
++    &lt;FormCard title=&quot;로그인&quot;&gt;
+       &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
+       &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;
+-    &lt;/form&gt;
++    &lt;/FormCard&gt;
+   );
+ }</textarea><textarea hidden id="f98">import FormCard from &quot;../components/FormCard&quot;;
+
+export default function LoginForm() {
+  return (
+    &lt;FormCard title=&quot;로그인&quot;&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/SaveForm.jsx</code><span class="btns"><button data-copy="d99">diff 복사</button><button data-copy="f99">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,10 +1,11 @@</span><span class="ln add">+import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+</span><span class="ln "> export default function SaveForm() {</span><span class="ln ">   return (</span><span class="ln rem">-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln rem">-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글쓰기&lt;/h1&gt;</span><span class="ln add">+    &lt;FormCard title=&quot;글쓰기&quot;&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;</span><span class="ln ">       &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;</span><span class="ln rem">-    &lt;/form&gt;</span><span class="ln add">+    &lt;/FormCard&gt;</span><span class="ln ">   );</span><span class="ln "> }</span></code></pre><textarea hidden id="d99">@@ -1,10 +1,11 @@
++import FormCard from &quot;../components/FormCard&quot;;
++
+ export default function SaveForm() {
+   return (
+-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글쓰기&lt;/h1&gt;
++    &lt;FormCard title=&quot;글쓰기&quot;&gt;
+       &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
+       &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;
+-    &lt;/form&gt;
++    &lt;/FormCard&gt;
+   );
+ }</textarea><textarea hidden id="f99">import FormCard from &quot;../components/FormCard&quot;;
+
+export default function SaveForm() {
+  return (
+    &lt;FormCard title=&quot;글쓰기&quot;&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
+      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/UpdateForm.jsx</code><span class="btns"><button data-copy="d100">diff 복사</button><button data-copy="f100">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,10 +1,11 @@</span><span class="ln add">+import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+</span><span class="ln "> export default function UpdateForm() {</span><span class="ln ">   return (</span><span class="ln rem">-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln rem">-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글 수정&lt;/h1&gt;</span><span class="ln add">+    &lt;FormCard title=&quot;글 수정&quot;&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;</span><span class="ln ">       &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;</span><span class="ln rem">-    &lt;/form&gt;</span><span class="ln add">+    &lt;/FormCard&gt;</span><span class="ln ">   );</span><span class="ln "> }</span></code></pre><textarea hidden id="d100">@@ -1,10 +1,11 @@
++import FormCard from &quot;../components/FormCard&quot;;
++
+ export default function UpdateForm() {
+   return (
+-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;글 수정&lt;/h1&gt;
++    &lt;FormCard title=&quot;글 수정&quot;&gt;
+       &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
+       &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+-    &lt;/form&gt;
++    &lt;/FormCard&gt;
+   );
+ }</textarea><textarea hidden id="f100">import FormCard from &quot;../components/FormCard&quot;;
+
+export default function UpdateForm() {
+  return (
+    &lt;FormCard title=&quot;글 수정&quot;&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
+      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/UserInfo.jsx</code><span class="btns"><button data-copy="d101">diff 복사</button><button data-copy="f101">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,11 +1,12 @@</span><span class="ln add">+import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+</span><span class="ln "> export default function UserInfo() {</span><span class="ln ">   return (</span><span class="ln rem">-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;</span><span class="ln rem">-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;내 정보&lt;/h1&gt;</span><span class="ln add">+    &lt;FormCard title=&quot;내 정보&quot;&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; value=&quot;ssar&quot; readOnly /&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;</span><span class="ln ">       &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;</span><span class="ln rem">-    &lt;/form&gt;</span><span class="ln add">+    &lt;/FormCard&gt;</span><span class="ln ">   );</span><span class="ln "> }</span></code></pre><textarea hidden id="d101">@@ -1,11 +1,12 @@
++import FormCard from &quot;../components/FormCard&quot;;
++
+ export default function UserInfo() {
+   return (
+-    &lt;form className=&quot;card border max-w-sm mx-auto p-8 gap-4&quot;&gt;
+-      &lt;h1 className=&quot;text-2xl font-bold&quot;&gt;내 정보&lt;/h1&gt;
++    &lt;FormCard title=&quot;내 정보&quot;&gt;
+       &lt;input className=&quot;input&quot; value=&quot;ssar&quot; readOnly /&gt;
+       &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
+       &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+-    &lt;/form&gt;
++    &lt;/FormCard&gt;
+   );
+ }</textarea><textarea hidden id="f101">import FormCard from &quot;../components/FormCard&quot;;
+
+export default function UserInfo() {
+  return (
+    &lt;FormCard title=&quot;내 정보&quot;&gt;
+      &lt;input className=&quot;input&quot; value=&quot;ssar&quot; readOnly /&gt;
+      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
+      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<h3>4-5 입력칸을 컴포넌트로 빼고 props 펼치기</h3>
+<div class="file"><div class="head"><span class="tag new">새 파일</span><code class="path">src/components/Input.jsx</code><span class="btns"><button data-copy="d102">diff 복사</button><button data-copy="f102">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln add">+export default function Input(props) {</span><span class="ln add">+  return &lt;input className=&quot;input&quot; {...props} /&gt;;</span><span class="ln add">+}</span></code></pre><textarea hidden id="d102">+export default function Input(props) {
++  return &lt;input className=&quot;input&quot; {...props} /&gt;;
++}</textarea><textarea hidden id="f102">export default function Input(props) {
+  return &lt;input className=&quot;input&quot; {...props} /&gt;;
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/JoinForm.jsx</code><span class="btns"><button data-copy="d103">diff 복사</button><button data-copy="f103">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,11 +1,12 @@</span><span class="ln "> import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+import Input from &quot;../components/Input&quot;;</span><span class="ln "> </span><span class="ln "> export default function JoinForm() {</span><span class="ln ">   return (</span><span class="ln ">     &lt;FormCard title=&quot;회원가입&quot;&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;</span><span class="ln add">+      &lt;Input placeholder=&quot;아이디&quot; /&gt;</span><span class="ln add">+      &lt;Input type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;</span><span class="ln add">+      &lt;Input placeholder=&quot;이메일&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;</span><span class="ln ">     &lt;/FormCard&gt;</span><span class="ln ">   );</span></code></pre><textarea hidden id="d103">@@ -1,11 +1,12 @@
+ import FormCard from &quot;../components/FormCard&quot;;
++import Input from &quot;../components/Input&quot;;
+ 
+ export default function JoinForm() {
+   return (
+     &lt;FormCard title=&quot;회원가입&quot;&gt;
+-      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
+-      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+-      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
++      &lt;Input placeholder=&quot;아이디&quot; /&gt;
++      &lt;Input type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
++      &lt;Input placeholder=&quot;이메일&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;
+     &lt;/FormCard&gt;
+   );</textarea><textarea hidden id="f103">import FormCard from &quot;../components/FormCard&quot;;
+import Input from &quot;../components/Input&quot;;
+
+export default function JoinForm() {
+  return (
+    &lt;FormCard title=&quot;회원가입&quot;&gt;
+      &lt;Input placeholder=&quot;아이디&quot; /&gt;
+      &lt;Input type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+      &lt;Input placeholder=&quot;이메일&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;가입하기&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/LoginForm.jsx</code><span class="btns"><button data-copy="d104">diff 복사</button><button data-copy="f104">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,10 +1,11 @@</span><span class="ln "> import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+import Input from &quot;../components/Input&quot;;</span><span class="ln "> </span><span class="ln "> export default function LoginForm() {</span><span class="ln ">   return (</span><span class="ln ">     &lt;FormCard title=&quot;로그인&quot;&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;</span><span class="ln add">+      &lt;Input placeholder=&quot;아이디&quot; /&gt;</span><span class="ln add">+      &lt;Input type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;</span><span class="ln ">     &lt;/FormCard&gt;</span><span class="ln ">   );</span></code></pre><textarea hidden id="d104">@@ -1,10 +1,11 @@
+ import FormCard from &quot;../components/FormCard&quot;;
++import Input from &quot;../components/Input&quot;;
+ 
+ export default function LoginForm() {
+   return (
+     &lt;FormCard title=&quot;로그인&quot;&gt;
+-      &lt;input className=&quot;input&quot; placeholder=&quot;아이디&quot; /&gt;
+-      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
++      &lt;Input placeholder=&quot;아이디&quot; /&gt;
++      &lt;Input type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;
+     &lt;/FormCard&gt;
+   );</textarea><textarea hidden id="f104">import FormCard from &quot;../components/FormCard&quot;;
+import Input from &quot;../components/Input&quot;;
+
+export default function LoginForm() {
+  return (
+    &lt;FormCard title=&quot;로그인&quot;&gt;
+      &lt;Input placeholder=&quot;아이디&quot; /&gt;
+      &lt;Input type=&quot;password&quot; placeholder=&quot;비밀번호&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;로그인&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/SaveForm.jsx</code><span class="btns"><button data-copy="d105">diff 복사</button><button data-copy="f105">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,9 +1,10 @@</span><span class="ln "> import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+import Input from &quot;../components/Input&quot;;</span><span class="ln "> </span><span class="ln "> export default function SaveForm() {</span><span class="ln ">   return (</span><span class="ln ">     &lt;FormCard title=&quot;글쓰기&quot;&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;</span><span class="ln add">+      &lt;Input placeholder=&quot;제목&quot; /&gt;</span><span class="ln ">       &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;</span><span class="ln ">     &lt;/FormCard&gt;</span></code></pre><textarea hidden id="d105">@@ -1,9 +1,10 @@
+ import FormCard from &quot;../components/FormCard&quot;;
++import Input from &quot;../components/Input&quot;;
+ 
+ export default function SaveForm() {
+   return (
+     &lt;FormCard title=&quot;글쓰기&quot;&gt;
+-      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
++      &lt;Input placeholder=&quot;제목&quot; /&gt;
+       &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;
+     &lt;/FormCard&gt;</textarea><textarea hidden id="f105">import FormCard from &quot;../components/FormCard&quot;;
+import Input from &quot;../components/Input&quot;;
+
+export default function SaveForm() {
+  return (
+    &lt;FormCard title=&quot;글쓰기&quot;&gt;
+      &lt;Input placeholder=&quot;제목&quot; /&gt;
+      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;글쓰기&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/UpdateForm.jsx</code><span class="btns"><button data-copy="d106">diff 복사</button><button data-copy="f106">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,9 +1,10 @@</span><span class="ln "> import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+import Input from &quot;../components/Input&quot;;</span><span class="ln "> </span><span class="ln "> export default function UpdateForm() {</span><span class="ln ">   return (</span><span class="ln ">     &lt;FormCard title=&quot;글 수정&quot;&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;</span><span class="ln add">+      &lt;Input placeholder=&quot;제목&quot; /&gt;</span><span class="ln ">       &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;</span><span class="ln ">     &lt;/FormCard&gt;</span></code></pre><textarea hidden id="d106">@@ -1,9 +1,10 @@
+ import FormCard from &quot;../components/FormCard&quot;;
++import Input from &quot;../components/Input&quot;;
+ 
+ export default function UpdateForm() {
+   return (
+     &lt;FormCard title=&quot;글 수정&quot;&gt;
+-      &lt;input className=&quot;input&quot; placeholder=&quot;제목&quot; /&gt;
++      &lt;Input placeholder=&quot;제목&quot; /&gt;
+       &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+     &lt;/FormCard&gt;</textarea><textarea hidden id="f106">import FormCard from &quot;../components/FormCard&quot;;
+import Input from &quot;../components/Input&quot;;
+
+export default function UpdateForm() {
+  return (
+    &lt;FormCard title=&quot;글 수정&quot;&gt;
+      &lt;Input placeholder=&quot;제목&quot; /&gt;
+      &lt;textarea className=&quot;textarea&quot; placeholder=&quot;내용&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<div class="file"><div class="head"><span class="tag modify">수정 파일</span><code class="path">src/pages/UserInfo.jsx</code><span class="btns"><button data-copy="d107">diff 복사</button><button data-copy="f107">바뀐 뒤 전체 코드 복사</button></span></div><pre><code><span class="ln hunk">@@ -1,11 +1,12 @@</span><span class="ln "> import FormCard from &quot;../components/FormCard&quot;;</span><span class="ln add">+import Input from &quot;../components/Input&quot;;</span><span class="ln "> </span><span class="ln "> export default function UserInfo() {</span><span class="ln ">   return (</span><span class="ln ">     &lt;FormCard title=&quot;내 정보&quot;&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; value=&quot;ssar&quot; readOnly /&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;</span><span class="ln rem">-      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;</span><span class="ln add">+      &lt;Input value=&quot;ssar&quot; readOnly /&gt;</span><span class="ln add">+      &lt;Input placeholder=&quot;이메일&quot; /&gt;</span><span class="ln add">+      &lt;Input type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;</span><span class="ln ">       &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;</span><span class="ln ">     &lt;/FormCard&gt;</span><span class="ln ">   );</span></code></pre><textarea hidden id="d107">@@ -1,11 +1,12 @@
+ import FormCard from &quot;../components/FormCard&quot;;
++import Input from &quot;../components/Input&quot;;
+ 
+ export default function UserInfo() {
+   return (
+     &lt;FormCard title=&quot;내 정보&quot;&gt;
+-      &lt;input className=&quot;input&quot; value=&quot;ssar&quot; readOnly /&gt;
+-      &lt;input className=&quot;input&quot; placeholder=&quot;이메일&quot; /&gt;
+-      &lt;input className=&quot;input&quot; type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;
++      &lt;Input value=&quot;ssar&quot; readOnly /&gt;
++      &lt;Input placeholder=&quot;이메일&quot; /&gt;
++      &lt;Input type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;
+       &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+     &lt;/FormCard&gt;
+   );</textarea><textarea hidden id="f107">import FormCard from &quot;../components/FormCard&quot;;
+import Input from &quot;../components/Input&quot;;
+
+export default function UserInfo() {
+  return (
+    &lt;FormCard title=&quot;내 정보&quot;&gt;
+      &lt;Input value=&quot;ssar&quot; readOnly /&gt;
+      &lt;Input placeholder=&quot;이메일&quot; /&gt;
+      &lt;Input type=&quot;password&quot; placeholder=&quot;새 비밀번호&quot; /&gt;
+      &lt;button className=&quot;btn&quot;&gt;수정하기&lt;/button&gt;
+    &lt;/FormCard&gt;
+  );
+}
+</textarea></div>
+<p>다음은 따라치기의 5 board-list부터 이어 친다.</p>
+</main>
+<script>
+document.addEventListener("click", async (e) => {
+  const b = e.target.closest("button[data-copy]")
+  if (!b) return
+  const text = document.getElementById(b.dataset.copy).value
+  try {
+    await navigator.clipboard.writeText(text)
+  } catch {
+    const t = document.createElement("textarea")
+    t.value = text
+    document.body.appendChild(t)
+    t.select()
+    document.execCommand("copy")
+    t.remove()
+  }
+  const old = b.textContent
+  b.textContent = "복사했다"
+  b.classList.add("done")
+  setTimeout(() => { b.textContent = old; b.classList.remove("done") }, 1200)
+})
+</script>
+</body>
+</html>
