@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
@@ -9,8 +10,13 @@ export default function JoinForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await axios.post("http://localhost:8080/join", form);
+  }
+
   return (
-    <FormCard title="회원가입">
+    <FormCard title="회원가입" onSubmit={handleSubmit}>
       <Input
         name="username"
         placeholder="아이디"
