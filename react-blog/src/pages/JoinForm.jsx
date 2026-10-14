@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import http from "../api/http";
 import { useNavigate } from "react-router-dom";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
@@ -14,7 +14,7 @@ export default function JoinForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await axios.post("http://localhost:8080/join", form);
+    await http.post("/join", form);
     alert("회원가입 완료");
     navigate("/login-form");
   }
