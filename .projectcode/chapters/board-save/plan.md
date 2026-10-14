@@ -5,7 +5,8 @@
 |---|---|---|
 | react-blog/src/api/http.jsx | 새로 | 서버 주소와 토큰 붙이기를 한 곳에 둔 axios 인스턴스 |
 | react-blog/src/pages/SaveForm.jsx | 고침 | 제목과 내용을 기억하고 글쓰기를 누르면 보낸 뒤 홈으로 간다 |
-| react-blog/src/components/BoardForm.jsx | 고침 | 받은 form, onChange, onSubmit을 입력칸과 폼에 연결한다 |
+| react-blog/src/pages/UpdateForm.jsx | 고침 | component-split 수정과 같다. FormCard 안에 칸을 직접 둔다 |
+| react-blog/src/components/BoardForm.jsx | 지움 | component-split 수정과 같다. 글 폼 조각을 걷어 낸다 |
 | react-blog/src/pages/Home.jsx | 고침 | axios 대신 http로 목록을 받는다 |
 | react-blog/src/pages/Detail.jsx | 고침 | axios 대신 http로 상세를 받는다 |
 | react-blog/src/pages/JoinForm.jsx | 고침 | axios 대신 http로 회원가입을 보낸다 |
@@ -29,14 +30,9 @@ SaveForm.jsx
 - handleChange는 form을 복사하고 바뀐 칸만 덮어쓴다
 - handleSubmit은 async 함수다. e.preventDefault()로 새로고침을 막는다
 - http.post("/api/boards", form)으로 보내고 useNavigate로 /에 간다
-- BoardForm에 form, onChange={handleChange}, onSubmit={handleSubmit}을 넘긴다
-
-BoardForm.jsx
-- props로 title, buttonText, form, onChange, onSubmit을 받는다
-- 수정 화면은 아직 form을 넘기지 않으므로 form = {}를 기본값으로 둔다. 11장에서 수정 화면도 form을 넘긴다
-- FormCard에 onSubmit을 넘긴다
-- 제목 Input에 name="title", value={form.title}, onChange를 붙인다
-- 내용 textarea에 name="content", value={form.content}, onChange를 붙인다
+- FormCard에 onSubmit={handleSubmit}을 넘긴다
+- 제목 Input에 name="title", value={form.title}, onChange={handleChange}를 붙인다
+- 내용 textarea에 name="content", value={form.content}, onChange={handleChange}를 붙인다
 
 Home.jsx, Detail.jsx, JoinForm.jsx, LoginForm.jsx
 - import axios를 import http from "../api/http"로 바꾼다
@@ -57,15 +53,14 @@ http.interceptors.request.use((config) => {
 await http.post("/api/boards", form);
 navigate("/");
 
-export default function BoardForm({ title, buttonText, form = {}, onChange, onSubmit }) {
-
-<Input name="title" placeholder="제목" value={form.title} onChange={onChange} />
+<FormCard title="글쓰기" onSubmit={handleSubmit}>
+  <Input name="title" placeholder="제목" value={form.title} onChange={handleChange} />
 
 ## 할 일 연결
 | 할 일 | 파일 |
 |---|---|
-| S1 | SaveForm.jsx, BoardForm.jsx |
-| S2 | http.jsx, SaveForm.jsx, BoardForm.jsx |
+| S1 | SaveForm.jsx |
+| S2 | http.jsx, SaveForm.jsx |
 | S3 | SaveForm.jsx |
 | S4 | http.jsx, Home.jsx, Detail.jsx |
 | 그대로인 것 | JoinForm.jsx, LoginForm.jsx |
@@ -74,7 +69,7 @@ export default function BoardForm({ title, buttonText, form = {}, onChange, onSu
 - 추가 없음. axios 1 (contract에 있음)
 
 ## 다른 장 파일
-- component-split: BoardForm.jsx, SaveForm.jsx
+- component-split: SaveForm.jsx, UpdateForm.jsx, BoardForm.jsx
 - board-list: Home.jsx
 - board-detail: Detail.jsx
 - join: JoinForm.jsx
