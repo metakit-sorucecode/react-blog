@@ -1,0 +1,57 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "ssar",
+      "password": "1234"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2MzY0LCJleHAiOjE3OTI2MjExNjR9.RdWusS7LjSdz072vh67_8QaSrqmuCmk1-3LkRFNGLo0",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2MzY0LCJleHAiOjE3OTI2MjExNjR9.RdWusS7LjSdz072vh67_8QaSrqmuCmk1-3LkRFNGLo0",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2MzY0LCJleHAiOjE3OTI2MjExNjR9.RdWusS7LjSdz072vh67_8QaSrqmuCmk1-3LkRFNGLo0",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2MzY0LCJleHAiOjE3OTI2MjExNjR9.RdWusS7LjSdz072vh67_8QaSrqmuCmk1-3LkRFNGLo0",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/api/replies",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2MzY0LCJleHAiOjE3OTI2MjExNjR9.RdWusS7LjSdz072vh67_8QaSrqmuCmk1-3LkRFNGLo0",
+    "body": {
+      "boardId": "4",
+      "comment": "새 댓글"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDE2MzY0LCJleHAiOjE3OTI2MjExNjR9.RdWusS7LjSdz072vh67_8QaSrqmuCmk1-3LkRFNGLo0",
+    "body": null,
+    "status": 200
+  }
+]

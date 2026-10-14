@@ -1,0 +1,132 @@
+{
+  "chapter": "reply",
+  "web": "http://localhost:5173",
+  "api": "http://localhost:8080",
+  "shots": [
+    {
+      "file": "T1-내-댓글에만-휴지통.png",
+      "task": "T1",
+      "commit": "dbef290",
+      "screen": "로그인 뒤 상세 /board/4",
+      "path": "/login-form",
+      "see": "ssar로 로그인하면 /board/4의 댓글1, 댓글2에만 휴지통이 보이고 댓글3에는 없다",
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/4" }
+      ]
+    },
+    {
+      "file": "T2-댓글-입력값-기억.png",
+      "task": "T2",
+      "commit": "e5a2346",
+      "screen": "로그인 뒤 상세 /board/4",
+      "path": "/login-form",
+      "see": "댓글 칸에 친 새 댓글이 그대로 남아 있다",
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/4" },
+        { "fill": ["댓글을 입력하세요", "새 댓글"] }
+      ]
+    },
+    {
+      "file": "T3-등록-뒤-목록.png",
+      "task": "T3",
+      "commit": "0fd811d",
+      "screen": "댓글 등록 뒤 상세 /board/4",
+      "path": "/login-form",
+      "see": "등록을 누르면 댓글 목록 끝에 ssar와 새 댓글이 붙고 입력칸에는 새 댓글이 남아 있다. POST /api/replies 뒤 GET /api/boards/4가 다시 간다(T3-등록-뒤-목록.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/4" },
+        { "fill": ["댓글을 입력하세요", "새 댓글"] },
+        { "click": "등록" }
+      ]
+    },
+    {
+      "file": "T4-등록-뒤-입력칸-비움.png",
+      "task": "T4",
+      "commit": "b8ac0fe",
+      "screen": "댓글 등록 뒤 상세 /board/4",
+      "path": "/login-form",
+      "see": "등록하면 목록 끝에 ssar와 새 댓글이 붙고 입력칸이 빈다",
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/4" },
+        { "fill": ["댓글을 입력하세요", "새 댓글"] },
+        { "click": "등록" }
+      ]
+    },
+    {
+      "file": "T5-삭제-뒤-목록.png",
+      "task": "T5",
+      "commit": "905a959",
+      "screen": "댓글 삭제 뒤 상세 /board/4",
+      "path": "/login-form",
+      "see": "cos로 로그인해 댓글3의 휴지통을 누르면 목록에서 댓글3이 사라진다. DELETE /api/replies/3 뒤 GET /api/boards/4가 다시 간다(T5-삭제-뒤-목록.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "cos"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/4" },
+        { "click": "🗑" }
+      ]
+    },
+    {
+      "file": "done-내-댓글-휴지통.png",
+      "task": "done",
+      "commit": "905a959",
+      "screen": "로그인 뒤 상세 /board/4",
+      "path": "/login-form",
+      "see": "ssar로 로그인하면 댓글1, 댓글2에만 휴지통이 있고 아래에 빈 댓글 입력칸과 등록 버튼이 있다",
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/4" }
+      ]
+    },
+    {
+      "file": "done-댓글-등록-뒤.png",
+      "task": "done",
+      "commit": "905a959",
+      "screen": "댓글 등록 뒤 상세 /board/4",
+      "path": "/login-form",
+      "see": "등록하면 목록 끝에 휴지통이 달린 ssar 새 댓글이 붙고 입력칸이 빈다. POST /api/replies 요청에 토큰과 boardId, comment가 실려 간다(done-댓글-등록-뒤.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/4" },
+        { "fill": ["댓글을 입력하세요", "새 댓글"] },
+        { "click": "등록" }
+      ]
+    },
+    {
+      "file": "done-댓글-삭제-뒤.png",
+      "task": "done",
+      "commit": "905a959",
+      "screen": "댓글 삭제 뒤 상세 /board/4",
+      "path": "/login-form",
+      "see": "cos로 로그인해 댓글3의 휴지통을 누르면 댓글3이 사라지고 댓글1, 댓글2만 남는다. DELETE /api/replies/3 요청에 토큰이 실려 간다(done-댓글-삭제-뒤.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "cos"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/4" },
+        { "click": "🗑" }
+      ]
+    }
+  ]
+}

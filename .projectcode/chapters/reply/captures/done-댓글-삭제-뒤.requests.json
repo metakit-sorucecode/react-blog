@@ -1,0 +1,54 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "cos",
+      "password": "1234"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzNzAsImV4cCI6MTc5MjYyMTE3MH0.o7nChxTQ7ywM4rTM7N3L9Y9IbKX4t2v8_Gn6jGgLCkA",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzNzAsImV4cCI6MTc5MjYyMTE3MH0.o7nChxTQ7ywM4rTM7N3L9Y9IbKX4t2v8_Gn6jGgLCkA",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzNzAsImV4cCI6MTc5MjYyMTE3MH0.o7nChxTQ7ywM4rTM7N3L9Y9IbKX4t2v8_Gn6jGgLCkA",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzNzAsImV4cCI6MTc5MjYyMTE3MH0.o7nChxTQ7ywM4rTM7N3L9Y9IbKX4t2v8_Gn6jGgLCkA",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8080/api/replies/3",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzNzAsImV4cCI6MTc5MjYyMTE3MH0.o7nChxTQ7ywM4rTM7N3L9Y9IbKX4t2v8_Gn6jGgLCkA",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzNzAsImV4cCI6MTc5MjYyMTE3MH0.o7nChxTQ7ywM4rTM7N3L9Y9IbKX4t2v8_Gn6jGgLCkA",
+    "body": null,
+    "status": 200
+  }
+]

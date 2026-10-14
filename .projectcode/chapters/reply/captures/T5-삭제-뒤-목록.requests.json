@@ -1,0 +1,54 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "cos",
+      "password": "1234"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzMTcsImV4cCI6MTc5MjYyMTExN30.fLIUnvnqtoRt-yKcHLsl29bP5P4RmyrD63GTETXnVPw",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzMTcsImV4cCI6MTc5MjYyMTExN30.fLIUnvnqtoRt-yKcHLsl29bP5P4RmyrD63GTETXnVPw",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzMTcsImV4cCI6MTc5MjYyMTExN30.fLIUnvnqtoRt-yKcHLsl29bP5P4RmyrD63GTETXnVPw",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzMTcsImV4cCI6MTc5MjYyMTExN30.fLIUnvnqtoRt-yKcHLsl29bP5P4RmyrD63GTETXnVPw",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8080/api/replies/3",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzMTcsImV4cCI6MTc5MjYyMTExN30.fLIUnvnqtoRt-yKcHLsl29bP5P4RmyrD63GTETXnVPw",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/4",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwMTYzMTcsImV4cCI6MTc5MjYyMTExN30.fLIUnvnqtoRt-yKcHLsl29bP5P4RmyrD63GTETXnVPw",
+    "body": null,
+    "status": 200
+  }
+]
