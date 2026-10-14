@@ -30,7 +30,7 @@
 | 7 | join | 회원가입 | 기능 | useState 폼, axios POST, 성공하면 이동 | 완료 |
 | 8 | login | 로그인 | 기능 | 응답 헤더 토큰, zustand 로그인 상태, 헤더 메뉴 바꾸기, 로그아웃 | 완료 |
 | 9 | login-keep | 로그인 유지 | 기능 | localStorage, jwt-decode로 복원 | 완료 |
-| 10 | board-save | 글쓰기 | 기능 | axios 인스턴스와 인터셉터로 토큰 보내기 | 진행 중 |
+| 10 | board-save | 글쓰기 | 기능 | axios 인스턴스와 인터셉터로 토큰 보내기 | 완료 |
 | 11 | board-update-delete | 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 대기 |
 | 12 | reply | 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 대기 |
 | 13 | my-info | 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 대기 |

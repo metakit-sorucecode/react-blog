@@ -1,0 +1,50 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "ssar",
+      "password": "1234"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA3MTEyLCJleHAiOjE3OTI2MTE5MTJ9.WkmBOD2YI6a0ipMT5HzqGB9YFkabcB7MgRcONJGusQ8",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA3MTEyLCJleHAiOjE3OTI2MTE5MTJ9.WkmBOD2YI6a0ipMT5HzqGB9YFkabcB7MgRcONJGusQ8",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/api/boards",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA3MTEyLCJleHAiOjE3OTI2MTE5MTJ9.WkmBOD2YI6a0ipMT5HzqGB9YFkabcB7MgRcONJGusQ8",
+    "body": {
+      "title": "제목 새 글",
+      "content": "새 내용"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA3MTEyLCJleHAiOjE3OTI2MTE5MTJ9.WkmBOD2YI6a0ipMT5HzqGB9YFkabcB7MgRcONJGusQ8",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDA3MTEyLCJleHAiOjE3OTI2MTE5MTJ9.WkmBOD2YI6a0ipMT5HzqGB9YFkabcB7MgRcONJGusQ8",
+    "body": null,
+    "status": 200
+  }
+]
