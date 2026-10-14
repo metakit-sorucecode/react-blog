@@ -1,0 +1,64 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "ssar",
+      "password": "1234"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDEzNjk4LCJleHAiOjE3OTI2MTg0OTh9.TOVipCvIy2BFBk1yIQ6tWGo3hYFM7XEB4Bb8LtR7HlM",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDEzNjk4LCJleHAiOjE3OTI2MTg0OTh9.TOVipCvIy2BFBk1yIQ6tWGo3hYFM7XEB4Bb8LtR7HlM",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/1",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDEzNjk4LCJleHAiOjE3OTI2MTg0OTh9.TOVipCvIy2BFBk1yIQ6tWGo3hYFM7XEB4Bb8LtR7HlM",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/1",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDEzNjk4LCJleHAiOjE3OTI2MTg0OTh9.TOVipCvIy2BFBk1yIQ6tWGo3hYFM7XEB4Bb8LtR7HlM",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8080/api/boards/1",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDEzNjk4LCJleHAiOjE3OTI2MTg0OTh9.TOVipCvIy2BFBk1yIQ6tWGo3hYFM7XEB4Bb8LtR7HlM",
+    "body": {
+      "title": "고친 제목",
+      "content": "고친 내용"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/1",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDEzNjk4LCJleHAiOjE3OTI2MTg0OTh9.TOVipCvIy2BFBk1yIQ6tWGo3hYFM7XEB4Bb8LtR7HlM",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/1",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDEzNjk4LCJleHAiOjE3OTI2MTg0OTh9.TOVipCvIy2BFBk1yIQ6tWGo3hYFM7XEB4Bb8LtR7HlM",
+    "body": null,
+    "status": 200
+  }
+]
