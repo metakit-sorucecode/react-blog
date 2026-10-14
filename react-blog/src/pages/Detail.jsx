@@ -9,6 +9,7 @@ export default function Detail() {
     title: "",
     content: "",
     username: "",
+    owner: false,
     replies: [],
   });
 
@@ -25,12 +26,14 @@ export default function Detail() {
       <h1 className="text-2xl font-bold">{board.title}</h1>
       <p>작성자 {board.username}</p>
       <p className="my-8">{board.content}</p>
-      <div className="flex gap-2">
-        <Link to={`/update-form/${id}`} className="btn">
-          수정
-        </Link>
-        <button className="btn">삭제</button>
-      </div>
+      {board.owner && (
+        <div className="flex gap-2">
+          <Link to={`/update-form/${id}`} className="btn">
+            수정
+          </Link>
+          <button className="btn">삭제</button>
+        </div>
+      )}
 
       <hr className="my-8" />
 

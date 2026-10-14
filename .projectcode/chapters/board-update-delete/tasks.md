@@ -1,7 +1,7 @@
 # board-update-delete 작업
 
 - [x] 테스트 작성
-- [ ] T1 내 글에만 수정과 삭제 버튼 보이기
+- [x] T1 내 글에만 수정과 삭제 버튼 보이기
   - 근거: S1
   - 파일: react-blog/src/pages/Detail.jsx
   - 실행하면: ssar로 로그인하면 /board/1에는 버튼이 보이고 /board/4에는 없다. 로그인 전에는 어느 글에도 없다
