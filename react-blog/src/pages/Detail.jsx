@@ -36,6 +36,11 @@ export default function Detail() {
     loadBoard();
   }
 
+  async function handleReplyDelete(replyId) {
+    await http.delete(`/api/replies/${replyId}`);
+    loadBoard();
+  }
+
   return (
     <div>
       <h1 className="text-2xl font-bold">{board.title}</h1>
@@ -62,6 +67,7 @@ export default function Detail() {
             username={reply.username}
             comment={reply.comment}
             owner={reply.owner}
+            onDelete={() => handleReplyDelete(reply.id)}
           />
         ))}
       </ul>

@@ -25,7 +25,7 @@
   - 실행하면: 등록하면 새 댓글이 붙고 입력칸이 빈다
   - Why: 칸이 비어야 다음 댓글을 바로 쓸 수 있다
   - 다른 장: board-detail
-- [ ] T5 휴지통을 누르면 지우고 상세 다시 받기
+- [x] T5 휴지통을 누르면 지우고 상세 다시 받기
   - 근거: S5
   - 파일: react-blog/src/pages/Detail.jsx, react-blog/src/components/ReplyItem.jsx
   - 실행하면: 댓글1의 휴지통을 누르면 목록에서 댓글1이 사라진다
