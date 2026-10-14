@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
@@ -7,6 +7,7 @@ import Input from "../components/Input";
 export default function UpdateForm() {
   const { id } = useParams();
   const [form, setForm] = useState({ title: "", content: "" });
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadBoard() {
@@ -20,8 +21,14 @@ export default function UpdateForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await http.put(`/api/boards/${id}`, form);
+    navigate(`/board/${id}`);
+  }
+
   return (
-    <FormCard title="글 수정">
+    <FormCard title="글 수정" onSubmit={handleSubmit}>
       <Input
         name="title"
         placeholder="제목"

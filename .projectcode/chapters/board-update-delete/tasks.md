@@ -18,7 +18,7 @@
   - 파일: react-blog/src/pages/UpdateForm.jsx
   - 실행하면: /update-form/1에 들어가면 제목1, 내용1이 채워져 있다
   - Why: 고치려면 지금 글이 먼저 보여야 한다
-- [ ] T4 수정하기를 누르면 서버에 보내고 상세로 가기
+- [x] T4 수정하기를 누르면 서버에 보내고 상세로 가기
   - 근거: S4
   - 파일: react-blog/src/pages/UpdateForm.jsx
   - 실행하면: 고친 뒤 수정하기를 누르면 /board/1로 가고 고친 제목과 내용이 보인다
