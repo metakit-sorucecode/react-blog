@@ -18,7 +18,7 @@
   - 파일: react-blog/src/api/http.jsx
   - 실행하면: 로그인한 뒤 홈을 열면 개발자 도구 Network 탭의 목록 요청 헤더에 Authorization: Bearer ...가 보인다
   - Why: 글쓰기처럼 로그인이 필요한 요청은 토큰이 없으면 서버가 401로 막는다
-- [ ] T4 글쓰기를 누르면 서버에 보내고 홈으로 가기
+- [x] T4 글쓰기를 누르면 서버에 보내고 홈으로 가기
   - 근거: S2, S3
   - 파일: react-blog/src/pages/SaveForm.jsx, react-blog/src/components/BoardForm.jsx
   - 실행하면: 로그인하고 글을 쓰면 홈으로 가고 새 글이 목록 맨 위에 보인다
