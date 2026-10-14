@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Detail() {
   return (
     <div>
@@ -5,7 +7,9 @@ export default function Detail() {
       <p>작성자 ssar</p>
       <p className="my-8">내용1</p>
       <div className="flex gap-2">
-        <button className="btn">수정</button>
+        <Link to="/update-form/1" className="btn">
+          수정
+        </Link>
         <button className="btn">삭제</button>
       </div>
 
