@@ -45,6 +45,7 @@ test("S1 로그인에 성공하면 받은 토큰을 브라우저 저장소에 �
 
 test("S2 앱이 시작할 때 저장된 토큰이 있으면 토큰 안의 아이디를 꺼내 로그인 상태를 되살린다", async ({
   page,
+  request,
 }) => {
   await login(page);
 
@@ -56,6 +57,23 @@ test("S2 앱이 시작할 때 저장된 토큰이 있으면 토큰 안의 아이
     "내 정보",
     "로그아웃",
     "ssar님",
+  ]);
+
+  // 저장소의 토큰만 cos의 것으로 바꾸면 아이디도 토큰에서 꺼낸 cos로 바뀌어야 한다
+  const res = await request.post(LOGIN_API, {
+    data: { username: "cos", password: "1234" },
+  });
+  const cosJwt = res.headers()["authorization"];
+  await page.evaluate((jwt) => localStorage.setItem("jwt", jwt), cosJwt);
+
+  await page.reload();
+
+  await expect(headerItems(page)).toHaveText([
+    "홈",
+    "글쓰기",
+    "내 정보",
+    "로그아웃",
+    "cos님",
   ]);
 });
 
