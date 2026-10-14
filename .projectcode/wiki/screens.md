@@ -30,6 +30,16 @@
 
 ![상세 서버 글](../chapters/board-detail/captures/done-상세.png)
 
+## 상세 (내 글, 수정과 삭제 버튼)
+처음 나온 장: board-update-delete
+
+![내 글 상세](../chapters/board-update-delete/captures/done-내-글-상세.png)
+
+## 상세 (남의 글, 버튼 없음)
+처음 나온 장: board-update-delete
+
+![남의 글 상세](../chapters/board-update-delete/captures/done-남의-글-상세.png)
+
 ## 글쓰기
 처음 나온 장: screens
 
@@ -44,6 +54,11 @@
 처음 나온 장: screens
 
 ![글 수정](../chapters/screens/captures/done-글-수정.png)
+
+## 글 수정 (기존 값 채움)
+처음 나온 장: board-update-delete
+
+![글 수정 기존 값](../chapters/board-update-delete/captures/done-글-수정.png)
 
 ## 로그인
 처음 나온 장: screens

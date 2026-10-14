@@ -45,22 +45,22 @@
 | PUT | 13 my-info |
 | useQuery | 14 react-query |
 | useMutation | 14 react-query |
-| invalidateQueries | 14 react-query |
+| 계층 queryKey | 14 react-query |
+| staleTime | 14 react-query |
+| invalidateQueries로 필요한 키만 갱신 | 14 react-query |
 | 로그아웃 때 캐시 비우기 | 14 react-query |
 | Devtools | 14 react-query |
-| queryKey에 page와 keyword | 15 paging-search |
-| 이전 화면 유지 | 15 paging-search |
-| 커스텀 훅 useDebounce | 16 search-debounce |
-| 입력이 멈춘 뒤 요청 | 16 search-debounce |
-| register | 17 form-hook |
-| handleSubmit | 17 form-hook |
-| reset | 17 form-hook |
-| zod 스키마 | 18 validation |
-| zodResolver | 18 validation |
-| 에러 문구 | 18 validation |
-| sonner 토스트 | 19 error-handling |
-| 로딩 표시 | 19 error-handling |
-| 없는 글 안내 | 19 error-handling |
-| errorElement | 19 error-handling |
-| 로그인 안내 | 20 auth-guard |
-| 남의 글 수정 막기 | 20 auth-guard |
+| isPending 로딩 | 15 error-handling |
+| isError로 없는 글 안내 | 15 error-handling |
+| 응답 인터셉터에서 sonner 토스트 | 15 error-handling |
+| 없는 주소 안내 | 15 error-handling |
+| queryKey에 page와 keyword | 16 paging-search |
+| 이전 화면 유지 | 16 paging-search |
+| 커스텀 훅 useDebounce | 17 search-debounce |
+| 입력이 멈춘 뒤 요청 | 17 search-debounce |
+| register | 18 form-hook |
+| handleSubmit | 18 form-hook |
+| reset | 18 form-hook |
+| 검사 규칙 하나와 errors 문구 | 18 form-hook |
+| 로그인 안내 | 19 auth-guard |
+| 남의 글 수정 막기 | 19 auth-guard |

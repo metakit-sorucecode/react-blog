@@ -1,12 +1,12 @@
 # 폴더 구조
 
-비교 기준: done/login-keep. 새로 생긴 파일과 고친 파일을 표시했다.
+비교 기준: done/board-save. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
   src/
     api/
-      http.jsx   새로
+      http.jsx
     components/
       BoardCard.jsx
       FormCard.jsx
@@ -16,11 +16,11 @@ react-blog/
       ReplyItem.jsx
     pages/
       Detail.jsx   고침
-      Home.jsx   고침
-      JoinForm.jsx   고침
-      LoginForm.jsx   고침
+      Home.jsx
+      JoinForm.jsx
+      LoginForm.jsx
       SaveForm.jsx   고침
-      UpdateForm.jsx
+      UpdateForm.jsx   고침
       UserInfo.jsx
     store/
       authStore.jsx

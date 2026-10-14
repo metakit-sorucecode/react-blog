@@ -67,26 +67,49 @@ flowchart LR
 - server-node/src/routes/boards.js
 - server-node/src/db.js
 
-## 글 보기에서 수정 화면까지
+## 글 수정
 
 ```mermaid
 flowchart LR
-  A[Home] --> B[BoardCard]
-  B --> C[Detail]
-  C --> D[ReplyItem]
-  C --> E[UpdateForm]
-  E --> F[FormCard]
+  A[Detail] --> B[UpdateForm]
+  B --> C[http]
+  C --> D["GET /api/boards/:id"]
+  C --> E["PUT /api/boards/:id"]
+  D --> F[routes/boards.js]
+  E --> F
+  F --> G[(boards)]
+  B --> A
 ```
 
-만든 장: screens, component-split, board-list, board-detail
+만든 장: screens, component-split, board-detail, board-update-delete
 맡는 파일
-- react-blog/src/pages/Home.jsx
-- react-blog/src/components/BoardCard.jsx
 - react-blog/src/pages/Detail.jsx
-- react-blog/src/components/ReplyItem.jsx
 - react-blog/src/pages/UpdateForm.jsx
 - react-blog/src/components/FormCard.jsx
+- react-blog/src/components/Input.jsx
+- react-blog/src/api/http.jsx
 - react-blog/src/App.jsx
+- server-node/src/routes/boards.js
+- server-node/src/auth.js
+
+## 글 삭제
+
+```mermaid
+flowchart LR
+  A[Detail] --> B[http]
+  B --> C["DELETE /api/boards/:id"]
+  C --> D[routes/boards.js]
+  D --> E[(boards)]
+  D --> F[(replies)]
+  A --> G[Home]
+```
+
+만든 장: screens, board-detail, board-update-delete
+맡는 파일
+- react-blog/src/pages/Detail.jsx
+- react-blog/src/api/http.jsx
+- server-node/src/routes/boards.js
+- server-node/src/auth.js
 
 ## 회원가입
 
@@ -178,4 +201,6 @@ flowchart LR
 토큰은 localStorage에도 남아 새로고침해도 로그인이 유지된다. 로그아웃하면 지운다.
 서버 요청은 모두 http를 지나고, 로그인했으면 토큰이 붙는다.
 글쓰기는 토큰과 함께 보내고 홈으로 간다.
-글 수정, 내 정보 폼은 아직 보내지 않는다.
+상세는 owner가 true인 내 글에만 수정, 삭제 버튼을 보인다.
+글 수정은 기존 값을 채운 폼으로 PUT을 보내고 상세로 간다. 글 삭제는 DELETE를 보내고 홈으로 간다.
+댓글 쓰기와 삭제, 내 정보 폼은 아직 보내지 않는다.
