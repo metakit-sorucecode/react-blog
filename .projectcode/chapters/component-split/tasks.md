@@ -40,3 +40,8 @@
 - [x] 수렴 점검
 - [x] 캡처
 - [x] 도식
+- [ ] T7 글 폼 조각을 걷어 내고 두 화면이 폼 틀을 직접 쓰기
+  - 근거: 고침 T6
+  - 파일: react-blog/src/components/BoardForm.jsx, react-blog/src/pages/SaveForm.jsx, react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 글쓰기와 수정 화면이 그대로 보인다. 두 화면 모두 FormCard 안에 칸을 직접 둔다
+  - Why: 뒤 장에서 입력값과 보내기가 들어오면 글 폼 조각은 값을 넘겨 주기만 하는 층이 된다. 폼 다섯 개가 같은 모양이면 학생이 읽기 쉽다
