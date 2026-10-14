@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import http from "../api/http";
-import BoardForm from "../components/BoardForm";
+import FormCard from "../components/FormCard";
+import Input from "../components/Input";
 
 export default function SaveForm() {
   const [form, setForm] = useState({ title: "", content: "" });
@@ -18,12 +19,21 @@ export default function SaveForm() {
   }
 
   return (
-    <BoardForm
-      title="글쓰기"
-      buttonText="글쓰기"
-      form={form}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-    />
+    <FormCard title="글쓰기" onSubmit={handleSubmit}>
+      <Input
+        name="title"
+        placeholder="제목"
+        value={form.title}
+        onChange={handleChange}
+      />
+      <textarea
+        className="textarea"
+        name="content"
+        placeholder="내용"
+        value={form.content}
+        onChange={handleChange}
+      />
+      <button className="btn">글쓰기</button>
+    </FormCard>
   );
 }

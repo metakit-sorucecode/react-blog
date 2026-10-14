@@ -27,7 +27,7 @@
 - [x] 수렴 점검
 - [x] 캡처
 - [x] 도식
-- [ ] T5 SaveForm이 폼 틀에 입력칸을 직접 두기
+- [x] T5 SaveForm이 폼 틀에 입력칸을 직접 두기
   - 근거: S1, S2, 고침 T1, T4
   - 파일: react-blog/src/pages/SaveForm.jsx, react-blog/src/pages/UpdateForm.jsx, react-blog/src/components/BoardForm.jsx
   - 실행하면: 글쓰기 동작이 그대로다. 친 값이 칸에 남고, 글을 쓰면 홈 맨 위에 보인다
