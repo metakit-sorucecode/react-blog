@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
 export default function UpdateForm() {
+  const { id } = useParams();
   const [form, setForm] = useState({ title: "", content: "" });
+
+  useEffect(() => {
+    async function loadBoard() {
+      const res = await http.get(`/api/boards/${id}`);
+      setForm({ title: res.data.body.title, content: res.data.body.content });
+    }
+    loadBoard();
+  }, [id]);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
