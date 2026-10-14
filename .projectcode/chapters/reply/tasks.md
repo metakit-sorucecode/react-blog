@@ -1,7 +1,7 @@
 # reply 작업
 
 - [x] 테스트 작성
-- [ ] T1 내 댓글에만 휴지통 보이기
+- [x] T1 내 댓글에만 휴지통 보이기
   - 근거: S1
   - 파일: react-blog/src/pages/Detail.jsx, react-blog/src/components/ReplyItem.jsx
   - 실행하면: ssar로 로그인하면 /board/4의 댓글1, 댓글2에만 휴지통이 보이고 댓글3에는 없다. 로그인 전에는 어느 댓글에도 없다
