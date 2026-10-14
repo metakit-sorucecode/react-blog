@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
 export default function UserInfo() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadUser() {
@@ -22,8 +24,14 @@ export default function UserInfo() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await http.put("/api/user", { email: form.email, password: form.password });
+    navigate("/");
+  }
+
   return (
-    <FormCard title="내 정보">
+    <FormCard title="내 정보" onSubmit={handleSubmit}>
       <Input value={form.username} readOnly />
       <Input
         name="email"
