@@ -65,6 +65,16 @@
 
 ![로그아웃 뒤 헤더](../chapters/login/captures/done-로그아웃-뒤.png)
 
+## 홈 (새로고침해도 로그인 유지)
+처음 나온 장: login-keep
+
+![새로고침 로그인 유지](../chapters/login-keep/captures/done-새로고침-로그인-유지.png)
+
+## 홈 (로그아웃 뒤 새로고침)
+처음 나온 장: login-keep
+
+![로그아웃 뒤 새로고침](../chapters/login-keep/captures/done-로그아웃-뒤-새로고침.png)
+
 ## 내 정보
 처음 나온 장: screens
 

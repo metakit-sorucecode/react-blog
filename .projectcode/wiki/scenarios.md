@@ -114,9 +114,10 @@ flowchart LR
   A --> E[useAuthStore]
   E --> F[Header]
   F --> E
+  E --> G[(localStorage)]
 ```
 
-만든 장: screens, component-split, login
+만든 장: screens, component-split, login, login-keep
 맡는 파일
 - react-blog/src/pages/LoginForm.jsx
 - react-blog/src/store/authStore.jsx
@@ -152,4 +153,5 @@ flowchart LR
 홈 목록과 상세는 서버에서 받는다.
 회원가입은 서버에 저장한다.
 로그인은 토큰을 받아 스토어에 기억하고 헤더가 그것을 본다.
+토큰은 localStorage에도 남아 새로고침해도 로그인이 유지된다. 로그아웃하면 지운다.
 글쓰기, 글 수정, 내 정보 폼은 아직 보내지 않는다.
