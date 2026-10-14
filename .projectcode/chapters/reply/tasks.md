@@ -7,7 +7,7 @@
   - 실행하면: ssar로 로그인하면 /board/4의 댓글1, 댓글2에만 휴지통이 보이고 댓글3에는 없다. 로그인 전에는 어느 댓글에도 없다
   - Why: 서버가 알려 준 owner로 내 댓글인지 가려야 남의 댓글에 휴지통을 보이지 않는다
   - 다른 장: board-detail, component-split
-- [ ] T2 댓글 입력값을 state로 기억하기
+- [x] T2 댓글 입력값을 state로 기억하기
   - 근거: S2
   - 파일: react-blog/src/pages/Detail.jsx
   - 실행하면: 댓글 칸에 친 글자가 그대로 남는다. 등록은 아직 동작하지 않는다
