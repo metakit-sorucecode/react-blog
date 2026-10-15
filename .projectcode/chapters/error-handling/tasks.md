@@ -1,24 +1,24 @@
 # error-handling 작업
 
 - [x] 테스트 작성
-- [ ] T1 받는 동안 로딩 표시 보이기
+- [x] T1 다시 묻기 규칙 정하기
+  - 근거: S2, S7
+  - 파일: react-blog/src/main.jsx
+  - 다른 장: react-query
+  - 실행하면: /board/9999에 들어가면 네트워크 탭에 상세 요청이 하나만 남는다. 로그인하지 않고 내 정보에 들어가도 401 요청이 하나만 남는다
+  - Why: 기본값은 3번 다시 묻기라서 404처럼 다시 물어도 같은 실패에 몇 초를 버린다
+- [ ] T2 받는 동안 로딩 표시 보이기
   - 근거: S1
   - 파일: react-blog/src/components/Loading.jsx, react-blog/src/pages/Home.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/pages/UpdateForm.jsx, react-blog/src/pages/UserInfo.jsx
   - 다른 장: react-query
   - 실행하면: 네트워크를 느리게 하고 홈, 상세, 글 수정, 내 정보에 들어가면 빙글 도는 표시가 보인 뒤 내용이 나온다
   - Why: 받는 동안 빈 화면이면 학생은 앱이 멈췄는지 기다리는 중인지 알 수 없다
-- [ ] T2 없는 글이면 안내 보이기
+- [ ] T3 없는 글이면 안내 보이기
   - 근거: S2
   - 파일: react-blog/src/pages/Detail.jsx
   - 다른 장: react-query
-  - 실행하면: /board/9999에 들어가면 몇 초 로딩 뒤 게시글이 없다는 안내와 목록으로 버튼이 보인다
+  - 실행하면: /board/9999에 들어가면 기다림 없이 게시글이 없다는 안내와 목록으로 버튼이 보인다
   - Why: 실패한 조회는 isError로 알 수 있고, 응답 상태 404로 없는 글임을 가려 안내한다
-- [ ] T3 다시 묻기 규칙 정하기
-  - 근거: S2, S7
-  - 파일: react-blog/src/main.jsx
-  - 다른 장: react-query
-  - 실행하면: /board/9999의 안내가 기다림 없이 바로 보이고, 네트워크 탭에 요청이 하나만 남는다
-  - Why: 기본값은 3번 다시 묻기라서 404처럼 다시 물어도 같은 실패에 몇 초를 버린다
 - [ ] T4 없는 주소 안내 보이기
   - 근거: S8
   - 파일: react-blog/src/pages/NotFound.jsx, react-blog/src/App.jsx

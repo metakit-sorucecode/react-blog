@@ -17,6 +17,19 @@ const queryClient = new QueryClient({
       // 탭이 다시 보일 때 다시 받는 옵션(refetchOnWindowFocus)은 기본값 true를 그대로 쓴다
       // 지금 화면에 떠 있는 useQuery의 키 중 stale인 것만 다시 받는다
       // staleTime이 1분이라 받은 지 1분 안에는 탭을 오가도 요청이 가지 않는다
+
+      // 조회가 실패했을 때 다시 물을지 정한다 (retry)
+      // 기본값은 3번 다시 묻기라서, 없는 글(404)도 몇 초 동안 다시 물은 뒤에야 실패가 된다
+      // failureCount는 이미 다시 물은 횟수다. 첫 실패 때 0이다
+      retry: (failureCount, error) => {
+        // 응답이 400대면 다시 물어도 결과가 같다. 바로 실패로 둔다
+        if (error.response && error.response.status < 500) {
+          return false;
+        }
+        // 500이나 연결 실패는 잠깐 뒤에 될 수도 있다. 한 번만 다시 묻는다
+        return failureCount < 1;
+      },
+      // 쓰기(useMutation)의 retry 기본값은 다시 묻지 않기라서 그대로 둔다
     },
   },
 });
