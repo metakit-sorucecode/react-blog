@@ -49,7 +49,7 @@
   - 다른 장: reply
   - 실행하면: 지우면 지운 글 없는 홈으로 가고, 뒤로 가기로 지운 글에 가지 않는다
   - Why: 지운 글 주소를 방문 기록에서 지워야 남은 캐시로 지운 글이 보이지 않는다
-- [ ] T9 댓글 쓰기와 삭제를 useMutation으로
+- [x] T9 댓글 쓰기와 삭제를 useMutation으로
   - 근거: S9
   - 파일: react-blog/src/pages/Detail.jsx
   - 다른 장: reply
