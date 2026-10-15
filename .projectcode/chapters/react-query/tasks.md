@@ -76,7 +76,7 @@
 - [x] 수렴 점검
 - [x] 캡처
 - [x] 도식
-- [ ] T13 QueryClient와 Devtools에 주석 달기
+- [x] T13 QueryClient와 Devtools에 주석 달기
   - 근거: S1, 고침 T1
   - 파일: react-blog/src/main.jsx
   - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
