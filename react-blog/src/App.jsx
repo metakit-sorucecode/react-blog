@@ -7,6 +7,7 @@ import UpdateForm from "./pages/UpdateForm";
 import LoginForm from "./pages/LoginForm";
 import JoinForm from "./pages/JoinForm";
 import UserInfo from "./pages/UserInfo";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -20,6 +21,8 @@ export default function App() {
           <Route path="login-form" element={<LoginForm />} />
           <Route path="join-form" element={<JoinForm />} />
           <Route path="user-info" element={<UserInfo />} />
+          {/* 위 주소 어디에도 맞지 않으면 여기로 온다 */}
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

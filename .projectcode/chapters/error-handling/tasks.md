@@ -19,7 +19,7 @@
   - 다른 장: react-query
   - 실행하면: /board/9999에 들어가면 기다림 없이 게시글이 없다는 안내와 목록으로 버튼이 보인다
   - Why: 실패한 조회는 isError로 알 수 있고, 응답 상태 404로 없는 글임을 가려 안내한다
-- [ ] T4 없는 주소 안내 보이기
+- [x] T4 없는 주소 안내 보이기
   - 근거: S8
   - 파일: react-blog/src/pages/NotFound.jsx, react-blog/src/App.jsx
   - 다른 장: layout
