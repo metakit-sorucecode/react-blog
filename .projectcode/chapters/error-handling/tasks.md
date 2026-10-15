@@ -37,7 +37,7 @@
   - 다른 장: board-save
   - 실행하면: 가입과 로그인이 실패해도 그 화면에 남고 콘솔에 Uncaught 에러가 남지 않는다
   - Why: await로 직접 부른 요청은 받아 주는 곳이 없어 에러가 밖으로 샌다. useMutation 화면과 달리 try/catch로 받는다
-- [ ] T7 서버에 연결할 수 없으면 알리기
+- [x] T7 서버에 연결할 수 없으면 알리기
   - 근거: S6, S7
   - 파일: react-blog/src/api/http.jsx
   - 다른 장: board-save
