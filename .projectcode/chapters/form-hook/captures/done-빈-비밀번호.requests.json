@@ -1,0 +1,13 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/join",
+    "authorization": null,
+    "body": {
+      "username": "kim",
+      "password": "",
+      "email": "kim@nate.com"
+    },
+    "status": 400
+  }
+]

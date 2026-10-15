@@ -1,0 +1,168 @@
+{
+  "chapter": "form-hook",
+  "web": "http://localhost:5173",
+  "api": "http://localhost:8080",
+  "shots": [
+    {
+      "file": "T1-가입-뒤-로그인.png",
+      "task": "T1",
+      "commit": "a9da67f",
+      "screen": "회원가입 /join-form 에서 가입한 뒤의 로그인 화면",
+      "path": "/join-form",
+      "see": "kim으로 가입하면 회원가입 완료 알림 뒤 로그인 화면으로 간다. 알림 창은 사진에 남지 않는다. POST /join이 폼 값 username, password, email을 보내고 200이다(T1-가입-뒤-로그인.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "kim"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "fill": ["이메일", "kim@nate.com"] },
+        { "click": "가입하기" }
+      ]
+    },
+    {
+      "file": "T2-로그인-뒤-홈.png",
+      "task": "T2",
+      "commit": "8172bcc",
+      "screen": "로그인 /login-form 에서 ssar로 로그인한 뒤의 홈",
+      "path": "/login-form",
+      "see": "ssar로 로그인하면 홈으로 가고 헤더 메뉴가 글쓰기, 내 정보, 로그아웃, ssar님으로 바뀐다. POST /login이 username과 password를 보낸다(T2-로그인-뒤-홈.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" }
+      ]
+    },
+    {
+      "file": "T3-새-글-맨-위.png",
+      "task": "T3",
+      "commit": "8f2f34c",
+      "screen": "ssar로 로그인한 뒤 글쓰기 /save-form 에서 쓴 다음의 홈",
+      "path": "/login-form",
+      "see": "새 글을 쓰면 홈으로 가고 목록 맨 위에 새 글 제목이 보인다. POST /api/boards가 title과 content를 보낸다(T3-새-글-맨-위.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/save-form" },
+        { "fill": ["제목", "새 글 제목"] },
+        { "fill": ["내용", "새 글 내용"] },
+        { "click": "글쓰기" }
+      ]
+    },
+    {
+      "file": "T4-고친-제목-상세.png",
+      "task": "T4",
+      "commit": "89ac93f",
+      "screen": "ssar로 로그인한 뒤 글 수정 /update-form/1 에서 제목만 고친 다음의 상세",
+      "path": "/login-form",
+      "see": "제목만 고쳐 수정하기를 누르면 상세에 고친 제목1이 보이고 내용은 채워 둔 내용1 그대로다. PUT /api/boards/1이 title 고친 제목1, content 내용1을 보낸다(T4-고친-제목-상세.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/update-form/1" },
+        { "fill": ["제목", "고친 제목1"] },
+        { "click": "수정하기" }
+      ]
+    },
+    {
+      "file": "T5-댓글-붙고-빈칸.png",
+      "task": "T5",
+      "commit": "b6389ff",
+      "screen": "ssar로 로그인한 뒤 상세 /board/1 에서 댓글을 등록한 다음",
+      "path": "/login-form",
+      "see": "댓글이 없던 제목1에 ssar 새 댓글입니다가 붙고 댓글 입력칸은 비어 있다",
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/board/1" },
+        { "fill": ["댓글을 입력하세요", "새 댓글입니다"] },
+        { "click": "등록" }
+      ]
+    },
+    {
+      "file": "T6-바꾼-이메일.png",
+      "task": "T6",
+      "commit": "e68bbca",
+      "screen": "ssar로 로그인한 뒤 내 정보 /user-info 에서 이메일을 고치고 다시 들어온 화면",
+      "path": "/login-form",
+      "see": "다시 들어온 내 정보에 아이디 ssar와 바꾼 이메일 ssar@gmail.com이 채워져 있고 새 비밀번호 칸은 비어 있다",
+      "steps": [
+        { "fill": ["아이디", "ssar"] },
+        { "fill": ["비밀번호", "1234"] },
+        { "click": "로그인" },
+        { "goto": "/user-info" },
+        { "fill": ["이메일", "ssar@gmail.com"] },
+        { "click": "수정하기" },
+        { "goto": "/user-info" }
+      ]
+    },
+    {
+      "file": "T7-3자-가입-막힘.png",
+      "task": "T7",
+      "commit": "74d14c5",
+      "screen": "회원가입 /join-form 에서 비밀번호 3자로 가입하기를 누른 다음",
+      "path": "/join-form",
+      "see": "비밀번호 123으로 가입하기를 누르면 회원가입 화면에 남고 비밀번호 칸 아래에 빨간 비밀번호는 4자 이상이어야 합니다가 뜨고 비밀번호 칸에 커서가 있다. 서버로 간 요청이 없다(T7-3자-가입-막힘.requests.json이 빈 배열)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "kim"] },
+        { "fill": ["비밀번호", "123"] },
+        { "fill": ["이메일", "kim@nate.com"] },
+        { "click": "가입하기" }
+      ]
+    },
+    {
+      "file": "T8-누르기-전-문구.png",
+      "task": "T8",
+      "commit": "8200900",
+      "screen": "회원가입 /join-form 에서 비밀번호에 3자를 친 다음",
+      "path": "/join-form",
+      "see": "가입하기를 누르기 전인데 비밀번호에 123을 치자 칸 아래에 빨간 비밀번호는 4자 이상이어야 합니다가 보인다",
+      "steps": [
+        { "fill": ["아이디", "kim"] },
+        { "fill": ["비밀번호", "123"] }
+      ]
+    },
+    {
+      "file": "T9-로그인-전-빈-폼.png",
+      "task": "T9",
+      "commit": "95e3a35",
+      "screen": "로그인하지 않고 들어간 내 정보 /user-info",
+      "path": "/user-info",
+      "see": "로그인하지 않고 /user-info에 들어가도 화면이 깨지지 않고 내 정보 제목 아래 빈 아이디, 이메일, 새 비밀번호 칸과 수정하기 버튼이 보인다. 콘솔에는 GET /api/user의 401 실패 한 줄만 있고 Uncaught 줄은 없다(T9-로그인-전-빈-폼.console.txt)",
+      "console": true
+    },
+    {
+      "file": "done-비밀번호-문구.png",
+      "task": "done",
+      "commit": "95e3a35",
+      "screen": "회원가입 /join-form 에서 비밀번호에 3자를 친 다음",
+      "path": "/join-form",
+      "see": "아이디 kim, 비밀번호 123을 치면 누르기 전에 비밀번호 칸 아래에 빨간 비밀번호는 4자 이상이어야 합니다가 보인다",
+      "steps": [
+        { "fill": ["아이디", "kim"] },
+        { "fill": ["비밀번호", "123"] }
+      ]
+    },
+    {
+      "file": "done-빈-비밀번호.png",
+      "task": "done",
+      "commit": "95e3a35",
+      "screen": "회원가입 /join-form 에서 비밀번호를 비운 채 가입하기를 누른 다음",
+      "path": "/join-form",
+      "see": "비밀번호를 쳤다가 비우면 문구가 사라지고, 그대로 가입하기를 누르면 위 오른쪽에 입력값이 필요합니다 토스트가 뜨고 회원가입 화면에 남는다. POST /join이 400이다(done-빈-비밀번호.requests.json)",
+      "requests": true,
+      "steps": [
+        { "fill": ["아이디", "kim"] },
+        { "fill": ["비밀번호", "123"] },
+        { "fill": ["비밀번호", ""] },
+        { "fill": ["이메일", "kim@nate.com"] },
+        { "click": "가입하기" }
+      ]
+    }
+  ]
+}
