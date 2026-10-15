@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import http from "../api/http";
 import BoardCard from "../components/BoardCard";
 import Loading from "../components/Loading";
@@ -27,6 +27,12 @@ export default function Home() {
       const res = await http.get("/", { params: { page, keyword } });
       return res.data.body;
     },
+    // 새 키의 데이터가 올 때까지 바로 앞 키의 데이터를 대신 보인다 (placeholderData)
+    // 이것이 없으면 페이지나 검색어가 바뀔 때마다 새 키에 데이터가 없어 isPending이 된다
+    // 그러면 화면이 로딩 표시로 바뀌며 검색창도 사라졌다 다시 그려져 커서가 빠진다
+    // 보일 데이터가 있으니 isPending이 되지 않고, 응답이 오면 목록만 새것으로 바뀐다
+    // 처음 들어올 때는 앞 키의 데이터도 없어서 로딩 표시를 보인다
+    placeholderData: keepPreviousData,
   });
 
   if (isPending) {
