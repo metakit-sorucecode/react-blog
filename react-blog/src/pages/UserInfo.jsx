@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
 export default function UserInfo() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
+
+  useEffect(() => {
+    async function loadUser() {
+      const res = await http.get("/api/user");
+      setForm({
+        username: res.data.body.username,
+        email: res.data.body.email,
+        password: "",
+      });
+    }
+    loadUser();
+  }, []);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
