@@ -31,7 +31,7 @@
   - 실행하면: 댓글이 붙고 입력칸이 빈다
   - Why: 값 없이 reset을 부르면 입력칸을 처음으로 되돌린다
   - 다른 장: error-handling
-- [ ] T6 내 정보 폼을 reset으로 채우기
+- [x] T6 내 정보 폼을 reset으로 채우기
   - 근거: S6
   - 파일: react-blog/src/pages/UserInfo.jsx
   - 실행하면: 아이디와 이메일이 채워지고 바꾼 이메일이 다시 들어와도 보인다
