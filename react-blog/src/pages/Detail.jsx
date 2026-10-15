@@ -52,6 +52,7 @@ export default function Detail() {
             key={reply.id}
             username={reply.username}
             comment={reply.comment}
+            owner={reply.owner}
           />
         ))}
       </ul>
