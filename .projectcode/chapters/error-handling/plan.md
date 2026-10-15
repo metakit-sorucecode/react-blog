@@ -5,6 +5,7 @@
 |---|---|---|
 | react-blog/src/components/Loading.jsx | 새로 | 빙글 도는 로딩 표시 |
 | react-blog/src/pages/NotFound.jsx | 새로 | 없는 주소 안내와 홈 링크 |
+| react-blog/src/components/Notice.jsx | 새로 | 안내 글 한 줄과 링크 버튼 |
 | react-blog/src/api/http.jsx | 고침 | 응답 인터셉터로 연결 실패와 쓰기 실패를 토스트로 띄운다 |
 | react-blog/src/main.jsx | 고침 | Toaster를 두고 조회의 다시 묻기 규칙(retry)을 정한다 |
 | react-blog/src/App.jsx | 고침 | 없는 주소 라우트를 더한다 |
@@ -27,6 +28,12 @@ Loading.jsx
 NotFound.jsx
 - div text-center 안에 p "페이지를 찾을 수 없습니다"와 Link to="/" className="btn mt-4" "홈으로"를 둔다
 - 라우트 하나가 보여주는 화면이라 pages에 둔다
+
+Notice.jsx
+- 없는 글 안내와 NotFound가 같은 모양이라 마지막 task에서 하나로 뺀다
+- props는 text, to, label이다. div text-center 안에 p {text}와 Link to={to} className="btn mt-4" {label}을 둔다
+- Detail은 Notice text="게시글이 없습니다" to="/" label="목록으로"를 돌려준다
+- NotFound는 Notice text="페이지를 찾을 수 없습니다" to="/" label="홈으로"를 돌려준다
 
 http.jsx
 - interceptors.response.use에 성공은 그대로 돌려주고 실패만 다루는 함수 두 개를 준다
@@ -128,13 +135,13 @@ try {
 | 할 일 | 파일 |
 |---|---|
 | S1 | Loading.jsx, Home.jsx, Detail.jsx, UpdateForm.jsx, UserInfo.jsx |
-| S2 | Detail.jsx, main.jsx, http.jsx |
+| S2 | Detail.jsx, main.jsx, http.jsx, Notice.jsx |
 | S3 | http.jsx, main.jsx, JoinForm.jsx |
 | S4 | http.jsx, main.jsx, LoginForm.jsx |
 | S5 | http.jsx, main.jsx |
 | S6 | http.jsx, main.jsx |
 | S7 | main.jsx |
-| S8 | NotFound.jsx, App.jsx |
+| S8 | NotFound.jsx, App.jsx, Notice.jsx |
 
 ## 라이브러리
 - 추가 없음. sonner 1.7.4가 node_modules에 있고 contract.md에 있다
