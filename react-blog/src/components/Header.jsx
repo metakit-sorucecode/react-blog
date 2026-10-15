@@ -11,6 +11,8 @@ export default function Header() {
 
   function handleLogout() {
     logout();
+    // 캐시를 모두 비운다 (clear)
+    // 남겨 두면 다음에 로그인한 사람이 앞 사람의 내 정보와 글 owner를 캐시로 먼저 본다
     queryClient.clear();
     navigate("/");
   }
