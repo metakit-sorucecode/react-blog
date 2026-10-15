@@ -19,7 +19,7 @@
   - 다른 장: reply
   - 실행하면: 상세와 댓글이 그대로 보이고, 댓글을 쓰거나 지우면 상세 요청이 바로 다시 간다
   - Why: loadBoard가 없어지니 댓글 뒤에는 그 글 키를 무효화해 다시 받게 한다
-- [ ] T4 글 수정 화면을 상세 키로 채우기
+- [x] T4 글 수정 화면을 상세 키로 채우기
   - 근거: S2, S4
   - 파일: react-blog/src/pages/UpdateForm.jsx
   - 다른 장: board-update-delete

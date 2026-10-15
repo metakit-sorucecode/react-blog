@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
@@ -9,13 +10,19 @@ export default function UpdateForm() {
   const [form, setForm] = useState({ title: "", content: "" });
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function loadBoard() {
+  const { data: board } = useQuery({
+    queryKey: ["boards", "detail", id],
+    queryFn: async () => {
       const res = await http.get(`/api/boards/${id}`);
-      setForm({ title: res.data.body.title, content: res.data.body.content });
+      return res.data.body;
+    },
+  });
+
+  useEffect(() => {
+    if (board) {
+      setForm({ title: board.title, content: board.content });
     }
-    loadBoard();
-  }, [id]);
+  }, [board]);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
