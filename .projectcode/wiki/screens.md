@@ -159,3 +159,8 @@
 처음 나온 장: error-handling
 
 ![실패 토스트](../chapters/error-handling/captures/done-토스트.png)
+
+## 회원가입 (비밀번호 4자 문구)
+처음 나온 장: form-hook
+
+![비밀번호 문구](../chapters/form-hook/captures/done-비밀번호-문구.png)

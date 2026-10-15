@@ -1,35 +1,35 @@
 # 폴더 구조
 
-비교 기준: 60809e6. 이 장 시작 커밋 6070e27의 바로 앞이다. 새로 생긴 파일과 고친 파일을 표시했다.
+기준: form-hook 장. 비교 기준은 done/error-handling이다. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
   src/
     api/
-      http.jsx   고침
+      http.jsx
     components/
       BoardCard.jsx
       FormCard.jsx
       Header.jsx
       Input.jsx
       Layout.jsx
-      Loading.jsx   새로
-      Notice.jsx   새로
+      Loading.jsx
+      Notice.jsx
       ReplyItem.jsx
     pages/
       Detail.jsx   고침
-      Home.jsx   고침
+      Home.jsx
       JoinForm.jsx   고침
       LoginForm.jsx   고침
-      NotFound.jsx   새로
-      SaveForm.jsx
+      NotFound.jsx
+      SaveForm.jsx   고침
       UpdateForm.jsx   고침
       UserInfo.jsx   고침
     store/
       authStore.jsx
-    App.jsx   고침
+    App.jsx
     index.css
-    main.jsx   고침
+    main.jsx
   .gitignore
   API.md
   index.html

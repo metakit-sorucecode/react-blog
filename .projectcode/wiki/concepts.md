@@ -62,6 +62,7 @@
 | handleSubmit | 16 form-hook |
 | reset | 16 form-hook |
 | 검사 규칙 하나와 errors 문구 | 16 form-hook |
+| mode로 칠 때마다 검사 | 16 form-hook |
 | queryKey에 page와 keyword | 17 paging-search |
 | 이전 화면 유지 | 17 paging-search |
 | 커스텀 훅 useDebounce | 18 search-debounce |

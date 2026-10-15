@@ -40,7 +40,7 @@ flowchart LR
   A --> E[BoardCard]
 ```
 
-만든 장: screens, component-split, board-list, board-save, react-query
+만든 장: screens, component-split, board-list, board-save, react-query, error-handling
 맡는 파일
 - react-blog/src/pages/Home.jsx
 - react-blog/src/components/BoardCard.jsx
@@ -59,7 +59,7 @@ flowchart LR
   A --> F[ReplyItem]
 ```
 
-만든 장: screens, component-split, board-detail, board-save, react-query
+만든 장: screens, component-split, board-detail, board-save, react-query, error-handling
 맡는 파일
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/components/ReplyItem.jsx
@@ -81,7 +81,7 @@ flowchart LR
   B --> A
 ```
 
-만든 장: screens, component-split, board-detail, board-update-delete, react-query
+만든 장: screens, component-split, board-detail, board-update-delete, react-query, error-handling, form-hook
 맡는 파일
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/pages/UpdateForm.jsx
@@ -124,7 +124,7 @@ flowchart LR
   G --> E
 ```
 
-만든 장: screens, board-detail, board-save, reply, react-query
+만든 장: screens, board-detail, board-save, reply, react-query, form-hook
 맡는 파일
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/api/http.jsx
@@ -159,13 +159,14 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  A[JoinForm] --> B["POST /join"]
-  B --> C[routes/users.js]
-  C --> D[(users)]
-  A --> E[LoginForm]
+  A[JoinForm] --> B["register (minLength)"]
+  B --> C["POST /join"]
+  C --> D[routes/users.js]
+  D --> E[(users)]
+  A --> F[LoginForm]
 ```
 
-만든 장: screens, component-split, join, board-save
+만든 장: screens, component-split, join, board-save, error-handling, form-hook
 맡는 파일
 - react-blog/src/pages/JoinForm.jsx
 - react-blog/src/components/FormCard.jsx
@@ -187,7 +188,7 @@ flowchart LR
   E --> G[(localStorage)]
 ```
 
-만든 장: screens, component-split, login, login-keep, board-save, react-query
+만든 장: screens, component-split, login, login-keep, board-save, react-query, error-handling, form-hook
 맡는 파일
 - react-blog/src/pages/LoginForm.jsx
 - react-blog/src/store/authStore.jsx
@@ -210,7 +211,7 @@ flowchart LR
   A --> G[Home]
 ```
 
-만든 장: screens, component-split, board-save, react-query
+만든 장: screens, component-split, board-save, react-query, form-hook
 맡는 파일
 - react-blog/src/pages/SaveForm.jsx
 - react-blog/src/components/FormCard.jsx
@@ -232,7 +233,7 @@ flowchart LR
   A --> G[Home]
 ```
 
-만든 장: screens, component-split, board-save, my-info, react-query
+만든 장: screens, component-split, board-save, my-info, react-query, error-handling, form-hook
 맡는 파일
 - react-blog/src/pages/UserInfo.jsx
 - react-blog/src/components/FormCard.jsx
@@ -262,7 +263,7 @@ flowchart LR
 - react-blog/src/pages/UserInfo.jsx
 
 홈 목록과 상세는 서버에서 받는다.
-회원가입은 서버에 저장한다.
+회원가입은 비밀번호가 4자 이상이면 서버에 저장한다.
 로그인은 토큰을 받아 스토어에 기억하고 헤더가 그것을 본다.
 토큰은 localStorage에도 남아 새로고침해도 로그인이 유지된다. 로그아웃하면 지운다.
 서버 요청은 모두 http를 지나고 로그인했으면 토큰이 붙는다.
@@ -271,6 +272,36 @@ flowchart LR
 글 수정은 기존 값을 채운 폼으로 PUT을 보내고 상세로 간다. 글 삭제는 DELETE를 보내고 홈으로 간다.
 댓글은 등록하거나 owner인 댓글의 휴지통을 누르면 서버에 보내고 상세를 다시 받는다.
 내 정보는 받은 아이디와 이메일로 폼을 채우고 수정하기를 누르면 PUT을 보내고 홈으로 간다.
+
+## 폼 값 다루기
+
+```mermaid
+flowchart LR
+  A["Join, Login, Save"] --> B[useForm]
+  C["Update, UserInfo, Detail"] --> B
+  B --> D[register]
+  B --> E[handleSubmit]
+  B --> F[reset]
+  D --> G[Input]
+  E --> H[onSubmit]
+  H --> I[http]
+```
+
+만든 장: form-hook
+맡는 파일
+- react-blog/src/pages/JoinForm.jsx
+- react-blog/src/pages/LoginForm.jsx
+- react-blog/src/pages/SaveForm.jsx
+- react-blog/src/pages/UpdateForm.jsx
+- react-blog/src/pages/UserInfo.jsx
+- react-blog/src/pages/Detail.jsx
+- react-blog/src/components/Input.jsx
+
+폼 값은 react-hook-form이 맡는다. 입력칸은 register로 붙고 Input이 받은 속성을 input에 펼친다.
+handleSubmit이 폼 값 data를 모아 onSubmit에 넘기고, onSubmit이 http나 mutate로 보낸다.
+글 수정과 내 정보는 서버 값이 오면 reset(값)으로 채운다. 댓글은 등록 뒤 reset()으로 비운다.
+회원가입 비밀번호는 칠 때마다 4자 규칙을 검사한다. 걸리면 칸 아래 문구를 보이고 요청 없이 그 칸으로 커서가 간다.
+빈 비밀번호는 이 규칙이 검사하지 않고 서버가 막아 토스트가 뜬다.
 
 ## 캐시로 그리기와 다시 받기
 
