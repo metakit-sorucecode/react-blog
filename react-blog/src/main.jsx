@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "sonner";
 import "./index.css";
 import App from "./App";
 
@@ -42,6 +43,21 @@ createRoot(document.getElementById("root")).render(
       {/* 오른쪽 아래에 캐시를 들여다보는 버튼을 띄운다. 키마다 stale, inactive 같은 상태가 보인다 */}
       {/* 개발 모드(npm run dev)에서만 보이고 빌드한 앱에는 나오지 않는다 */}
       <ReactQueryDevtools />
+      {/* toast()로 띄운 알림이 나오는 자리다. 오른쪽 아래는 Devtools 버튼 자리라 위 오른쪽에 둔다 */}
+      {/* 검정 바탕, 흰 글자, 테두리 없이 글 길이만큼만 넓게 그린다 */}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "black",
+            color: "white",
+            border: "none",
+            padding: "8px 16px",
+            width: "fit-content",
+            right: 0,
+          },
+        }}
+      />
     </QueryClientProvider>
   </StrictMode>,
 );

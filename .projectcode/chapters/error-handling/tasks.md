@@ -25,7 +25,7 @@
   - 다른 장: layout
   - 실행하면: /abc에 들어가면 헤더 아래에 페이지를 찾을 수 없다는 안내와 홈으로 버튼이 보인다
   - Why: 어느 라우트에도 맞지 않는 주소는 지금 빈 화면이라 path="*"로 받아 안내한다
-- [ ] T5 쓰기 실패 이유를 토스트로 보이기
+- [x] T5 쓰기 실패 이유를 토스트로 보이기
   - 근거: S3, S4, S5
   - 파일: react-blog/src/main.jsx, react-blog/src/api/http.jsx
   - 다른 장: react-query, board-save
