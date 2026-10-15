@@ -7,7 +7,7 @@
   - 다른 장: project-setup
   - 실행하면: 오른쪽 아래에 Devtools 버튼이 보이고, 누르면 빈 쿼리 목록이 열린다
   - Why: useQuery와 useMutation은 QueryClient가 감싼 안에서만 쓸 수 있다
-- [ ] T2 글 목록을 useQuery로 받기
+- [x] T2 글 목록을 useQuery로 받기
   - 근거: S2
   - 파일: react-blog/src/pages/Home.jsx
   - 다른 장: board-save
