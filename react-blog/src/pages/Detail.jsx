@@ -38,6 +38,7 @@ export default function Detail() {
     },
   });
 
+  // 댓글 쓰기와 삭제도 useMutation에 맡긴다. 성공 뒤 할 일을 onSuccess 한 곳에 모은다
   const saveReply = useMutation({
     mutationFn: () => http.post("/api/replies", { boardId: id, comment }),
     onSuccess: () => {
