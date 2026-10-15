@@ -121,7 +121,7 @@
   - 파일: react-blog/src/pages/Detail.jsx
   - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
   - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
-- [ ] T22 setQueryData에 주석 달기
+- [x] T22 setQueryData에 주석 달기
   - 근거: S10, 고침 T10
   - 파일: react-blog/src/pages/UserInfo.jsx
   - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다

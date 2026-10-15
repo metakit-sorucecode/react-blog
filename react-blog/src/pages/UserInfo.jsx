@@ -30,7 +30,11 @@ export default function UserInfo() {
   const updateUser = useMutation({
     mutationFn: () =>
       http.put("/api/user", { email: form.email, password: form.password }),
+    // res는 mutationFn이 돌려준 수정 응답이다
     onSuccess: (res) => {
+      // 서버에 다시 묻지 않고 ["user"] 캐시를 이 값으로 바꾼다 (setQueryData)
+      // 수정 응답 { id, username, email }이 조회 응답과 모양이 같아서 그대로 넣는다
+      // 무효화해서 다시 받는 것보다 요청이 하나 준다
       queryClient.setQueryData(["user"], res.data.body);
       navigate("/");
     },
