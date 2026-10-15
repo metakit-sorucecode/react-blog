@@ -32,7 +32,8 @@ test("S2 목록을 받기 전에는 카드가 하나도 없는 빈 목록이다"
   // 목록 응답을 붙잡아 두고 받기 전 화면을 본다
   let release;
   const gate = new Promise((resolve) => (release = resolve));
-  await page.route(/localhost:8080\/\?page=0$/, async (route) => {
+  // paging-search 장부터 홈은 목록을 keyword와 함께 요청한다
+  await page.route(/localhost:8080\/\?page=0&keyword=$/, async (route) => {
     await gate;
     await route.continue();
   });

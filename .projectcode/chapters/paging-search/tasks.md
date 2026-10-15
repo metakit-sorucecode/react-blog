@@ -1,6 +1,6 @@
 # paging-search 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 페이지 번호를 키에 넣고 이전, 다음으로 넘기기
   - 근거: S1, S2, S3, S8
   - 파일: react-blog/src/pages/Home.jsx

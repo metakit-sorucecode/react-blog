@@ -2,7 +2,8 @@ import { test, expect } from "@playwright/test";
 
 const API = "http://localhost:8080";
 const LOGIN_API = `${API}/login`;
-const LIST_API = `${API}/?page=0`;
+// paging-search 장부터 홈은 목록을 keyword와 함께 요청한다
+const LIST_API = `${API}/?page=0&keyword=`;
 const USER_API = `${API}/api/user`;
 
 function detailApi(id) {
@@ -187,7 +188,10 @@ test("S2 홈, 상세, 글 수정, 내 정보 화면이 받은 데이터를 키�
   await expect(page.getByPlaceholder("이메일")).toHaveValue("ssar@nate.com");
 
   await openDevtools(page);
-  await expect(keyRow(page, ["boards", "list"])).toHaveCount(1);
+  // paging-search 장부터 목록 키에 page와 keyword가 붙는다. Devtools는 객체 키를 이름순으로 적는다
+  await expect(
+    keyRow(page, ["boards", "list", { keyword: "", page: 0 }]),
+  ).toHaveCount(1);
   await expect(keyRow(page, ["user"])).toHaveCount(1);
   // 상세와 글 수정은 같은 키 하나를 함께 쓴다
   await expect(

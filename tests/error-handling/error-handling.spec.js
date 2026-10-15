@@ -2,7 +2,8 @@ import { test, expect } from "@playwright/test";
 
 const API = "http://localhost:8080";
 const LOGIN_API = `${API}/login`;
-const LIST_API = `${API}/?page=0`;
+// paging-search 장부터 홈은 목록을 keyword와 함께 요청한다
+const LIST_API = `${API}/?page=0&keyword=`;
 const USER_API = `${API}/api/user`;
 
 function detailApi(id) {

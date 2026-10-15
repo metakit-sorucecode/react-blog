@@ -2,7 +2,8 @@ import { test, expect } from "@playwright/test";
 
 const LOGIN_API = "http://localhost:8080/login";
 const SAVE_API = "http://localhost:8080/api/boards";
-const LIST_API = "http://localhost:8080/?page=0";
+// paging-search 장부터 홈은 목록을 keyword와 함께 요청한다
+const LIST_API = "http://localhost:8080/?page=0&keyword=";
 const DETAIL_API = "http://localhost:8080/api/boards/1";
 
 // 홈 카드 제목은 제목으로 시작한다. board-list 테스트가 카드를 이렇게 찾으므로 새 글도 맞춘다
