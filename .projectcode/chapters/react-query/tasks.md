@@ -43,7 +43,7 @@
   - 다른 장: board-update-delete
   - 실행하면: 고치면 상세와 목록 요청이 가고, 상세로 가면 바뀐 제목이 처음부터 보인다
   - Why: 바로 갈 상세는 받은 뒤 가고, 곧 갈 목록은 미리 받아 둔다
-- [ ] T8 글 삭제를 useMutation으로, replace로 홈 가기
+- [x] T8 글 삭제를 useMutation으로, replace로 홈 가기
   - 근거: S8
   - 파일: react-blog/src/pages/Detail.jsx
   - 다른 장: reply

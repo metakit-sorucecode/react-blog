@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
@@ -18,9 +18,19 @@ export default function Detail() {
     },
   });
 
-  async function handleDelete() {
-    await http.delete(`/api/boards/${id}`);
-    navigate("/");
+  const deleteBoard = useMutation({
+    mutationFn: () => http.delete(`/api/boards/${id}`),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["boards", "list"],
+        refetchType: "all",
+      });
+      navigate("/", { replace: true });
+    },
+  });
+
+  function handleDelete() {
+    deleteBoard.mutate();
   }
 
   async function handleReplySubmit(e) {
