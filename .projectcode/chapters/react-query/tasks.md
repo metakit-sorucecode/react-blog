@@ -61,7 +61,7 @@
   - 다른 장: my-info
   - 실행하면: 수정하면 내 정보 요청 없이 홈으로 가고, 다시 들어오면 바뀐 이메일이 보인다
   - Why: 응답이 조회와 모양이 같아 다시 받을 필요가 없다
-- [ ] T11 staleTime 1분 두기
+- [x] T11 staleTime 1분 두기
   - 근거: S3, S4, S5
   - 파일: react-blog/src/main.jsx
   - 다른 장: project-setup
