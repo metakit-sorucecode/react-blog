@@ -47,6 +47,12 @@
   - 파일: react-blog/src/pages/JoinForm.jsx
   - 실행하면: 누르기 전에도 3자면 문구가 보이고 4자가 되거나 칸을 비우면 사라진다. 빈 칸으로 가입하기를 누르면 서버 토스트가 뜬다
   - Why: 누르기 전에 틀린 것을 알려 준다
+- [x] T9 내 정보 아이디도 폼에 두기
+  - 근거: S6 (고침 T6)
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 실행하면: 로그인하지 않고 /user-info에 들어가도 빈 폼이 보인다
+  - Why: 조회가 실패해 user가 없어도 화면이 깨지지 않게 한다
+  - 다른 장: error-handling
 - [ ] 수렴 점검
 - [ ] 캡처
 - [ ] 도식

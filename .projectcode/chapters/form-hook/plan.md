@@ -43,9 +43,10 @@ UpdateForm.jsx
 - mutationFn: (data) => http.put(`/api/boards/${id}`, data)
 
 UserInfo.jsx
-- 아이디는 보내지 않는 값이라 폼에 넣지 않는다. Input value={user.username} readOnly로 보인다
-- useEffect에서 user가 오면 reset({ email: user.email, password: "" })로 채운다. 새 비밀번호 칸은 비워 둔다
-- mutationFn: (data) => http.put("/api/user", data)
+- 아이디도 폼에 둔다. Input readOnly {...register("username")}로 보인다
+- user.username을 바로 쓰지 않는다. 로그인 전에 주소로 들어오면 조회가 실패해 user가 없다. 막는 일은 auth-guard 장이 한다
+- useEffect에서 user가 오면 reset({ username: user.username, email: user.email, password: "" })로 채운다. 새 비밀번호 칸은 비워 둔다
+- 아이디는 보내지 않는다. mutationFn: (data) => http.put("/api/user", { email: data.email, password: data.password })
 
 Detail.jsx
 - useForm은 다른 훅과 함께 맨 위에서 부른다. 앞에서 돌려주는 if보다 먼저다

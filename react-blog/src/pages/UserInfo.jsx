@@ -23,16 +23,16 @@ export default function UserInfo() {
   });
 
   // user가 캐시에서 오면 폼을 채운다. 새 비밀번호 칸은 비워 둔다
-  // 아이디는 서버에 보내지 않는 값이라 폼에 넣지 않는다
   useEffect(() => {
     if (user) {
-      reset({ email: user.email, password: "" });
+      reset({ username: user.username, email: user.email, password: "" });
     }
   }, [user, reset]);
 
   const updateUser = useMutation({
-    // data는 { email, password }다
-    mutationFn: (data) => http.put("/api/user", data),
+    // data는 { username, email, password }다. 아이디는 바꿀 수 없어 보내지 않는다
+    mutationFn: (data) =>
+      http.put("/api/user", { email: data.email, password: data.password }),
     // res는 mutationFn이 돌려준 수정 응답이다
     onSuccess: (res) => {
       // 서버에 다시 묻지 않고 ["user"] 캐시를 이 값으로 바꾼다 (setQueryData)
@@ -53,7 +53,7 @@ export default function UserInfo() {
 
   return (
     <FormCard title="내 정보" onSubmit={handleSubmit(onSubmit)}>
-      <Input value={user.username} readOnly />
+      <Input readOnly {...register("username")} />
       <Input placeholder="이메일" {...register("email")} />
       <Input
         type="password"
