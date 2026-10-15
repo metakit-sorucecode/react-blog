@@ -13,7 +13,7 @@
   - 다른 장: board-save
   - 실행하면: 목록이 그대로 보이고 Devtools에 ["boards", "list"]가 생긴다
   - Why: useState와 useEffect로 받던 서버 데이터를 키로 캐시에 담아야 화면끼리 나눠 쓸 수 있다
-- [ ] T3 상세를 useQuery로 받고 댓글 뒤 상세 키 무효화
+- [x] T3 상세를 useQuery로 받고 댓글 뒤 상세 키 무효화
   - 근거: S2, S9
   - 파일: react-blog/src/pages/Detail.jsx
   - 다른 장: reply

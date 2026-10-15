@@ -1,28 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
 
 export default function Detail() {
   const { id } = useParams();
-  const [board, setBoard] = useState({
-    title: "",
-    content: "",
-    username: "",
-    owner: false,
-    replies: [],
-  });
   const [comment, setComment] = useState("");
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  async function loadBoard() {
-    const res = await http.get(`/api/boards/${id}`);
-    setBoard(res.data.body);
-  }
-
-  useEffect(() => {
-    loadBoard();
-  }, [id]);
+  const { data: board } = useQuery({
+    queryKey: ["boards", "detail", id],
+    queryFn: async () => {
+      const res = await http.get(`/api/boards/${id}`);
+      return res.data.body;
+    },
+  });
 
   async function handleDelete() {
     await http.delete(`/api/boards/${id}`);
@@ -33,12 +27,16 @@ export default function Detail() {
     e.preventDefault();
     await http.post("/api/replies", { boardId: id, comment });
     setComment("");
-    loadBoard();
+    queryClient.invalidateQueries({ queryKey: ["boards", "detail", id] });
   }
 
   async function handleReplyDelete(replyId) {
     await http.delete(`/api/replies/${replyId}`);
-    loadBoard();
+    queryClient.invalidateQueries({ queryKey: ["boards", "detail", id] });
+  }
+
+  if (!board) {
+    return null;
   }
 
   return (
