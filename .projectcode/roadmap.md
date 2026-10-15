@@ -40,6 +40,7 @@
 | 17 | search-debounce | 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 |
 | 18 | form-hook | 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset, 검사 규칙 하나와 errors 문구 | 대기 |
 | 19 | auth-guard | 로그인 확인 | 기능 | 로그인 안내, 남의 글 수정 막기 | 대기 |
+| 20 | query-factory | 쿼리 키와 조회를 한 곳에 | 리팩터 | 키 팩토리, queryOptions, 팩토리 키로 무효화 | 대기 |
 
 ## 장 상세
 
@@ -188,6 +189,13 @@
 - 상세의 댓글 입력 자리에 로그인 안내를 보인다
 - 남의 글 수정 화면은 폼 대신 안내를 보인다
 - 끝나면 로그인 전에는 쓸 수 없다는 것이 먼저 보인다
+
+### 20 query-factory 쿼리 키와 조회를 한 곳에 (리팩터)
+- 화면마다 글자로 쓴 키 배열을 키 팩토리 하나로 모은다. 예: boardKeys.lists(), boardKeys.list({ page, keyword }), boardKeys.detail(id)
+- 키와 queryFn을 queryOptions로 묶는다. 상세와 글 수정이 같은 조회를 쓴다
+- 무효화도 팩토리 키로 바꾼다. 목록 전체는 boardKeys.lists()로 무효화한다
+- 새 라이브러리는 쓰지 않는다
+- 화면 동작은 같다
 
 ## 합류 지점
 - component-split: 그림완성, 통째로 screens
