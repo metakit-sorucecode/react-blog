@@ -46,6 +46,7 @@
 - [x] T8 안내를 Notice 컴포넌트로 빼기
   - 근거: S2, S8
   - 파일: react-blog/src/components/Notice.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/pages/NotFound.jsx
+  - 다른 장: react-query
   - 실행하면: /board/9999와 /abc의 안내가 전과 똑같이 보인다
   - Why: 없는 글 안내와 없는 주소 안내가 글 한 줄과 링크 버튼으로 모양이 같아 하나로 묶는다
 - [x] 테스트 보강
@@ -53,6 +54,6 @@
   - 파일: tests/error-handling/error-handling.spec.js
   - 실행하면: 학생 코드 변경 없음
   - Why: 테스트가 토스트가 없음과 하나뿐임을 확실히 확인하게 한다
-- [ ] 수렴 점검
+- [x] 수렴 점검
 - [ ] 캡처
 - [ ] 도식
