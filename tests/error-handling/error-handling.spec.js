@@ -54,15 +54,17 @@ async function createSsarBoard(request, word) {
 async function holdGet(page, url) {
   let release;
   const released = new Promise((resolve) => (release = resolve));
-  await page.route(
-    (u) => u.href === url,
-    async (route) => {
-      if (route.request().method() !== "GET") return route.continue();
-      await released;
-      await route.continue();
-    },
-  );
-  return () => release();
+  const matcher = (u) => u.href === url;
+  await page.route(matcher, async (route) => {
+    if (route.request().method() !== "GET") return route.continue();
+    await released;
+    await route.continue();
+  });
+  // 다 본 뒤 붙잡기를 푼다. unroute에는 route에 넘긴 함수를 그대로 넘겨야 풀린다
+  return {
+    release: () => release(),
+    unhold: () => page.unroute(matcher),
+  };
 }
 
 // 이 주소로 가는 GET 요청 수를 센다
@@ -91,13 +93,13 @@ function collectPageErrors(page) {
 
 // 받는 동안 로딩 표시가 보이고, 받은 뒤 사라지고 내용이 보이는지 본다
 async function expectLoadingThen(page, path, url, content) {
-  const release = await holdGet(page, url);
+  const hold = await holdGet(page, url);
   await page.goto(path);
   await expect(spinner(page)).toBeVisible();
-  release();
+  hold.release();
   await expect(content()).toBeVisible();
   await expect(spinner(page)).toHaveCount(0);
-  await page.unroute((u) => u.href === url);
+  await hold.unhold();
 }
 
 test("S1 홈, 상세, 글 수정, 내 정보 화면이 데이터를 받는 동안 로딩 표시를 보인다", async ({
@@ -131,13 +133,16 @@ test("S2 없는 글 상세에 들어가면 게시글이 없다는 안내와 목�
   await page.goto("/board/9999");
 
   // 다시 묻지 않으니 기다림 없이 보인다
-  await expect(page.getByText("게시글이 없습니다", { exact: true })).toBeVisible(
-    { timeout: 1500 },
-  );
+  await expect(
+    page.getByText("게시글이 없습니다", { exact: true }),
+  ).toBeVisible({ timeout: 1500 });
+  // 서버 msg를 토스트로 띄우지 않는다
+  // 토스트는 4초 뒤 사라진다. toHaveCount(0)는 0이 될 때까지 기다려 사라진 뒤에 통과할 수 있다
+  // 그래서 0.5초 뒤 그때의 개수를 한 번만 센다
+  await page.waitForTimeout(500);
+  expect(await page.getByText("게시글을 찾을 수 없습니다").count()).toBe(0);
   await page.waitForTimeout(RETRY_WAIT);
   expect(gets).toHaveLength(1);
-  // 서버 msg를 토스트로 띄우지 않는다
-  await expect(page.getByText("게시글을 찾을 수 없습니다")).toHaveCount(0);
 
   await page.getByRole("link", { name: "목록으로", exact: true }).click();
   await expect(page).toHaveURL(/5173\/$/);
@@ -187,7 +192,7 @@ test("S4 비밀번호가 틀린 채 로그인하면 이유를 토스트로 보�
   expect(errors).toEqual([]);
 });
 
-test("S5 남의 글 수정 화면에서 수정하기를 누르면 권한이 없다는 토스트를 보이고 수정 화면에 남는다", async ({
+test("S5 남의 글 수정 화면에서 수정하기를 누르면 권한이 없다는 토스트를 보이고 수정 화면에 남는다. 그 밖의 쓰기 실패도 이유를 토스트로 보인다", async ({
   page,
   request,
 }) => {
@@ -199,9 +204,19 @@ test("S5 남의 글 수정 화면에서 수정하기를 누르면 권한이 없�
   await page.getByPlaceholder("제목").fill("cos가 고친 제목");
   await page.getByRole("button", { name: "수정하기", exact: true }).click();
 
-  await expect(page.getByText("권한이 없습니다", { exact: true })).toBeVisible();
+  await expect(
+    page.getByText("권한이 없습니다", { exact: true }),
+  ).toBeVisible();
   await page.waitForTimeout(500);
   await expect(page).toHaveURL(new RegExp(`/update-form/${board.id}$`));
+
+  // 그 밖의 쓰기 실패: 빈 글쓰기는 서버가 400과 이유를 보낸다
+  await page.getByRole("link", { name: "글쓰기", exact: true }).click();
+  await page.getByRole("button", { name: "글쓰기", exact: true }).click();
+  await expect(
+    page.getByText("제목과 내용이 필요합니다", { exact: true }),
+  ).toBeVisible();
+  await expect(page).toHaveURL(/\/save-form$/);
 });
 
 test("S6 서버에 연결할 수 없으면 조회든 쓰기든 서버에 연결할 수 없다는 토스트가 한 번 뜬다", async ({
@@ -215,7 +230,8 @@ test("S6 서버에 연결할 수 없으면 조회든 쓰기든 서버에 연결�
   await page.goto("/");
   await expect(message()).toBeVisible();
   await page.waitForTimeout(RETRY_WAIT);
-  await expect(message()).toHaveCount(1);
+  // toHaveCount는 맞을 때까지 기다린다. 토스트 2개 중 하나가 먼저 사라져도 통과하니 한 번만 센다
+  expect(await message().count()).toBe(1);
 
   // 쓰기: 로그인
   await page.goto("/login-form");
@@ -223,7 +239,7 @@ test("S6 서버에 연결할 수 없으면 조회든 쓰기든 서버에 연결�
   await page.getByPlaceholder("비밀번호").fill("1234");
   await page.getByRole("button", { name: "로그인", exact: true }).click();
   await expect(message()).toBeVisible();
-  await expect(message()).toHaveCount(1);
+  expect(await message().count()).toBe(1);
   await expect(page).toHaveURL(/\/login-form$/);
 });
 
@@ -232,30 +248,27 @@ test("S7 조회가 500이나 연결 실패면 한 번만 다시 묻고 400대면
 }) => {
   // 500: 목록 조회
   const listGets = countGets(page, LIST_API);
-  await page.route(
-    (u) => u.href === LIST_API,
-    (route) =>
-      route.fulfill({
-        status: 500,
-        contentType: "application/json",
-        body: JSON.stringify({ status: 500, msg: "서버 오류", body: null }),
-      }),
+  const listMatcher = (u) => u.href === LIST_API;
+  await page.route(listMatcher, (route) =>
+    route.fulfill({
+      status: 500,
+      contentType: "application/json",
+      body: JSON.stringify({ status: 500, msg: "서버 오류", body: null }),
+    }),
   );
   await page.goto("/");
   await page.waitForTimeout(RETRY_WAIT);
   expect(listGets).toHaveLength(2);
-  await page.unroute((u) => u.href === LIST_API);
+  await page.unroute(listMatcher);
 
   // 연결 실패: 상세 조회
   const detailGets = countGets(page, detailApi(1));
-  await page.route(
-    (u) => u.href === detailApi(1),
-    (route) => route.abort("connectionrefused"),
-  );
+  const detailMatcher = (u) => u.href === detailApi(1);
+  await page.route(detailMatcher, (route) => route.abort("connectionrefused"));
   await page.goto("/board/1");
   await page.waitForTimeout(RETRY_WAIT);
   expect(detailGets).toHaveLength(2);
-  await page.unroute((u) => u.href === detailApi(1));
+  await page.unroute(detailMatcher);
 
   // 400대: 없는 글 404
   const missingGets = countGets(page, detailApi(9999));
@@ -269,7 +282,9 @@ test("S8 없는 주소에 들어가면 헤더 아래에 페이지를 찾을 수 
 }) => {
   await page.goto("/abc");
 
-  await expect(page.getByRole("link", { name: "홈", exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "홈", exact: true }),
+  ).toBeVisible();
   await expect(
     page.getByText("페이지를 찾을 수 없습니다", { exact: true }),
   ).toBeVisible();
