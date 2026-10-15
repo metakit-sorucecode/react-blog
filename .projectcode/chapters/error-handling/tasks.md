@@ -1,6 +1,6 @@
 # error-handling 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 받는 동안 로딩 표시 보이기
   - 근거: S1
   - 파일: react-blog/src/components/Loading.jsx, react-blog/src/pages/Home.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/pages/UpdateForm.jsx, react-blog/src/pages/UserInfo.jsx
