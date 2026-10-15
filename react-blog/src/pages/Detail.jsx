@@ -15,17 +15,24 @@ export default function Detail() {
   const [comment, setComment] = useState("");
   const navigate = useNavigate();
 
+  async function loadBoard() {
+    const res = await http.get(`/api/boards/${id}`);
+    setBoard(res.data.body);
+  }
+
   useEffect(() => {
-    async function loadBoard() {
-      const res = await http.get(`/api/boards/${id}`);
-      setBoard(res.data.body);
-    }
     loadBoard();
   }, [id]);
 
   async function handleDelete() {
     await http.delete(`/api/boards/${id}`);
     navigate("/");
+  }
+
+  async function handleReplySubmit(e) {
+    e.preventDefault();
+    await http.post("/api/replies", { boardId: id, comment });
+    loadBoard();
   }
 
   return (
@@ -57,7 +64,7 @@ export default function Detail() {
           />
         ))}
       </ul>
-      <form className="flex gap-2 mt-4">
+      <form className="flex gap-2 mt-4" onSubmit={handleReplySubmit}>
         <input
           className="input flex-1"
           placeholder="댓글을 입력하세요"
