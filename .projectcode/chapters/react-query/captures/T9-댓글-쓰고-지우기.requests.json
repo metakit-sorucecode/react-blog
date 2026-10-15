@@ -1,0 +1,57 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "ssar",
+      "password": "1234"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDkxNjA4LCJleHAiOjE3OTI2OTY0MDh9.2c0yI4KrL5dMZ1qXIJU8apIziJvPMzIQ_9xvZfrVRJg",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/3",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDkxNjA4LCJleHAiOjE3OTI2OTY0MDh9.2c0yI4KrL5dMZ1qXIJU8apIziJvPMzIQ_9xvZfrVRJg",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/api/replies",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDkxNjA4LCJleHAiOjE3OTI2OTY0MDh9.2c0yI4KrL5dMZ1qXIJU8apIziJvPMzIQ_9xvZfrVRJg",
+    "body": {
+      "boardId": "3",
+      "comment": "반가워요"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/3",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDkxNjA4LCJleHAiOjE3OTI2OTY0MDh9.2c0yI4KrL5dMZ1qXIJU8apIziJvPMzIQ_9xvZfrVRJg",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8080/api/replies/5",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDkxNjA4LCJleHAiOjE3OTI2OTY0MDh9.2c0yI4KrL5dMZ1qXIJU8apIziJvPMzIQ_9xvZfrVRJg",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/3",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzc2FyIiwiaWF0IjoxNzkyMDkxNjA4LCJleHAiOjE3OTI2OTY0MDh9.2c0yI4KrL5dMZ1qXIJU8apIziJvPMzIQ_9xvZfrVRJg",
+    "body": null,
+    "status": 200
+  }
+]

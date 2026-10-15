@@ -1,0 +1,9 @@
+[
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": null,
+    "body": null,
+    "status": 200
+  }
+]

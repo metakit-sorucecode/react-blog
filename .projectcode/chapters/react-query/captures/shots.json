@@ -1,0 +1,579 @@
+{
+  "chapter": "react-query",
+  "web": "http://localhost:5173",
+  "api": "http://localhost:8080",
+  "shots": [
+    {
+      "file": "T1-Devtools-빈-목록.png",
+      "task": "T1",
+      "commit": "315aab9",
+      "screen": "홈 / 에서 연 Devtools",
+      "see": "오른쪽 아래 Devtools 버튼을 누르면 아래에 패널이 열리고 쿼리 목록이 비어 있다. 홈 글 목록은 그대로 보인다",
+      "requests": true,
+      "steps": [
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "T2-목록-키.png",
+      "task": "T2",
+      "commit": "c82eaa4",
+      "screen": "홈 / 에서 연 Devtools",
+      "see": "글 목록이 그대로 보이고 Devtools 쿼리 목록에 [\"boards\",\"list\"]가 있다. GET /?page=0 요청이 한 번 간다(T2-목록-키.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "T3-댓글-뒤-상세-다시-받기.png",
+      "task": "T3",
+      "commit": "fb3d259",
+      "screen": "로그인 뒤 제목4 상세 /board/4",
+      "path": "/login-form",
+      "see": "ssar로 제목4 상세에서 댓글 좋은 글이네요를 등록하면 댓글 목록 끝에 바로 붙는다. POST /api/replies 뒤에 GET /api/boards/4가 다시 간다(T3-댓글-뒤-상세-다시-받기.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/board/4"
+        },
+        {
+          "fill": [
+            "댓글을 입력하세요",
+            "좋은 글이네요"
+          ]
+        },
+        {
+          "click": "등록"
+        }
+      ]
+    },
+    {
+      "file": "T4-수정-화면-상세-키.png",
+      "task": "T4",
+      "commit": "c5ade8f",
+      "screen": "로그인 뒤 제목1 글 수정 /update-form/1",
+      "path": "/login-form",
+      "see": "ssar로 글 수정 화면에 들어가면 제목 칸에 제목1, 내용 칸에 내용1이 채워져 있다. Devtools에는 [\"boards\",\"detail\",\"1\"] 하나만 있다",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/update-form/1"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "T5-내-정보-키.png",
+      "task": "T5",
+      "commit": "dd139e3",
+      "screen": "로그인 뒤 내 정보 /user-info",
+      "path": "/login-form",
+      "see": "ssar로 내 정보에 들어가면 아이디 ssar, 이메일 ssar@nate.com이 채워져 있다. Devtools에 [\"user\"]가 있다",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/user-info"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "T6-글쓰기-뒤-홈.png",
+      "task": "T6",
+      "commit": "33a4743",
+      "screen": "글쓰기 뒤 홈 /",
+      "path": "/login-form",
+      "see": "ssar로 제목5, 내용5를 쓰고 글쓰기를 누르면 홈으로 가고 제목5가 맨 위에 있다. POST /api/boards 뒤에 GET /?page=0이 간다(T6-글쓰기-뒤-홈.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/save-form"
+        },
+        {
+          "fill": [
+            "제목",
+            "제목5"
+          ]
+        },
+        {
+          "fill": [
+            "내용",
+            "내용5"
+          ]
+        },
+        {
+          "click": "글쓰기"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "T7-수정-뒤-상세.png",
+      "task": "T7",
+      "commit": "23b7212",
+      "screen": "글 수정 뒤 제목1 상세 /board/1",
+      "path": "/login-form",
+      "see": "ssar로 제목1을 제목1 수정됨으로 고치고 수정하기를 누르면 상세로 가고 바뀐 제목이 보인다. PUT /api/boards/1 뒤에 GET /api/boards/1이 간다. staleTime이 아직 없어 상세에 들어가며 GET /api/boards/1이 한 번 더 간다(T7-수정-뒤-상세.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/update-form/1"
+        },
+        {
+          "fill": [
+            "제목",
+            "제목1 수정됨"
+          ]
+        },
+        {
+          "click": "수정하기"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "T8-삭제-뒤-홈.png",
+      "task": "T8",
+      "commit": "14145d2",
+      "screen": "글 삭제 뒤 홈 /",
+      "path": "/login-form",
+      "see": "ssar로 제목2 상세에서 삭제를 누르면 홈으로 가고 제목4, 제목3, 제목1만 보인다. Devtools에 [\"boards\",\"detail\",\"2\"]는 inactive로 남아 있다. DELETE /api/boards/2 뒤에 GET /?page=0이 간다(T8-삭제-뒤-홈.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/board/2"
+        },
+        {
+          "click": "삭제"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "T9-댓글-쓰고-지우기.png",
+      "task": "T9",
+      "commit": "50afe10",
+      "screen": "로그인 뒤 제목3 상세 /board/3",
+      "path": "/login-form",
+      "see": "ssar로 제목3 상세에서 댓글 반가워요를 등록했다가 지우면 댓글4만 남는다. POST /api/replies와 DELETE /api/replies/5 뒤에 GET /api/boards/3만 가고 목록 요청은 가지 않는다(T9-댓글-쓰고-지우기.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/board/3"
+        },
+        {
+          "fill": [
+            "댓글을 입력하세요",
+            "반가워요"
+          ]
+        },
+        {
+          "click": "등록"
+        },
+        {
+          "click": "🗑"
+        }
+      ]
+    },
+    {
+      "file": "T10-내-정보-수정-캐시.png",
+      "task": "T10",
+      "commit": "dfb6e80",
+      "screen": "내 정보 수정 뒤 홈 / 의 Devtools",
+      "path": "/login-form",
+      "see": "ssar로 이메일을 ssar@gmail.com으로 고쳐 수정하면 홈으로 간다. Devtools에서 [\"user\"]를 열면 email이 ssar@gmail.com이다. PUT /api/user 뒤에 GET /api/user는 다시 가지 않는다(T10-내-정보-수정-캐시.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/user-info"
+        },
+        {
+          "fill": [
+            "이메일",
+            "ssar@gmail.com"
+          ]
+        },
+        {
+          "click": "수정하기"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        },
+        {
+          "click": "Query key [\"user\"]"
+        }
+      ]
+    },
+    {
+      "file": "T11-수정-뒤-상세-요청-없음.png",
+      "task": "T11",
+      "commit": "f9fc4ef",
+      "screen": "글 수정 뒤 제목1 상세 /board/1",
+      "path": "/login-form",
+      "see": "T7과 같은 순서로 제목1을 고치면 상세로 가고 바뀐 제목이 보인다. 이번에는 PUT /api/boards/1 뒤에 GET /api/boards/1이 한 번만 간다. 상세는 1분 안이라 캐시로 바로 그린다(T11-수정-뒤-상세-요청-없음.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/update-form/1"
+        },
+        {
+          "fill": [
+            "제목",
+            "제목1 수정됨"
+          ]
+        },
+        {
+          "click": "수정하기"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "T12-로그아웃-뒤-캐시.png",
+      "task": "T12",
+      "commit": "61fbca2",
+      "screen": "내 정보를 본 뒤 로그아웃한 홈 /",
+      "path": "/login-form",
+      "see": "ssar로 내 정보를 본 뒤 로그아웃하면 홈으로 가고 헤더가 로그인과 회원가입으로 바뀐다. Devtools에 [\"user\"]가 없고 [\"boards\",\"list\"]만 있다. 로그아웃 뒤 GET /?page=0이 새로 간다(T12-로그아웃-뒤-캐시.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/user-info"
+        },
+        {
+          "click": "로그아웃"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "done-홈-Devtools-키.png",
+      "task": "done",
+      "commit": "61fbca2",
+      "screen": "홈 / 에서 연 Devtools",
+      "see": "홈에 제목4, 제목3, 제목2가 보이고 오른쪽 아래 Devtools를 열면 [\"boards\",\"list\"]가 fresh로 있다. 그 키를 누르면 받은 글 목록 데이터가 보인다",
+      "requests": true,
+      "steps": [
+        {
+          "click": "Open Tanstack query devtools"
+        },
+        {
+          "click": "Query key [\"boards\",\"list\"]"
+        }
+      ]
+    },
+    {
+      "file": "done-글-수정-뒤-상세.png",
+      "task": "done",
+      "commit": "61fbca2",
+      "screen": "글 수정 뒤 제목1 상세 /board/1",
+      "path": "/login-form",
+      "see": "ssar로 제목1을 제목1 수정됨으로 고치면 상세로 가고 바뀐 제목이 처음부터 보인다. PUT /api/boards/1 뒤에 GET /api/boards/1이 한 번만 간다(done-글-수정-뒤-상세.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/update-form/1"
+        },
+        {
+          "fill": [
+            "제목",
+            "제목1 수정됨"
+          ]
+        },
+        {
+          "click": "수정하기"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        }
+      ]
+    },
+    {
+      "file": "done-내-정보-수정-캐시.png",
+      "task": "done",
+      "commit": "61fbca2",
+      "screen": "내 정보 수정 뒤 홈 / 의 Devtools",
+      "path": "/login-form",
+      "see": "ssar로 이메일을 ssar@gmail.com으로 고쳐 수정하면 홈으로 가고 Devtools의 [\"user\"] 데이터에 ssar@gmail.com이 들어 있다. GET /api/user는 다시 가지 않는다(done-내-정보-수정-캐시.requests.json)",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/user-info"
+        },
+        {
+          "fill": [
+            "이메일",
+            "ssar@gmail.com"
+          ]
+        },
+        {
+          "click": "수정하기"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        },
+        {
+          "click": "Query key [\"user\"]"
+        }
+      ]
+    },
+    {
+      "file": "done-로그아웃-뒤-cos-내-정보.png",
+      "task": "done",
+      "commit": "61fbca2",
+      "screen": "cos로 다시 로그인한 내 정보 /user-info",
+      "path": "/login-form",
+      "see": "ssar로 내 정보를 본 뒤 로그아웃하고 cos로 로그인해 내 정보에 들어가면 아이디 cos, 이메일 cos@nate.com이 보인다. Devtools의 [\"user\"] 데이터도 cos다",
+      "requests": true,
+      "steps": [
+        {
+          "fill": [
+            "아이디",
+            "ssar"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/user-info"
+        },
+        {
+          "click": "로그아웃"
+        },
+        {
+          "goto": "/login-form"
+        },
+        {
+          "fill": [
+            "아이디",
+            "cos"
+          ]
+        },
+        {
+          "fill": [
+            "비밀번호",
+            "1234"
+          ]
+        },
+        {
+          "click": "로그인"
+        },
+        {
+          "goto": "/user-info"
+        },
+        {
+          "click": "Open Tanstack query devtools"
+        },
+        {
+          "click": "Query key [\"user\"]"
+        }
+      ]
+    }
+  ]
+}
