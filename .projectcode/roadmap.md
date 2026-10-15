@@ -36,11 +36,10 @@
 | 13 | my-info | 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 완료 |
 | 14 | react-query | 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries와 refetchType, setQueryData, gcTime, navigate의 replace, 로그아웃 때 캐시 비우기, Devtools | 완료 |
 | 15 | error-handling | 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내, 다시 시도 규칙 | 진행 중 |
-| 16 | paging-search | 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 |
-| 17 | search-debounce | 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 |
-| 18 | form-hook | 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset, 검사 규칙 하나와 errors 문구 | 대기 |
+| 16 | form-hook | 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset, 검사 규칙 하나와 errors 문구 | 대기 |
+| 17 | paging-search | 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 |
+| 18 | search-debounce | 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 |
 | 19 | auth-guard | 로그인 확인 | 기능 | 로그인 안내, 남의 글 수정 막기 | 대기 |
-| 20 | query-factory | 쿼리 키와 조회를 한 곳에 | 리팩터 | 키 팩토리, queryOptions, 팩토리 키로 무효화 | 대기 |
 
 ## 장 상세
 
@@ -97,7 +96,7 @@
 ### 7 join 회원가입
 - 그려 둔 회원가입 폼에 useState를 붙여 아이디, 비밀번호, 이메일을 받는다
 - 가입하기를 누르면 서버에 보내고 로그인 화면으로 간다
-- 실패 처리는 19장에서 한다
+- 실패 처리는 error-handling 장에서 한다
 - API: POST /join
 - 끝나면 새 아이디로 가입된다
 
@@ -170,7 +169,13 @@
 - 없는 주소는 path="*" 라우트로 안내한다
 - 끝나면 실패한 요청마다 이유가 보인다
 
-### 16 paging-search 페이징과 검색
+### 16 form-hook 폼을 react-hook-form으로 (리팩터)
+- 회원가입, 로그인, 글쓰기, 글 수정, 댓글, 내 정보 폼의 form 객체와 handleChange를 register와 handleSubmit으로 바꾼다
+- 글 수정과 내 정보 폼은 reset으로 값을 채운다
+- register에 검사 규칙 하나를 둔다. 예: minLength. 틀리면 입력 아래에 errors 문구를 보이고 요청을 보내지 않는다
+- 규칙 하나 말고는 화면 동작이 같다
+
+### 17 paging-search 페이징과 검색
 - 목록 아래에 이전, 다음 버튼을 둔다. isFirst, isLast면 막는다
 - 목록 위에 제목 검색창을 둔다
 - 목록 키를 ["boards", "list", { page, keyword }]로 늘린다. 14장의 ["boards", "list"] 무효화가 모든 페이지에 걸린다
@@ -178,30 +183,17 @@
 - API: GET /?page=&keyword=
 - 끝나면 페이지를 넘기고 제목으로 찾는다
 
-### 17 search-debounce 검색 디바운스
+### 18 search-debounce 검색 디바운스
 - 검색어를 바로 요청에 쓰지 않고 입력이 멈추고 0.5초 뒤에 쓴다
 - useEffect와 setTimeout으로 커스텀 훅 useDebounce를 만든다
 - 새 라이브러리는 쓰지 않는다
 - 끝나면 빠르게 쳐도 요청은 마지막 한 번만 간다
-
-### 18 form-hook 폼을 react-hook-form으로 (리팩터)
-- 회원가입, 로그인, 글쓰기, 글 수정, 댓글, 내 정보 폼의 form 객체와 handleChange를 register와 handleSubmit으로 바꾼다
-- 글 수정과 내 정보 폼은 reset으로 값을 채운다
-- register에 검사 규칙 하나를 둔다. 예: minLength. 틀리면 입력 아래에 errors 문구를 보이고 요청을 보내지 않는다
-- 규칙 하나 말고는 화면 동작이 같다
 
 ### 19 auth-guard 로그인 확인
 - 로그인하지 않으면 글쓰기와 내 정보 화면 대신 로그인 안내와 링크를 보인다
 - 상세의 댓글 입력 자리에 로그인 안내를 보인다
 - 남의 글 수정 화면은 폼 대신 안내를 보인다
 - 끝나면 로그인 전에는 쓸 수 없다는 것이 먼저 보인다
-
-### 20 query-factory 쿼리 키와 조회를 한 곳에 (리팩터)
-- 화면마다 글자로 쓴 키 배열을 키 팩토리 하나로 모은다. 예: boardKeys.lists(), boardKeys.list({ page, keyword }), boardKeys.detail(id)
-- 키와 queryFn을 queryOptions로 묶는다. 상세와 글 수정이 같은 조회를 쓴다
-- 무효화도 팩토리 키로 바꾼다. 목록 전체는 boardKeys.lists()로 무효화한다
-- 새 라이브러리는 쓰지 않는다
-- 화면 동작은 같다
 
 ## 합류 지점
 - component-split: 그림완성, 통째로 screens
@@ -239,3 +231,4 @@
 - 응답을 받은 목록, 글 수정, 내 정보 조회 실패의 화면 안내
 - 요청 시간 제한 (timeout)
 - 500 응답을 수업에서 직접 보이기
+- 쿼리 키 팩토리와 queryOptions로 조회 모으기
