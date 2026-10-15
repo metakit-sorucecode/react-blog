@@ -35,7 +35,7 @@
 | 12 | reply | 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 완료 |
 | 13 | my-info | 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 완료 |
 | 14 | react-query | 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries와 refetchType, setQueryData, gcTime, navigate의 replace, 로그아웃 때 캐시 비우기, Devtools | 완료 |
-| 15 | error-handling | 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내, 다시 시도 규칙 | 진행 중 |
+| 15 | error-handling | 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내, 다시 시도 규칙 | 완료 |
 | 16 | form-hook | 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset, 검사 규칙 하나와 errors 문구 | 대기 |
 | 17 | paging-search | 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 |
 | 18 | search-debounce | 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 |

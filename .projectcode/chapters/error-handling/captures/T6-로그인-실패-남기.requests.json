@@ -1,0 +1,12 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "ssar",
+      "password": "5678"
+    },
+    "status": 400
+  }
+]

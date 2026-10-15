@@ -1,0 +1,36 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/login",
+    "authorization": null,
+    "body": {
+      "username": "cos",
+      "password": "1234"
+    },
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/?page=0",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwOTc1ODAsImV4cCI6MTc5MjcwMjM4MH0.2vqfx6kr4VvE3n0czDrs6lCIWGnBL3XVbvyk9MI89ic",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/1",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwOTc1ODAsImV4cCI6MTc5MjcwMjM4MH0.2vqfx6kr4VvE3n0czDrs6lCIWGnBL3XVbvyk9MI89ic",
+    "body": null,
+    "status": 200
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8080/api/boards/1",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3MiLCJpYXQiOjE3OTIwOTc1ODAsImV4cCI6MTc5MjcwMjM4MH0.2vqfx6kr4VvE3n0czDrs6lCIWGnBL3XVbvyk9MI89ic",
+    "body": {
+      "title": "cos가 고친 제목",
+      "content": "내용1"
+    },
+    "status": 403
+  }
+]

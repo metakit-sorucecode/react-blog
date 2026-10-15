@@ -1,0 +1,13 @@
+[
+  {
+    "method": "POST",
+    "url": "http://localhost:8080/join",
+    "authorization": null,
+    "body": {
+      "username": "ssar",
+      "password": "1234",
+      "email": "ssar@nate.com"
+    },
+    "status": 400
+  }
+]

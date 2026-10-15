@@ -1,0 +1,9 @@
+[
+  {
+    "method": "GET",
+    "url": "http://localhost:8080/api/boards/9999",
+    "authorization": null,
+    "body": null,
+    "status": 404
+  }
+]
