@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -8,7 +8,7 @@ import Notice from "../components/Notice";
 
 export default function Detail() {
   const { id } = useParams();
-  const [comment, setComment] = useState("");
+  const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   // main.jsx에서 만든 캐시 저장소를 꺼낸다. 쓰기 뒤 캐시를 맞출 때 쓴다
   const queryClient = useQueryClient();
@@ -47,9 +47,11 @@ export default function Detail() {
 
   // 댓글 쓰기와 삭제도 useMutation에 맡긴다. 성공 뒤 할 일을 onSuccess 한 곳에 모은다
   const saveReply = useMutation({
-    mutationFn: () => http.post("/api/replies", { boardId: id, comment }),
+    mutationFn: (data) =>
+      http.post("/api/replies", { boardId: id, comment: data.comment }),
     onSuccess: () => {
-      setComment("");
+      // 값 없이 reset()을 부르면 입력칸을 처음처럼 비운다
+      reset();
       // 상세 키를 무효화한다 (invalidateQueries)
       // 무효화하면 그 키는 stale이 되어 다시 받을 대상이 된다
       // 이 화면이 위 useQuery로 상세 키를 쓰고 있어서 지금 바로 다시 받는다
@@ -70,9 +72,8 @@ export default function Detail() {
     deleteBoard.mutate();
   }
 
-  function handleReplySubmit(e) {
-    e.preventDefault();
-    saveReply.mutate();
+  function onReplySubmit(data) {
+    saveReply.mutate(data);
   }
 
   function handleReplyDelete(replyId) {
@@ -124,12 +125,11 @@ export default function Detail() {
           />
         ))}
       </ul>
-      <form className="flex gap-2 mt-4" onSubmit={handleReplySubmit}>
+      <form className="flex gap-2 mt-4" onSubmit={handleSubmit(onReplySubmit)}>
         <input
           className="input flex-1"
           placeholder="댓글을 입력하세요"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          {...register("comment")}
         />
         <button className="btn">등록</button>
       </form>
