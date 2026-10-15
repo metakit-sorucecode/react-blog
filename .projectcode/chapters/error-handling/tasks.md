@@ -48,6 +48,6 @@
   - 파일: tests/error-handling/error-handling.spec.js
   - 실행하면: 학생 코드 변경 없음
   - Why: 테스트가 토스트가 없음과 하나뿐임을 확실히 확인하게 한다
-- [ ] 수렴 점검
+- [x] 수렴 점검
 - [ ] 캡처
 - [ ] 도식
