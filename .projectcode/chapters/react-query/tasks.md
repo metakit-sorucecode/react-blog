@@ -31,7 +31,7 @@
   - 다른 장: my-info
   - 실행하면: 아이디와 이메일이 채워지고 Devtools에 ["user"]가 생긴다
   - Why: 내 정보도 캐시에 담아야 수정 응답으로 바로 채울 수 있다
-- [ ] T6 글쓰기를 useMutation으로, 목록 즉시 다시 받기
+- [x] T6 글쓰기를 useMutation으로, 목록 즉시 다시 받기
   - 근거: S6
   - 파일: react-blog/src/pages/SaveForm.jsx
   - 다른 장: component-split
