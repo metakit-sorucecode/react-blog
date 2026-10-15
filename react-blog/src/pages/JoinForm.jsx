@@ -1,21 +1,19 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import http from "../api/http";
 import { useNavigate } from "react-router-dom";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
 export default function JoinForm() {
-  const [form, setForm] = useState({ username: "", password: "", email: "" });
+  // 폼 값을 react-hook-form에 맡긴다
+  // 입력칸마다 state와 onChange를 만들지 않아도 된다
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
+  // data는 handleSubmit이 모아 준 폼 값이다. { username, password, email }
+  async function onSubmit(data) {
     try {
-      await http.post("/join", form);
+      await http.post("/join", data);
       alert("회원가입 완료");
       navigate("/login-form");
     } catch {
@@ -24,27 +22,14 @@ export default function JoinForm() {
     }
   }
 
+  // handleSubmit은 새로고침을 막고 폼 값을 모아 onSubmit에 넘긴다
   return (
-    <FormCard title="회원가입" onSubmit={handleSubmit}>
-      <Input
-        name="username"
-        placeholder="아이디"
-        value={form.username}
-        onChange={handleChange}
-      />
-      <Input
-        name="password"
-        type="password"
-        placeholder="비밀번호"
-        value={form.password}
-        onChange={handleChange}
-      />
-      <Input
-        name="email"
-        placeholder="이메일"
-        value={form.email}
-        onChange={handleChange}
-      />
+    <FormCard title="회원가입" onSubmit={handleSubmit(onSubmit)}>
+      {/* register("이름")은 name, onChange, onBlur, ref를 돌려준다. 펼쳐서 입력칸에 붙인다 */}
+      {/* Input은 받은 props를 input에 펼치므로 ref도 input까지 간다 */}
+      <Input placeholder="아이디" {...register("username")} />
+      <Input type="password" placeholder="비밀번호" {...register("password")} />
+      <Input placeholder="이메일" {...register("email")} />
       <button className="btn">가입하기</button>
     </FormCard>
   );
