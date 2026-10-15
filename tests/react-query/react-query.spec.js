@@ -11,6 +11,19 @@ function detailApi(id) {
 
 // 캐시는 메모리에 있어서 page.goto로 새로 불러오면 사라진다
 // 그래서 로그인 뒤 화면 이동은 메뉴, 링크, 뒤로 가기로만 한다
+// networkidle은 페이지를 새로 불러올 때만 기다린다. 화면만 바꾼 뒤에는 settle로 기다린다
+
+// 화면을 바꾼 뒤 요청이 나갈 틈을 준다. 로컬 요청은 수십 ms 안에 나간다
+async function settle(page) {
+  await page.waitForTimeout(1000);
+}
+
+function waitForGet(page, url) {
+  return page.waitForResponse(
+    (res) => res.url() === url && res.request().method() === "GET",
+    { timeout: 5000 },
+  );
+}
 
 // 홈 카드 제목은 제목으로 시작한다. board-list 테스트가 카드를 이렇게 찾으므로 새 글도 맞춘다
 function newBoard(word) {
@@ -74,12 +87,14 @@ async function createBoard(page, request, word) {
 async function openDetailWithList(page, board) {
   await page.goto(`/board/${board.id}`);
   await expect(heading(page, board.title)).toBeVisible();
+  await page.waitForLoadState("networkidle");
+  const listed = waitForGet(page, LIST_API);
   await menu(page, "홈").click();
   await expect(page).toHaveURL(/5173\/$/);
-  await page.waitForLoadState("networkidle");
+  await listed;
   await page.goBack();
   await expect(heading(page, board.title)).toBeVisible();
-  await page.waitForLoadState("networkidle");
+  await settle(page);
 }
 
 // 이 주소로 가는 GET 요청을 모은다
@@ -192,7 +207,7 @@ test("S3 1분 안에 홈으로 돌아오면 목록 요청 없이 바로 그린�
   await menu(page, "홈").click();
   await expect(page).toHaveURL(/5173\/$/);
   await expect(page.getByRole("link", { name: /^제목/ }).first()).toBeVisible();
-  await page.waitForLoadState("networkidle");
+  await settle(page);
 
   expect(lists).toHaveLength(0);
 });
@@ -211,7 +226,7 @@ test("S4 상세에서 수정을 누르면 상세 요청 없이 캐시로 제목�
   await page.getByRole("link", { name: "수정", exact: true }).click();
   await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
   await expect(page.getByPlaceholder("내용")).toHaveValue(board.content);
-  await page.waitForLoadState("networkidle");
+  await settle(page);
 
   expect(details).toHaveLength(0);
 });
@@ -221,7 +236,8 @@ test("S5 탭이 다시 보이면 받은 지 1분이 지난 화면 데이터만 �
 }) => {
   await page.clock.install();
   await login(page, "ssar");
-  await page.waitForLoadState("networkidle");
+  await expect(page.getByRole("link", { name: /^제목/ }).first()).toBeVisible();
+  await settle(page);
 
   const lists = collectGets(page, LIST_API);
   await showTabAgain(page);
@@ -237,7 +253,8 @@ test("S6 글쓰기를 하면 목록을 다시 받은 뒤 홈으로 가고 새 �
   page,
 }) => {
   await login(page, "ssar");
-  await page.waitForLoadState("networkidle");
+  await expect(page.getByRole("link", { name: /^제목/ }).first()).toBeVisible();
+  await settle(page);
   const board = newBoard("글쓰기");
 
   await menu(page, "글쓰기").click();
@@ -253,9 +270,10 @@ test("S6 글쓰기를 하면 목록을 다시 받은 뒤 홈으로 가고 새 �
 
   list.release();
   await expect(page).toHaveURL(/5173\/$/);
-  await expect(page.getByRole("link", { name: /^제목/ }).first()).toHaveText(
-    board.title,
-  );
+  // 다른 테스트가 동시에 글을 쓰면 맨 위 자리는 바뀐다. 맨 위 순서는 board-save 테스트가 본다
+  await expect(
+    page.getByRole("link", { name: board.title, exact: true }),
+  ).toBeVisible();
 });
 
 test("S7 글을 고치면 상세와 목록을 다시 받고 상세를 받은 뒤 상세로 간다", async ({
@@ -267,7 +285,7 @@ test("S7 글을 고치면 상세와 목록을 다시 받고 상세를 받은 뒤
   await openDetailWithList(page, board);
   await page.getByRole("link", { name: "수정", exact: true }).click();
   await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
-  await page.waitForLoadState("networkidle");
+  await settle(page);
 
   const changed = newBoard("수정 뒤");
   await page.getByPlaceholder("제목").fill(changed.title);
@@ -311,7 +329,7 @@ test("S8 글을 지우면 목록을 다시 받은 뒤 홈으로 가고 뒤로 �
   ).toHaveCount(0);
 
   // 지운 글 상세를 다시 요청하지 않는다
-  await page.waitForLoadState("networkidle");
+  await settle(page);
   expect(details).toHaveLength(0);
 
   // 방문 기록에서 지운 글 주소가 홈으로 바뀌었다
@@ -332,14 +350,14 @@ test("S10 내 정보를 고치면 응답으로 캐시를 채워 다시 받지 �
 
   await menu(page, "내 정보").click();
   await expect(page.getByPlaceholder("이메일")).toHaveValue(user.email);
-  await page.waitForLoadState("networkidle");
+  await settle(page);
 
   const email = `new-${user.email}`;
   await page.getByPlaceholder("이메일").fill(email);
   const users = collectGets(page, USER_API);
   await page.getByRole("button", { name: "수정하기", exact: true }).click();
   await expect(page).toHaveURL(/5173\/$/);
-  await page.waitForLoadState("networkidle");
+  await settle(page);
   expect(users).toHaveLength(0);
 
   // 서버 응답을 붙잡아도 캐시에 든 바뀐 이메일이 바로 보인다
@@ -355,7 +373,7 @@ test("S11 로그아웃하면 캐시를 비워 다음 사람이 자기 내 정보
   await login(page, "ssar");
   await menu(page, "내 정보").click();
   await expect(page.getByPlaceholder("이메일")).toHaveValue("ssar@nate.com");
-  await page.waitForLoadState("networkidle");
+  await settle(page);
 
   await page.getByRole("button", { name: "로그아웃", exact: true }).click();
   await expect(page).toHaveURL(/5173\/$/);
