@@ -7,6 +7,8 @@ import Loading from "../components/Loading";
 export default function Home() {
   // 지금 보는 페이지 번호다. 서버는 0부터 센다
   const [page, setPage] = useState(0);
+  // 검색창에 친 글자다. 제목에 이 글자가 든 글만 받는다
+  const [keyword, setKeyword] = useState("");
 
   // 목록을 캐시에서 꺼내 그린다
   // 캐시에 없거나 stale이면 queryFn으로 서버에서 받아 캐시에 넣는다
@@ -15,14 +17,14 @@ export default function Home() {
   const { data, isPending, isError } = useQuery({
     // 캐시 칸의 이름이다
     // ["boards"] 아래에 두면 글에 관한 키를 한 묶음으로 고를 수 있다
-    // 페이지마다 받는 글이 달라서 키에 page를 넣는다. 페이지마다 캐시 칸이 따로 생긴다
-    // 쓰기 뒤 ["boards", "list"]를 무효화하면 앞부분이 같은 모든 페이지 키에 걸린다
-    queryKey: ["boards", "list", { page }],
+    // 페이지와 검색어마다 받는 글이 달라서 키에 page와 keyword를 넣는다. 둘마다 캐시 칸이 따로 생긴다
+    // 쓰기 뒤 ["boards", "list"]를 무효화하면 앞부분이 같은 모든 페이지와 검색 키에 걸린다
+    queryKey: ["boards", "list", { page, keyword }],
     // 캐시에 넣을 데이터를 서버에서 받아 돌려준다
-    // params는 주소 뒤에 ?page=0처럼 붙는다
+    // params는 주소 뒤에 ?page=0&keyword=처럼 붙는다
     // 글 목록과 함께 isFirst, isLast, totalPage, number를 쓰려고 body 전체를 돌려준다
     queryFn: async () => {
-      const res = await http.get("/", { params: { page } });
+      const res = await http.get("/", { params: { page, keyword } });
       return res.data.body;
     },
   });
@@ -38,6 +40,16 @@ export default function Home() {
 
   return (
     <div>
+      <input
+        className="input w-full mb-8"
+        placeholder="제목 검색"
+        value={keyword}
+        onChange={(e) => {
+          setKeyword(e.target.value);
+          // 검색어가 바뀌면 결과의 첫 페이지부터 본다
+          setPage(0);
+        }}
+      />
       <div className="grid grid-cols-3 gap-8">
         {data.boards.map((board) => (
           <BoardCard key={board.id} id={board.id} title={board.title} />
