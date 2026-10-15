@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
@@ -8,17 +9,19 @@ export default function UserInfo() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function loadUser() {
+  const { data: user } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
       const res = await http.get("/api/user");
-      setForm({
-        username: res.data.body.username,
-        email: res.data.body.email,
-        password: "",
-      });
+      return res.data.body;
+    },
+  });
+
+  useEffect(() => {
+    if (user) {
+      setForm({ username: user.username, email: user.email, password: "" });
     }
-    loadUser();
-  }, []);
+  }, [user]);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });

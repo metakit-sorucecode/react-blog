@@ -25,7 +25,7 @@
   - 다른 장: board-update-delete
   - 실행하면: 수정 화면에 기존 제목과 내용이 채워지고 Devtools에는 상세 키 하나만 있다
   - Why: 상세와 같은 키를 쓰면 같은 글을 캐시 하나로 나눠 쓴다
-- [ ] T5 내 정보를 useQuery로 받기
+- [x] T5 내 정보를 useQuery로 받기
   - 근거: S2
   - 파일: react-blog/src/pages/UserInfo.jsx
   - 다른 장: my-info
