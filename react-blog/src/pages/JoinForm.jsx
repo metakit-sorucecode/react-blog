@@ -8,11 +8,12 @@ export default function JoinForm() {
   // 폼 값을 react-hook-form에 맡긴다
   // 입력칸마다 state와 onChange를 만들지 않아도 된다
   // errors에는 검사 규칙에 걸린 칸의 문구가 들어간다
+  // mode "onChange"는 가입하기를 누르기 전에도 칠 때마다 검사한다
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
   const navigate = useNavigate();
 
   // data는 handleSubmit이 모아 준 폼 값이다. { username, password, email }
