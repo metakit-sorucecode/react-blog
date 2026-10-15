@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
+import Loading from "../components/Loading";
 
 export default function UserInfo() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -12,7 +13,7 @@ export default function UserInfo() {
 
   // 내 정보를 ["user"] 키로 캐시에서 꺼낸다
   // 캐시에 없거나 stale이면 서버에서 받는다
-  const { data: user } = useQuery({
+  const { data: user, isPending } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const res = await http.get("/api/user");
@@ -47,6 +48,10 @@ export default function UserInfo() {
   function handleSubmit(e) {
     e.preventDefault();
     updateUser.mutate();
+  }
+
+  if (isPending) {
+    return <Loading />;
   }
 
   return (

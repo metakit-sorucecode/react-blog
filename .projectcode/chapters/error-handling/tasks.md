@@ -7,7 +7,7 @@
   - 다른 장: react-query
   - 실행하면: /board/9999에 들어가면 네트워크 탭에 상세 요청이 하나만 남는다. 로그인하지 않고 내 정보에 들어가도 401 요청이 하나만 남는다
   - Why: 기본값은 3번 다시 묻기라서 404처럼 다시 물어도 같은 실패에 몇 초를 버린다
-- [ ] T2 받는 동안 로딩 표시 보이기
+- [x] T2 받는 동안 로딩 표시 보이기
   - 근거: S1
   - 파일: react-blog/src/components/Loading.jsx, react-blog/src/pages/Home.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/pages/UpdateForm.jsx, react-blog/src/pages/UserInfo.jsx
   - 다른 장: react-query

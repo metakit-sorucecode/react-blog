@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
+import Loading from "../components/Loading";
 
 export default function Detail() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ export default function Detail() {
   const queryClient = useQueryClient();
 
   // 글 상세를 캐시에서 꺼내 그린다
-  const { data: board } = useQuery({
+  const { data: board, isPending } = useQuery({
     queryKey: ["boards", "detail", id],
     queryFn: async () => {
       const res = await http.get(`/api/boards/${id}`);
@@ -72,7 +73,12 @@ export default function Detail() {
     deleteReply.mutate(replyId);
   }
 
-  // 받기 전에는 board가 undefined라서 아무것도 그리지 않는다
+  // 훅을 모두 부른 뒤에 돌려준다. 훅은 매번 같은 순서로 불려야 한다
+  if (isPending) {
+    return <Loading />;
+  }
+
+  // 실패하면 board가 undefined라서 아무것도 그리지 않는다
   if (!board) {
     return null;
   }

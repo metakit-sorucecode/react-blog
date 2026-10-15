@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
+import Loading from "../components/Loading";
 
 export default function UpdateForm() {
   const { id } = useParams();
@@ -14,7 +15,7 @@ export default function UpdateForm() {
   // 상세 화면과 같은 키로 글을 꺼낸다
   // 상세에서 수정을 눌러 들어오면 상세가 받아 둔 캐시로 바로 채운다
   // 같은 키에는 같은 모양이 들어가야 하니 상세처럼 res.data.body 전체를 돌려준다
-  const { data: board } = useQuery({
+  const { data: board, isPending } = useQuery({
     queryKey: ["boards", "detail", id],
     queryFn: async () => {
       const res = await http.get(`/api/boards/${id}`);
@@ -57,6 +58,10 @@ export default function UpdateForm() {
   function handleSubmit(e) {
     e.preventDefault();
     updateBoard.mutate();
+  }
+
+  if (isPending) {
+    return <Loading />;
   }
 
   return (
