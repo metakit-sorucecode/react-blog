@@ -12,6 +12,7 @@ export default function Detail() {
     owner: false,
     replies: [],
   });
+  const [comment, setComment] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,7 +58,12 @@ export default function Detail() {
         ))}
       </ul>
       <form className="flex gap-2 mt-4">
-        <input className="input flex-1" placeholder="댓글을 입력하세요" />
+        <input
+          className="input flex-1"
+          placeholder="댓글을 입력하세요"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
         <button className="btn">등록</button>
       </form>
     </div>
