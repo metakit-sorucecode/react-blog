@@ -1,0 +1,52 @@
+# form-hook 작업
+
+- [ ] 테스트 작성
+- [ ] T1 회원가입 폼을 register와 handleSubmit으로 바꾸기
+  - 근거: S1
+  - 파일: react-blog/src/pages/JoinForm.jsx
+  - 실행하면: 가입하면 지금처럼 알림 뒤 로그인 화면으로 간다
+  - Why: 입력마다 state를 바꾸는 코드 없이 폼 값을 모아 받는다
+  - 다른 장: error-handling
+- [ ] T2 로그인 폼을 register와 handleSubmit으로 바꾸기
+  - 근거: S2
+  - 파일: react-blog/src/pages/LoginForm.jsx
+  - 실행하면: 로그인하면 헤더 메뉴가 바뀌고 홈으로 간다
+  - Why: 같은 방법을 한 번 더 써서 익힌다
+  - 다른 장: error-handling
+- [ ] T3 글쓰기 폼을 바꾸고 data를 mutate로 넘기기
+  - 근거: S3
+  - 파일: react-blog/src/pages/SaveForm.jsx
+  - 실행하면: 새 글이 홈 맨 위에 보인다
+  - Why: useMutation은 폼 값을 state 대신 mutate의 인자로 받는다
+  - 다른 장: react-query
+- [ ] T4 글 수정 폼을 reset으로 채우기
+  - 근거: S4
+  - 파일: react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 기존 제목과 내용이 채워지고 고친 제목이 상세에 보인다
+  - Why: 서버에서 받은 값은 폼이 그려진 뒤에 오므로 reset으로 넣는다
+  - 다른 장: error-handling
+- [ ] T5 댓글 폼을 바꾸고 등록 뒤 reset으로 비우기
+  - 근거: S5
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: 댓글이 붙고 입력칸이 빈다
+  - Why: 값 없이 reset을 부르면 입력칸을 처음으로 되돌린다
+  - 다른 장: error-handling
+- [ ] T6 내 정보 폼을 reset으로 채우기
+  - 근거: S6
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 실행하면: 아이디와 이메일이 채워지고 바꾼 이메일이 다시 들어와도 보인다
+  - Why: 보내는 값만 폼에 두고 받은 값으로 채운다
+  - 다른 장: error-handling
+- [ ] T7 회원가입 비밀번호에 4자 규칙과 문구 두기
+  - 근거: S8, S9
+  - 파일: react-blog/src/pages/JoinForm.jsx
+  - 실행하면: 3자로 가입하기를 누르면 요청 없이 칸 아래에 문구가 뜨고 커서가 비밀번호 칸으로 간다. 빈 칸은 서버 토스트가 뜬다
+  - Why: 서버에 보내기 전에 틀린 값을 화면에서 막는다
+- [ ] T8 칠 때마다 검사하기
+  - 근거: S7
+  - 파일: react-blog/src/pages/JoinForm.jsx
+  - 실행하면: 누르기 전에도 3자면 문구가 보이고 4자가 되면 사라진다
+  - Why: 누르기 전에 틀린 것을 알려 준다
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
