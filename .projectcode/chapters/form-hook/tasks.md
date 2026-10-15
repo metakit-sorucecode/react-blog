@@ -13,7 +13,7 @@
   - 실행하면: 로그인하면 헤더 메뉴가 바뀌고 홈으로 간다
   - Why: 같은 방법을 한 번 더 써서 익힌다
   - 다른 장: error-handling
-- [ ] T3 글쓰기 폼을 바꾸고 data를 mutate로 넘기기
+- [x] T3 글쓰기 폼을 바꾸고 data를 mutate로 넘기기
   - 근거: S3
   - 파일: react-blog/src/pages/SaveForm.jsx
   - 실행하면: 새 글이 홈 맨 위에 보인다

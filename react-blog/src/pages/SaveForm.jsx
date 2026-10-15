@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
@@ -6,14 +6,15 @@ import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
 export default function SaveForm() {
-  const [form, setForm] = useState({ title: "", content: "" });
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   // 서버 데이터를 바꾸는 요청(쓰기)을 맡긴다
   // mutate()를 부르면 mutationFn을 실행하고, 성공하면 onSuccess를 실행한다
+  // mutate(data)로 넘긴 폼 값이 mutationFn의 data로 들어온다
   const saveBoard = useMutation({
-    mutationFn: () => http.post("/api/boards", form),
+    mutationFn: (data) => http.post("/api/boards", data),
     onSuccess: async () => {
       // 목록 키를 무효화한다
       // 목록을 쓰는 화면이 지금 없어서 이 키는 inactive다. 화면에 떠 있는 useQuery가 쓰는 키가 active다
@@ -27,29 +28,18 @@ export default function SaveForm() {
     },
   });
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    saveBoard.mutate();
+  // data는 { title, content }다
+  function onSubmit(data) {
+    saveBoard.mutate(data);
   }
 
   return (
-    <FormCard title="글쓰기" onSubmit={handleSubmit}>
-      <Input
-        name="title"
-        placeholder="제목"
-        value={form.title}
-        onChange={handleChange}
-      />
+    <FormCard title="글쓰기" onSubmit={handleSubmit(onSubmit)}>
+      <Input placeholder="제목" {...register("title")} />
       <textarea
         className="textarea"
-        name="content"
         placeholder="내용"
-        value={form.content}
-        onChange={handleChange}
+        {...register("content")}
       />
       <button className="btn">글쓰기</button>
     </FormCard>
