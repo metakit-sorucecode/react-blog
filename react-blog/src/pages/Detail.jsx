@@ -13,7 +13,12 @@ export default function Detail() {
   const queryClient = useQueryClient();
 
   // 글 상세를 캐시에서 꺼내 그린다
-  const { data: board, isPending } = useQuery({
+  const {
+    data: board,
+    isPending,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["boards", "detail", id],
     queryFn: async () => {
       const res = await http.get(`/api/boards/${id}`);
@@ -78,8 +83,20 @@ export default function Detail() {
     return <Loading />;
   }
 
-  // 실패하면 board가 undefined라서 아무것도 그리지 않는다
-  if (!board) {
+  // isError는 다시 묻기까지 끝내고 실패했을 때 true다
+  if (isError) {
+    // 응답이 왔고 상태가 404면 없는 글이다
+    if (error.response && error.response.status === 404) {
+      return (
+        <div className="text-center">
+          <p>게시글이 없습니다</p>
+          <Link to="/" className="btn mt-4">
+            목록으로
+          </Link>
+        </div>
+      );
+    }
+    // 그 밖의 실패(서버에 닿지 못함)는 화면을 비워 둔다
     return null;
   }
 
