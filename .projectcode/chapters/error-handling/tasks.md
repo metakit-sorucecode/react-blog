@@ -43,7 +43,7 @@
   - 다른 장: board-save
   - 실행하면: 서버를 끄고 홈에 들어가면 서버에 연결할 수 없다는 토스트가 한 번만 뜬다
   - Why: 응답이 없으면 msg도 없다. 조회는 한 번 더 묻기 때문에 같은 id로 토스트를 하나로 묶는다
-- [ ] T8 안내를 Notice 컴포넌트로 빼기
+- [x] T8 안내를 Notice 컴포넌트로 빼기
   - 근거: S2, S8
   - 파일: react-blog/src/components/Notice.jsx, react-blog/src/pages/Detail.jsx, react-blog/src/pages/NotFound.jsx
   - 실행하면: /board/9999와 /abc의 안내가 전과 똑같이 보인다

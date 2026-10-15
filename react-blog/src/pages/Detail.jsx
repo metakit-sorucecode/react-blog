@@ -4,6 +4,7 @@ import http from "../api/http";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
 import Loading from "../components/Loading";
+import Notice from "../components/Notice";
 
 export default function Detail() {
   const { id } = useParams();
@@ -87,14 +88,7 @@ export default function Detail() {
   if (isError) {
     // 응답이 왔고 상태가 404면 없는 글이다
     if (error.response && error.response.status === 404) {
-      return (
-        <div className="text-center">
-          <p>게시글이 없습니다</p>
-          <Link to="/" className="btn mt-4">
-            목록으로
-          </Link>
-        </div>
-      );
+      return <Notice text="게시글이 없습니다" to="/" label="목록으로" />;
     }
     // 그 밖의 실패(서버에 닿지 못함)는 화면을 비워 둔다
     return null;

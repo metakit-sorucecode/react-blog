@@ -1,12 +1,5 @@
-import { Link } from "react-router-dom";
+import Notice from "../components/Notice";
 
 export default function NotFound() {
-  return (
-    <div className="text-center">
-      <p>페이지를 찾을 수 없습니다</p>
-      <Link to="/" className="btn mt-4">
-        홈으로
-      </Link>
-    </div>
-  );
+  return <Notice text="페이지를 찾을 수 없습니다" to="/" label="홈으로" />;
 }
