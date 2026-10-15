@@ -32,7 +32,7 @@ async function login(page) {
 
 async function fillSaveForm(page, board) {
   await page.goto("/save-form");
-  await page.getByPlaceholder("제목").fill(board.title);
+  await page.getByPlaceholder("제목", { exact: true }).fill(board.title);
   await page.getByPlaceholder("내용").fill(board.content);
 }
 
@@ -49,7 +49,9 @@ test("S1 글쓰기 화면에서 제목과 내용을 입력하면 화면이 값�
   const board = newBoard();
   await fillSaveForm(page, board);
 
-  await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
+  await expect(page.getByPlaceholder("제목", { exact: true })).toHaveValue(
+    board.title,
+  );
   await expect(page.getByPlaceholder("내용")).toHaveValue(board.content);
 });
 

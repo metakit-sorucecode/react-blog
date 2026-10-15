@@ -87,7 +87,9 @@ test("S2 수정 화면에 들어가면 주소의 글 번호로 상세를 받아 
 
   await page.goto(`/update-form/${id}`);
 
-  await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
+  await expect(page.getByPlaceholder("제목", { exact: true })).toHaveValue(
+    board.title,
+  );
   await expect(page.getByPlaceholder("내용")).toHaveValue(board.content);
 });
 
@@ -100,10 +102,12 @@ test("S3 수정 화면에서 제목과 내용을 고치면 화면이 고친 값�
   const changed = newBoard("고친");
 
   await openUpdateForm(page, id);
-  await page.getByPlaceholder("제목").fill(changed.title);
+  await page.getByPlaceholder("제목", { exact: true }).fill(changed.title);
   await page.getByPlaceholder("내용").fill(changed.content);
 
-  await expect(page.getByPlaceholder("제목")).toHaveValue(changed.title);
+  await expect(page.getByPlaceholder("제목", { exact: true })).toHaveValue(
+    changed.title,
+  );
   await expect(page.getByPlaceholder("내용")).toHaveValue(changed.content);
 });
 
@@ -116,7 +120,7 @@ test("S4 수정하기를 누르면 고친 제목과 내용을 서버에 보내�
   const changed = newBoard("수정 뒤");
 
   await openUpdateForm(page, id);
-  await page.getByPlaceholder("제목").fill(changed.title);
+  await page.getByPlaceholder("제목", { exact: true }).fill(changed.title);
   await page.getByPlaceholder("내용").fill(changed.content);
 
   const requested = page.waitForRequest(

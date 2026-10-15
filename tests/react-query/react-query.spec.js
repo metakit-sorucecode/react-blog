@@ -183,7 +183,9 @@ test("S2 홈, 상세, 글 수정, 내 정보 화면이 받은 데이터를 키�
 
   await openDetailWithList(page, board);
   await page.getByRole("link", { name: "수정", exact: true }).click();
-  await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
+  await expect(page.getByPlaceholder("제목", { exact: true })).toHaveValue(
+    board.title,
+  );
   await menu(page, "내 정보").click();
   await expect(page.getByPlaceholder("이메일")).toHaveValue("ssar@nate.com");
 
@@ -228,7 +230,9 @@ test("S4 상세에서 수정을 누르면 상세 요청 없이 캐시로 제목�
 
   const details = collectGets(page, detailApi(board.id));
   await page.getByRole("link", { name: "수정", exact: true }).click();
-  await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
+  await expect(page.getByPlaceholder("제목", { exact: true })).toHaveValue(
+    board.title,
+  );
   await expect(page.getByPlaceholder("내용")).toHaveValue(board.content);
   await settle(page);
 
@@ -262,7 +266,7 @@ test("S6 글쓰기를 하면 목록을 다시 받은 뒤 홈으로 가고 새 �
   const board = newBoard("글쓰기");
 
   await menu(page, "글쓰기").click();
-  await page.getByPlaceholder("제목").fill(board.title);
+  await page.getByPlaceholder("제목", { exact: true }).fill(board.title);
   await page.getByPlaceholder("내용").fill(board.content);
 
   const list = await holdGet(page, LIST_API);
@@ -293,11 +297,13 @@ test("S7 글을 고치면 상세와 목록을 다시 받고 상세를 받은 뒤
   const board = await createBoard(page, request, "수정 전");
   await openDetailWithList(page, board);
   await page.getByRole("link", { name: "수정", exact: true }).click();
-  await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
+  await expect(page.getByPlaceholder("제목", { exact: true })).toHaveValue(
+    board.title,
+  );
   await settle(page);
 
   const changed = newBoard("수정 뒤");
-  await page.getByPlaceholder("제목").fill(changed.title);
+  await page.getByPlaceholder("제목", { exact: true }).fill(changed.title);
   await page.getByPlaceholder("내용").fill(changed.content);
 
   const detail = await holdGet(page, detailApi(board.id));

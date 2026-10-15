@@ -279,7 +279,7 @@ test("S8 글을 쓰면 모든 페이지 캐시를 무효화해 다음을 누르�
   });
   const title = `제목 무효화 ${Date.now()}`;
   await page.getByRole("link", { name: "글쓰기", exact: true }).click();
-  await page.getByPlaceholder("제목").fill(title);
+  await page.getByPlaceholder("제목", { exact: true }).fill(title);
   await page.getByPlaceholder("내용").fill("무효화 내용");
   await button(page, "글쓰기").click();
   await expect(page).toHaveURL(/5173\/$/);

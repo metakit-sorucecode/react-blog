@@ -98,7 +98,7 @@ test("S5 글쓰기 화면(/save-form)에 제목과 내용 입력칸, 글쓰기 �
 }) => {
   await page.goto("/save-form");
   await expect(heading(page, "글쓰기")).toBeVisible();
-  await expect(page.getByPlaceholder("제목")).toBeVisible();
+  await expect(page.getByPlaceholder("제목", { exact: true })).toBeVisible();
   await expect(page.getByPlaceholder("내용")).toBeVisible();
   await expect(button(page, "글쓰기")).toBeVisible();
 });
@@ -108,7 +108,7 @@ test("S6 수정 화면에 제목과 내용 입력칸, 수정하기 버튼이 보
 }) => {
   await page.goto("/update-form/1");
   await expect(heading(page, "글 수정")).toBeVisible();
-  await expect(page.getByPlaceholder("제목")).toBeVisible();
+  await expect(page.getByPlaceholder("제목", { exact: true })).toBeVisible();
   await expect(page.getByPlaceholder("내용")).toBeVisible();
   await expect(button(page, "수정하기")).toBeVisible();
 });

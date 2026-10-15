@@ -201,8 +201,10 @@ test("S5 남의 글 수정 화면에서 수정하기를 누르면 권한이 없�
   await login(page, "cos");
 
   await page.goto(`/update-form/${board.id}`);
-  await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
-  await page.getByPlaceholder("제목").fill("cos가 고친 제목");
+  await expect(page.getByPlaceholder("제목", { exact: true })).toHaveValue(
+    board.title,
+  );
+  await page.getByPlaceholder("제목", { exact: true }).fill("cos가 고친 제목");
   await page.getByRole("button", { name: "수정하기", exact: true }).click();
 
   await expect(
