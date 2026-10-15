@@ -10,8 +10,13 @@ import App from "./App";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000, // 받은 데이터를 1분 동안 fresh로 본다
-      // refetchOnWindowFocus는 기본값 true다. 탭이 다시 보이면 지금 화면의 stale 데이터만 다시 받는다
+      // 받은 데이터를 1분 동안 fresh로 본다 (staleTime)
+      // 기본값 0이면 받자마자 stale이라 화면에 들어올 때마다 다시 받는다
+      // 1분으로 두면 화면을 오갈 때 방금 받은 데이터를 요청 없이 캐시로 바로 그린다
+      staleTime: 60 * 1000,
+      // 탭이 다시 보일 때 다시 받는 옵션(refetchOnWindowFocus)은 기본값 true를 그대로 쓴다
+      // 지금 화면에 떠 있는 useQuery의 키 중 stale인 것만 다시 받는다
+      // staleTime이 1분이라 받은 지 1분 안에는 탭을 오가도 요청이 가지 않는다
     },
   },
 });
