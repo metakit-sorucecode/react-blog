@@ -24,6 +24,7 @@ Home.jsx
 - 이전은 button className="btn" disabled={data.isFirst}, 다음은 disabled={data.isLast}다
 - 쪽 번호는 span에 {data.number + 1} / {data.totalPage}로 보인다
 - 이전과 다음은 setPage(data.number - 1), setPage(data.number + 1)이다. 받는 동안에도 보이는 목록의 번호에서 움직인다
+- 받기에 실패하면 data가 없다. isError면 null을 돌려준다. 연결 실패는 토스트가 알린다. 앞 장처럼 화면을 비워 둔다
 - 새 CSS는 없다. mockup.html과 같은 DaisyUI와 Tailwind 클래스만 쓴다
 
 쓰기 뒤 무효화 (코드 그대로)
