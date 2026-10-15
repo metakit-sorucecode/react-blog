@@ -76,3 +76,63 @@
 - [x] 수렴 점검
 - [x] 캡처
 - [x] 도식
+- [ ] T13 QueryClient와 Devtools에 주석 달기
+  - 근거: S1, 고침 T1
+  - 파일: react-blog/src/main.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T14 목록 useQuery에 주석 달기
+  - 근거: S2, 고침 T2
+  - 파일: react-blog/src/pages/Home.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T15 상세 useQuery에 주석 달기
+  - 근거: S2, 고침 T3
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T16 수정 화면 조회에 주석 달기
+  - 근거: S2, S4, 고침 T4
+  - 파일: react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T17 내 정보 조회에 주석 달기
+  - 근거: S2, 고침 T5
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T18 글쓰기 무효화에 주석 달기
+  - 근거: S6, 고침 T6
+  - 파일: react-blog/src/pages/SaveForm.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T19 글 수정 무효화에 주석 달기
+  - 근거: S7, 고침 T7
+  - 파일: react-blog/src/pages/UpdateForm.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T20 글 삭제에 주석 달기
+  - 근거: S8, 고침 T8
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T21 댓글 무효화에 주석 달기
+  - 근거: S9, 고침 T9
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T22 setQueryData에 주석 달기
+  - 근거: S10, 고침 T10
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T23 staleTime에 주석 달기
+  - 근거: S3, S4, S5, 고침 T11
+  - 파일: react-blog/src/main.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다
+- [ ] T24 로그아웃 clear에 주석 달기
+  - 근거: S11, 고침 T12
+  - 파일: react-blog/src/components/Header.jsx
+  - 실행하면: 화면과 요청은 그대로다. 코드에 옵션이 하는 일과 쓴 이유가 주석으로 보인다
+  - Why: TanStack 옵션이 무엇을 하고 여기서 왜 썼는지 코드만 읽고 알 수 있게 한다

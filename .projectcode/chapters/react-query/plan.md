@@ -12,6 +12,10 @@
 | react-blog/src/components/Header.jsx | 고침 | 로그아웃 때 캐시를 비운다 |
 
 ## 코드 계획
+공통
+- TanStack 옵션을 쓴 곳마다 주석을 단다. 첫 줄에 그 코드가 하는 일, 다음 줄들에 이 상황에서 왜 그렇게 되는지를 쓴다
+- 옵션 이름은 처음 나오는 곳에서만 풀어 쓴다
+
 main.jsx
 - QueryClient를 main.jsx에서 만든다. 화면은 useQueryClient로 꺼내 쓰니 파일을 나누지 않는다
 - defaultOptions.queries.staleTime을 60 * 1000으로 둔다
@@ -79,7 +83,15 @@ const { data: boards = [] } = useQuery({
 const updateBoard = useMutation({
   mutationFn: () => http.put(`/api/boards/${id}`, form),
   onSuccess: async () => {
+    // 목록 키를 무효화한다
+    // 목록을 쓰는 화면이 지금 없어서 이 키는 inactive다
+    // 기본값은 active인 키만 다시 받으니, "all"을 줘서 안 보이는 목록도 지금 받게 한다
+    // 기다리지 않는다. 지금 갈 곳은 상세이고, 목록은 홈에 가기 전에 받아 두면 된다
     queryClient.invalidateQueries({ queryKey: ["boards", "list"], refetchType: "all" });
+    // 상세 키를 무효화한다
+    // 이 수정 화면도 위 useQuery에서 같은 상세 키를 쓰고 있다
+    // 화면에 떠 있는 useQuery가 쓰는 키는 active라서, 기본값만으로 지금 바로 다시 받는다
+    // 다 받은 뒤 이동한다. 그래야 상세 화면에 옛 제목이 잠깐도 보이지 않는다
     await queryClient.invalidateQueries({ queryKey: ["boards", "detail", id] });
     navigate(`/board/${id}`);
   },
