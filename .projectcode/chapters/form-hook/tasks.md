@@ -19,7 +19,7 @@
   - 실행하면: 새 글이 홈 맨 위에 보인다
   - Why: useMutation은 폼 값을 state 대신 mutate의 인자로 받는다
   - 다른 장: react-query
-- [ ] T4 글 수정 폼을 reset으로 채우기
+- [x] T4 글 수정 폼을 reset으로 채우기
   - 근거: S4
   - 파일: react-blog/src/pages/UpdateForm.jsx
   - 실행하면: 기존 제목과 내용이 채워지고 고친 제목이 상세에 보인다
