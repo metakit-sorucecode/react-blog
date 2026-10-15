@@ -16,10 +16,14 @@ export default function LoginForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const res = await http.post("/login", form);
-    const jwt = res.headers.authorization;
-    login(jwt, form.username);
-    navigate("/");
+    try {
+      const res = await http.post("/login", form);
+      const jwt = res.headers.authorization;
+      login(jwt, form.username);
+      navigate("/");
+    } catch {
+      // 실패 알림은 인터셉터가 토스트로 띄웠다. 여기서는 이동만 막는다
+    }
   }
 
   return (

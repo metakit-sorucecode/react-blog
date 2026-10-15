@@ -14,9 +14,14 @@ export default function JoinForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await http.post("/join", form);
-    alert("회원가입 완료");
-    navigate("/login-form");
+    try {
+      await http.post("/join", form);
+      alert("회원가입 완료");
+      navigate("/login-form");
+    } catch {
+      // 실패 알림은 인터셉터가 토스트로 띄웠다. 여기서는 이동만 막는다
+      // catch가 없으면 받아 줄 곳이 없는 에러가 콘솔에 Uncaught로 남는다
+    }
   }
 
   return (

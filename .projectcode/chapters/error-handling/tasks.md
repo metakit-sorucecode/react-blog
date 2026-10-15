@@ -31,7 +31,7 @@
   - 다른 장: react-query, board-save
   - 실행하면: 있는 아이디로 가입, 틀린 비밀번호로 로그인, 남의 글 수정을 하면 위 오른쪽에 서버가 보낸 이유가 검정 토스트로 뜬다
   - Why: 서버는 실패 이유를 msg로 보내 주는데 지금은 아무것도 보이지 않는다. 응답 인터셉터 한 곳에서 모든 쓰기 실패를 받는다
-- [ ] T6 가입과 로그인 실패면 이동 막기
+- [x] T6 가입과 로그인 실패면 이동 막기
   - 근거: S3, S4
   - 파일: react-blog/src/pages/JoinForm.jsx, react-blog/src/pages/LoginForm.jsx
   - 다른 장: board-save
