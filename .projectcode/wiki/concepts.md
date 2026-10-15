@@ -47,7 +47,10 @@
 | useMutation | 14 react-query |
 | 계층 queryKey | 14 react-query |
 | staleTime | 14 react-query |
-| invalidateQueries로 필요한 키만 갱신 | 14 react-query |
+| invalidateQueries와 refetchType | 14 react-query |
+| setQueryData | 14 react-query |
+| gcTime | 14 react-query |
+| navigate의 replace | 14 react-query |
 | 로그아웃 때 캐시 비우기 | 14 react-query |
 | Devtools | 14 react-query |
 | isPending 로딩 | 15 error-handling |
@@ -64,3 +67,6 @@
 | 검사 규칙 하나와 errors 문구 | 18 form-hook |
 | 로그인 안내 | 19 auth-guard |
 | 남의 글 수정 막기 | 19 auth-guard |
+| 키 팩토리 | 20 query-factory |
+| queryOptions | 20 query-factory |
+| 팩토리 키로 무효화 | 20 query-factory |

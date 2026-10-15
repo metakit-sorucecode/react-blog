@@ -16,7 +16,7 @@ flowchart LR
   F --> K[Home]
 ```
 
-만든 장: project-setup, layout, screens
+만든 장: project-setup, layout, screens, react-query
 맡는 파일
 - react-blog/index.html
 - react-blog/src/main.jsx
@@ -40,7 +40,7 @@ flowchart LR
   A --> E[BoardCard]
 ```
 
-만든 장: screens, component-split, board-list, board-save
+만든 장: screens, component-split, board-list, board-save, react-query
 맡는 파일
 - react-blog/src/pages/Home.jsx
 - react-blog/src/components/BoardCard.jsx
@@ -59,7 +59,7 @@ flowchart LR
   A --> F[ReplyItem]
 ```
 
-만든 장: screens, component-split, board-detail, board-save
+만든 장: screens, component-split, board-detail, board-save, react-query
 맡는 파일
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/components/ReplyItem.jsx
@@ -81,7 +81,7 @@ flowchart LR
   B --> A
 ```
 
-만든 장: screens, component-split, board-detail, board-update-delete
+만든 장: screens, component-split, board-detail, board-update-delete, react-query
 맡는 파일
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/pages/UpdateForm.jsx
@@ -104,7 +104,7 @@ flowchart LR
   A --> G[Home]
 ```
 
-만든 장: screens, board-detail, board-update-delete
+만든 장: screens, board-detail, board-update-delete, react-query
 맡는 파일
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/api/http.jsx
@@ -124,7 +124,7 @@ flowchart LR
   G --> E
 ```
 
-만든 장: screens, board-detail, board-save, reply
+만든 장: screens, board-detail, board-save, reply, react-query
 맡는 파일
 - react-blog/src/pages/Detail.jsx
 - react-blog/src/api/http.jsx
@@ -146,7 +146,7 @@ flowchart LR
   H --> F
 ```
 
-만든 장: screens, component-split, board-detail, board-save, reply
+만든 장: screens, component-split, board-detail, board-save, reply, react-query
 맡는 파일
 - react-blog/src/components/ReplyItem.jsx
 - react-blog/src/pages/Detail.jsx
@@ -187,7 +187,7 @@ flowchart LR
   E --> G[(localStorage)]
 ```
 
-만든 장: screens, component-split, login, login-keep, board-save
+만든 장: screens, component-split, login, login-keep, board-save, react-query
 맡는 파일
 - react-blog/src/pages/LoginForm.jsx
 - react-blog/src/store/authStore.jsx
@@ -210,7 +210,7 @@ flowchart LR
   A --> G[Home]
 ```
 
-만든 장: screens, component-split, board-save
+만든 장: screens, component-split, board-save, react-query
 맡는 파일
 - react-blog/src/pages/SaveForm.jsx
 - react-blog/src/components/FormCard.jsx
@@ -232,7 +232,7 @@ flowchart LR
   A --> G[Home]
 ```
 
-만든 장: screens, component-split, board-save, my-info
+만든 장: screens, component-split, board-save, my-info, react-query
 맡는 파일
 - react-blog/src/pages/UserInfo.jsx
 - react-blog/src/components/FormCard.jsx
@@ -271,3 +271,31 @@ flowchart LR
 글 수정은 기존 값을 채운 폼으로 PUT을 보내고 상세로 간다. 글 삭제는 DELETE를 보내고 홈으로 간다.
 댓글은 등록하거나 owner인 댓글의 휴지통을 누르면 서버에 보내고 상세를 다시 받는다.
 내 정보는 받은 아이디와 이메일로 폼을 채우고 수정하기를 누르면 PUT을 보내고 홈으로 간다.
+
+## 캐시로 그리기와 다시 받기
+
+```mermaid
+flowchart LR
+  A[main.jsx] --> B[QueryClient]
+  C[Home] --> B
+  D[Detail] --> B
+  E[UpdateForm] --> B
+  F[UserInfo] --> B
+  G[SaveForm] --> B
+  H[Header] --> B
+  B --> I[http]
+  I --> J["GET /?page=0"]
+  I --> K["GET /api/boards/:id"]
+  I --> L["GET /api/user"]
+```
+
+만든 장: react-query
+맡는 파일
+- react-blog/src/main.jsx
+- react-blog/src/pages/Home.jsx
+- react-blog/src/pages/Detail.jsx
+- react-blog/src/pages/UpdateForm.jsx
+- react-blog/src/pages/UserInfo.jsx
+- react-blog/src/pages/SaveForm.jsx
+- react-blog/src/components/Header.jsx
+- react-blog/src/api/http.jsx

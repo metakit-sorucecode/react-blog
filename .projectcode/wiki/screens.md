@@ -129,3 +129,13 @@
 처음 나온 장: my-info
 
 ![새 비밀번호 로그인](../chapters/my-info/captures/done-새-비밀번호-로그인.png)
+
+## 홈 (Devtools 키 목록)
+처음 나온 장: react-query
+
+![홈 Devtools 키](../chapters/react-query/captures/done-홈-Devtools-키.png)
+
+## 내 정보 (수정 응답으로 채운 캐시)
+처음 나온 장: react-query
+
+![내 정보 수정 캐시](../chapters/react-query/captures/done-내-정보-수정-캐시.png)

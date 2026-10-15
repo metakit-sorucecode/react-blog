@@ -18,12 +18,13 @@
 | 11 | board-update-delete 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 완료 | 5 | 8 |
 | 12 | reply 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 완료 | 5 | 8 |
 | 13 | my-info 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 완료 | 3 | 6 |
-| 14 | react-query 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries로 필요한 키만 갱신, 로그아웃 때 캐시 비우기, Devtools | 대기 | - | - |
-| 15 | error-handling 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내 | 대기 | - | - |
+| 14 | react-query 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries와 refetchType, setQueryData, gcTime, navigate의 replace, 로그아웃 때 캐시 비우기, Devtools | 완료 | 12 | 16 |
+| 15 | error-handling 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내 | 진행 중 | - | - |
 | 16 | paging-search 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 | - | - |
 | 17 | search-debounce 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 | - | - |
 | 18 | form-hook 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset, 검사 규칙 하나와 errors 문구 | 대기 | - | - |
 | 19 | auth-guard 로그인 확인 | 기능 | 로그인 안내, 남의 글 수정 막기 | 대기 | - | - |
+| 20 | query-factory 쿼리 키와 조회를 한 곳에 | 리팩터 | 키 팩토리, queryOptions, 팩토리 키로 무효화 | 대기 | - | - |
 
 ## 미룬 것
 - 토큰 만료와 401 자동 로그아웃: 장 정하지 않음
@@ -47,3 +48,6 @@
 - pattern 같은 여러 규칙의 입력 검사
 - 글 수정 화면의 취소 버튼
 - 내 정보의 새 비밀번호 확인 칸
+- 회원가입과 로그인 요청을 useMutation으로 바꾸기
+- 글 상세 미리 받기 (prefetch)
+- 낙관적 업데이트

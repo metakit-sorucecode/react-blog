@@ -1,6 +1,6 @@
 # 폴더 구조
 
-비교 기준: done/reply. 새로 생긴 파일과 고친 파일을 표시했다.
+비교 기준: done/my-info. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
@@ -10,23 +10,23 @@ react-blog/
     components/
       BoardCard.jsx
       FormCard.jsx
-      Header.jsx
+      Header.jsx   고침
       Input.jsx
       Layout.jsx
       ReplyItem.jsx
     pages/
-      Detail.jsx
-      Home.jsx
+      Detail.jsx   고침
+      Home.jsx   고침
       JoinForm.jsx
       LoginForm.jsx
-      SaveForm.jsx
-      UpdateForm.jsx
+      SaveForm.jsx   고침
+      UpdateForm.jsx   고침
       UserInfo.jsx   고침
     store/
       authStore.jsx
     App.jsx
     index.css
-    main.jsx
+    main.jsx   고침
   .gitignore
   API.md
   index.html
@@ -59,3 +59,4 @@ package-lock.json
 package.json
 playwright.config.js
 ```
+
