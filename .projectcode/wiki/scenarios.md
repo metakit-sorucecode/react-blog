@@ -299,3 +299,35 @@ flowchart LR
 - react-blog/src/pages/SaveForm.jsx
 - react-blog/src/components/Header.jsx
 - react-blog/src/api/http.jsx
+
+## 실패 알리기
+
+```mermaid
+flowchart LR
+  A["Home, Detail, UpdateForm, UserInfo"] --> B[Loading]
+  C[Detail] --> D[Notice]
+  E[NotFound] --> D
+  F[App.jsx] --> E
+  G[http] --> H[Toaster]
+  I[main.jsx] --> H
+  I --> J[QueryClient]
+  K["JoinForm, LoginForm"] --> G
+```
+
+만든 장: error-handling
+맡는 파일
+- react-blog/src/components/Loading.jsx
+- react-blog/src/components/Notice.jsx
+- react-blog/src/pages/NotFound.jsx
+- react-blog/src/pages/Detail.jsx
+- react-blog/src/App.jsx
+- react-blog/src/api/http.jsx
+- react-blog/src/main.jsx
+- react-blog/src/pages/JoinForm.jsx
+- react-blog/src/pages/LoginForm.jsx
+
+조회는 받는 동안 Loading을 보이고, 없는 글이면 Detail이 Notice로 안내한다.
+조회 실패는 400대면 다시 묻지 않고, 500과 연결 실패는 한 번만 다시 묻는다.
+쓰기 실패는 http 응답 인터셉터가 서버 msg를 토스트로 띄우고 그 화면에 남는다.
+응답이 없으면 조회든 쓰기든 서버에 연결할 수 없다는 토스트를 하나만 띄운다.
+없는 주소는 path="*" 라우트가 NotFound로 받는다.

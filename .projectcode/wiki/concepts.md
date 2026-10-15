@@ -57,16 +57,14 @@
 | isError로 없는 글 안내 | 15 error-handling |
 | 응답 인터셉터에서 sonner 토스트 | 15 error-handling |
 | 없는 주소 안내 | 15 error-handling |
-| queryKey에 page와 keyword | 16 paging-search |
-| 이전 화면 유지 | 16 paging-search |
-| 커스텀 훅 useDebounce | 17 search-debounce |
-| 입력이 멈춘 뒤 요청 | 17 search-debounce |
-| register | 18 form-hook |
-| handleSubmit | 18 form-hook |
-| reset | 18 form-hook |
-| 검사 규칙 하나와 errors 문구 | 18 form-hook |
+| 다시 시도 규칙 | 15 error-handling |
+| register | 16 form-hook |
+| handleSubmit | 16 form-hook |
+| reset | 16 form-hook |
+| 검사 규칙 하나와 errors 문구 | 16 form-hook |
+| queryKey에 page와 keyword | 17 paging-search |
+| 이전 화면 유지 | 17 paging-search |
+| 커스텀 훅 useDebounce | 18 search-debounce |
+| 입력이 멈춘 뒤 요청 | 18 search-debounce |
 | 로그인 안내 | 19 auth-guard |
 | 남의 글 수정 막기 | 19 auth-guard |
-| 키 팩토리 | 20 query-factory |
-| queryOptions | 20 query-factory |
-| 팩토리 키로 무효화 | 20 query-factory |

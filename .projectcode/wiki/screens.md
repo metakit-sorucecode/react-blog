@@ -139,3 +139,23 @@
 처음 나온 장: react-query
 
 ![내 정보 수정 캐시](../chapters/react-query/captures/done-내-정보-수정-캐시.png)
+
+## 로딩
+처음 나온 장: error-handling
+
+![로딩](../chapters/error-handling/captures/done-로딩.png)
+
+## 없는 글 안내
+처음 나온 장: error-handling
+
+![없는 글](../chapters/error-handling/captures/done-없는-글.png)
+
+## 없는 주소 안내
+처음 나온 장: error-handling
+
+![없는 주소](../chapters/error-handling/captures/done-없는-주소.png)
+
+## 회원가입 (실패 토스트)
+처음 나온 장: error-handling
+
+![실패 토스트](../chapters/error-handling/captures/done-토스트.png)

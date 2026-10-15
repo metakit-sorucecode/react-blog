@@ -19,12 +19,11 @@
 | 12 | reply 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 완료 | 5 | 8 |
 | 13 | my-info 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 완료 | 3 | 6 |
 | 14 | react-query 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries와 refetchType, setQueryData, gcTime, navigate의 replace, 로그아웃 때 캐시 비우기, Devtools | 완료 | 24 | 16 |
-| 15 | error-handling 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내 | 진행 중 | - | - |
-| 16 | paging-search 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 | - | - |
-| 17 | search-debounce 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 | - | - |
-| 18 | form-hook 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset, 검사 규칙 하나와 errors 문구 | 대기 | - | - |
+| 15 | error-handling 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내, 다시 시도 규칙 | 완료 | 8 | 12 |
+| 16 | form-hook 폼을 react-hook-form으로 | 리팩터 | register, handleSubmit, reset, 검사 규칙 하나와 errors 문구 | 진행 중 | - | - |
+| 17 | paging-search 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 | - | - |
+| 18 | search-debounce 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 | - | - |
 | 19 | auth-guard 로그인 확인 | 기능 | 로그인 안내, 남의 글 수정 막기 | 대기 | - | - |
-| 20 | query-factory 쿼리 키와 조회를 한 곳에 | 리팩터 | 키 팩토리, queryOptions, 팩토리 키로 무효화 | 대기 | - | - |
 
 ## 미룬 것
 - 토큰 만료와 401 자동 로그아웃: 장 정하지 않음
@@ -33,6 +32,7 @@
 - 로그인한 뒤 로그인, 회원가입 화면 막기: 장 정하지 않음
 - 저장된 토큰이 망가졌을 때 지우고 로그인 전으로 시작하기: 장 정하지 않음
 - 글과 댓글 삭제 전 확인 창: 장 정하지 않음
+- 없는 글의 수정 화면 안내: 장 정하지 않음
 
 ## 하지 않는 것
 - react-blog-modern-end 코드 변경
@@ -51,3 +51,7 @@
 - 회원가입과 로그인 요청을 useMutation으로 바꾸기
 - 글 상세 미리 받기 (prefetch)
 - 낙관적 업데이트
+- 응답을 받은 목록, 글 수정, 내 정보 조회 실패의 화면 안내
+- 요청 시간 제한 (timeout)
+- 500 응답을 수업에서 직접 보이기
+- 쿼리 키 팩토리와 queryOptions로 조회 모으기
