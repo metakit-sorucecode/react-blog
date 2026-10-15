@@ -2,7 +2,7 @@
 
 | 점검 | 결과 |
 |---|---|
-| 장 상태 | 맞음. project-setup부터 react-query까지 열네 장 모두 tasks.md가 체크됐고 done 태그가 있다 |
+| 장 상태 | 맞음. project-setup부터 react-query까지 열네 장 모두 tasks.md가 체크됐고 done 태그가 있다. react-query는 주석 fix 12개를 더했고 patch가 fixes/에 있다 |
 | 진행 중 | 맞음. error-handling 하나가 진행 중이다. spec을 쓰는 중이다 |
 | 장 자료 | 맞음. 열네 장 모두 captures.md, tree.md, summary-code.md, 장 끝 사진이 있다 |
 | 사진 | 맞음. captures.md의 파일 132개가 모두 있다. 다시 찍지 못한 사진은 없다 |
