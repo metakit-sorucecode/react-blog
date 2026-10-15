@@ -1,0 +1,13 @@
+diff --git a/react-blog/src/components/Header.jsx b/react-blog/src/components/Header.jsx
+index 4a393c2..36e1d71 100644
+--- a/react-blog/src/components/Header.jsx
++++ b/react-blog/src/components/Header.jsx
+@@ -11,6 +11,8 @@ export default function Header() {
+ 
+   function handleLogout() {
+     logout();
++    // 캐시를 모두 비운다 (clear)
++    // 남겨 두면 다음에 로그인한 사람이 앞 사람의 내 정보와 글 owner를 캐시로 먼저 본다
+     queryClient.clear();
+     navigate("/");
+   }

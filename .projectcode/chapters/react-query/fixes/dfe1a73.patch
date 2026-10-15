@@ -1,0 +1,22 @@
+diff --git a/react-blog/src/pages/Detail.jsx b/react-blog/src/pages/Detail.jsx
+index 2c61471..b582013 100644
+--- a/react-blog/src/pages/Detail.jsx
++++ b/react-blog/src/pages/Detail.jsx
+@@ -23,10 +23,17 @@ export default function Detail() {
+   const deleteBoard = useMutation({
+     mutationFn: () => http.delete(`/api/boards/${id}`),
+     onSuccess: async () => {
++      // 목록 키를 무효화한다
++      // 목록을 쓰는 화면이 없어 inactive라 "all"로 지금 받게 한다
++      // 다 받은 뒤 이동한다. 그래야 홈에 지운 글이 잠깐도 보이지 않는다
+       await queryClient.invalidateQueries({
+         queryKey: ["boards", "list"],
+         refetchType: "all",
+       });
++      // 방문 기록의 지운 글 주소를 홈으로 바꾼다 (replace)
++      // 그래서 뒤로 가기를 눌러도 지운 글로 돌아가지 않는다
++      // 지운 글의 상세 캐시는 볼 화면이 없어서 gcTime(기본 5분)이 지나면 저절로 사라진다
++      // removeQueries로 바로 빼지 않는다. 삭제 요청이 성공 상태로 바뀌며 이 화면이 이동 전에 한 번 더 그려지고, 그때 빈 키를 보고 상세를 다시 요청한다
+       navigate("/", { replace: true });
+     },
+   });

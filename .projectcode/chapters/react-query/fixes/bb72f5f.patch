@@ -1,0 +1,22 @@
+diff --git a/react-blog/src/pages/UpdateForm.jsx b/react-blog/src/pages/UpdateForm.jsx
+index f85dcb9..9a832a4 100644
+--- a/react-blog/src/pages/UpdateForm.jsx
++++ b/react-blog/src/pages/UpdateForm.jsx
+@@ -32,10 +32,17 @@ export default function UpdateForm() {
+   const updateBoard = useMutation({
+     mutationFn: () => http.put(`/api/boards/${id}`, form),
+     onSuccess: async () => {
++      // 목록 키를 무효화한다
++      // 목록을 쓰는 화면이 없어 inactive라 "all"로 지금 받게 한다
++      // 기다리지 않는다. 지금 갈 곳은 상세이고, 목록은 그사이 뒤에서 받아 둔다
+       queryClient.invalidateQueries({
+         queryKey: ["boards", "list"],
+         refetchType: "all",
+       });
++      // 상세 키를 무효화한다
++      // 이 수정 화면도 위 useQuery에서 같은 상세 키를 쓰고 있다
++      // 화면에 떠 있는 useQuery가 쓰는 키는 active라서, 기본값만으로 지금 바로 다시 받는다
++      // 다 받은 뒤 이동한다. 그래야 상세 화면에 옛 제목이 잠깐도 보이지 않는다
+       await queryClient.invalidateQueries({
+         queryKey: ["boards", "detail", id],
+       });

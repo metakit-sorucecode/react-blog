@@ -1,0 +1,21 @@
+diff --git a/react-blog/src/pages/UserInfo.jsx b/react-blog/src/pages/UserInfo.jsx
+index 697a0ec..d439596 100644
+--- a/react-blog/src/pages/UserInfo.jsx
++++ b/react-blog/src/pages/UserInfo.jsx
+@@ -10,6 +10,8 @@ export default function UserInfo() {
+   const navigate = useNavigate();
+   const queryClient = useQueryClient();
+ 
++  // 내 정보를 ["user"] 키로 캐시에서 꺼낸다
++  // 캐시에 없거나 stale이면 서버에서 받는다
+   const { data: user } = useQuery({
+     queryKey: ["user"],
+     queryFn: async () => {
+@@ -18,6 +20,7 @@ export default function UserInfo() {
+     },
+   });
+ 
++  // user가 캐시에서 오면 폼을 채운다. 새 비밀번호 칸은 비워 둔다
+   useEffect(() => {
+     if (user) {
+       setForm({ username: user.username, email: user.email, password: "" });
