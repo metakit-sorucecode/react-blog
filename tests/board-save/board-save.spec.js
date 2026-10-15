@@ -39,13 +39,8 @@ function saveButton(page) {
   return page.getByRole("button", { name: "글쓰기", exact: true });
 }
 
-// React가 입력칸에 넘긴 value를 꺼낸다. 화면이 값을 기억하면 친 글자와 같다
-function reactValue(locator) {
-  return locator.evaluate((el) => {
-    const key = Object.keys(el).find((k) => k.startsWith("__reactProps$"));
-    return el[key].value;
-  });
-}
+// form-hook 장부터 입력값은 state가 아니라 입력칸이 기억한다 (react-hook-form)
+// 그래서 React props의 value 대신 입력칸에 남은 값을 본다
 
 test("S1 글쓰기 화면에서 제목과 내용을 입력하면 화면이 값을 기억한다", async ({
   page,
@@ -53,8 +48,8 @@ test("S1 글쓰기 화면에서 제목과 내용을 입력하면 화면이 값�
   const board = newBoard();
   await fillSaveForm(page, board);
 
-  expect(await reactValue(page.getByPlaceholder("제목"))).toBe(board.title);
-  expect(await reactValue(page.getByPlaceholder("내용"))).toBe(board.content);
+  await expect(page.getByPlaceholder("제목")).toHaveValue(board.title);
+  await expect(page.getByPlaceholder("내용")).toHaveValue(board.content);
 });
 
 test("S2 로그인한 뒤 글쓰기를 누르면 제목과 내용을 로그인 토큰과 함께 서버에 보낸다", async ({

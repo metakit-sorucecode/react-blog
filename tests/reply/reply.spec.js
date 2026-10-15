@@ -65,13 +65,8 @@ async function openDetail(page, id) {
   await page.waitForLoadState("networkidle");
 }
 
-// React가 입력칸에 넘긴 value를 꺼낸다. 화면이 값을 기억하면 친 글자와 같다
-function reactValue(locator) {
-  return locator.evaluate((el) => {
-    const key = Object.keys(el).find((k) => k.startsWith("__reactProps$"));
-    return el[key].value;
-  });
-}
+// form-hook 장부터 입력값은 state가 아니라 입력칸이 기억한다 (react-hook-form)
+// 그래서 React props의 value 대신 입력칸에 남은 값을 본다
 
 test("S1 상세에서 owner가 true인 댓글에만 휴지통 버튼이 보인다", async ({
   page,
@@ -101,7 +96,7 @@ test("S2 댓글 입력칸에 쓰면 화면이 쓴 값을 기억한다", async ({
   await openDetail(page, id);
   await commentInput(page).fill("기억할 댓글");
 
-  expect(await reactValue(commentInput(page))).toBe("기억할 댓글");
+  await expect(commentInput(page)).toHaveValue("기억할 댓글");
 });
 
 test("S3 등록을 누르면 글 번호와 댓글을 서버에 보내고 상세를 다시 받는다", async ({
@@ -163,7 +158,8 @@ test("S5 휴지통을 누르면 서버에서 그 댓글을 지우고 상세를 �
   await expect(row).toBeVisible();
 
   const deleted = page.waitForRequest(
-    (req) => req.url() === `${REPLY_API}/${replyId}` && req.method() === "DELETE",
+    (req) =>
+      req.url() === `${REPLY_API}/${replyId}` && req.method() === "DELETE",
     { timeout: 5000 },
   );
   const reloaded = page.waitForRequest(

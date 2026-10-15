@@ -52,13 +52,8 @@ async function openUpdateForm(page, id) {
   await page.waitForLoadState("networkidle");
 }
 
-// React가 입력칸에 넘긴 value를 꺼낸다. 화면이 값을 기억하면 친 글자와 같다
-function reactValue(locator) {
-  return locator.evaluate((el) => {
-    const key = Object.keys(el).find((k) => k.startsWith("__reactProps$"));
-    return el[key].value;
-  });
-}
+// form-hook 장부터 입력값은 state가 아니라 입력칸이 기억한다 (react-hook-form)
+// 그래서 React props의 value 대신 입력칸에 남은 값을 본다
 
 test("S1 상세에서 owner가 true인 글에만 수정, 삭제 버튼이 보인다", async ({
   page,
@@ -108,8 +103,8 @@ test("S3 수정 화면에서 제목과 내용을 고치면 화면이 고친 값�
   await page.getByPlaceholder("제목").fill(changed.title);
   await page.getByPlaceholder("내용").fill(changed.content);
 
-  expect(await reactValue(page.getByPlaceholder("제목"))).toBe(changed.title);
-  expect(await reactValue(page.getByPlaceholder("내용"))).toBe(changed.content);
+  await expect(page.getByPlaceholder("제목")).toHaveValue(changed.title);
+  await expect(page.getByPlaceholder("내용")).toHaveValue(changed.content);
 });
 
 test("S4 수정하기를 누르면 고친 제목과 내용을 서버에 보내고 그 글 상세로 간다", async ({

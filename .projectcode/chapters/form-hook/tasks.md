@@ -1,6 +1,6 @@
 # form-hook 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 회원가입 폼을 register와 handleSubmit으로 바꾸기
   - 근거: S1
   - 파일: react-blog/src/pages/JoinForm.jsx

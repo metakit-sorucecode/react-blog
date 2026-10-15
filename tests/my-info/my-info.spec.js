@@ -55,13 +55,8 @@ async function submitUserInfo(page, email, password) {
   return req;
 }
 
-// React가 입력칸에 넘긴 value를 꺼낸다. 화면이 값을 기억하면 친 글자와 같다
-function reactValue(locator) {
-  return locator.evaluate((el) => {
-    const key = Object.keys(el).find((k) => k.startsWith("__reactProps$"));
-    return el[key].value;
-  });
-}
+// form-hook 장부터 입력값은 state가 아니라 입력칸이 기억한다 (react-hook-form)
+// 그래서 React props의 value 대신 입력칸에 남은 값을 본다
 
 test("S1 내 정보 화면에 들어가면 서버에서 내 정보를 받아 아이디와 이메일 칸을 채운다", async ({
   page,
@@ -96,10 +91,10 @@ test("S2 이메일과 새 비밀번호 칸을 고치면 화면이 고친 값을 
   await page.getByPlaceholder("이메일").fill(`new-${user.email}`);
   await page.getByPlaceholder("새 비밀번호").fill("5678");
 
-  expect(await reactValue(page.getByPlaceholder("이메일"))).toBe(
+  await expect(page.getByPlaceholder("이메일")).toHaveValue(
     `new-${user.email}`,
   );
-  expect(await reactValue(page.getByPlaceholder("새 비밀번호"))).toBe("5678");
+  await expect(page.getByPlaceholder("새 비밀번호")).toHaveValue("5678");
 });
 
 test("S3 수정하기를 누르면 이메일과 새 비밀번호를 서버에 보내고 홈으로 간다", async ({
