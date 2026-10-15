@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
@@ -8,6 +8,7 @@ import Input from "../components/Input";
 export default function UserInfo() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data: user } = useQuery({
     queryKey: ["user"],
@@ -23,14 +24,22 @@ export default function UserInfo() {
     }
   }, [user]);
 
+  const updateUser = useMutation({
+    mutationFn: () =>
+      http.put("/api/user", { email: form.email, password: form.password }),
+    onSuccess: (res) => {
+      queryClient.setQueryData(["user"], res.data.body);
+      navigate("/");
+    },
+  });
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    await http.put("/api/user", { email: form.email, password: form.password });
-    navigate("/");
+    updateUser.mutate();
   }
 
   return (

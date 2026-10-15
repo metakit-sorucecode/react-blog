@@ -55,7 +55,7 @@
   - 다른 장: reply
   - 실행하면: 댓글이 바로 붙고 지워진다. 목록 요청은 가지 않는다
   - Why: 모든 쓰기를 같은 모양으로 두면 성공 뒤 할 일이 onSuccess 한 곳에 모인다
-- [ ] T10 내 정보 수정 응답을 setQueryData로 넣기
+- [x] T10 내 정보 수정 응답을 setQueryData로 넣기
   - 근거: S10
   - 파일: react-blog/src/pages/UserInfo.jsx
   - 다른 장: my-info
