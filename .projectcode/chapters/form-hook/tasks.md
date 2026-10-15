@@ -7,7 +7,7 @@
   - 실행하면: 가입하면 지금처럼 알림 뒤 로그인 화면으로 간다
   - Why: 입력마다 state를 바꾸는 코드 없이 폼 값을 모아 받는다
   - 다른 장: error-handling
-- [ ] T2 로그인 폼을 register와 handleSubmit으로 바꾸기
+- [x] T2 로그인 폼을 register와 handleSubmit으로 바꾸기
   - 근거: S2
   - 파일: react-blog/src/pages/LoginForm.jsx
   - 실행하면: 로그인하면 헤더 메뉴가 바뀌고 홈으로 간다
