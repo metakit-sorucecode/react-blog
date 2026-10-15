@@ -34,7 +34,7 @@
 | 11 | board-update-delete | 글 수정과 삭제 | 기능 | owner로 버튼 보이기, 기존 값 채운 폼, PUT과 DELETE | 완료 |
 | 12 | reply | 댓글 쓰기와 삭제 | 기능 | 요청 뒤 상세 다시 불러오기 | 완료 |
 | 13 | my-info | 내 정보 수정 | 기능 | 조회한 값으로 폼 채우기, PUT | 완료 |
-| 14 | react-query | 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries로 필요한 키만 갱신, 로그아웃 때 캐시 비우기, Devtools | 대기 |
+| 14 | react-query | 서버 데이터를 TanStack Query로 | 리팩터 | useQuery, useMutation, 계층 queryKey, staleTime, invalidateQueries와 refetchType, setQueryData, gcTime, navigate의 replace, 로그아웃 때 캐시 비우기, Devtools | 진행 중 |
 | 15 | error-handling | 에러 처리 | 기능 | isPending 로딩, isError로 없는 글 안내, 응답 인터셉터에서 sonner 토스트, 없는 주소 안내 | 대기 |
 | 16 | paging-search | 페이징과 검색 | 기능 | queryKey에 page와 keyword, 이전 화면 유지 | 대기 |
 | 17 | search-debounce | 검색 디바운스 | 기능 | 커스텀 훅 useDebounce, 입력이 멈춘 뒤 요청 | 대기 |
@@ -152,8 +152,12 @@
 - 목록, 상세, 내 정보 조회를 useQuery로 바꾼다
 - staleTime을 둬서 화면에 다시 들어오면 캐시를 바로 보인다
 - 글, 댓글, 내 정보 쓰기를 useMutation으로 바꾼다
-- 쓰기 뒤 바뀐 데이터의 키만 invalidateQueries로 stale로 만든다. 글 수정은 그 글 상세와 목록, 글쓰기와 삭제는 목록, 댓글은 그 글 상세, 내 정보 수정은 내 정보
-- 화면에서 내려간 쿼리는 stale 표시만 되고 다시 들어갈 때 받는다는 것을 Devtools로 본다
+- 글쓰기, 수정, 삭제 뒤에는 목록을 refetchType all로 즉시 다시 받는다
+- 바로 갈 화면의 데이터는 즉시 받고 끝난 뒤 이동한다. 글쓰기와 삭제는 목록, 수정은 그 글 상세
+- 삭제하면 replace로 홈에 가서 뒤로 가기로 지운 글에 가지 않는다. 남은 상세 캐시는 gcTime 5분 뒤 사라진다
+- 댓글은 그 글 상세만 무효화한다
+- 내 정보 수정은 응답이 조회와 모양이 같아 setQueryData로 채운다
+- refetchOnWindowFocus는 기본값 그대로 두고 주석으로 적는다
 - 로그아웃하면 queryClient.clear로 캐시를 비운다
 - 화면 동작은 같다. Devtools 버튼만 생긴다
 
@@ -226,3 +230,6 @@
 - pattern 같은 여러 규칙의 입력 검사
 - 글 수정 화면의 취소 버튼
 - 내 정보의 새 비밀번호 확인 칸
+- 회원가입과 로그인 요청을 useMutation으로 바꾸기
+- 글 상세 미리 받기 (prefetch)
+- 낙관적 업데이트

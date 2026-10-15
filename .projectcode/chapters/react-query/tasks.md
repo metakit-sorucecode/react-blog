@@ -1,0 +1,78 @@
+# react-query 작업
+
+- [ ] 테스트 작성
+- [ ] T1 QueryClient로 앱 감싸고 Devtools 띄우기
+  - 근거: S1
+  - 파일: react-blog/src/main.jsx
+  - 다른 장: project-setup
+  - 실행하면: 오른쪽 아래에 Devtools 버튼이 보이고, 누르면 빈 쿼리 목록이 열린다
+  - Why: useQuery와 useMutation은 QueryClient가 감싼 안에서만 쓸 수 있다
+- [ ] T2 글 목록을 useQuery로 받기
+  - 근거: S2
+  - 파일: react-blog/src/pages/Home.jsx
+  - 다른 장: board-save
+  - 실행하면: 목록이 그대로 보이고 Devtools에 ["boards", "list"]가 생긴다
+  - Why: useState와 useEffect로 받던 서버 데이터를 키로 캐시에 담아야 화면끼리 나눠 쓸 수 있다
+- [ ] T3 상세를 useQuery로 받고 댓글 뒤 상세 키 무효화
+  - 근거: S2, S9
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 다른 장: reply
+  - 실행하면: 상세와 댓글이 그대로 보이고, 댓글을 쓰거나 지우면 상세 요청이 바로 다시 간다
+  - Why: loadBoard가 없어지니 댓글 뒤에는 그 글 키를 무효화해 다시 받게 한다
+- [ ] T4 글 수정 화면을 상세 키로 채우기
+  - 근거: S2, S4
+  - 파일: react-blog/src/pages/UpdateForm.jsx
+  - 다른 장: board-update-delete
+  - 실행하면: 수정 화면에 기존 제목과 내용이 채워지고 Devtools에는 상세 키 하나만 있다
+  - Why: 상세와 같은 키를 쓰면 같은 글을 캐시 하나로 나눠 쓴다
+- [ ] T5 내 정보를 useQuery로 받기
+  - 근거: S2
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 다른 장: my-info
+  - 실행하면: 아이디와 이메일이 채워지고 Devtools에 ["user"]가 생긴다
+  - Why: 내 정보도 캐시에 담아야 수정 응답으로 바로 채울 수 있다
+- [ ] T6 글쓰기를 useMutation으로, 목록 즉시 다시 받기
+  - 근거: S6
+  - 파일: react-blog/src/pages/SaveForm.jsx
+  - 다른 장: component-split
+  - 실행하면: 글을 쓰면 목록 요청이 끝난 뒤 홈으로 가고 새 글이 처음부터 맨 위에 있다
+  - Why: 기다리지 않고 홈에 가면 새 글이 빠진 옛 목록이 먼저 보인다
+- [ ] T7 글 수정을 useMutation으로, 상세를 받은 뒤 이동
+  - 근거: S7
+  - 파일: react-blog/src/pages/UpdateForm.jsx
+  - 다른 장: board-update-delete
+  - 실행하면: 고치면 상세와 목록 요청이 가고, 상세로 가면 바뀐 제목이 처음부터 보인다
+  - Why: 바로 갈 상세는 받은 뒤 가고, 곧 갈 목록은 미리 받아 둔다
+- [ ] T8 글 삭제를 useMutation으로, replace로 홈 가기
+  - 근거: S8
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 다른 장: reply
+  - 실행하면: 지우면 지운 글 없는 홈으로 가고, 뒤로 가기로 지운 글에 가지 않는다
+  - Why: 지운 글 주소를 방문 기록에서 지워야 남은 캐시로 지운 글이 보이지 않는다
+- [ ] T9 댓글 쓰기와 삭제를 useMutation으로
+  - 근거: S9
+  - 파일: react-blog/src/pages/Detail.jsx
+  - 다른 장: reply
+  - 실행하면: 댓글이 바로 붙고 지워진다. 목록 요청은 가지 않는다
+  - Why: 모든 쓰기를 같은 모양으로 두면 성공 뒤 할 일이 onSuccess 한 곳에 모인다
+- [ ] T10 내 정보 수정 응답을 setQueryData로 넣기
+  - 근거: S10
+  - 파일: react-blog/src/pages/UserInfo.jsx
+  - 다른 장: my-info
+  - 실행하면: 수정하면 내 정보 요청 없이 홈으로 가고, 다시 들어오면 바뀐 이메일이 보인다
+  - Why: 응답이 조회와 모양이 같아 다시 받을 필요가 없다
+- [ ] T11 staleTime 1분 두기
+  - 근거: S3, S4, S5
+  - 파일: react-blog/src/main.jsx
+  - 다른 장: project-setup
+  - 실행하면: 1분 안에 화면을 오가면 요청이 가지 않고, 수정 화면이 요청 없이 채워진다
+  - Why: 받은 지 얼마 안 된 데이터는 다시 받지 않고 캐시로 바로 그린다
+- [ ] T12 로그아웃하면 캐시 비우기
+  - 근거: S11
+  - 파일: react-blog/src/components/Header.jsx
+  - 다른 장: login
+  - 실행하면: 로그아웃하면 Devtools의 키가 모두 사라지고, cos로 들어가면 cos 이메일이 보인다
+  - Why: 캐시가 남으면 다음 사람이 앞 사람의 내 정보를 본다
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
