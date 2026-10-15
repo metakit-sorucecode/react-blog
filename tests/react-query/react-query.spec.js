@@ -262,6 +262,7 @@ test("S6 글쓰기를 하면 목록을 다시 받은 뒤 홈으로 가고 새 �
   await page.getByPlaceholder("내용").fill(board.content);
 
   const list = await holdGet(page, LIST_API);
+  const lists = collectGets(page, LIST_API);
   await page.getByRole("button", { name: "글쓰기", exact: true }).click();
 
   // 목록을 받는 동안에는 아직 글쓰기 화면이다
@@ -274,6 +275,10 @@ test("S6 글쓰기를 하면 목록을 다시 받은 뒤 홈으로 가고 새 �
   await expect(
     page.getByRole("link", { name: board.title, exact: true }),
   ).toBeVisible();
+
+  // 홈에 온 뒤에는 목록 요청이 다시 가지 않는다
+  await settle(page);
+  expect(lists).toHaveLength(1);
 });
 
 test("S7 글을 고치면 상세와 목록을 다시 받고 상세를 받은 뒤 상세로 간다", async ({
@@ -292,6 +297,7 @@ test("S7 글을 고치면 상세와 목록을 다시 받고 상세를 받은 뒤
   await page.getByPlaceholder("내용").fill(changed.content);
 
   const detail = await holdGet(page, detailApi(board.id));
+  const details = collectGets(page, detailApi(board.id));
   const lists = collectGets(page, LIST_API);
   await page.getByRole("button", { name: "수정하기", exact: true }).click();
 
@@ -303,6 +309,16 @@ test("S7 글을 고치면 상세와 목록을 다시 받고 상세를 받은 뒤
   detail.release();
   await expect(page).toHaveURL(new RegExp(`5173/board/${board.id}$`));
   await expect(heading(page, changed.title)).toBeVisible();
+
+  // 상세로 온 뒤에는 상세 요청이 다시 가지 않는다
+  await settle(page);
+  expect(details).toHaveLength(1);
+
+  // 1분 안에 홈에 가면 미리 받아 둔 목록으로 그린다
+  await menu(page, "홈").click();
+  await expect(page.getByRole("link", { name: /^제목/ }).first()).toBeVisible();
+  await settle(page);
+  expect(lists).toHaveLength(1);
 });
 
 test("S8 글을 지우면 목록을 다시 받은 뒤 홈으로 가고 뒤로 가기로 지운 글에 가지 않는다", async ({
@@ -337,7 +353,30 @@ test("S8 글을 지우면 목록을 다시 받은 뒤 홈으로 가고 뒤로 �
   await expect(page).not.toHaveURL(new RegExp(`/board/${board.id}$`));
 });
 
-// S9 댓글 쓰기와 삭제는 앞 장과 동작이 같다. reply 장 테스트가 그대로 확인한다
+test("S9 댓글을 쓰거나 지우면 그 글 상세만 다시 받고 목록 요청은 가지 않는다", async ({
+  page,
+  request,
+}) => {
+  await login(page, "ssar");
+  const board = await createBoard(page, request, "댓글");
+  await openDetailWithList(page, board);
+
+  const details = collectGets(page, detailApi(board.id));
+  const lists = collectGets(page, LIST_API);
+  const comment = `댓글 ${Date.now()}`;
+  await page.getByPlaceholder("댓글을 입력하세요").fill(comment);
+  await page.getByRole("button", { name: "등록", exact: true }).click();
+  const row = page.getByRole("listitem").filter({ hasText: comment });
+  await expect(row).toBeVisible();
+  await settle(page);
+  expect(details).toHaveLength(1);
+
+  await row.getByRole("button", { name: "🗑", exact: true }).click();
+  await expect(row).toHaveCount(0);
+  await settle(page);
+  expect(details).toHaveLength(2);
+  expect(lists).toHaveLength(0);
+});
 
 test("S10 내 정보를 고치면 응답으로 캐시를 채워 다시 받지 않고 바뀐 이메일을 보인다", async ({
   page,
@@ -360,11 +399,11 @@ test("S10 내 정보를 고치면 응답으로 캐시를 채워 다시 받지 �
   await settle(page);
   expect(users).toHaveLength(0);
 
-  // 서버 응답을 붙잡아도 캐시에 든 바뀐 이메일이 바로 보인다
-  const userGet = await holdGet(page, USER_API);
+  // 1분 안에 다시 들어오면 요청 없이 캐시에 든 바뀐 이메일이 보인다
   await menu(page, "내 정보").click();
   await expect(page.getByPlaceholder("이메일")).toHaveValue(email);
-  userGet.release();
+  await settle(page);
+  expect(users).toHaveLength(0);
 });
 
 test("S11 로그아웃하면 캐시를 비워 다음 사람이 자기 내 정보를 본다", async ({
