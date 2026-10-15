@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
@@ -9,6 +9,7 @@ export default function UpdateForm() {
   const { id } = useParams();
   const [form, setForm] = useState({ title: "", content: "" });
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data: board } = useQuery({
     queryKey: ["boards", "detail", id],
@@ -24,14 +25,27 @@ export default function UpdateForm() {
     }
   }, [board]);
 
+  const updateBoard = useMutation({
+    mutationFn: () => http.put(`/api/boards/${id}`, form),
+    onSuccess: async () => {
+      queryClient.invalidateQueries({
+        queryKey: ["boards", "list"],
+        refetchType: "all",
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ["boards", "detail", id],
+      });
+      navigate(`/board/${id}`);
+    },
+  });
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    await http.put(`/api/boards/${id}`, form);
-    navigate(`/board/${id}`);
+    updateBoard.mutate();
   }
 
   return (

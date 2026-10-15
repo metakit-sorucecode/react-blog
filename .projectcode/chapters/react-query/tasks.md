@@ -37,7 +37,7 @@
   - 다른 장: component-split
   - 실행하면: 글을 쓰면 목록 요청이 끝난 뒤 홈으로 가고 새 글이 처음부터 맨 위에 있다
   - Why: 기다리지 않고 홈에 가면 새 글이 빠진 옛 목록이 먼저 보인다
-- [ ] T7 글 수정을 useMutation으로, 상세를 받은 뒤 이동
+- [x] T7 글 수정을 useMutation으로, 상세를 받은 뒤 이동
   - 근거: S7
   - 파일: react-blog/src/pages/UpdateForm.jsx
   - 다른 장: board-update-delete
