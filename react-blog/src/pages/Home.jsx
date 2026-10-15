@@ -50,11 +50,16 @@ export default function Home() {
           setPage(0);
         }}
       />
-      <div className="grid grid-cols-3 gap-8">
-        {data.boards.map((board) => (
-          <BoardCard key={board.id} id={board.id} title={board.title} />
-        ))}
-      </div>
+      {/* 받은 글이 없으면 빈 목록 대신 안내를 보인다 */}
+      {data.boards.length === 0 ? (
+        <p className="text-center">검색 결과가 없습니다</p>
+      ) : (
+        <div className="grid grid-cols-3 gap-8">
+          {data.boards.map((board) => (
+            <BoardCard key={board.id} id={board.id} title={board.title} />
+          ))}
+        </div>
+      )}
       {/* number는 서버가 돌려준 지금 페이지 번호다. 화면에는 1부터 보인다 */}
       <div className="flex justify-center items-center gap-4 mt-8">
         <button
