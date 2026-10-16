@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
@@ -7,15 +8,26 @@ import Input from "../components/Input";
 export default function SaveForm() {
   const [form, setForm] = useState({ title: "", content: "" });
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const saveBoard = useMutation({
+    mutationFn: () => http.post("/api/boards", form),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["boards", "list"],
+        refetchType: "all",
+      });
+      navigate("/");
+    },
+  });
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    await http.post("/api/boards", form);
-    navigate("/");
+    saveBoard.mutate();
   }
 
   return (
