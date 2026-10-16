@@ -3,15 +3,19 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import http from "../api/http";
 import BoardCard from "../components/BoardCard";
 import Loading from "../components/Loading";
+import useDebounce from "../hooks/useDebounce";
 
 export default function Home() {
   const [page, setPage] = useState(0);
   const [keyword, setKeyword] = useState("");
+  const debouncedKeyword = useDebounce(keyword, 500);
 
   const { data, isPending, isError } = useQuery({
-    queryKey: ["boards", "list", { page, keyword }],
+    queryKey: ["boards", "list", { page, keyword: debouncedKeyword }],
     queryFn: async () => {
-      const res = await http.get("/", { params: { page, keyword } });
+      const res = await http.get("/", {
+        params: { page, keyword: debouncedKeyword },
+      });
       return res.data.body;
     },
     placeholderData: keepPreviousData,
