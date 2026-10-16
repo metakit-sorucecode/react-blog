@@ -6,6 +6,7 @@ import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 import Loading from "../components/Loading";
+import Notice from "../components/Notice";
 
 export default function UpdateForm() {
   const { id } = useParams();
@@ -47,6 +48,16 @@ export default function UpdateForm() {
 
   if (isPending) {
     return <Loading />;
+  }
+
+  if (board && !board.owner) {
+    return (
+      <Notice
+        text="수정 권한이 없습니다"
+        to={`/board/${id}`}
+        label="글로 돌아가기"
+      />
+    );
   }
 
   return (
