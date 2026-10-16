@@ -29,20 +29,32 @@ export default function Detail() {
     },
   });
 
+  const saveReply = useMutation({
+    mutationFn: () => http.post("/api/replies", { boardId: id, comment }),
+    onSuccess: () => {
+      setComment("");
+      queryClient.invalidateQueries({ queryKey: ["boards", "detail", id] });
+    },
+  });
+
+  const deleteReply = useMutation({
+    mutationFn: (replyId) => http.delete(`/api/replies/${replyId}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["boards", "detail", id] });
+    },
+  });
+
   function handleDelete() {
     deleteBoard.mutate();
   }
 
-  async function handleReplySubmit(e) {
+  function handleReplySubmit(e) {
     e.preventDefault();
-    await http.post("/api/replies", { boardId: id, comment });
-    setComment("");
-    queryClient.invalidateQueries({ queryKey: ["boards", "detail", id] });
+    saveReply.mutate();
   }
 
-  async function handleReplyDelete(replyId) {
-    await http.delete(`/api/replies/${replyId}`);
-    queryClient.invalidateQueries({ queryKey: ["boards", "detail", id] });
+  function handleReplyDelete(replyId) {
+    deleteReply.mutate(replyId);
   }
 
   if (!board) {
