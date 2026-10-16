@@ -39,6 +39,9 @@ export default function Home() {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
+      {keyword !== debouncedKeyword && (
+        <p className="text-center mb-8">검색 중...</p>
+      )}
       {data.boards.length === 0 ? (
         <p className="text-center">검색 결과가 없습니다</p>
       ) : (
