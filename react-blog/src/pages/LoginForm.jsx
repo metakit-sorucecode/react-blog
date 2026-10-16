@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import { useNavigate } from "react-router-dom";
 import FormCard from "../components/FormCard";
@@ -10,6 +11,7 @@ export default function LoginForm() {
   const { register, handleSubmit } = useForm();
   const login = useAuthStore((state) => state.login);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const isLogin = useAuthStore((state) => state.isLogin);
 
   async function onSubmit(data) {
@@ -17,6 +19,7 @@ export default function LoginForm() {
       const res = await http.post("/login", data);
       const jwt = res.headers.authorization;
       login(jwt, data.username);
+      queryClient.clear();
       navigate("/");
     } catch {}
   }
