@@ -5,7 +5,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
 import App from "./App";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000, // 받은 데이터를 1분 동안 fresh로 본다
+    },
+  },
+});
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
