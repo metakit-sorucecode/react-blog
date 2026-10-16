@@ -5,12 +5,14 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
 import Loading from "../components/Loading";
 import Notice from "../components/Notice";
+import { useAuthStore } from "../store/authStore";
 
 export default function Detail() {
   const { id } = useParams();
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const isLogin = useAuthStore((state) => state.isLogin);
 
   const {
     data: board,
@@ -105,14 +107,26 @@ export default function Detail() {
           />
         ))}
       </ul>
-      <form className="flex gap-2 mt-4" onSubmit={handleSubmit(onReplySubmit)}>
-        <input
-          className="input flex-1"
-          placeholder="댓글을 입력하세요"
-          {...register("comment")}
-        />
-        <button className="btn">등록</button>
-      </form>
+      {isLogin ? (
+        <form
+          className="flex gap-2 mt-4"
+          onSubmit={handleSubmit(onReplySubmit)}
+        >
+          <input
+            className="input flex-1"
+            placeholder="댓글을 입력하세요"
+            {...register("comment")}
+          />
+          <button className="btn">등록</button>
+        </form>
+      ) : (
+        <div className="card border p-4 mt-4 text-center">
+          <p>댓글을 쓰려면 로그인하세요</p>
+          <Link to="/login-form" className="btn btn-sm mt-2 mx-auto">
+            로그인
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
