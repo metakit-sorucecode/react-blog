@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { useAuthStore } from "../store/authStore";
 
 export default function Header() {
@@ -6,9 +7,11 @@ export default function Header() {
   const username = useAuthStore((state) => state.username);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   function handleLogout() {
     logout();
+    queryClient.clear();
     navigate("/");
   }
 
