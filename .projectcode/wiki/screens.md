@@ -20,6 +20,16 @@
 
 ![홈 서버 글 목록](../chapters/board-list/captures/done-홈.png)
 
+## 홈 (검색창과 이전, 다음 버튼)
+처음 나온 장: paging-search
+
+![홈 검색과 페이지](../chapters/paging-search/captures/done-홈.png)
+
+## 홈 (검색 결과 없음)
+처음 나온 장: paging-search
+
+![검색 결과 없음](../chapters/paging-search/captures/done-검색-결과-없음.png)
+
 ## 상세
 처음 나온 장: screens
 

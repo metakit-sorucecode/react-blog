@@ -1,6 +1,6 @@
 # 폴더 구조
 
-기준: form-hook 장. 비교 기준은 done/error-handling이다. 새로 생긴 파일과 고친 파일을 표시했다.
+기준: paging-search 장. 비교 기준은 done/form-hook이다. 새로 생긴 파일과 고친 파일을 표시했다.
 
 ```
 react-blog/
@@ -17,14 +17,14 @@ react-blog/
       Notice.jsx
       ReplyItem.jsx
     pages/
-      Detail.jsx   고침
-      Home.jsx
-      JoinForm.jsx   고침
-      LoginForm.jsx   고침
+      Detail.jsx
+      Home.jsx   고침
+      JoinForm.jsx
+      LoginForm.jsx
       NotFound.jsx
-      SaveForm.jsx   고침
-      UpdateForm.jsx   고침
-      UserInfo.jsx   고침
+      SaveForm.jsx
+      UpdateForm.jsx
+      UserInfo.jsx
     store/
       authStore.jsx
     App.jsx

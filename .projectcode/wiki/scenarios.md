@@ -34,19 +34,28 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  A[Home] --> B["GET /?page=0"]
+  A[Home] --> B["GET /?page=&keyword="]
   B --> C[routes/boards.js]
   C --> D[(boards)]
   A --> E[BoardCard]
+  A --> F[Loading]
 ```
 
-만든 장: screens, component-split, board-list, board-save, react-query, error-handling
+만든 장: screens, component-split, board-list, board-save, react-query, error-handling, paging-search
 맡는 파일
 - react-blog/src/pages/Home.jsx
 - react-blog/src/components/BoardCard.jsx
+- react-blog/src/components/Loading.jsx
 - react-blog/src/api/http.jsx
 - server-node/src/routes/boards.js
 - server-node/src/db.js
+
+목록 키는 ["boards", "list", { page, keyword }]다. 페이지와 검색어마다 캐시 칸이 따로 생긴다.
+이전, 다음 버튼은 서버가 준 isFirst, isLast로 막고 가운데에 쪽 번호를 보인다.
+검색창에 칠 때마다 제목으로 찾고 첫 페이지부터 본다.
+새 키를 받는 동안 placeholderData로 이전 목록과 검색창을 그대로 보인다. 처음 들어올 때만 Loading을 보인다.
+결과가 없으면 목록 자리에 검색 결과가 없습니다를 보인다.
+글을 쓰거나 고치거나 지우면 ["boards", "list"] 무효화가 모든 페이지와 검색 키에 걸린다.
 
 ## 글 상세 보기
 
@@ -315,12 +324,12 @@ flowchart LR
   G[SaveForm] --> B
   H[Header] --> B
   B --> I[http]
-  I --> J["GET /?page=0"]
+  I --> J["GET /?page=&keyword="]
   I --> K["GET /api/boards/:id"]
   I --> L["GET /api/user"]
 ```
 
-만든 장: react-query
+만든 장: react-query, paging-search
 맡는 파일
 - react-blog/src/main.jsx
 - react-blog/src/pages/Home.jsx
