@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import http from "../api/http";
 import BoardCard from "../components/BoardCard";
 
 export default function Home() {
-  const [boards, setBoards] = useState([]);
-
-  useEffect(() => {
-    async function loadBoards() {
+  const { data: boards = [] } = useQuery({
+    queryKey: ["boards", "list"],
+    queryFn: async () => {
       const res = await http.get("/?page=0");
-      setBoards(res.data.body.boards);
-    }
-    loadBoards();
-  }, []);
+      return res.data.body.boards;
+    },
+  });
 
   return (
     <div className="grid grid-cols-3 gap-8">
