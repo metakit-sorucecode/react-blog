@@ -35,11 +35,15 @@ export default function Home() {
           setPage(0);
         }}
       />
-      <div className="grid grid-cols-3 gap-8">
-        {data.boards.map((board) => (
-          <BoardCard key={board.id} id={board.id} title={board.title} />
-        ))}
-      </div>
+      {data.boards.length === 0 ? (
+        <p className="text-center">검색 결과가 없습니다</p>
+      ) : (
+        <div className="grid grid-cols-3 gap-8">
+          {data.boards.map((board) => (
+            <BoardCard key={board.id} id={board.id} title={board.title} />
+          ))}
+        </div>
+      )}
       <div className="flex justify-center items-center gap-4 mt-8">
         <button
           className="btn"
