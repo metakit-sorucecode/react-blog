@@ -4,13 +4,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
+import Loading from "../components/Loading";
 
 export default function UserInfo() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: user } = useQuery({
+  const { data: user, isPending } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const res = await http.get("/api/user");
@@ -40,6 +41,10 @@ export default function UserInfo() {
   function handleSubmit(e) {
     e.preventDefault();
     updateUser.mutate();
+  }
+
+  if (isPending) {
+    return <Loading />;
   }
 
   return (

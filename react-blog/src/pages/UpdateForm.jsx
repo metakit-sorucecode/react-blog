@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
+import Loading from "../components/Loading";
 
 export default function UpdateForm() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ export default function UpdateForm() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: board } = useQuery({
+  const { data: board, isPending } = useQuery({
     queryKey: ["boards", "detail", id],
     queryFn: async () => {
       const res = await http.get(`/api/boards/${id}`);
@@ -46,6 +47,10 @@ export default function UpdateForm() {
   function handleSubmit(e) {
     e.preventDefault();
     updateBoard.mutate();
+  }
+
+  if (isPending) {
+    return <Loading />;
   }
 
   return (

@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ReplyItem from "../components/ReplyItem";
+import Loading from "../components/Loading";
 
 export default function Detail() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ export default function Detail() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: board } = useQuery({
+  const { data: board, isPending } = useQuery({
     queryKey: ["boards", "detail", id],
     queryFn: async () => {
       const res = await http.get(`/api/boards/${id}`);
@@ -55,6 +56,10 @@ export default function Detail() {
 
   function handleReplyDelete(replyId) {
     deleteReply.mutate(replyId);
+  }
+
+  if (isPending) {
+    return <Loading />;
   }
 
   if (!board) {
