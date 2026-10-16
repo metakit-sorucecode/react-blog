@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
@@ -6,12 +6,12 @@ import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
 export default function SaveForm() {
-  const [form, setForm] = useState({ title: "", content: "" });
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const saveBoard = useMutation({
-    mutationFn: () => http.post("/api/boards", form),
+    mutationFn: (data) => http.post("/api/boards", data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: ["boards", "list"],
@@ -21,29 +21,17 @@ export default function SaveForm() {
     },
   });
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    saveBoard.mutate();
+  function onSubmit(data) {
+    saveBoard.mutate(data);
   }
 
   return (
-    <FormCard title="글쓰기" onSubmit={handleSubmit}>
-      <Input
-        name="title"
-        placeholder="제목"
-        value={form.title}
-        onChange={handleChange}
-      />
+    <FormCard title="글쓰기" onSubmit={handleSubmit(onSubmit)}>
+      <Input placeholder="제목" {...register("title")} />
       <textarea
         className="textarea"
-        name="content"
         placeholder="내용"
-        value={form.content}
-        onChange={handleChange}
+        {...register("content")}
       />
       <button className="btn">글쓰기</button>
     </FormCard>
