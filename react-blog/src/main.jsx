@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "sonner";
 import "./index.css";
 import App from "./App";
 
@@ -25,6 +26,19 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <App />
       <ReactQueryDevtools />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "black",
+            color: "white",
+            border: "none",
+            padding: "8px 16px",
+            width: "fit-content",
+            right: 0,
+          },
+        }}
+      />
     </QueryClientProvider>
   </StrictMode>,
 );

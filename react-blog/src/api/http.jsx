@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "sonner";
 
 const http = axios.create({ baseURL: "http://localhost:8080" });
 
@@ -9,5 +10,15 @@ http.interceptors.request.use((config) => {
   }
   return config;
 });
+
+http.interceptors.response.use(
+  (res) => res,
+  (error) => {
+    if (error.config.method !== "get") {
+      toast(error.response.data.msg);
+    }
+    return Promise.reject(error);
+  },
+);
 
 export default http;
