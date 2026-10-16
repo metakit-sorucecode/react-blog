@@ -5,7 +5,11 @@ import FormCard from "../components/FormCard";
 import Input from "../components/Input";
 
 export default function JoinForm() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
 
   async function onSubmit(data) {
@@ -19,7 +23,16 @@ export default function JoinForm() {
   return (
     <FormCard title="회원가입" onSubmit={handleSubmit(onSubmit)}>
       <Input placeholder="아이디" {...register("username")} />
-      <Input type="password" placeholder="비밀번호" {...register("password")} />
+      <Input
+        type="password"
+        placeholder="비밀번호"
+        {...register("password", {
+          minLength: { value: 4, message: "비밀번호는 4자 이상이어야 합니다" },
+        })}
+      />
+      {errors.password && (
+        <p className="text-error text-sm">{errors.password.message}</p>
+      )}
       <Input placeholder="이메일" {...register("email")} />
       <button className="btn">가입하기</button>
     </FormCard>
