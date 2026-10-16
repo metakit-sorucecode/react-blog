@@ -22,12 +22,13 @@ export default function UserInfo() {
 
   useEffect(() => {
     if (user) {
-      reset({ email: user.email, password: "" });
+      reset({ username: user.username, email: user.email, password: "" });
     }
   }, [user, reset]);
 
   const updateUser = useMutation({
-    mutationFn: (data) => http.put("/api/user", data),
+    mutationFn: (data) =>
+      http.put("/api/user", { email: data.email, password: data.password }),
     onSuccess: (res) => {
       queryClient.setQueryData(["user"], res.data.body);
       navigate("/");
@@ -44,7 +45,7 @@ export default function UserInfo() {
 
   return (
     <FormCard title="내 정보" onSubmit={handleSubmit(onSubmit)}>
-      <Input value={user.username} readOnly />
+      <Input readOnly {...register("username")} />
       <Input placeholder="이메일" {...register("email")} />
       <Input
         type="password"
