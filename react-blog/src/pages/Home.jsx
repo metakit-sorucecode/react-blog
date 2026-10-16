@@ -39,7 +39,9 @@ export default function Home() {
     return <Loading />;
   }
 
-  // 받기에 실패하면 data가 없다. 연결 실패는 토스트가 알렸으니 화면을 비워 둔다
+  // 받기에 실패하면 화면을 비운다. 연결 실패는 토스트가 알린다
+  // 처음 받기에 실패하면 data가 없어서 그대로 그리면 data.boards에서 깨진다
+  // 받아 둔 목록이 있는데 다시 받기에 실패해도 isError가 true라서 목록을 비운다
   if (isError) {
     return null;
   }

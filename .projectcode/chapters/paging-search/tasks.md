@@ -27,7 +27,7 @@
   - 파일: tests/paging-search/paging-search.spec.js
   - 실행하면: 학생 코드 변경 없음
   - Why: 테스트가 할 일 글 전체를 확인하게 한다
-- [ ] T5 조회 실패 주석 바로잡기
+- [x] T5 조회 실패 주석 바로잡기
   - 근거: 어긋남. 다시 받기에 실패하면 data가 남는데 주석은 data가 없다고 한다
   - 파일: react-blog/src/pages/Home.jsx
   - 실행하면: 화면 동작은 같다
