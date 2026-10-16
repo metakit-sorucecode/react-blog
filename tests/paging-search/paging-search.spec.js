@@ -168,7 +168,7 @@ test("S4 검색창에 칠 때마다 제목에 그 글자가 든 글만 보이고
   await expect(pageNumber(page)).toHaveText("1 / 1");
 
   // 한 글자씩 치면 글자가 바뀔 때마다 그 검색어로 요청하고 마지막 결과를 보인다
-  const typed = `${word}x`;
+  const typed = [`${word}x`, `${word}xy`];
   const keywords = [];
   page.on("request", (req) => {
     const p = listParams(req.url());
@@ -176,13 +176,15 @@ test("S4 검색창에 칠 때마다 제목에 그 글자가 든 글만 보이고
       keywords.push(p.keyword);
     }
   });
-  await searchBox(page).pressSequentially("x", { delay: 100 });
+  await searchBox(page).pressSequentially("xy", { delay: 150 });
   await expect(
     page.getByText("검색 결과가 없습니다", { exact: true }),
   ).toBeVisible();
   await searchBox(page).press("Backspace");
+  await searchBox(page).press("Backspace");
   await expect(cardLinks(page)).toHaveText([`제목 ${word}`]);
-  expect(keywords).toContain(typed);
+  // 글자가 바뀔 때마다 요청했다
+  expect(keywords).toEqual(expect.arrayContaining(typed));
 });
 
 test("S5 검색 결과가 없으면 목록 자리에 검색 결과가 없습니다를 보인다", async ({
@@ -313,8 +315,12 @@ test("S8 글을 쓰면 모든 페이지 캐시를 무효화해 다음을 누르�
   await expect(cardLinks(page).first()).toHaveText(title);
   await expect.poll(() => secondTitles.length).toBeGreaterThan(0);
 
+  // 쓰기 때 이미 다시 받아 두어 다음을 눌러도 요청이 가지 않는다
+  const afterWrite = collectLists(page, 1);
   await button(page, "다음").click();
   await expect(cardLinks(page)).toHaveText(secondTitles);
+  await page.waitForTimeout(500);
+  expect(afterWrite).toHaveLength(0);
 });
 
 test("S8 글을 고치거나 지우면 캐시에 있던 다른 페이지와 검색 결과도 그때 다시 받는다", async ({
