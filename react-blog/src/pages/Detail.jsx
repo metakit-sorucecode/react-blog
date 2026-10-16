@@ -11,7 +11,12 @@ export default function Detail() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: board, isPending } = useQuery({
+  const {
+    data: board,
+    isPending,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["boards", "detail", id],
     queryFn: async () => {
       const res = await http.get(`/api/boards/${id}`);
@@ -62,7 +67,17 @@ export default function Detail() {
     return <Loading />;
   }
 
-  if (!board) {
+  if (isError) {
+    if (error.response && error.response.status === 404) {
+      return (
+        <div className="text-center">
+          <p>게시글이 없습니다</p>
+          <Link to="/" className="btn mt-4">
+            목록으로
+          </Link>
+        </div>
+      );
+    }
     return null;
   }
 
