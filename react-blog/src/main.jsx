@@ -8,7 +8,14 @@ import App from "./App";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000, // 받은 데이터를 1분 동안 fresh로 본다
+      staleTime: 60 * 1000,
+
+      retry: (failureCount, error) => {
+        if (error.response && error.response.status < 500) {
+          return false;
+        }
+        return failureCount < 1;
+      },
     },
   },
 });
