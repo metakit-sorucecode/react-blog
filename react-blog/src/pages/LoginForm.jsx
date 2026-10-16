@@ -16,10 +16,12 @@ export default function LoginForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const res = await http.post("/login", form);
-    const jwt = res.headers.authorization;
-    login(jwt, form.username);
-    navigate("/");
+    try {
+      const res = await http.post("/login", form);
+      const jwt = res.headers.authorization;
+      login(jwt, form.username);
+      navigate("/");
+    } catch {}
   }
 
   return (

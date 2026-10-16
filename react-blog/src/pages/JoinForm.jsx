@@ -14,9 +14,11 @@ export default function JoinForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await http.post("/join", form);
-    alert("회원가입 완료");
-    navigate("/login-form");
+    try {
+      await http.post("/join", form);
+      alert("회원가입 완료");
+      navigate("/login-form");
+    } catch {}
   }
 
   return (
