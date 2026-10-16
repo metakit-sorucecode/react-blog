@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import http from "../api/http";
 import BoardCard from "../components/BoardCard";
@@ -6,16 +6,18 @@ import Loading from "../components/Loading";
 import useDebounce from "../hooks/useDebounce";
 
 export default function Home() {
-  const [page, setPage] = useState(0);
   const [keyword, setKeyword] = useState("");
   const debouncedKeyword = useDebounce(keyword, 500);
+  const [search, setSearch] = useState({ page: 0, keyword: "" });
+
+  useEffect(() => {
+    setSearch({ page: 0, keyword: debouncedKeyword });
+  }, [debouncedKeyword]);
 
   const { data, isPending, isError } = useQuery({
-    queryKey: ["boards", "list", { page, keyword: debouncedKeyword }],
+    queryKey: ["boards", "list", search],
     queryFn: async () => {
-      const res = await http.get("/", {
-        params: { page, keyword: debouncedKeyword },
-      });
+      const res = await http.get("/", { params: search });
       return res.data.body;
     },
     placeholderData: keepPreviousData,
@@ -35,10 +37,7 @@ export default function Home() {
         className="input w-full mb-8"
         placeholder="제목 검색"
         value={keyword}
-        onChange={(e) => {
-          setKeyword(e.target.value);
-          setPage(0);
-        }}
+        onChange={(e) => setKeyword(e.target.value)}
       />
       {data.boards.length === 0 ? (
         <p className="text-center">검색 결과가 없습니다</p>
@@ -53,7 +52,7 @@ export default function Home() {
         <button
           className="btn"
           disabled={data.isFirst}
-          onClick={() => setPage(data.number - 1)}
+          onClick={() => setSearch({ ...search, page: data.number - 1 })}
         >
           이전
         </button>
@@ -63,7 +62,7 @@ export default function Home() {
         <button
           className="btn"
           disabled={data.isLast}
-          onClick={() => setPage(data.number + 1)}
+          onClick={() => setSearch({ ...search, page: data.number + 1 })}
         >
           다음
         </button>
