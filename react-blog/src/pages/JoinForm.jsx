@@ -9,7 +9,7 @@ export default function JoinForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
   const navigate = useNavigate();
 
   async function onSubmit(data) {
