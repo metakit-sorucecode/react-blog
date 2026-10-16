@@ -6,11 +6,12 @@ import Loading from "../components/Loading";
 
 export default function Home() {
   const [page, setPage] = useState(0);
+  const [keyword, setKeyword] = useState("");
 
   const { data, isPending, isError } = useQuery({
-    queryKey: ["boards", "list", { page }],
+    queryKey: ["boards", "list", { page, keyword }],
     queryFn: async () => {
-      const res = await http.get("/", { params: { page } });
+      const res = await http.get("/", { params: { page, keyword } });
       return res.data.body;
     },
   });
@@ -25,6 +26,15 @@ export default function Home() {
 
   return (
     <div>
+      <input
+        className="input w-full mb-8"
+        placeholder="제목 검색"
+        value={keyword}
+        onChange={(e) => {
+          setKeyword(e.target.value);
+          setPage(0);
+        }}
+      />
       <div className="grid grid-cols-3 gap-8">
         {data.boards.map((board) => (
           <BoardCard key={board.id} id={board.id} title={board.title} />
