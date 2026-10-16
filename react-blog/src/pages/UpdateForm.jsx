@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
@@ -8,7 +9,7 @@ import Loading from "../components/Loading";
 
 export default function UpdateForm() {
   const { id } = useParams();
-  const [form, setForm] = useState({ title: "", content: "" });
+  const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -22,12 +23,12 @@ export default function UpdateForm() {
 
   useEffect(() => {
     if (board) {
-      setForm({ title: board.title, content: board.content });
+      reset({ title: board.title, content: board.content });
     }
-  }, [board]);
+  }, [board, reset]);
 
   const updateBoard = useMutation({
-    mutationFn: () => http.put(`/api/boards/${id}`, form),
+    mutationFn: (data) => http.put(`/api/boards/${id}`, data),
     onSuccess: async () => {
       queryClient.invalidateQueries({
         queryKey: ["boards", "list"],
@@ -40,13 +41,8 @@ export default function UpdateForm() {
     },
   });
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    updateBoard.mutate();
+  function onSubmit(data) {
+    updateBoard.mutate(data);
   }
 
   if (isPending) {
@@ -54,19 +50,12 @@ export default function UpdateForm() {
   }
 
   return (
-    <FormCard title="글 수정" onSubmit={handleSubmit}>
-      <Input
-        name="title"
-        placeholder="제목"
-        value={form.title}
-        onChange={handleChange}
-      />
+    <FormCard title="글 수정" onSubmit={handleSubmit(onSubmit)}>
+      <Input placeholder="제목" {...register("title")} />
       <textarea
         className="textarea"
-        name="content"
         placeholder="내용"
-        value={form.content}
-        onChange={handleChange}
+        {...register("content")}
       />
       <button className="btn">수정하기</button>
     </FormCard>
