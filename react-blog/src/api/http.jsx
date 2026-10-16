@@ -14,7 +14,9 @@ http.interceptors.request.use((config) => {
 http.interceptors.response.use(
   (res) => res,
   (error) => {
-    if (error.config.method !== "get") {
+    if (!error.response) {
+      toast("서버에 연결할 수 없습니다", { id: "network" });
+    } else if (error.config.method !== "get") {
       toast(error.response.data.msg);
     }
     return Promise.reject(error);
