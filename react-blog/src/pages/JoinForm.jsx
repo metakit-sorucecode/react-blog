@@ -3,6 +3,8 @@ import http from "../api/http";
 import { useNavigate } from "react-router-dom";
 import FormCard from "../components/FormCard";
 import Input from "../components/Input";
+import Notice from "../components/Notice";
+import { useAuthStore } from "../store/authStore";
 
 export default function JoinForm() {
   const {
@@ -11,6 +13,7 @@ export default function JoinForm() {
     formState: { errors },
   } = useForm({ mode: "onChange" });
   const navigate = useNavigate();
+  const isLogin = useAuthStore((state) => state.isLogin);
 
   async function onSubmit(data) {
     try {
@@ -18,6 +21,10 @@ export default function JoinForm() {
       alert("회원가입 완료");
       navigate("/login-form");
     } catch {}
+  }
+
+  if (isLogin) {
+    return <Notice text="이미 로그인했습니다" to="/" label="홈으로" />;
   }
 
   return (
