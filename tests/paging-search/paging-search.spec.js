@@ -166,6 +166,23 @@ test("S4 검색창에 칠 때마다 제목에 그 글자가 든 글만 보이고
   expect(await searched).toEqual([`제목 ${word}`]);
   await expect(cardLinks(page)).toHaveText([`제목 ${word}`]);
   await expect(pageNumber(page)).toHaveText("1 / 1");
+
+  // 한 글자씩 치면 글자가 바뀔 때마다 그 검색어로 요청하고 마지막 결과를 보인다
+  const typed = `${word}x`;
+  const keywords = [];
+  page.on("request", (req) => {
+    const p = listParams(req.url());
+    if (req.method() === "GET" && p && p.keyword.startsWith(word)) {
+      keywords.push(p.keyword);
+    }
+  });
+  await searchBox(page).pressSequentially("x", { delay: 100 });
+  await expect(
+    page.getByText("검색 결과가 없습니다", { exact: true }),
+  ).toBeVisible();
+  await searchBox(page).press("Backspace");
+  await expect(cardLinks(page)).toHaveText([`제목 ${word}`]);
+  expect(keywords).toContain(typed);
 });
 
 test("S5 검색 결과가 없으면 목록 자리에 검색 결과가 없습니다를 보인다", async ({
@@ -241,6 +258,15 @@ test("S7 페이지와 검색어마다 따로 캐시에 담아 1분 안에 본 �
   await searchBox(page).fill("");
   await expect(cardLinks(page)).toHaveText(first);
 
+  // 같은 검색어로 다시 찾아도 요청 없이 그 결과를 보인다
+  const searchedAgain = collectLists(page, 0, word);
+  await searchBox(page).fill(word);
+  await expect(
+    page.getByText("검색 결과가 없습니다", { exact: true }),
+  ).toBeVisible();
+  await searchBox(page).fill("");
+  await expect(cardLinks(page)).toHaveText(first);
+
   // 다시 2페이지로 가도 요청이 가지 않는다
   const secondAgain = collectLists(page, 1);
   await button(page, "다음").click();
@@ -249,6 +275,7 @@ test("S7 페이지와 검색어마다 따로 캐시에 담아 1분 안에 본 �
   await page.waitForTimeout(500);
   expect(firstAgain).toHaveLength(0);
   expect(secondAgain).toHaveLength(0);
+  expect(searchedAgain).toHaveLength(0);
 });
 
 test("S8 글을 쓰면 모든 페이지 캐시를 무효화해 다음을 누르면 다시 받은 2페이지를 보인다", async ({
@@ -288,4 +315,46 @@ test("S8 글을 쓰면 모든 페이지 캐시를 무효화해 다음을 누르�
 
   await button(page, "다음").click();
   await expect(cardLinks(page)).toHaveText(secondTitles);
+});
+
+test("S8 글을 고치거나 지우면 캐시에 있던 다른 페이지와 검색 결과도 그때 다시 받는다", async ({
+  page,
+  request,
+}) => {
+  const word = `고침${Date.now()}`;
+  await createBoard(request, `제목 ${word}`);
+  await login(page);
+  await openHome(page);
+
+  // 2페이지와 검색 결과를 받아 캐시에 둔다
+  const second = waitListTitles(page, 1);
+  await button(page, "다음").click();
+  await expect(cardLinks(page)).toHaveText(await second);
+  const searched = waitListTitles(page, 0, word);
+  await searchBox(page).fill(word);
+  await searched;
+  await expect(cardLinks(page)).toHaveText([`제목 ${word}`]);
+
+  // 고치면 2페이지와 검색 결과를 다시 받는다
+  let seconds = collectLists(page, 1);
+  let words = collectLists(page, 0, word);
+  await cardLinks(page).first().click();
+  await page.getByRole("link", { name: "수정", exact: true }).click();
+  await page
+    .getByPlaceholder("제목", { exact: true })
+    .fill(`제목 ${word} 고친 제목`);
+  await button(page, "수정하기").click();
+  await expect(
+    page.getByRole("heading", { name: `제목 ${word} 고친 제목` }),
+  ).toBeVisible();
+  await expect.poll(() => seconds.length).toBeGreaterThan(0);
+  await expect.poll(() => words.length).toBeGreaterThan(0);
+
+  // 지우면 2페이지와 검색 결과를 다시 받는다
+  seconds = collectLists(page, 1);
+  words = collectLists(page, 0, word);
+  await button(page, "삭제").click();
+  await expect(page).toHaveURL(/5173\/$/);
+  await expect.poll(() => seconds.length).toBeGreaterThan(0);
+  await expect.poll(() => words.length).toBeGreaterThan(0);
 });
