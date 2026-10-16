@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import http from "../api/http";
@@ -7,7 +8,7 @@ import Input from "../components/Input";
 import Loading from "../components/Loading";
 
 export default function UserInfo() {
-  const [form, setForm] = useState({ username: "", email: "", password: "" });
+  const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -21,26 +22,20 @@ export default function UserInfo() {
 
   useEffect(() => {
     if (user) {
-      setForm({ username: user.username, email: user.email, password: "" });
+      reset({ email: user.email, password: "" });
     }
-  }, [user]);
+  }, [user, reset]);
 
   const updateUser = useMutation({
-    mutationFn: () =>
-      http.put("/api/user", { email: form.email, password: form.password }),
+    mutationFn: (data) => http.put("/api/user", data),
     onSuccess: (res) => {
       queryClient.setQueryData(["user"], res.data.body);
       navigate("/");
     },
   });
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    updateUser.mutate();
+  function onSubmit(data) {
+    updateUser.mutate(data);
   }
 
   if (isPending) {
@@ -48,20 +43,13 @@ export default function UserInfo() {
   }
 
   return (
-    <FormCard title="내 정보" onSubmit={handleSubmit}>
-      <Input value={form.username} readOnly />
+    <FormCard title="내 정보" onSubmit={handleSubmit(onSubmit)}>
+      <Input value={user.username} readOnly />
+      <Input placeholder="이메일" {...register("email")} />
       <Input
-        name="email"
-        placeholder="이메일"
-        value={form.email}
-        onChange={handleChange}
-      />
-      <Input
-        name="password"
         type="password"
         placeholder="새 비밀번호"
-        value={form.password}
-        onChange={handleChange}
+        {...register("password")}
       />
       <button className="btn">수정하기</button>
     </FormCard>
